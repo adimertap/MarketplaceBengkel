@@ -12,41 +12,78 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 // */
-Route::get("/", "getApi@index");
-Route::get("/a", "getApi@ongkir");
+Route::get("/", "HomeController@index");
+Route::get("/categories", "CategoriesController@index");
+Route::get("/details/{id}", "DetailController@index");
+Route::get("/cart", "CartController@index");
 
-// Route::get('/', function () {
-//     return view('pages.home');
+Route::prefix('admin')
+    ->namespace('AdminMarketplace')
+    ->group(function(){
+        Route::get('/', "DashboardController@index");
+        Route::resource('category', 'CategoryController');
+        Route::resource('user', 'UserController');
+
+    });
+    
+
+
+
+
+
+
+// Route::get("/checkout", "getApi@index");
+// Route::get("/registeri", "getApi@register");
+
+// Route::get("/a", "getApi@ongkir");
+
+// Route::get("/getcity/ajax/{id}", "getApi@ajax");
+
+// Route::get('/trans', function () {
+//     return view('pages.trans');
 // });
 
-Route::get("/getcity/ajax/{id}", "getApi@ajax");
+// Route::get('/logini', function () {
+//     return view('pages.login');
+// });
 
+// Route::get('/loginku', function () {
+//     return view('pages.login');
+// });
+// Route::get('/cart', function () {
+//     return view('pages.cart');
+// });
+// Route::get('/faq', function () {
+//     return view('pages.faq');
+// });
 
-Route::get('/checkout', function () {
-    return view('pages.checkout');
-});
+// Route::get('/productdetail', function () {
+//     return view('pages.productdetail');
+// });
 
-Route::get('/loginku', function () {
-    return view('pages.login');
-});
-Route::get('/cart', function () {
-    return view('pages.cart');
-});
+// Route::get('/bengkeldetail', function () {
+//     return view('pages.bengkeldetail');
+// });
 
-Route::get('/productdetail', function () {
-    return view('pages.productdetail');
-});
+// Route::get('/categories', function () {
+//     return view('pages.categories');
+// });
+// Route::get('/debug-sentry', function () {
+//     throw new Exception('My first Sentry error!');
+// });
+// Auth::routes();
 
-Route::get('/categories', function () {
-    return view('pages.categories');
-});
-Route::get('/debug-sentry', function () {
-    throw new Exception('My first Sentry error!');
-});
+// Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+// // admin
+// Route::get('/adminku', function () {
+//     return view('admin.pages.dashboard');
+// });

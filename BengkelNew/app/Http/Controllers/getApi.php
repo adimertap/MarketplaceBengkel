@@ -10,6 +10,11 @@ use App\Province;
 
 class getApi extends Controller
 {
+    public function register(){
+       
+        $provinsi = Province::all();
+        return view('pages.register', compact('provinsi')) ;
+    }
     
     public function index(Request $request){
         // dd($request->all());

@@ -1,0 +1,1023 @@
+@extends('user-views.layouts.app')
+
+@section('name')
+Marketplace Homepage
+@endsection
+@section('content')
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class="container">
+            <!--begin::Page Layout-->
+            <div class="d-flex flex-row">
+                <!--begin::Layout-->
+                <div class="flex-row-fluid ml-lg-12">
+                    <!--begin::Card-->
+                    <div class="card card-custom card-stretch gutter-b">
+                        <div class="card-body">
+                            <!--begin::Engage Widget 15-->
+                            <div id="carouselExampleIndicators" class="carousel slide mb-11" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="user-assets/assets/media/bengkel/map_panjang.png"
+                                            alt="First slide">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel Terdekat
+                                            </h1>
+                                            <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="user-assets/assets/media/bengkel/map_panjang.png"
+                                            alt="First slide">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel Terdekat
+                                            </h1>
+                                            <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100" src="user-assets/assets/media/bengkel/map_panjang.png"
+                                            alt="First slide">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel Terdekat
+                                            </h1>
+                                            <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                    data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                    data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                            <!--end::Engage Widget 15-->
+
+                            <!--begin::Section-->
+                            <div class="mb-8">
+                                <!--begin::Heading-->
+                                <div class="d-flex justify-content-between align-items-center mb-7">
+                                    <h2 class="font-weight-bolder text-dark font-size-h3 mb-0">Produk Terbaru</h2>
+                                    <a href="#" class="btn btn-light-primary btn-sm font-weight-bolder">Lihat
+                                        Selengkapnya</a>
+                                </div>
+                                <!--end::Heading-->
+                                <!--begin::Products-->
+                                <div class="row">
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                </div>
+                                <!--end::Products-->
+                            </div>
+                            <!--end::Section-->
+                            <!--begin::Section-->
+                            <div class="mb-8">
+                                <!--begin::Heading-->
+                                <div class="d-flex justify-content-between align-items-center mb-7">
+                                    <h2 class="font-weight-bolder text-dark font-size-h3 mb-0">Produk Terlaris</h2>
+                                    <a href="#" class="btn btn-light-primary btn-sm font-weight-bolder">Lihat
+                                        Selengkapnya</a>
+                                </div>
+                                <!--end::Heading-->
+                                <!--begin::Products-->
+                                <div class="row">
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                </div>
+                                <!--end::Products-->
+                            </div>
+                            <!--end::Section-->
+
+                            <!--begin::Section-->
+                            <div class="mb-8">
+                                <!--begin::Heading-->
+                                <div class="d-flex justify-content-between align-items-center mb-7">
+                                    <h2 class="font-weight-bolder text-dark font-size-h3 mb-0">Aksesoris</h2>
+                                    <a href="#" class="btn btn-light-primary btn-sm font-weight-bolder">Lihat
+                                        Selengkapnya</a>
+                                </div>
+                                <!--end::Heading-->
+                                <!--begin::Products-->
+                                 <div class="row">
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                </div>
+                                <!--end::Products-->
+                            </div>
+                            <!--end::Section-->
+                            <!--begin::Section-->
+                            <div class="mb-8">
+                                <!--begin::Heading-->
+                                <div class="d-flex justify-content-between align-items-center mb-7">
+                                    <h2 class="font-weight-bolder text-dark font-size-h3 mb-0">Sparepart</h2>
+                                    <a href="#" class="btn btn-light-primary btn-sm font-weight-bolder">Lihat
+                                        Selengkapnya</a>
+                                </div>
+                                <!--end::Heading-->
+                                <!--begin::Products-->
+                                 <div class="row">
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                    <!--begin::Product-->
+                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                        <!--begin::Card-->
+                                        <div class="card card-custom card-shadowless">
+                                            <div class="card-body p-0">
+                                                <!--begin::Image-->
+                                                <div class="overlay">
+                                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                                        <img src="user-assets/assets/media/products/1.png" alt=""
+                                                            class="mw-100 w-200px" />
+                                                    </div>
+                                                    <div class="overlay-layer">
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                                        <a href="#"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                    </div>
+                                                </div>
+                                                <!--end::Image-->
+                                                <!--begin::Details-->
+                                                <div
+                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    <a href="#"
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">Smart
+                                                        Watches</a>
+                                                    <span class="font-size-sm">Bengkel Citra buana motor</span>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                            <div class="d-flex flex-column text-dark-75">
+                                                                <span
+                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">3.2</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+                                                        <!--begin: Item-->
+                                                        <div class="d-flex align-items-right  my-1">
+                                                            <div class="d-flex flex-column text-dark-75 ">
+                                                                <span class="font-weight-bolder font-size-h5"><span
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>164,700</span>
+                                                            </div>
+                                                        </div>
+                                                        <!--end: Item-->
+
+
+                                                    </div>
+                                                </div>
+                                                <!--end::Details-->
+                                            </div>
+                                        </div>
+                                        <!--end::Card-->
+                                    </div>
+                                    <!--end::Product-->
+                                </div>
+                                <!--end::Products-->
+                            </div>
+                            <!--end::Section-->
+
+                        </div>
+                    </div>
+                    <!--end::Card-->
+                </div>
+                <!--end::Layout-->
+            </div>
+            <!--end::Page Layout-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>
+@endsection
