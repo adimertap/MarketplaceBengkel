@@ -14,19 +14,19 @@ class Sparepart extends Model
         'id_jenis_sparepart', 'id_merk','kode_sparepart',  'nama_sparepart', 'keterangan', 'id_bengkel'
     ];
 
-    public function galleries(){
+    public function Galleries(){
         return $this->hasMany(SparepartGalleries::class, 'id_sparepart', 'id_gallery');
     }
 
-    public function merk(){
+    public function Merk(){
         return $this->belongsTo(SparepartMerk::class, 'id_merk', 'id_merk');
     }
 
-    public function category(){
+    public function Category(){
         return $this->belongsTo(Category::class, 'id_jenis_sparepart', 'id_jenis_sparepart');
     }
 
-    public function bengkel(){
+    public function Bengkel(){
         return $this->hasOne(Bengkel::class, 'id_bengkel', 'id_bengkel');
     }
 }

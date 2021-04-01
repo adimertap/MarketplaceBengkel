@@ -23,6 +23,8 @@ Route::prefix('admin')
         Route::get('/', "DashboardController@index");
         Route::resource('category', 'CategoryController');
         Route::resource('user', 'UserController');
+        Route::resource('sparepart', 'SparepartController');
+        Route::resource('bengkel', 'BengkelController');
 
     });
     
