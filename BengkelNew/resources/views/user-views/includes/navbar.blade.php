@@ -211,106 +211,58 @@
                                 <!--begin::Body-->
                                 <div class="card-body py-0">
                                     <!--begin::Table-->
-                                    <div class="table-responsive">
-                                        <table class="table table-head-custom table-vertical-center"
-                                            id="kt_advance_table_widget_1">
-                                            <thead>
-                                                <tr class="text-left">
-                                                    <th class="pr-0 text-center" style="min-width: 150px">
-                                                        Motor
-                                                    </th>
-                                                    <th class="pr-0 text-center" style="min-width: 150px">
-                                                        Mobil
-                                                    </th>
-                                                    <th class="pr-0 text-center" style="min-width: 150px">
-                                                        Sepeda
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#"><span
-                                                                class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
-                                                                Intertico
-                                                            </span></a>
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
+                                    <div class="row">
+                                        <div class="col-6 table-responsive">
+                                            <table class="table table-head-custom table-vertical-center"
+                                                id="kt_advance_table_widget_1">
+                                                <thead>
+                                                    <tr class="text-left">
+                                                        <th class="pr-0 text-center" style="min-width: 150px">
+                                                            Motor
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($category as $item)
+                                                    <tr> @if ($item-> fungsi =='MOTOR')
+                                                        <td>
+                                                            <a href="{{ route('categories-detail', $item->slug) }}"><span
+                                                                    class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
+                                                                    {{ $item -> jenis_sparepart}}
+                                                                </span></a>
+                                                        </td>
+                                                        @endif
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-6 table-responsive">
+                                            <table class="table table-head-custom table-vertical-center"
+                                                id="kt_advance_table_widget_1">
+                                                <thead>
+                                                    <tr class="text-left">
+                                                        <th class="pr-0 text-center" style="min-width: 150px">
+                                                            Mobil
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($category as $item)
+                                                    <tr>
+                                                        @if ($item-> fungsi =='MOBIL')
+                                                        <td>
+                                                            <a href="{{ route('categories-detail', $item->slug) }}"><span
+                                                                    class="text-dark-75 text-center font-weight-bolder d-block font-size-lg">
+                                                                    {{ $item -> jenis_sparepart}}
+                                                                </span></a>
+                                                        </td>
+                                                        @endif
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                     <!--end::Table-->
                                 </div>

@@ -14,7 +14,7 @@ class Category extends Model
 
 
     protected $fillable = [
-        'jenis_sparepart', 'keterangan'
+        'jenis_sparepart', 'keterangan', 'slug'
     ];
 
 }

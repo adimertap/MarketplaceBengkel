@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\Sparepart;
+
 
 class HomeController extends Controller
 {
@@ -20,6 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user-views.pages.home');
+        $category = Category::take(8)->get();
+        $sparepart = Sparepart::with('Galleries', 'Bengkel', 'Harga')->latest()->take(8)->get();
+
+        // dd($categorymobil);
+        // dd($sparepart);
+        return view('user-views.pages.home', [
+            'category' => $category,
+            'sparepart' => $sparepart
+        ]);
+
     }
 }

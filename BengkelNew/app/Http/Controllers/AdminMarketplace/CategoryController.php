@@ -46,6 +46,7 @@ class CategoryController extends Controller
 
         $data['slug'] = Str::slug($request->jenis_sparepart);
 
+        // dd($data);
         Category::create($data);
         return redirect()->route('category.index')
             ->with('messageberhasil','Data Jenis Sparepart Berhasil ditambahkan');
@@ -83,6 +84,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id_jenis_sparepart)
     {
         $data = $request ->all();
+        $data['slug'] = Str::slug($request->jenis_sparepart);
 
         $item = Category::findOrFail($id_jenis_sparepart);
         $item -> update($data);

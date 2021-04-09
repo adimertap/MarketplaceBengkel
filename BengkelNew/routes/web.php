@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 // */
 Route::get("/", "HomeController@index");
 Route::get("/categories", "CategoriesController@index");
-Route::get("/details/{id}", "DetailController@index");
+
+Route::get("/categories/{id}", "CategoriesController@index")->name('categories-detail');
+Route::get("/details/{id}", "DetailController@index")->name('detail');
 Route::get("/cart", "CartController@index");
+
 
 Route::prefix('admin')
     ->namespace('AdminMarketplace')
@@ -34,7 +37,7 @@ Route::prefix('admin')
 
 
 
-// Route::get("/checkout", "getApi@index");
+Route::get("/checkout", "getApi@index");
 // Route::get("/registeri", "getApi@register");
 
 // Route::get("/a", "getApi@ongkir");

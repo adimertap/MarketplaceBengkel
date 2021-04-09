@@ -11,11 +11,14 @@ class Sparepart extends Model
     protected $primaryKey = 'id_sparepart';
 
     protected $fillable = [
-        'id_jenis_sparepart', 'id_merk','kode_sparepart',  'nama_sparepart', 'keterangan', 'id_bengkel'
+        'id_jenis_sparepart', 'id_merk','kode_sparepart',  'nama_sparepart','slug', 'keterangan', 'id_bengkel'
     ];
 
     public function Galleries(){
-        return $this->hasMany(SparepartGalleries::class, 'id_sparepart', 'id_gallery');
+        return $this->hasMany(SparepartGalleries::class, 'id_sparepart');
+    }
+    public function Harga(){
+        return $this->hasMany(SparepartHarga::class, 'id_sparepart');
     }
 
     public function Merk(){

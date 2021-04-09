@@ -43,6 +43,8 @@ class SparepartController extends Controller
     public function store(SparepartRequest $request)
     {
         $data = $request ->all();
+        $data['slug'] = Str::slug($request->nama_sparepart);
+
 
         Sparepart::create($data);
         return redirect()->route('sparepart.index')
