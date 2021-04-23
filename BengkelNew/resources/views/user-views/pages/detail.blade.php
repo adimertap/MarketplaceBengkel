@@ -82,41 +82,32 @@ Product Detail
                             <!--begin::Engage Widget 14-->
                             <div class="card card-custom gutter-b gutter-b">
                                 <h2 class="font-weight-bolder text-dark text-center"
-                                    style="font-size: 32px; margin-top: 10px;">Apple
-                                    Earbuds Amazing
-                                    Headset</h2>
+                                    style="font-size: 32px; margin-top: 10px;">{{ $sparepart -> nama_sparepart}}</h2>
+                                <small
+                                    class="font-weight-bolder text-dark text-center">{{ $sparepart -> Bengkel['nama_bengkel'] }}</small>
                                 <!--begin::Polygon Background-->
                                 <div class="slider">
-                                    <input type="radio" name="slide_switch" id="id1" />
-                                    <label for="id1">
-                                        <img src="http://thecodeplayer.com/uploads/media/3yiC6Yq.jpg" width="100" />
-                                    </label>
-                                    <img src="http://thecodeplayer.com/uploads/media/3yiC6Yq.jpg" />
 
-                                    <!--Lets show the second image by default on page load-->
-                                    <input type="radio" name="slide_switch" id="id2" checked="checked" />
-                                    <label for="id2">
-                                        <img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg" width="100" />
+                                    @forelse ($sparepart->Galleries as $key => $item)
+                                    @if ($key==0)
+                                    <input type="radio" name="slide_switch" id="{{ $item->id_gallery }}"
+                                        checked='checked' />
+                                    <label for="{{ $item->id_gallery }}">
+                                        <img src="{{ asset('/image/'.$item['photo'] )}}" width="100" height="80" />
                                     </label>
-                                    <img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg" />
+                                    <img src="{{ asset('/image/'.$item['photo'] )}} " height="320" />
+                                    @else
+                                    <input type="radio" name="slide_switch" id="{{ $item->id_gallery }}" />
+                                    <label for="{{ $item->id_gallery }}">
+                                        <img src="{{ asset('/image/'.$item['photo'] )}}" width="100" height="80" />
+                                    </label>
+                                    <img src="{{ asset('/image/'.$item['photo'] )}} " height="320" />
+                                    @endif
 
-                                    <input type="radio" name="slide_switch" id="id3" />
-                                    <label for="id3">
-                                        <img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" width="100" />
-                                    </label>
-                                    <img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" />
+                                    @empty
 
-                                    <input type="radio" name="slide_switch" id="id4" />
-                                    <label for="id4">
-                                        <img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg" width="100" />
-                                    </label>
-                                    <img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg" />
+                                    @endforelse
 
-                                    <input type="radio" name="slide_switch" id="id5" />
-                                    <label for="id5">
-                                        <img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg" width="100" />
-                                    </label>
-                                    <img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg" />
                                 </div>
                             </div>
                             <!--end::Engage Widget 14-->
@@ -137,13 +128,7 @@ Product Detail
                                             </div>
 
                                         </div>
-                                        <div class="font-size-lg mb-6">Outlines keep you honest. They stop you from
-                                            indulging in poorly to metaphorsy you honest. They stop you from indulging
-                                            in poorly to metaphorsy you honest. They stop you from indulging in poorly
-                                            to metaphorsy you honest. They stop you from indulging in poorly to
-                                            metaphorsy you honest. They stop you from indulging in poorly to metaphorsy
-                                            you honest. They stop you from indulging in poorly to metaphorsy about
-                                            driving ought out</div>
+                                        <div class="font-size-lg mb-6">{{ $sparepart -> keterangan }}</div>
                                         <!--begin::Info-->
 
                                         <!--end::Info-->
@@ -159,7 +144,7 @@ Product Detail
                         </div>
                         <div class="col-md-5 col-lg-12 col-xxl-5">
                             <!--begin::List Widget 19-->
-                            <div class="card card-custom example example-compact gutter-b">
+                            <div class="card card-custom  gutter-b">
                                 <div class="card-header">
                                     <div class="card-title">
                                         <h3 class="card-label">Ulasan</h3>
@@ -188,8 +173,7 @@ Product Detail
                                                     <span
                                                         class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
                                                         Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">4</span>
+                                                    <span class="text-muted font-weight-normal font-size-sm">4</span>
                                                 </div>
                                                 <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
                                                     before you sit dow to put digital pen to paper you need to make sure
@@ -503,23 +487,42 @@ Product Detail
                                     <div class="d-flex align-items-center flex-wrap">
                                         <!--begin: Item-->
                                         <div class="d-flex align-items-center flex-lg-fill my-1">
-                                            
+
                                             <div class="d-flex flex-column text-dark-75">
-                                                <span class="font-weight-bolder font-size-sm">200 Tersedia</span>
+                                                <span class="font-weight-bolder font-size-sm">{{ $sparepart -> stock }}
+                                                    Tersedia</span>
                                                 <span class="font-weight-bolder font-size-h1">
-                                                    <span class="text-dark-50 font-weight-bold">Rp </span>249.500</span>
+                                                    <span class="text-dark-50 font-weight-bold">Rp
+                                                    </span>{{ number_format($sparepart -> Harga ->last()['harga_jual']) }}</span>
                                             </div>
                                         </div>
                                         <!--end: Item-->
+
+                                        @auth
+                                        <form action="{{ route('detail-add', $sparepart->id_sparepart) }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <!--begin: Item-->
+                                            <div class="d-flex align-items-center flex-lg my-1">
+                                                <span class="">
+                                                    <button href="#" type="submit"
+                                                        class="btn btn-block btn-sm btn-light-primary font-weight-bolder text-uppercase py-4">Tambah
+                                                        Ke Keranjang</button> </span>
+
+                                            </div>
+                                            <!--end: Item-->
+                                        </form>
+                                        @else
                                         <!--begin: Item-->
                                         <div class="d-flex align-items-center flex-lg my-1">
                                             <span class="">
-                                                <a href="#"
+                                                <a href="{{ route('login') }}"
                                                     class="btn btn-block btn-sm btn-light-primary font-weight-bolder text-uppercase py-4">Tambah
                                                     Ke Keranjang</a> </span>
 
                                         </div>
                                         <!--end: Item-->
+                                        @endauth
+
 
                                     </div>
                                     <!--end::Bottom-->

@@ -41,114 +41,93 @@ Product Detail
                                         <tr>
                                             <th>Product</th>
                                             <th class="text-center">Qty</th>
-                                            <th class="text-right">Price</th>
+                                            <th class="text-right">Total Harga</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <!--end::Cart Header-->
                                     <tbody>
                                         <!--begin::Cart Content-->
+                                        @php
+                                        $totalharga = 0
+                                        @endphp
+
+                                        @foreach ($cart as $item)
                                         <tr>
                                             <td class="d-flex align-items-center font-weight-bolder">
                                                 <!--begin::Symbol-->
+                                                @if ($item->Sparepart->Galleries)
                                                 <div class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
                                                     <div class="symbol-label"
-                                                        style="background-image: url('user-assets/assets/media/products/11.png')">
+                                                        style="background-image: url({{  asset('/image/'.$item->Sparepart->Galleries->first()['photo'] ) }})">
+                                                    </div>
+
+                                                </div>
+                                                @endif
+                                                <!--end::Symbol-->
+                                                <div class="align-middle pb-4">
+                                                    <a href="{{ route('detail', $item->Sparepart->slug) }}"
+                                                        class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $item ->Sparepart->nama_sparepart}}</a>
+                                                    <div class="font-weight-bold text-muted">Rp.
+                                                        {{ number_format($item->Sparepart->Harga->last()['harga_jual'] )}}
                                                     </div>
                                                 </div>
-                                                <!--end::Symbol-->
-                                                <a href="#" class="text-dark text-hover-primary">Street Sneakers</a>
+
+
                                             </td>
-                                            <td class="text-center align-middle">
-                                                <a href="javascript:;"
-                                                    class="btn btn-xs btn-light-success btn-icon mr-2">
-                                                    <i class="ki ki-minus icon-xs"></i>
-                                                </a>
-                                                <span class="mr-2 font-weight-bolder">1</span>
-                                                <a href="javascript:;" class="btn btn-xs btn-light-success btn-icon">
-                                                    <i class="ki ki-plus icon-xs"></i>
-                                                </a>
-                                            </td>
-                                            <td class="text-right align-middle font-weight-bolder font-size-h5">$90.00
-                                            </td>
-                                            <td class="text-right align-middle">
-                                                <a href="#"
-                                                    class="btn btn-danger font-weight-bolder font-size-sm">Remove</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="d-flex align-items-center font-weight-bolder">
-                                                <!--begin::Symbol-->
-                                                <div class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
-                                                    <div class="symbol-label"
-                                                        style="background-image: url('user-assets/assets/media/products/2.png')">
+                                            <td class="text-center align-middle" width="130px">
+                                                <div class="input-group quantity">
+                                                    <div
+                                                        class="btn btn-xs btn-light-success btn-icon mr-2 mt-2 decrement-btn">
+                                                        <i class="ki ki-minus icon-xs"></i>
+                                                    </div>
+                                                    <input type="text" class="qty-input form-control" maxlength="2"
+                                                        value="{{ $item->jumlah }}">
+                                                    <div class="btn btn-xs btn-light-success btn-icon increment-btn increment-btn mt-2 ml-2"
+                                                        style="cursor: pointer">
+                                                        <i class="ki ki-plus icon-xs"></i>
                                                     </div>
                                                 </div>
-                                                <!--end::Symbol-->
-                                                <a href="#" class="text-dark text-hover-primary">Headphones</a>
                                             </td>
-                                            <td class="text-center align-middle">
-                                                <a href="javascript:;"
-                                                    class="btn btn-xs btn-light-success btn-icon mr-2">
-                                                    <i class="ki ki-minus icon-xs"></i>
-                                                </a>
-                                                <span class="mr-2 font-weight-bolder">1</span>
-                                                <a href="javascript:;" class="btn btn-xs btn-light-success btn-icon">
-                                                    <i class="ki ki-plus icon-xs"></i>
-                                                </a>
-                                            </td>
-                                            <td class="text-right align-middle font-weight-bolder font-size-h5">$449.00
+
+                                            <td class="text-right align-middle font-weight-bolder font-size-h5">Rp 
+                                                {{ number_format(($item->Sparepart->Harga->last()['harga_jual'] ) * ($item->jumlah))}}
                                             </td>
                                             <td class="text-right align-middle">
-                                                <a href="#"
-                                                    class="btn btn-danger font-weight-bolder font-size-sm">Remove</a>
+
+                                                <form action="{{ route('cart-delete', $item->id_cart) }}" method="post">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="btn btn-danger font-weight-bolder font-size-sm">Remove</button>
+                                                </form>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td class="d-flex align-items-center font-weight-bolder">
-                                                <!--begin::Symbol-->
-                                                <div class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
-                                                    <div class="symbol-label"
-                                                        style="background-image: url('user-assets/assets/media/products/1.png')">
-                                                    </div>
-                                                </div>
-                                                <!--end::Symbol-->
-                                                <a href="#" class="text-dark text-hover-primary">Smartwatch</a>
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <a href="javascript:;"
-                                                    class="btn btn-xs btn-light-success btn-icon mr-2">
-                                                    <i class="ki ki-minus icon-xs"></i>
-                                                </a>
-                                                <span class="mr-2 font-weight-bolder">1</span>
-                                                <a href="javascript:;" class="btn btn-xs btn-light-success btn-icon">
-                                                    <i class="ki ki-plus icon-xs"></i>
-                                                </a>
-                                            </td>
-                                            <td class="text-right align-middle font-weight-bolder font-size-h5">$999.00
-                                            </td>
-                                            <td class="text-right align-middle">
-                                                <a href="#"
-                                                    class="btn btn-danger font-weight-bolder font-size-sm">Remove</a>
-                                            </td>
-                                        </tr>
+                                        @php
+                                        $totalharga += ($item->Sparepart->Harga->last()['harga_jual'] ) * ($item->jumlah)
+                                        @endphp
+                                        @endforeach
+
+
                                         <!--end::Cart Content-->
                                         <!--begin::Cart Footer-->
                                         <tr>
                                             <td colspan="2"></td>
                                             <td class="font-weight-bolder font-size-h4 text-right">Subtotal</td>
-                                            <td class="font-weight-bolder font-size-h4 text-right">$1538.00</td>
+                                            <td class="font-weight-bolder font-size-h4 text-right">Rp.
+                                                {{ number_format($totalharga ?? 0) }}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="4" class="border-0 text-muted text-right pt-0">Excludes
-                                                Delivery. GST Included</td>
+                                            <td colspan="4" class="border-0 text-muted text-right pt-0">Belum Termasuk
+                                                Ongkos Kirim</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" class="border-0 pt-10">
 
                                             </td>
                                             <td colspan="2" class="border-0 text-right pt-10">
-                                                <a href="#" class="btn btn-success font-weight-bolder px-8">Proceed to
+                                                <a href="{{ route('checkout') }}"
+                                                    class="btn btn-success font-weight-bolder px-8">Proceed to
                                                     Checkout</a>
                                             </td>
                                         </tr>
@@ -172,5 +151,37 @@ Product Detail
 <!--end::Content-->
 @endsection
 
+
 @push('addon-style')
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.increment-btn').click(function (e) {
+            e.preventDefault();
+            var incre_value = $(this).parents('.quantity').find('.qty-input').val();
+            var value = parseInt(incre_value, 10);
+            value = isNaN(value) ? 0 : value;
+            if (value < 10) {
+                value++;
+                $(this).parents('.quantity').find('.qty-input').val(value);
+            }
+
+        });
+
+        $('.decrement-btn').click(function (e) {
+            e.preventDefault();
+            var decre_value = $(this).parents('.quantity').find('.qty-input').val();
+            var value = parseInt(decre_value, 10);
+            value = isNaN(value) ? 0 : value;
+            if (value > 1) {
+                value--;
+                $(this).parents('.quantity').find('.qty-input').val(value);
+            }
+        });
+
+    });
+
+</script>
 @endpush

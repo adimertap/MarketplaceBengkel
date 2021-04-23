@@ -1,4 +1,4 @@
-@extends('user-views.layouts.app')
+@extends('user-views.layouts.app-withoutheader')
 
 @push('addon-style')
 <link href="user-assets/assets/css/pages/login/login-2.css?v=7.0.6" rel="stylesheet" type="text/css" />
@@ -30,10 +30,13 @@ Marketplace Homepage
                     <!--begin::Signin-->
                     <div class="login-form login-signin py-11">
                         <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" id="kt_login_signin_form">
+                        <form class="form" novalidate="novalidate" id="kt_login_signin_form" method="POST"
+                            action="{{ route('login') }}">
+                            @csrf
                             <!--begin::Title-->
                             <div class="text-center pb-8">
-                                <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Sign In</h2>
+                                <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">{{ __('Login') }}
+                                </h2>
                                 <span class="text-muted font-weight-bold font-size-h4">Or <a href=""
                                         class="text-primary font-weight-bolder" id="kt_login_signup">Create An
                                         Account</a></span>
@@ -43,8 +46,16 @@ Marketplace Homepage
                             <!--begin::Form group-->
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">Email</label>
-                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="text"
-                                    name="username" autocomplete="off" />
+                                <input id="email" type="email"
+                                    class="form-control form-control-solid h-auto py-7 px-6 rounded-lg @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+
                             </div>
                             <!--end::Form group-->
 
@@ -52,24 +63,45 @@ Marketplace Homepage
                             <div class="form-group">
                                 <div class="d-flex justify-content-between mt-n5">
                                     <label class="font-size-h6 font-weight-bolder text-dark pt-5">Password</label>
-
-                                    {{-- <a href="javascript:;"
-                                            class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5"
-                                            id="kt_login_forgot">
-                                            Forgot Password ?
-                                        </a> --}}
                                 </div>
 
-                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg"
-                                    type="password" name="password" autocomplete="off" />
+                                <input id="password" type="password"
+                                    class="form-control form-control-solid h-auto py-7 px-6 rounded-lg @error('password') is-invalid @enderror"
+                                    name="password" required autocomplete="current-password">
+
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+
                             </div>
                             <!--end::Form group-->
 
-                            <!--begin::Action-->
+                            <div class="form-group row">
+                                <div class="col-md-6 offset-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                            {{ old('remember') ? 'checked' : '' }}>
+
+                                        <label class="form-check-label" for="remember">
+                                            {{ __('Remember Me') }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div> <!--begin::Action-->
                             <div class="text-center pt-2">
-                                <button id="kt_login_signin_submit"
-                                    class="btn btn-dark font-weight-bolder font-size-h6 px-8 py-4 my-3">Sign
-                                    In</button>
+
+                                <button type="submit" id="kt_login_signin_submit"
+                                    class="btn btn-dark font-weight-bolder font-size-h6 px-8 py-4 my-3">
+                                    {{ __('Login') }}
+                                </button>
+
+                                @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                                </a>
+                                @endif
                             </div>
                             <!--end::Action-->
                         </form>
@@ -77,102 +109,6 @@ Marketplace Homepage
                     </div>
                     <!--end::Signin-->
 
-                    <!--begin::Signup-->
-                    <div class="login-form login-signup pt-11">
-                        <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" id="kt_login_signup_form">
-                            <!--begin::Title-->
-                            <div class="text-center pb-8">
-                                <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Sign Up</h2>
-                                <p class="text-muted font-weight-bold font-size-h4">Enter your details to create
-                                    your account</p>
-                            </div>
-                            <!--end::Title-->
-
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
-                                    type="text" placeholder="Fullname" name="fullname" autocomplete="off" />
-                            </div>
-                            <!--end::Form group-->
-
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
-                                    type="email" placeholder="Email" name="email" autocomplete="off" />
-                            </div>
-                            <!--end::Form group-->
-
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
-                                    type="password" placeholder="Password" name="password" autocomplete="off" />
-                            </div>
-                            <!--end::Form group-->
-
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
-                                    type="password" placeholder="Confirm password" name="cpassword"
-                                    autocomplete="off" />
-                            </div>
-                            <!--end::Form group-->
-
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <label class="checkbox mb-0">
-                                    <input type="checkbox" name="agree" />I Agree the <a href="#">terms and
-                                        conditions</a>.
-                                    <span></span>
-                                </label>
-                            </div>
-                            <!--end::Form group-->
-
-                            <!--begin::Form group-->
-                            <div class="form-group d-flex flex-wrap flex-center pb-lg-0 pb-3">
-                                <button type="button" id="kt_login_signup_submit"
-                                    class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mx-4">Submit</button>
-                                <button type="button" id="kt_login_signup_cancel"
-                                    class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mx-4">Cancel</button>
-                            </div>
-                            <!--end::Form group-->
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Signup-->
-
-                    <!--begin::Forgot-->
-                    <div class="login-form login-forgot pt-11">
-                        <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" id="kt_login_forgot_form">
-                            <!--begin::Title-->
-                            <div class="text-center pb-8">
-                                <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Forgotten
-                                    Password ?</h2>
-                                <p class="text-muted font-weight-bold font-size-h4">Enter your email to reset your
-                                    password</p>
-                            </div>
-                            <!--end::Title-->
-
-                            <!--begin::Form group-->
-                            <div class="form-group">
-                                <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
-                                    type="email" placeholder="Email" name="email" autocomplete="off" />
-                            </div>
-                            <!--end::Form group-->
-
-                            <!--begin::Form group-->
-                            <div class="form-group d-flex flex-wrap flex-center pb-lg-0 pb-3">
-                                <button type="button" id="kt_login_forgot_submit"
-                                    class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mx-4">Submit</button>
-                                <button type="button" id="kt_login_forgot_cancel"
-                                    class="btn btn-light-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mx-4">Cancel</button>
-                            </div>
-                            <!--end::Form group-->
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                    <!--end::Forgot-->
                 </div>
                 <!--end::Aside body-->
             </div>
@@ -205,7 +141,7 @@ Marketplace Homepage
 </div>
 <!--end::Main-->
 
-<div class="container hide">
+<div class="container " style="display: none">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

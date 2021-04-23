@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\Transaction;
 use App\Bengkel;
-
-
+use App\Transaksi;
 
 class DashboardController extends Controller
 {
@@ -17,8 +16,8 @@ class DashboardController extends Controller
     {
         $bengkel = Bengkel::count();
         $customer = Customer::count();
-        $revenue = Transaction::where('status_transaksi', 'DITERIMA')->sum('harga_total');
-        $transaction = Transaction::count();
+        $revenue = Transaksi::where('transaksi_status', 'DITERIMA')->sum('harga_total');
+        $transaction = Transaksi::count();
         return view('admin-views.pages.dashboard',[
             'customer' => $customer,
             'revenue' => $revenue,

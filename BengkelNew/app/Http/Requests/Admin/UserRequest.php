@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
+            'nama_user' => 'required|string',
             'role' => 'nullable|string|in:ADMIN,USER',
             // 'email' => 'required|email|unique:tb_marketplace_user'
             'email' => ['required', 'email',

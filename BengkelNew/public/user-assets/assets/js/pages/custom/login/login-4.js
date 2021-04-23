@@ -186,7 +186,7 @@ var KTLogin = function() {
 			form,
 			{
 				fields: {
-					namalengkap: {
+					nama_user: {
 						validators: {
 							notEmpty: {
 								message: 'Nama tidak boleh kosong'
@@ -194,7 +194,7 @@ var KTLogin = function() {
 						}
 					},
 					
-					nohp: {
+					nohp_user: {
 						validators: {
 							notEmpty: {
 								message: 'No Hp tidak boleh kosong'

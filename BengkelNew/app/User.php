@@ -16,9 +16,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $table= 'tb_marketplace_user';
+    
+    protected $primaryKey = 'id_user';
 
     protected $fillable = [
-        'name', 'email', 'password', 'role', 'alamat','provinsi', 'kabupaten', 'nohp', 'kodepos' 
+
+        'nama_user', 'email', 'password', 'role', 'alamat_user','id_kabupaten', 'nohp_user', 
     ];
 
     /**

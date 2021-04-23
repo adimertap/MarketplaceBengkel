@@ -97,24 +97,24 @@ Dashboard
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($user as $item)
+                                        @forelse ($users as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
-                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->nama_user }}</td>
                                             <td>{{ $item->email }}</td>
-                                            <td>{{ $item->alamat }}</td>
-                                            <td>{{ $item->provinsi }}</td>
-                                            <td>{{ $item->kabupaten }}</td>
-                                            <td>{{ $item->nohp }}</td>
-                                            <td>{{ $item->kodepos }}</td>
+                                            <td>{{ $item->alamat_user }}</td>
+                                            <td>{{ $item->nama_provinsi }}</td>
+                                            <td>{{ $item->nama_kabupaten }}</td>
+                                            <td>{{ $item->nohp_user }}</td>
+                                            <td>{{ $item->postal_code }}</td>
                                             <td>{{ $item->role }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id }}">
+                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_user }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id }}">
+                                                    data-toggle="modal" data-target="#Modalhapus-{{ $item->id_user }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -151,10 +151,10 @@ Dashboard
                         <div class="modal-body">
                             <label class="small mb-1">Isikan Form Dibawah Ini</label>
                             <div class="form-group">
-                                <label class="small mb-1" for="name">Nama</label>
-                                <input class="form-control" name="name" type="text" placeholder="Input Nama"
-                                    class="form-control @error('nama') is-invalid @enderror">
-                                @error('nama')<div class="text-danger small mb-1">{{ $message }}
+                                <label class="small mb-1" for="nama_user">Nama</label>
+                                <input class="form-control" name="nama_user" type="text" placeholder="Input Nama"
+                                    class="form-control @error('nama_user') is-invalid @enderror">
+                                @error('nama_user')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
                             </div>
                             <div class="form-group">
@@ -165,41 +165,33 @@ Dashboard
                                 </div> @enderror
                             </div>
                             <div class="form-group">
-                                <label class="small mb-1" for="alamat">Alamat</label>
-                                <input class="form-control" name="alamat" type="text" placeholder="Input Alamat"
-                                    class="form-control @error('alamat') is-invalid @enderror">
-                                @error('alamat')<div class="text-danger small mb-1">{{ $message }}
+                                <label class="small mb-1" for="alamat_user">Alamat</label>
+                                <input class="form-control" name="alamat_user" type="text" placeholder="Input Alamat"
+                                    class="form-control @error('alamat_user') is-invalid @enderror">
+                                @error('alamat_user')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
                             </div>
                             <div class="form-group">
-                                <label class="small mb-1" for="provinsi">Provinsi</label>
-                                <input class="form-control" name="provinsi" type="text" placeholder="Input Provinsi"
-                                    class="form-control @error('provinsi') is-invalid @enderror">
-                                @error('provinsi')<div class="text-danger small mb-1">{{ $message }}
+                                <label class="small mb-1" for="nama_provinsi">Provinsi</label>
+                                <input class="form-control" name="nama_provinsi" type="text" placeholder="Input Provinsi"
+                                    class="form-control @error('nama_provinsi') is-invalid @enderror">
+                                @error('nama_provinsi')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
                             </div>
                             <div class="form-group">
-                                <label class="small mb-1" for="kabupaten">Kabupaten</label>
-                                <input class="form-control" name="kabupaten" type="text" placeholder="Input Kabupaten"
-                                    class="form-control @error('kabupaten') is-invalid @enderror">
-                                @error('kabupaten')<div class="text-danger small mb-1">{{ $message }}
+                                <label class="small mb-1" for="nama_kabupaten">Kabupaten</label>
+                                <input class="form-control" name="nama_kabupaten" type="text" placeholder="Input Kabupaten"
+                                    class="form-control @error('nama_kabupaten') is-invalid @enderror">
+                                @error('nama_kabupaten')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
                             </div>
                             <div class="form-group">
-                                <label class="small mb-1" for="nohp">No Hp</label>
-                                <input class="form-control" name="nohp" type="text" placeholder="Input No Hp"
-                                    class="form-control @error('nohp') is-invalid @enderror">
-                                @error('nohp')<div class="text-danger small mb-1">{{ $message }}
+                                <label class="small mb-1" for="nohp_user">No Hp</label>
+                                <input class="form-control" name="nohp_user" type="text" placeholder="Input No Hp"
+                                    class="form-control @error('nohp_user') is-invalid @enderror">
+                                @error('nohp_user')<div class="text-danger small mb-1">{{ $message }}
                                 </div> @enderror
                             </div>
-                            <div class="form-group">
-                                <label class="small mb-1" for="kodepos">Kode Pos</label>
-                                <input class="form-control" name="kodepos" type="text" placeholder="Input Kode Pos"
-                                    class="form-control @error('kodepos') is-invalid @enderror">
-                                @error('kodepos')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-
                             <div class="form-group">
                                 <label class="small mb-1" for="kodepos">Role</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name="role">
@@ -231,8 +223,8 @@ Dashboard
         </div>
 
         {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
-        @forelse ($user as $item)
-        <div class="modal fade" id="Modaledit-{{ $item->id}}" data-backdrop="static" tabindex="-1" role="dialog"
+        @forelse ($users as $item)
+        <div class="modal fade" id="Modaledit-{{ $item->id_user}}" data-backdrop="static" tabindex="-1" role="dialog"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -241,20 +233,20 @@ Dashboard
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
-                    <form action="{{ route('user.update', $item->id) }}" method="POST">
+                    <form action="{{ route('user.update', $item->id_user) }}" method="POST">
                         @method('PUT')
                         @csrf
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label class="small" for="id">Id</label>
-                                <input class="form-control" name="id" type="text"
-                                    value="{{ $item->id }}" />
+                                <label class="small" for="id_user">Id</label>
+                                <input class="form-control" name="id_user" type="text"
+                                    value="{{ $item->id_user }}" />
                             </div>
                             <div class="form-group">
-                                <label class="small" for="name">Nama</label>
-                                <input class="form-control" name="name" type="text"
-                                    value="{{ $item->name }}" />
+                                <label class="small" for="nama_user">Nama</label>
+                                <input class="form-control" name="nama_user" type="text"
+                                    value="{{ $item->nama_user }}" />
                             </div>
                             <div class="form-group">
                                 <label class="small" for="email">Email</label>
@@ -262,29 +254,24 @@ Dashboard
                                     value="{{ $item->email }}" />
                             </div>
                             <div class="form-group">
-                                <label class="small" for="alamat">Alamat</label>
-                                <input class="form-control" name="alamat" type="text"
-                                    value="{{ $item->alamat }}" />
+                                <label class="small" for="alamat_user">Alamat</label>
+                                <input class="form-control" name="alamat_user" type="text"
+                                    value="{{ $item->alamat_user }}" />
                             </div>
                             <div class="form-group">
-                                <label class="small" for="Provinsi">Provinsi</label>
-                                <input class="form-control" name="provinsi" type="text"
-                                    value="{{ $item->provinsi }}" />
+                                <label class="small" for="nama_provinsi">Provinsi</label>
+                                <input class="form-control" name="nama_provinsi" type="text"
+                                    value="{{ $item->nama_provinsi }}" />
                             </div>
                             <div class="form-group">
-                                <label class="small" for="kabupaten">Kabupaten</label>
-                                <input class="form-control" name="kabupaten" type="text"
-                                    value="{{ $item->kabupaten }}" />
+                                <label class="small" for="nama_kabupaten">Kabupaten</label>
+                                <input class="form-control" name="nama_kabupaten" type="text"
+                                    value="{{ $item->nama_kabupaten }}" />
                             </div>
                             <div class="form-group">
-                                <label class="small" for="nohp">No Hp</label>
-                                <input class="form-control" name="nohp" type="text"
-                                    value="{{ $item->nohp }}" />
-                            </div>
-                            <div class="form-group">
-                                <label class="small" for="kodepos">Kodepos</label>
-                                <input class="form-control" name="kodepos" type="text"
-                                    value="{{ $item->kodepos }}" />
+                                <label class="small" for="nohp_user">No Hp</label>
+                                <input class="form-control" name="nohp_user" type="text"
+                                    value="{{ $item->nohp_user }}" />
                             </div>
 
                             <div class="form-group">
@@ -316,8 +303,8 @@ Dashboard
         @endforelse
 
         {{-- MODAL DELETE ------------------------------------------------------------------------------}}
-        @forelse ($user as $item)
-        <div class="modal fade" id="Modalhapus-{{ $item->id }}" tabindex="-1" role="dialog"
+        @forelse ($users as $item)
+        <div class="modal fade" id="Modalhapus-{{ $item->id_user }}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -326,10 +313,10 @@ Dashboard
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
-                    <form action="{{ route('user.destroy', $item->id) }}" method="POST" class="d-inline">
+                    <form action="{{ route('user.destroy', $item->id_user) }}" method="POST" class="d-inline">
                         @csrf
                         @method('delete')
-                        <div class="modal-body">Apakah Anda Yakin Menghapus Data User {{ $item->name }}?
+                        <div class="modal-body">Apakah Anda Yakin Menghapus Data User {{ $item->nama_user }}?
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>

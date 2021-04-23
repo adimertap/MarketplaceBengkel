@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\City;
-use App\Province;
-
+use App\Kabupaten;
+use App\Provinsi;
 
 class getApi extends Controller
 {
     public function register(){
        
-        $provinsi = Province::all();
+        $provinsi = Provinsi::all();
         return view('pages.register', compact('provinsi')) ;
     }
     
@@ -34,19 +34,19 @@ class getApi extends Controller
         ]);
 
         // $cekongkir =  $response['rajaongkir']['results'][0]['costs'];
-        $provinsi = Province::all();
+        $provinsi = Provinsi::all();
         return view('pages.checkout', compact('provinsi', 'cekongkir')) ;
     }
     
     public function ajax ($id){
-        $cities = City::where('province_id', '=', $id)->pluck('city_name', 'id');
+        $cities = Kabupaten::where('id_provinsi', '=', $id)->pluck('nama_kabupaten', 'id_kabupaten');
 
         return json_encode($cities);
 
     }
 
     public function ongkir (Request $request){
-        $origin = $request->kota_asal;
+        $origin = $request->kabupaten;
         $destination = $request->kota_tujuan;
         $weight = $request->berat;
         $courier = $request->kurir;
@@ -61,7 +61,6 @@ class getApi extends Controller
         ]);
 
         $cekongkir =  $response['rajaongkir']['results'][0]['costs'];
-
         return json_encode($cekongkir);
 
     }

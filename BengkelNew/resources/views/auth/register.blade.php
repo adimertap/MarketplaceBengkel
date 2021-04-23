@@ -1,11 +1,11 @@
-@extends('user-views.layouts.app')
+@extends('user-views.layouts.app-withoutheader')
 
 @section('name')
 REgister
 @endsection
 
 @push('prepend-style')
-<link href="user/assets/css/pages/login/login-4.css?v=7.0.6" rel="stylesheet" type="text/css" />
+<link href="user-assets/assets/css/pages/login/login-4.css?v=7.0.6" rel="stylesheet" type="text/css" />
 @endpush
 
 @section('content')
@@ -90,8 +90,11 @@ REgister
                 <!--begin::Signin-->
                 <div class="login-form">
                     <!--begin::Form-->
-                    <form class="form px-10" novalidate="novalidate" id="kt_login_signup_form">
+                    <form method="POST" action="{{ route('register') }}" class="form px-10" novalidate="novalidate"
+                        id="kt_login_signup_form">
+                        @csrf
                         <!--begin: Wizard Step 1-->
+
                         <div class=" " data-wizard-type="step-content" data-wizard-state="current">
                             <!--begin::Title-->
                             <div class="pb-10 pb-lg-12">
@@ -109,8 +112,18 @@ REgister
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">Nama Lengkap</label>
                                 <input type="text"
-                                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
-                                    name="namalengkap" placeholder="Nama Lengkap" value="" />
+                                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6  @error('nama_user') is-invalid @enderror"
+                                    name="nama_user" 
+                                    placeholder="Nama Lengkap" 
+                                    value="{{old('nama_user')}}" 
+                                    required
+                                    autocomplete="nama_user" 
+                                    autofocus />
+                                @error('nama_user')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <!--end::Form Group-->
 
@@ -118,8 +131,16 @@ REgister
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">E-mail</label>
                                 <input type="text"
-                                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
-                                    name="email" placeholder="E-mail" value="" />
+                                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6 @error('email') is-invalid @enderror"
+                                    name="email" 
+                                    placeholder="E-mail" 
+                                    value="{{ old('email') }}" required
+                                    autocomplete="email" />
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <!--end::Form Group-->
 
@@ -127,8 +148,14 @@ REgister
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">No Hp</label>
                                 <input type="number"
-                                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
-                                    name="nohp" placeholder="No Hp" value="" />
+                                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6 @error('nohp_user') is-invalid @enderror"
+                                    name="nohp_user" placeholder="No Hp" value="{{ old('nohp_user') }}" required
+                                    autocomplete="nohp_user" />
+                                @error('nohp_user')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <!--end::Form Group-->
                         </div>
@@ -140,20 +167,18 @@ REgister
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">Alamat Lengkap</label>
                                 <input type="text"
-                                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
-                                    name="alamatlengkap" placeholder="Alamat Lengkap" />
+                                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6 @error('alamat_user') is-invalid @enderror"
+                                    name="alamat_user" placeholder="Alamat Lengkap" value="{{ old('alamat_user') }}"
+                                    autocomplete="alamat_user"  />
                                 <span class="form-text text-muted">Masukkan alamat lengkap</span>
+                                @error('alamat_user')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <!--end::Input-->
-                            <!--begin::Input-->
-                            <div class="form-group">
-                                <label class="font-size-h6 font-weight-bolder text-dark">Kode Pos</label>
-                                <input type="text"
-                                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
-                                    name="kodepos" placeholder="kode pos" />
-                                <span class="form-text text-muted">masukkan kode pos</span>
-                            </div>
-                            <!--end::Input-->
+                            
                             <!--begin::Row-->
                             <div class="row">
                                 <div class="col-xl-6">
@@ -161,12 +186,17 @@ REgister
                                     <div class="form-group">
                                         <label class="font-size-h6 font-weight-bolder text-dark">Provinsi</label>
                                         <select name="provinsi"
-                                            class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6">
+                                            class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6 @error('provinsi') is-invalid @enderror">
                                             <option value="">Select</option>
                                             @foreach ($provinsi as $item)
-                                            <option value="{{ $item->id }}">{{ $item->province }}</option>
+                                            <option value="{{ $item->id_provinsi }}">{{ $item->nama_provinsi }}</option>
                                             @endforeach
                                         </select>
+                                         @error('provinsi')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                                     </div>
                                     <!--end::Input-->
                                 </div>
@@ -174,10 +204,15 @@ REgister
                                     <!--begin::Select-->
                                     <div class="form-group">
                                         <label class="font-size-h6 font-weight-bolder text-dark">Kota</label>
-                                        <select name="kota"
-                                            class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6">
+                                        <select name="id_kabupaten"
+                                            class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6 @error('id_kabupaten') is-invalid @enderror">
                                             <option value="">Select</option>
                                         </select>
+                                         @error('id_kabupaten')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                                     </div>
                                     <!--end::Input-->
                                 </div>
@@ -187,8 +222,22 @@ REgister
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">Password</label>
                                 <input type="password"
+                                    class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6 @error('password') is-invalid @enderror"
+                                    name="password" placeholder="Password" required autocomplete="new-password"/>
+                                <span class="form-text text-muted">masukkan password</span>
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+
+                             <div class="form-group">
+                                <label class="font-size-h6 font-weight-bolder text-dark">Password Konfirmasi</label>
+                                
+                                <input type="password"
                                     class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
-                                    name="password" placeholder="kode pos" />
+                                    placeholder="Password" name="password_confirmation" required autocomplete="new-password"/>
                                 <span class="form-text text-muted">masukkan password</span>
                             </div>
                         </div>
@@ -222,7 +271,7 @@ REgister
                                 </button>
                             </div>
                             <div>
-                                <button type="button"
+                                <button type="submit"
                                     class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3"
                                     data-wizard-type="action-submit" type="submit"
                                     id="kt_login_signup_form_submit_button">
@@ -382,7 +431,7 @@ REgister
 
 
 @push('addon-script')
-<script src="user/assets/js/pages/custom/login/login-4.js?v=7.0.6"></script>
+<script src="user-assets/assets/js/pages/custom/login/login-4.js?v=7.0.6"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -394,16 +443,16 @@ REgister
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
-                        $('select[name="kota"]').empty();
+                        $('select[name="id_kabupaten"]').empty();
                         $.each(data, function (key, value) {
-                            $('select[name="kota"]').append(
+                            $('select[name="id_kabupaten"]').append(
                                 '<option value="' +
                                 key + '">' + value + '</option>');
                         });
                     }
                 });
             } else {
-                $('select[name="kota"]').empty();
+                $('select[name="id_kabupaten"]').empty();
             }
         });
     });

@@ -12,16 +12,24 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 // */
-Route::get("/", "HomeController@index");
+Route::get("/", "HomeController@index") ->name('home');
 Route::get("/categories", "CategoriesController@index");
 
 Route::get("/categories/{id}", "CategoriesController@index")->name('categories-detail');
 Route::get("/details/{id}", "DetailController@index")->name('detail');
-Route::get("/cart", "CartController@index");
+Route::post("/details/{id}", "DetailController@add")->name('detail-add');
 
+Route::get("/a", "CheckoutController@ongkir");
+
+Route::post("/checkout/process", "CheckoutController@process")->name('checkout-process');
+Route::get("/checkout/callback", "CheckoutController@callbak")->name('checkout-callback');
+
+
+Route::get("/getkabupaten/{id}", "CheckoutController@kabupaten");
 
 Route::prefix('admin')
     ->namespace('AdminMarketplace')
+    ->middleware(['auth', 'admin'])
     ->group(function(){
         Route::get('/', "DashboardController@index");
         Route::resource('category', 'CategoryController');
@@ -30,6 +38,20 @@ Route::prefix('admin')
         Route::resource('bengkel', 'BengkelController');
 
     });
+
+Auth::routes();
+Route::get("/getcity/ajax/{id}", "Auth\RegisterController@ajax");
+
+Route::group(['middleware' => ['auth']], function(){
+
+    Route::get("/cart", "CartController@index")->name('cart');
+    Route::delete("/cart/{id}", "CartController@delete")->name('cart-delete');
+
+    Route::get("/checkout", "CheckoutController@index")->name('checkout');
+   
+
+});
+
     
 
 
@@ -37,12 +59,10 @@ Route::prefix('admin')
 
 
 
-Route::get("/checkout", "getApi@index");
-// Route::get("/registeri", "getApi@register");
+// Route::get("/checkout", "getApi@index");
+Route::get("/registeri", "getApi@register");
 
-// Route::get("/a", "getApi@ongkir");
 
-// Route::get("/getcity/ajax/{id}", "getApi@ajax");
 
 // Route::get('/trans', function () {
 //     return view('pages.trans');
@@ -80,7 +100,7 @@ Route::get("/checkout", "getApi@index");
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+
 
 // Route::get('/home', 'HomeController@index')->name('home');
 

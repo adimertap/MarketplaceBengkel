@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('user-views.layouts.app')
 @push('addon-style')
 <!--begin::Page Custom Styles(used by this page)-->
-<link href="user/assets/css/pages/wizard/wizard-3.css?v=7.0.6" rel="stylesheet" type="text/css" />
+<link href="user-assets/assets/css/pages/wizard/wizard-3.css?v=7.0.6" rel="stylesheet" type="text/css" />
 <!--end::Page Custom Styles-->
 @endpush
 
@@ -54,7 +54,7 @@ Checkout
                         <div class="row justify-content-center py-10 px-8 py-lg-12 px-lg-10">
                             <div class="col-xl-12 col-xxl-9">
                                 <!--begin: Wizard Form-->
-                                <form class="form" id="kt_form" action="{{ url('/a') }}" method="get">
+                                <form class="form" id="kt_form" action="{{ route('checkout-process') }}" method="post">
                                     <!--begin: Wizard Step 1-->
                                     @csrf
                                     <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
@@ -62,9 +62,9 @@ Checkout
                                         </h4>
                                         <!--begin::Input-->
                                         <div class="form-group">
-                                            <label>Nama Penerima</label>
-                                            <input type="text" class="form-control" name="nama penerima"
-                                                placeholder="Nama Penerima" value="nama penerima" />
+                                            <label>Nama Penerim</label>
+                                            <input type="text" class="form-control" name="nama penerima" id="nama_penerima"
+                                                placeholder="Nama Penerima" value="{{ Auth::user()->nama_user }}" />
                                             <span class="form-text text-muted">Masukan nama penerima</span>
                                         </div>
                                         <!--end::Input-->
@@ -72,44 +72,33 @@ Checkout
                                         <!--begin::Input-->
                                         <div class="form-group">
                                             <label>Alamat Penerima</label>
-                                            <input type="text" class="form-control" name="address2"
-                                                placeholder="Address Line 2" value="Address Line 2" />
-                                            <span class="form-text text-muted">Masukan alamat penerima</span>
+                                            <input type="text" class="form-control" name="alamat_penerima" id="alamat_penerima"
+                                                placeholder="Address Line 2" value="{{ Auth::user()->alamat_user }}" />
+                                            <span class="form-text text-muted">Masukan alamat </span>
                                         </div>
                                         <!--end::Input-->
                                         <div class="row">
-                                            <div class="col-xl-6">
-                                                <!--begin::Input-->
-                                                <div class="form-group">
-                                                    <label>Kode Pos</label>
-                                                    <input type="text" class="form-control" name="postcode"
-                                                        placeholder="Postcode" value="3000" />
-                                                    <span class="form-text text-muted">Masukan kode pos</span>
-                                                </div>
-                                                <!--end::Input-->
-                                            </div>
-                                            <div class="col-xl-6">
+                                            <div class="col-xl-12">
                                                 <!--begin::Input-->
                                                 <div class="form-group">
                                                     <label>No Hp</label>
-                                                    <input type="text" class="form-control" name="no hp"
-                                                        placeholder="City" value="no Hp" />
+                                                    <input type="text" class="form-control" name="nohp_penerima" id="nohp_penerima"
+                                                        placeholder="City" value="{{ Auth::user()->nohp_user }}" />
                                                     <span class="form-text text-muted">Masukkan no hp</span>
                                                 </div>
                                                 <!--end::Input-->
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xl-6">
+                                            <div class="col-xl-4">
                                                 <!--begin::Input-->
-
                                                 <div class="form-group">
                                                     <label>Provinsi</label>
-                                                    <select class="form-control" id="exampleSelect1"
-                                                        name="provinsi_asal">
+                                                    <select class="form-control" id="exampleSelect1" name="provinsi">
                                                         <option value="" holder>provinsi</option>
                                                         @foreach ($provinsi as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->province }}</option>
+                                                        <option value="{{ $item->id_provinsi }}">
+                                                            {{ $item->nama_provinsi }}</option>
                                                         @endforeach
 
                                                     </select>
@@ -117,81 +106,53 @@ Checkout
                                                 </div>
                                                 <!--end::Input-->
                                             </div>
-                                            <div class="col-xl-6">
+                                            <div class="col-xl-8">
                                                 <!--begin::Input-->
                                                 <div class="form-group">
                                                     <label>Kota</label>
-                                                    <select class="form-control" id="exampleSelect1" name="kota_asal">
+                                                    <select class="form-control" id="exampleSelect1 id_kabupaten"
+                                                        name="id_kabupaten">
                                                         <option value="" holder>Kota</option>
-
                                                     </select>
                                                     <span class="form-text text-muted">Kota</span>
                                                 </div>
                                                 <!--end::Input-->
                                             </div>
                                         </div>
+
                                         <div class="row">
-                                            <div class="col-xl-6">
-                                                <!--begin::Input-->
-                                                <div class="form-group">
-                                                    <label>Provinsi</label>
-                                                    <select class="form-control" id="exampleSelect1"
-                                                        name="provinsi_tujuan">
-                                                        <option value="" holder>Provinsi</option>
-
-                                                        @foreach ($provinsi as $item)
-                                                        <option value="{{ $item->id }}">{{ $item->province }}</option>
-                                                        @endforeach
-
-                                                    </select>
-                                                    <span class="form-text text-muted">Provinsi</span>
-                                                </div>
-                                                <!--end::Input-->
-                                            </div>
-                                            <div class="col-xl-6">
-                                                <!--begin::Input-->
-                                                <div class="form-group">
-                                                    <label>Kota</label>
-                                                    <select class="form-control" id="exampleSelect1" name="kota_tujuan">
-                                                    </select>
-                                                    <option value="" holder>Kota</option>
-
-                                                    <span class="form-text text-muted">Kota</span>
-                                                </div>
-                                                <!--end::Input-->
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xl-6">
-                                                <!--begin::Input-->
-                                                <div class="form-group">
-                                                    <label>Berat</label>
-                                                    <input type="text" class="form-control" name="berat" placeholder=""
-                                                        value="" />
-                                                    <span class="form-text text-muted">Masukan kode pos</span>
-                                                </div>
-                                                <!--end::Input-->
-                                            </div>
-                                            <div class="col-xl-6">
+                                            <div class="col-xl-4">
                                                 <!--begin::Input-->
                                                 <div class="form-group">
                                                     <label>Kurir</label>
-                                                    <select class="form-control" id="exampleSelect1" name="kurir">
+                                                    <select class="form-control" id="exampleSelect1 kurir" name="kurir"
+                                                        id="inputkurir">
+                                                        <option value="">Pilih Salah Satu</option>
                                                         <option value="jne">JNE</option>
                                                         <option value="tiki">TIKI</option>
                                                         <option value="pos">POS</option>
 
                                                     </select>
-                                                    <span class="form-text text-muted">Masukkan no hp</span>
+                                                    <span class="form-text text-muted">pilih kurir</span>
                                                 </div>
                                                 <!--end::Input-->
                                             </div>
+                                            <div class="col-xl-8">
+                                                <div class="form-group">
+                                                    <label for="exampleSelect1">Paket Pengiriman</label>
+                                                    <select class="form-control" id="exampleSelect1" name="expedisi">
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleSelect1">Paket Pengiriman</label>
-                                            <select class="form-control" id="exampleSelect1" name="aa">
-                                            </select>
-                                        </div>
+
+                                        {{-- hidden input --}}
+                                        <input type="hidden" name="harga_pengiriman" id="harga_pengiriman" value="" />
+                                        <input type="hidden" name="harga_total" id="harga_total" value="" />
+                                        <input type="hidden" name="kurir_pengiriman" id="kurir_pengiriman" value="" />
+
+
+
                                     </div>
                                     <!--end: Wizard Step 1-->
 
@@ -202,7 +163,7 @@ Checkout
                                                 <!-- begin: Invoice-->
                                                 <!-- begin: Invoice header-->
                                                 <div class="row justify-content-center bgi-size-cover bgi-no-repeat py-8 px-8 py-md-27 px-md-0"
-                                                    style="background-image: url(assets/media/bg/bg-6.jpg);">
+                                                    style="background-image: url(user-assets/assets/media/bg/bg-6.jpg);">
                                                     <div class="col-md-9">
                                                         <div
                                                             class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row">
@@ -211,18 +172,19 @@ Checkout
                                                             <div class="d-flex flex-column align-items-md-end px-0">
                                                                 <!--begin::Logo-->
                                                                 <a href="#" class="mb-5">
-                                                                    <img src="assets/media/logos/logo-light.png" alt="">
+                                                                    <img src="user-assets/assets/media/logos/logo-light.png"
+                                                                        alt="">
                                                                 </a>
                                                                 <!--end::Logo-->
                                                                 <span
                                                                     class="text-white d-flex flex-column align-items-md-end opacity-70">
-                                                                    <span>Toko Barang Bengkel</span>
-                                                                    <span>081-123-123-123</span>
+                                                                    <span>{{ $cart->first()->Sparepart->Bengkel->nama_bengkel }}</span>
+                                                                    {{-- <span>081-123-123-123</span> --}}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                         <div class="border-bottom w-100 opacity-20"></div>
-                                                        
+
                                                     </div>
                                                 </div>
                                                 <!-- end: Invoice header-->
@@ -249,36 +211,74 @@ Checkout
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr class="font-weight-boldest font-size-lg">
-                                                                        <td class="pl-0 pt-7">Creative Design</td>
-                                                                        <td class="text-right pt-7">80</td>
-                                                                        <td class="text-right pt-7">$40.00</td>
-                                                                        <td class="text-danger pr-0 pt-7 text-right">
-                                                                            $3200.00</td>
-                                                                    </tr>
+                                                                    @php
+                                                                    $totalbarang = 0;
+                                                                    $jumlahberat =0;
+                                                                    @endphp
+                                                                    @foreach ($cart as $item)
                                                                     <tr
                                                                         class="font-weight-boldest border-bottom-0 font-size-lg">
-                                                                        <td class="border-top-0 pl-0 py-4">Front-End
-                                                                            Development</td>
-                                                                        <td class="border-top-0 text-right py-4">120
+                                                                        <td class="border-top-0 pl-0 py-4">
+                                                                            {{ $item->Sparepart->nama_sparepart }}</td>
+                                                                        <td class="border-top-0 text-right py-4">Rp.
+                                                                            <span></span>
+                                                                            {{ number_format($item->Sparepart->Harga->last()['harga_jual']) }}
                                                                         </td>
-                                                                        <td class="border-top-0 text-right py-4">$40.00
+                                                                        <td class="border-top-0 text-right py-4">
+                                                                            {{ $item->jumlah }}
                                                                         </td>
                                                                         <td
                                                                             class="text-danger border-top-0 pr-0 py-4 text-right">
-                                                                            $4800.00</td>
+                                                                            Rp.
+                                                                            {{ number_format($item->jumlah * $item->Sparepart->Harga->last()['harga_jual']) }}
+                                                                        </td>
+                                                                        @php
+                                                                        $jumlahberat +=
+                                                                        $item->Sparepart->berat_sparepart;
+                                                                        $totalbarang +=
+                                                                        $item->jumlah*$item->Sparepart->Harga->last()['harga_jual'];
+                                                                        @endphp
                                                                     </tr>
+                                                                    @endforeach
+
                                                                     <tr
                                                                         class="font-weight-boldest border-bottom-0 font-size-lg">
-                                                                        <td class="border-top-0 pl-0 py-4">Back-End
-                                                                            Development</td>
-                                                                        <td class="border-top-0 text-right py-4">210
+                                                                        <td class="border-top-0 pl-0 py-4"></td>
+                                                                        <td class="border-top-0 text-right py-4">
                                                                         </td>
-                                                                        <td class="border-top-0 text-right py-4">$60.00
+                                                                        <td class="border-top-0 text-right py-4">
+                                                                            <div class="separator separator-dashed">
+                                                                            </div>
+                                                                            <div class="separator separator-solid">
+                                                                            </div>
+                                                                            Subtotal
                                                                         </td>
                                                                         <td
                                                                             class="text-danger border-top-0 pr-0 py-4 text-right">
-                                                                            $1260ugiugig0.00</td>
+                                                                            <div class="separator separator-dashed">
+                                                                            </div>
+                                                                            <div class="separator separator-solid">
+                                                                            </div>Rp.
+                                                                            <span name="subtotal"
+                                                                                id="subtotal">{{number_format($totalbarang)}}</span>
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr
+                                                                        class="font-weight-boldest border-bottom-0 font-size-lg">
+                                                                        <td class="border-top-0 pl-0 py-4"></td>
+                                                                        <td class="border-top-0 text-right py-4">
+                                                                        </td>
+                                                                        <td class="border-top-0 text-right py-4">Ongkos
+                                                                            Kirim ({{ $jumlahberat }} gram)
+                                                                        </td>
+                                                                        <td
+                                                                            class="text-danger border-top-0 pr-0 py-4 text-right">
+                                                                            Rp.
+
+                                                                            <span name="ongkir" id="ongkir">o</span>
+                                                                        </td>
+
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -294,31 +294,38 @@ Checkout
                                                         <div
                                                             class="d-flex justify-content-between flex-column flex-md-row font-size-lg">
                                                             <div class="d-flex flex-column mb-10 mb-md-0">
-                                                                <div class="font-weight-bolder font-size-lg mb-3">Pengiriman</div>
+                                                                <div class="font-weight-bolder font-size-lg mb-3">
+                                                                    Pengiriman</div>
 
                                                                 <div class="d-flex justify-content-between mb-3">
                                                                     <span class="mr-15 font-weight-bold">Nama:</span>
-                                                                    <span class="text-right">Barclays UK</span>
+                                                                    <span class="text-right" id="rangkumannama"></span>
                                                                 </div>
 
                                                                 <div class="d-flex justify-content-between mb-3">
                                                                     <span class="mr-15 font-weight-bold">Alamat:</span>
-                                                                    <span class="text-right">jln asdasd</span>
+                                                                    <span class="text-right"
+                                                                        id="rangkumanalamat"></span>
                                                                 </div>
-
-                                                                <div class="d-flex justify-content-between">
+                                                                <div class="d-flex justify-content-between mb-3">
                                                                     <span class="mr-15 font-weight-bold">No Hp</span>
-                                                                    <span class="text-right">012-123-123-123</span>
+                                                                    <span class="text-right" id="rangkumannohp"></span>
+                                                                </div>
+                                                                <div class="d-flex justify-content-between">
+                                                                    <span
+                                                                        class="mr-15 font-weight-bold">Pengiriman</span>
+                                                                    <span class="text-right" id="rangkumankurir"></span>
                                                                 </div>
                                                             </div>
+
                                                             <div class="d-flex flex-column text-md-right">
                                                                 <span class="font-size-lg font-weight-bolder mb-1">TOTAL
-                                                                    AMOUNT</span>
+                                                                    KESELURUHAN</span>
                                                                 <span
-                                                                    class="font-size-h2 font-weight-boldest text-danger mb-1">$20.600.00</span>
+                                                                    class="font-size-h2 font-weight-boldest text-danger mb-1">Rp.<span
+                                                                        id="totalkeseluruhan"></span></span>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                                 <!-- end: Invoice footer-->
@@ -360,7 +367,7 @@ Checkout
                                                 data-wizard-type="action-submit">
                                                 Submit
                                             </button>
-                                            <button type="button"
+                                            <button type="button" id="nextbtn"
                                                 class="btn btn-primary font-weight-bold text-uppercase px-9 py-4"
                                                 data-wizard-type="action-next">
                                                 Next
@@ -391,61 +398,49 @@ Checkout
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
 
-<script src="user/assets/js/pages/custom/wizard/wizard-3.js?v=7.0.6"></script>
-
+<script src="user-assets/assets/js/pages/custom/wizard/wizard-3.js?v=7.0.6"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('select[name="provinsi_asal"]').on('change', function () {
+
+        $('select[name="provinsi"]').on('change', function () {
             var cityId = $(this).val();
             if (cityId) {
                 $.ajax({
-                    url: 'getcity/ajax/' + cityId,
+                    url: 'getkabupaten/' + cityId,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
-                        $('select[name="kota_asal"]').empty();
+                        $('select[name="id_kabupaten"]').empty();
                         $.each(data, function (key, value) {
-                            $('select[name="kota_asal"]').append(
+                            $('select[name="id_kabupaten"]').append(
                                 '<option value="' +
                                 key + '">' + value + '</option>');
                         });
                     }
                 });
             } else {
-                $('select[name="kota_asal"]').empty();
+                $('select[name="id_kabupaten"]').empty();
             }
         });
-        $('select[name="provinsi_tujuan"]').on('change', function () {
-            var cityId = $(this).val();
-            if (cityId) {
-                $.ajax({
-                    url: 'getcity/ajax/' + cityId,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        $('select[name="kota_tujuan"]').empty();
-                        $.each(data, function (key, value) {
-                            $('select[name="kota_tujuan"]').append(
-                                '<option value="' +
-                                key + '">' + value + '</option>');
-                        });
-                    }
-                });
-            } else {
-                $('select[name="kota_tujuan"]').empty();
-            }
-        });
+
         $('select[name="kurir"]').on('change', function () {
+            var thedestination = $('select[name=id_kabupaten] option').filter(':selected').val();
+            var thecourier = $('select[name=kurir] option').filter(':selected').val();
+
             $.ajax({
                 type: 'get',
                 url: '/a',
                 dataType: "json",
-                data: $('form').serialize(),
+                data: {
+                    kabupaten: thedestination,
+                    kurir: thecourier
+                },
                 success: function (data) {
-                    $('select[name="aa"]').empty();
+                    $('select[name="expedisi"]').empty();
+
                     //jalan keluar ke-2 gunakan if statment
                     $.each(data, function (key, value) {
-                        $('select[name="aa"]').append(
+                        $('select[name="expedisi"]').append(
                             '<option value="' +
                             value.service + '">' + value.service +
                             "=> harga : Rp " + value.cost[0].value +
@@ -454,6 +449,35 @@ Checkout
                     });
                 }
             });
+        });
+
+
+
+        $("#nextbtn").click(function () {
+            var ongkir = parseInt($('select[name=expedisi] option').filter(':selected').text().split("Rp ")
+                .pop()
+                .split('=')[0]);
+            var subtotal = parseInt($("#subtotal").text().split("Rp ").pop().replace(',', ''));
+            var inputalamat = $("#alamat_penerima").val();
+            var provinsi = $('select[name=provinsi] option').filter(':selected').text();
+            var kabupaten = $('select[name=id_kabupaten] option').filter(':selected').text();
+            var kurir = $('select[name=kurir] option').filter(':selected').text();
+            var paket = $('select[name=expedisi] option').filter(':selected').text().slice(0, 3);
+
+
+            // alert( kabupaten );
+            $("#harga_pengiriman").val(ongkir);
+            $("#harga_total").val(subtotal + ongkir);
+            $("#kurir_pengiriman").val(kurir.concat(' ').concat(paket));
+
+            $("#ongkir").text(ongkir);
+            $("#totalkeseluruhan").text(subtotal + ongkir);
+
+            $("#rangkumannama").text($("#nama_penerima").val());
+            $("#rangkumanalamat").text(inputalamat.concat(', ').concat(kabupaten).concat(', ').concat(provinsi));
+            $("#rangkumannohp").text($("#nohp_penerima").val());
+            $("#rangkumankurir").text(kurir.concat(' ').concat(paket));
+
         });
     });
 

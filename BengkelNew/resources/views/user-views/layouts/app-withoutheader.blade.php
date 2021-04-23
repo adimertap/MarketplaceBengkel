@@ -13,7 +13,7 @@
         
         {{-- style --}}
         @stack('prepend-style')
-        @include('includes.style')
+        @include('user-views.includes.style')
         @stack('addon-style')
 
     </head>
@@ -23,10 +23,10 @@
     <body id="kt_body" class="quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static page-loading" >
         @yield('content')
 
-        @include('includes.footer')
+        @include('user-views.includes.footer')
 
         @stack('prepend-script')
-        @include('includes.script')
+        @include('user-views.includes.script')
         @stack('addon-script')
 
     </body>

@@ -23,13 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $category = Category::take(8)->get();
         $sparepart = Sparepart::with('Galleries', 'Bengkel', 'Harga')->latest()->take(8)->get();
 
         // dd($categorymobil);
         // dd($sparepart);
         return view('user-views.pages.home', [
-            'category' => $category,
             'sparepart' => $sparepart
         ]);
 

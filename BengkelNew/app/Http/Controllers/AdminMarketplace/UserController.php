@@ -5,6 +5,8 @@ namespace App\Http\Controllers\AdminMarketplace;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use DB;
+
 use Illuminate\Support\Str;
 
 use App\Http\Requests\Admin\UserRequest;
@@ -19,9 +21,15 @@ class UserController extends Controller
     public function index()
 
     {
-         $user = User::All();
+
+        //  $user = User::All();
+         $users = DB::table('tb_marketplace_user')
+            ->join('tb_kabupaten', 'tb_marketplace_user.id_kabupaten', '=', 'tb_kabupaten.id_kabupaten')
+            ->join('tb_provinsi', 'tb_provinsi.id_provinsi', '=', 'tb_kabupaten.id_provinsi')
+            ->get();
         //  dd($jenissparepart);
-        return view('admin-views.pages.user.index',compact('user'));
+        // dd($users);
+        return view('admin-views.pages.user.index',compact('users'));
     }
 
     /**
@@ -43,6 +51,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $data = $request ->all();
+        // dd($data);
         $data['password'] = bcrypt($request->password);
 
         User::create($data);
@@ -79,11 +88,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
-    {
-        $data = $request ->all();
+    public function update(UserRequest $request, $id_user)
+    {   
 
-        $item = User::findOrFail($id);
+        $data = $request ->all();
+        
+        $item = User::findOrFail($id_user);
 
         if($request->password){
             $data['password'] = bcrypt($request->password);
@@ -102,9 +112,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_user)
     {
-        $item = User::findOrFail($id);
+        $item = User::findOrFail($id_user);
         $item->delete();
 
          return redirect()->route('user.index')

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Provinsi;
+use App\Kabupaten;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -42,6 +44,26 @@ class RegisterController extends Controller
     }
 
     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $provinsi = Provinsi::all();
+        return view('auth.register',
+        [
+            'provinsi' => $provinsi
+        ]);
+    }
+
+    public function ajax ($id){
+        $kabupaten = Kabupaten::where('id_provinsi', '=', $id)->pluck('nama_kabupaten', 'id_kabupaten');
+        return json_encode($kabupaten);
+    }
+
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -49,9 +71,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // dd($data);
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'nama_user' => ['required', 'string', 'max:255'],
+            'nohp_user' => ['required', 'string', 'max:20'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:tb_marketplace_user'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -65,9 +89,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'nama_user' => $data['nama_user'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'nohp_user' => $data['nohp_user'],
+            'alamat_user' => isset($data['alamat_user']) ? $data['alamat_user'] : "",
+            'id_kabupaten' => isset($data['id_kabupaten']) ? $data['id_kabupaten'] : NULL,            
         ]);
     }
 }
