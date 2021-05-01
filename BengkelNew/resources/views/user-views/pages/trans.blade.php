@@ -1,4 +1,8 @@
-@extends('layouts.app')
+@extends('user-views.layouts.app')
+
+@push('prepend-style')
+<link href="user-assets/assets/css/star-rating.css" rel="stylesheet" type="text/css" />
+@endpush
 
 @section('name')
 Trnansaction
@@ -53,6 +57,7 @@ Trnansaction
                         </ul>
 
                         <div class="tab-content mt-5" id="myTabContent3">
+                            @forelse ($transaksi as $item)
                             <div class="tab-pane fade active show" id="semua-3" role="tabpanel"
                                 aria-labelledby="semua-tab-3">
                                 <!--begin::Section-->
@@ -60,15 +65,13 @@ Trnansaction
                                     <!--begin::Header-->
                                     <div class="card-header flex-wrap border-0 pt-6 pb-0">
                                         <h3 class="card-title align-items-start flex-column">
-                                            <span class="card-label font-weight-bolder font-size-h3 text-dark">Toko
-                                                Bengkel
-                                                AA</span>
+                                            <span
+                                                class="card-label font-weight-bolder font-size-h3 text-dark">{{ $item->Detailtransaksi->first()->bengkel->nama_bengkel }}</span>
                                         </h3>
                                         <div class="card-toolbar">
                                             <div class="dropdown dropdown-inline">
                                                 <a href="#"
-                                                    class="btn btn-primary font-weight-bolder font-size-sm">Menunggu
-                                                    Pembayaran</a>
+                                                    class="btn btn-primary font-weight-bolder font-size-sm">{{ $item->transaksi_status }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -86,14 +89,17 @@ Trnansaction
                                                 ">
                                                 <table class="table">
                                                     <!--begin::Cart Header-->
-                                                    <thead>
+                                                    {{-- <thead>
                                                         <tr>
                                                             <th>Product</th>
                                                             <th class="text-right">Harga Total</th>
                                                         </tr>
-                                                    </thead>
+                                                    </thead> --}}
                                                     <!--end::Cart Header-->
+
+
                                                     <tbody>
+                                                        @forelse ($item->Detailtransaksi as $sparepart)
                                                         <!--begin::Cart Content-->
                                                         <tr>
                                                             <td class="d-flex align-items-center font-weight-bolder">
@@ -101,59 +107,27 @@ Trnansaction
                                                                 <div
                                                                     class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
                                                                     <div class="symbol-label"
-                                                                        style="background-image: url('assets/media/products/11.png')">
-                                                                    </div>
-                                                                </div>
-                                                                <!--end::Symbol-->
-                                                                <a href="#" class="text-dark text-hover-primary">Street
-                                                                    Sneakers x1</a>
-                                                            </td>
-
-                                                            <td
-                                                                class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                $90.00
-                                                            </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="d-flex align-items-center font-weight-bolder">
-                                                                <!--begin::Symbol-->
-                                                                <div
-                                                                    class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
-                                                                    <div class="symbol-label"
-                                                                        style="background-image: url('assets/media/products/2.png')">
+                                                                        style="background-image: url({{ asset('/image/'.$sparepart->Galleries->first()->photo )}})">
                                                                     </div>
                                                                 </div>
                                                                 <!--end::Symbol-->
                                                                 <a href="#"
-                                                                    class="text-dark text-hover-primary">Headphones</a>
-                                                            </td>
-                                                            <td
-                                                                class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                $449.00
+                                                                    class="text-dark text-hover-primary">{{ $sparepart->nama_sparepart }}
+                                                                    x {{ $sparepart->pivot->jumlah_produk }}</a>
                                                             </td>
 
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="d-flex align-items-center font-weight-bolder">
-                                                                <!--begin::Symbol-->
-                                                                <div
-                                                                    class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
-                                                                    <div class="symbol-label"
-                                                                        style="background-image: url('assets/media/products/1.png')">
-                                                                    </div>
-                                                                </div>
-                                                                <!--end::Symbol-->
-                                                                <a href="#"
-                                                                    class="text-dark text-hover-primary">Smartwatch</a>
-                                                            </td>
                                                             <td
                                                                 class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                $999.00
+                                                                Rp.{{ number_format(($sparepart->Harga->last()->harga_jual) * ($sparepart->pivot->jumlah_produk))}}
                                                             </td>
 
                                                         </tr>
                                                         <!--end::Cart Content-->
+                                                        @empty
+
+                                                        @endforelse
+
+
                                                     </tbody>
 
                                                 </table>
@@ -173,21 +147,21 @@ Trnansaction
                                                                 <span
                                                                     class="text-dark-75 font-weight-bolder mr-2">Nama:</span>
                                                                 <span
-                                                                    class="text-muted text-hover-primary">Hallooo</span>
+                                                                    class="text-muted text-hover-primary">{{ $item->nama_penerima }}</span>
                                                             </div>
                                                             <div
                                                                 class="d-flex justify-content-between align-items-cente my-1">
                                                                 <span
                                                                     class="text-dark-75 font-weight-bolder mr-2">Alamat:</span>
                                                                 <span
-                                                                    class="text-muted text-hover-primary">asdasdpoqwdoqpwdj</span>
+                                                                    class="text-muted text-hover-primary">{{ $item->alamat_penerima }}</span>
                                                             </div>
                                                             <div
                                                                 class="d-flex justify-content-between align-items-center">
                                                                 <span class="text-dark-75 font-weight-bolder mr-2">No
                                                                     HP:</span>
-                                                                <span class="text-muted font-weight-bold">081 081 093
-                                                                    032</span>
+                                                                <span
+                                                                    class="text-muted font-weight-bold">{{ $item->nohp_penerima }}</span>
                                                             </div>
                                                         </div>
                                                         <!--end::Content-->
@@ -210,17 +184,17 @@ Trnansaction
                                                                     Total:</span>
                                                                 <span
                                                                     class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                    Rp 100.000
+                                                                    Rp. {{ number_format($item->harga_total) }}
                                                                 </span>
                                                             </div>
                                                             <div
                                                                 class="d-flex justify-content-between align-items-cente my-1">
                                                                 <span
                                                                     class="text-dark-75 font-weight-bolder mr-2">Pengiriman
-                                                                    JNT YES</span>
+                                                                    {{ $item->kurir_pengiriman }}</span>
                                                                 <span
                                                                     class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                    Rp 100.000
+                                                                    Rp. {{ number_format($item->harga_pengiriman) }}
                                                                 </span>
                                                             </div>
                                                             <div
@@ -232,7 +206,8 @@ Trnansaction
                                                                     :</span>
                                                                 <span
                                                                     class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                    Rp 200.000
+                                                                    Rp.
+                                                                    {{ number_format(($item->harga_total)+($item->harga_pengiriman)) }}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -244,6 +219,8 @@ Trnansaction
                                                 <!--end::Card-->
                                             </div>
                                         </div>
+
+                                        @if ($item->transaksi_status == 'DIKIRIM')
                                         <div class="row">
                                             <div class="col-xl-4">
                                                 <!--begin::Card-->
@@ -268,9 +245,14 @@ Trnansaction
                                                     <!--begin::Body-->
                                                     <div class="card-body">
                                                         <!--begin::Content-->
-                                                        <a href="#"
+                                                        <form action="{{ route('diterima')}}" method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="id_transaksi_online" value="{{ $item->id_transaksi_online }}"/>
+                                                            <button type="submit"
                                                             class="btn btn-light-success btn-block font-weight-bold mr-2">Barang
-                                                            Diterima</a>
+                                                            Diterima</button>
+                                                        </form>
+                                                        
                                                         <!--end::Content-->
 
                                                     </div>
@@ -294,228 +276,204 @@ Trnansaction
                                                 <!--end::Card-->
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!--end::Section-->
-                            </div>
-                            <div class="tab-pane fade active show" id="selesai-3" role="tabpanel"
-                                aria-labelledby="selesai-tab-3">
-                                <!--begin::Section-->
-                                <div class="card card-custom gutter-b">
-                                    <!--begin::Header-->
-                                    <div class="card-header flex-wrap border-0 pt-6 pb-0">
-                                        <h3 class="card-title align-items-start flex-column">
-                                            <span class="card-label font-weight-bolder font-size-h3 text-dark">Toko
-                                                Bengkel
-                                                AA</span>
-                                        </h3>
-                                        <div class="card-toolbar">
-                                            <div class="dropdown dropdown-inline">
-                                                <a href="#"
-                                                    class="btn btn-primary font-weight-bolder font-size-sm">Selesai</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Header-->
-
-                                    <div class="card-body" style="
-                                                padding-bottom: 0px;
-                                                padding-top: 0px;
-                                            ">
-                                        <!--begin::Shopping Cart-->
-                                        <div class="table-responsive">
-                                            <div class="card-body" style="
-                                                    padding-bottom: 0px;
-                                                     padding-top: 0px;
-                                                ">
-                                                <table class="table">
-                                                    <!--begin::Cart Header-->
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Product</th>
-                                                            <th class="text-right">Harga Total</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <!--end::Cart Header-->
-                                                    <tbody>
-                                                        <!--begin::Cart Content-->
-                                                        <tr>
-                                                            <td class="d-flex align-items-center font-weight-bolder">
-                                                                <!--begin::Symbol-->
-                                                                <div
-                                                                    class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
-                                                                    <div class="symbol-label"
-                                                                        style="background-image: url('assets/media/products/11.png')">
-                                                                    </div>
-                                                                </div>
-                                                                <!--end::Symbol-->
-                                                                <a href="#" class="text-dark text-hover-primary">Street
-                                                                    Sneakers x1</a>
-                                                            </td>
-
-                                                            <td
-                                                                class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                $90.00
-                                                            </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="d-flex align-items-center font-weight-bolder">
-                                                                <!--begin::Symbol-->
-                                                                <div
-                                                                    class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
-                                                                    <div class="symbol-label"
-                                                                        style="background-image: url('assets/media/products/2.png')">
-                                                                    </div>
-                                                                </div>
-                                                                <!--end::Symbol-->
-                                                                <a href="#"
-                                                                    class="text-dark text-hover-primary">Headphones</a>
-                                                            </td>
-                                                            <td
-                                                                class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                $449.00
-                                                            </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="d-flex align-items-center font-weight-bolder">
-                                                                <!--begin::Symbol-->
-                                                                <div
-                                                                    class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
-                                                                    <div class="symbol-label"
-                                                                        style="background-image: url('assets/media/products/1.png')">
-                                                                    </div>
-                                                                </div>
-                                                                <!--end::Symbol-->
-                                                                <a href="#"
-                                                                    class="text-dark text-hover-primary">Smartwatch</a>
-                                                            </td>
-                                                            <td
-                                                                class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                $999.00
-                                                            </td>
-
-                                                        </tr>
-                                                        <!--end::Cart Content-->
-                                                    </tbody>
-
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <!--end::Shopping Cart-->
-                                        <div class="row">
-                                            <div class="col-xl-6">
-                                                <!--begin::Card-->
-                                                <div class="card card-custom gutter-b card-stretch">
-                                                    <!--begin::Body-->
-                                                    <div class="card-body">
-                                                        <!--begin::Content-->
-                                                        <div class="">
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <span
-                                                                    class="text-dark-75 font-weight-bolder mr-2">Nama:</span>
-                                                                <span
-                                                                    class="text-muted text-hover-primary">Hallooo</span>
-                                                            </div>
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-cente my-1">
-                                                                <span
-                                                                    class="text-dark-75 font-weight-bolder mr-2">Alamat:</span>
-                                                                <span
-                                                                    class="text-muted text-hover-primary">asdasdpoqwdoqpwdj</span>
-                                                            </div>
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <span class="text-dark-75 font-weight-bolder mr-2">No
-                                                                    HP:</span>
-                                                                <span class="text-muted font-weight-bold">081 081 093
-                                                                    032</span>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Content-->
-
-                                                    </div>
-                                                    <!--end::Body-->
-                                                </div>
-                                                <!--end::Card-->
-                                            </div>
-                                            <div class="col-xl-6">
-                                                <!--begin::Card-->
-                                                <div class="card card-custom gutter-b card-stretch">
-                                                    <!--begin::Body-->
-                                                    <div class="card-body">
-                                                        <!--begin::Content-->
-                                                        <div class="">
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <span class="text-dark-75 font-weight-bolder mr-2">Sub
-                                                                    Total:</span>
-                                                                <span
-                                                                    class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                    Rp 100.000
-                                                                </span>
-                                                            </div>
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-cente my-1">
-                                                                <span
-                                                                    class="text-dark-75 font-weight-bolder mr-2">Pengiriman
-                                                                    JNT YES</span>
-                                                                <span
-                                                                    class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                    Rp 100.000
-                                                                </span>
-                                                            </div>
-                                                            <div
-                                                                class="separator separator-solid separator-border-2 separator-dark">
-                                                            </div>
-                                                            <div
-                                                                class="d-flex justify-content-between align-items-center">
-                                                                <span class="text-dark-75 font-weight-bolder mr-2">TOTAL
-                                                                    :</span>
-                                                                <span
-                                                                    class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                    Rp 200.000
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <!--end::Content-->
-
-                                                    </div>
-                                                    <!--end::Body-->
-                                                </div>
-                                                <!--end::Card-->
-                                            </div>
-                                        </div>
+                                        @elseif ($item->transaksi_status == 'PENDING')
                                         <div class="row">
                                             <div class="col-xl-12">
                                                 <!--begin::Card-->
                                                 <div class="card card-custom gutter-b card-stretch">
                                                     <!--begin::Body-->
                                                     <div class="card-body">
-                                                        <div class="form-group row">
-                                                            <label class="col-2 col-form-label">Ulasan</label>
-                                                            <div class="col-8">
-                                                                <textarea class="form-control form-control-solid"
-                                                                    rows="3"></textarea>
+                                                        <!--begin::Content-->
+                                                        <a href="#"
+                                                            class="btn btn-light-success btn-block font-weight-bold mr-2">Bayar</a>
+                                                        <!--end::Content-->
+
+                                                    </div>
+                                                    <!--end::Body-->
+                                                </div>
+                                                <!--end::Card-->
+                                            </div>
+
+                                        </div>
+                                        @elseif ($item->transaksi_status == 'DITERIMA')
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <!--begin::Card-->
+                                                <div class="card card-custom gutter-b card-stretch">
+                                                    <!--begin::Body-->
+                                                    <div class="card-body">
+                                                        <!--begin::Content-->
+                                                        <a href="#"
+                                                            class="btn btn-text-dark btn-hover-light-dark font-weight-bold mr-2 btn-block">Resi
+                                                            : JNR12312</a>
+
+                                                        <!--end::Content-->
+
+                                                    </div>
+                                                    <!--end::Body-->
+                                                </div>
+                                                <!--end::Card-->
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <!--begin::Card-->
+                                                <div class="card card-custom gutter-b card-stretch">
+                                                    <!--begin::Body-->
+                                                    <div class="card-body">
+                                                        <!--begin::Content-->
+                                                        <button type="button" data-toggle="modal"
+                                                            data-target="#staticBackdrop-{{ $item->id_transaksi_online }}"
+                                                            class="btn btn-light-success btn-block font-weight-bold mr-2">Berikan
+                                                            Ulasan</button>
+                                                        <!--end::Content-->
+
+                                                        <!-- Modal-->
+                                                        <div class="modal fade"
+                                                            id="staticBackdrop-{{ $item->id_transaksi_online }}"
+                                                            data-backdrop="static" tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                                            {{ $item->Detailtransaksi->first()->Bengkel->nama_bengkel }}
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <i aria-hidden="true"
+                                                                                class="ki ki-close"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{ route('review')}}" method="POST">
+                                                                        @csrf
+                                                                        <div class="modal-body pt-0">
+                                                                            <!--begin::Shopping Cart-->
+                                                                            <div class="table-responsive">
+                                                                                <table class="table">
+                                                                                    <!--begin::Cart Header-->
+                                                                                    {{-- <thead>
+                                                                                        <tr>
+                                                                                            <th>Product</th>
+
+                                                                                        </tr>
+                                                                                    </thead> --}}
+                                                                                    <!--end::Cart Header-->
+                                                                                    <tbody>
+                                                                                        <!--begin::Cart Content-->
+                                                                                        @foreach ($item->Detailtransaksi
+                                                                                        as $sparepart)
+                                                                                        <tr>
+                                                                                            <td
+                                                                                                class="d-flex align-items-center font-weight-bolder">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-12">
+                                                                                                        <!--begin::Symbol-->
+                                                                                                        <div
+                                                                                                            class="row">
+                                                                                                            @if($sparepart->Galleries)
+                                                                                                            <div
+                                                                                                                class="symbol symbol-60 flex-shrink-0 mr-4 bg-light ml-4">
+                                                                                                                <div class="symbol-label"
+                                                                                                                    style="background-image: url({{  asset('/image/'.$sparepart->Galleries->first()['photo'] ) }})">
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            @endif
+                                                                                                            <!--end::Symbol-->
+                                                                                                            <div
+                                                                                                                class="align-middle pb-4">
+                                                                                                                <a href="{{ route('detail', $sparepart->slug) }}"
+                                                                                                                    class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $sparepart->nama_sparepart}}</a>
+                                                                                                                <div
+                                                                                                                    class="font-weight-bold text-muted">
+                                                                                                                    Rp.
+                                                                                                                    {{ number_format($sparepart->Harga->last()['harga_jual'] )}}
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                    </div>
+                                                                                                    <div class="col-12">
+                                                                                                        <select name="rating[]"
+                                                                                                            class="star-rating">
+                                                                                                            <option
+                                                                                                                value="">
+                                                                                                                Select a
+                                                                                                                rating
+                                                                                                            </option>
+                                                                                                            <option {{ ( $sparepart->pivot->rating == 5) ? 'selected' : '' }}
+                                                                                                                value="5">
+                                                                                                                Excellent
+                                                                                                            </option>
+                                                                                                            <option {{ ( $sparepart->pivot->rating == 4) ? 'selected' : '' }}
+                                                                                                                value="4">
+                                                                                                                Very
+                                                                                                                Good
+                                                                                                            </option>
+                                                                                                            <option {{ ( $sparepart->pivot->rating == 3) ? 'selected' : '' }}
+                                                                                                                value="3">
+                                                                                                                Average
+                                                                                                            </option>
+                                                                                                            <option {{ ( $sparepart->pivot->rating == 2) ? 'selected' : '' }}
+                                                                                                                value="2">
+                                                                                                                Poor
+                                                                                                            </option>
+                                                                                                            <option {{ ( $sparepart->pivot->rating == 1) ? 'selected' : '' }}
+                                                                                                                value="1">
+                                                                                                                Terrible
+                                                                                                            </option>
+                                                                                                        </select>
+                                                                                                        <div
+                                                                                                            class="form-group mb-1">
+                                                                                                            <textarea name="review[]"
+                                                                                                                class="form-control"
+                                                                                                                id="exampleTextarea"
+                                                                                                                rows="3">{{ $sparepart->pivot->review }}</textarea>
+                                                                                                        </div>
+
+                                                                                                        <input type="hidden" name="id_detail_transaksi[]" value="{{ $sparepart->pivot->id_detail_transaksi }}"/>
+                                                                                                        <!--end::Form-->
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                            </td>
+
+                                                                                        </tr>
+                                                                                        @endforeach
+                                                                                        <!--end::Cart Content-->
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <!--end::Shopping Cart-->
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-light-primary font-weight-bold"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary font-weight-bold">Save
+                                                                                changes</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-2">
-                                                                <button type="button"
-                                                            class="btn btn-primary btn-lg btn-block ">Kirim</button>
-                                                            </div>
-                                                             
                                                         </div>
                                                     </div>
                                                     <!--end::Body-->
                                                 </div>
                                                 <!--end::Card-->
                                             </div>
+
                                         </div>
+                                        @endif
+
                                     </div>
                                 </div>
                                 <!--end::Section-->
                             </div>
+
+                            @empty
+
+                            @endforelse
+
                         </div>
                     </div>
 
@@ -530,3 +488,11 @@ Trnansaction
 </div>
 <!--end::Content-->
 @endsection
+@push('addon-script')
+<script src="user-assets/assets/js/star-rating.js"></script>
+<script>
+    var stars = new StarRating('.star-rating');
+
+</script>
+
+@endpush

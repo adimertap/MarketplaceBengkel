@@ -393,7 +393,7 @@ Checkout
 <!--end::Content-->
 @endsection
 
-@push('addon-style')
+@push('addon-script')
 <!--begin::Page Scripts(used by this page)-->
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>

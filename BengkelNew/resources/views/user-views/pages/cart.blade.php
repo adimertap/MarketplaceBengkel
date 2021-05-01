@@ -54,57 +54,72 @@ Product Detail
 
                                         @foreach ($cart as $item)
                                         <tr>
-                                            <td class="d-flex align-items-center font-weight-bolder">
-                                                <!--begin::Symbol-->
-                                                @if ($item->Sparepart->Galleries)
-                                                <div class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
-                                                    <div class="symbol-label"
-                                                        style="background-image: url({{  asset('/image/'.$item->Sparepart->Galleries->first()['photo'] ) }})">
+                                            <div class="qqquantity">
+                                                
+                                                <td class="d-flex align-items-center font-weight-bolder">
+                                                    <!--begin::Symbol-->
+                                                    @if ($item->Sparepart->Galleries)
+                                                    <div class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
+                                                        <div class="symbol-label"
+                                                            style="background-image: url({{  asset('/image/'.$item->Sparepart->Galleries->first()['photo'] ) }})">
+                                                        </div>
+
+                                                    </div>
+                                                    @endif
+                                                    <!--end::Symbol-->
+                                                    <div class="align-middle pb-4">
+                                                        <a href="{{ route('detail', $item->Sparepart->slug) }}"
+                                                            class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $item ->Sparepart->nama_sparepart}}</a>
+                                                        <div class="font-weight-bold text-muted">Rp.
+                                                            {{ number_format($item->Sparepart->Harga->last()['harga_jual'] )}}
+                                                        </div>
                                                     </div>
 
-                                                </div>
-                                                @endif
-                                                <!--end::Symbol-->
-                                                <div class="align-middle pb-4">
-                                                    <a href="{{ route('detail', $item->Sparepart->slug) }}"
-                                                        class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $item ->Sparepart->nama_sparepart}}</a>
-                                                    <div class="font-weight-bold text-muted">Rp.
-                                                        {{ number_format($item->Sparepart->Harga->last()['harga_jual'] )}}
+
+                                                </td>
+                                                <td class="text-center align-middle qquantity" width="130px">
+                                                    <div class="input-group quantity">
+                                                        <div
+                                                            class="btn btn-xs btn-light-success btn-icon mr-2 mt-2 decrement-btn">
+                                                            <i class="ki ki-minus icon-xs"></i>
+                                                        </div>
+                                                        <input type="text" name="qty" class="qty-input form-control"
+                                                            maxlength="2" value="{{ $item->jumlah }}">
+                                                        <input type="hidden" class="qty-id"
+                                                            value="{{ $item->id_cart }}">
+                                                        <input type="hidden" class="qty-harga"
+                                                            value="{{ $item->Sparepart->Harga->last()['harga_jual'] }}">
+
+                                                        <div class="btn btn-xs btn-light-success btn-icon increment-btn increment-btn mt-2 ml-2"
+                                                            style="cursor: pointer">
+                                                            <i class="ki ki-plus icon-xs"></i>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </td>
+                                                <td class=" text-right align-middle font-weight-bolder font-size-h5">
+                                                    <span>
+                                                        Rp.
+                                                    </span>
+                                                    <span id="totali{{ $item->id_cart }}">
+                                                        {{ ($item->Sparepart->Harga->last()['harga_jual'] ) * ($item->jumlah)}}
 
+                                                    </span>
+                                                </td>
+                                                <td class="text-right align-middle">
+                                                    <form action="{{ route('cart-delete', $item->id_cart) }}"
+                                                        method="post">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="btn btn-danger font-weight-bolder font-size-sm">Remove</button>
+                                                    </form>
+                                                </td>
+                                            </div>
 
-                                            </td>
-                                            <td class="text-center align-middle" width="130px">
-                                                <div class="input-group quantity">
-                                                    <div
-                                                        class="btn btn-xs btn-light-success btn-icon mr-2 mt-2 decrement-btn">
-                                                        <i class="ki ki-minus icon-xs"></i>
-                                                    </div>
-                                                    <input type="text" class="qty-input form-control" maxlength="2"
-                                                        value="{{ $item->jumlah }}">
-                                                    <div class="btn btn-xs btn-light-success btn-icon increment-btn increment-btn mt-2 ml-2"
-                                                        style="cursor: pointer">
-                                                        <i class="ki ki-plus icon-xs"></i>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="text-right align-middle font-weight-bolder font-size-h5">Rp 
-                                                {{ number_format(($item->Sparepart->Harga->last()['harga_jual'] ) * ($item->jumlah))}}
-                                            </td>
-                                            <td class="text-right align-middle">
-
-                                                <form action="{{ route('cart-delete', $item->id_cart) }}" method="post">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class="btn btn-danger font-weight-bolder font-size-sm">Remove</button>
-                                                </form>
-                                            </td>
                                         </tr>
                                         @php
-                                        $totalharga += ($item->Sparepart->Harga->last()['harga_jual'] ) * ($item->jumlah)
+                                        $totalharga += ($item->Sparepart->Harga->last()['harga_jual'] ) *
+                                        ($item->jumlah)
                                         @endphp
                                         @endforeach
 
@@ -115,7 +130,8 @@ Product Detail
                                             <td colspan="2"></td>
                                             <td class="font-weight-bolder font-size-h4 text-right">Subtotal</td>
                                             <td class="font-weight-bolder font-size-h4 text-right">Rp.
-                                                {{ number_format($totalharga ?? 0) }}</td>
+                                                <span id="subtotal">{{ $totalharga }}</span>
+                                               </td>
                                         </tr>
                                         <tr>
                                             <td colspan="4" class="border-0 text-muted text-right pt-0">Belum Termasuk
@@ -157,28 +173,106 @@ Product Detail
     crossorigin="anonymous"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-
         $('.increment-btn').click(function (e) {
             e.preventDefault();
             var incre_value = $(this).parents('.quantity').find('.qty-input').val();
+            var id_cart = $(this).parents('.quantity').find('.qty-id').val();
+            var _token = $('meta[name="csrf-token"]').attr('content');
             var value = parseInt(incre_value, 10);
-            value = isNaN(value) ? 0 : value;
-            if (value < 10) {
-                value++;
-                $(this).parents('.quantity').find('.qty-input').val(value);
-            }
+            var qty_harga = $(this).parents('.quantity').find('.qty-harga').val();
+            var harga = parseInt(qty_harga, 10);
+            var subtotal = $("#subtotal").text();
+            var totalcart = parseInt(subtotal, 10);
+            var value_before = parseInt(incre_value, 10);
 
+            value = isNaN(value) ? 0 : value;
+            value++;
+            var totali = "#totali"+id_cart;
+            $(this).parents('.quantity').find('.qty-input').val(value);
+            $(totali).text(harga*value);
+            $('#subtotal').text(totalcart+((value-value_before)*harga));
+
+            $.ajax({
+                type: 'post',
+                url: '/updateqty',
+                dataType: "json",
+                data: {
+                    id_cart: id_cart,
+                    qty: value,
+                    _token: _token
+                },
+                success: function (data) {
+
+                }
+            });
         });
 
         $('.decrement-btn').click(function (e) {
             e.preventDefault();
             var decre_value = $(this).parents('.quantity').find('.qty-input').val();
+            var id_cart = $(this).parents('.quantity').find('.qty-id').val();
+            var _token = $('meta[name="csrf-token"]').attr('content');
             var value = parseInt(decre_value, 10);
+            var qty_harga = $(this).parents('.quantity').find('.qty-harga').val();
+            var harga = parseInt(qty_harga, 10);
+            var subtotal = $("#subtotal").text();
+            var totalcart = parseInt(subtotal, 10);
+            var value_before = parseInt(decre_value, 10);
+
+
             value = isNaN(value) ? 0 : value;
-            if (value > 1) {
-                value--;
-                $(this).parents('.quantity').find('.qty-input').val(value);
-            }
+            value--;
+            var totali = "#totali"+id_cart;
+            $(this).parents('.quantity').find('.qty-input').val(value);
+            $(totali).text(harga*value);
+            $('#subtotal').text(totalcart+((value-value_before)*harga));
+            $.ajax({
+                type: 'post',
+                url: '/updateqty',
+                dataType: "json",
+                data: {
+                    id_cart: id_cart,
+                    qty: value,
+                    _token: _token
+                },
+                success: function (data) {
+
+                }
+            });
+        });
+
+        $('input[name="qty"]').on('change', function () {
+            var decre_value = $(this).parents('.quantity').find('.qty-input').val();
+            var id_cart = $(this).parents('.quantity').find('.qty-id').val();
+            var _token = $('meta[name="csrf-token"]').attr('content');
+            var value = parseInt(decre_value, 10);
+            var qty_harga = $(this).parents('.quantity').find('.qty-harga').val();
+            var harga = parseInt(qty_harga, 10);
+            var subtotal = $("#subtotal").text();
+            var totalcart = parseInt(subtotal, 10);
+            var totali = "#totali"+id_cart;
+            var value_before = $(totali).text();
+            var harga_before = parseInt(value_before, 10)
+
+
+
+            value = isNaN(value) ? 0 : value;
+            $(this).parents('.quantity').find('.qty-input').val(value);
+            $(totali).text(harga*value);
+            $('#subtotal').text(totalcart-harga_before+(harga*value));
+            $.ajax({
+                type: 'post',
+                url: '/updateqty',
+                dataType: "json",
+                data: {
+                    id_cart: id_cart,
+                    qty: value,
+                    _token: _token
+                },
+                success: function (data) {
+
+                }
+            });
         });
 
     });

@@ -84,7 +84,6 @@ Categories
                             <!--begin::Section-->
                             <div class="row mb-7">
                                 @forelse ($sparepart as $item)
-                               
                                 <!--begin::Product-->
                                 <div class="col-md-4 col-xxl-3 col-lg-12">
                                     <!--begin::Card-->
@@ -93,11 +92,11 @@ Categories
                                             <!--begin::Image-->
                                             <div class="overlay">
                                                 <div class="overlay-wrapper rounded bg-light text-center">
-                                                    <img src="{{ asset('/image/'.$item ->Galleries->first()['photo'] )}}"
+                                                    <img src="{{ asset('/image/'.$item->Sparepart->Galleries->first()['photo'] )}}"
                                                         alt="" class="mh-100 h-200px mw-100 w-200px" />
                                                 </div>
                                                 <div class="overlay-layer">
-                                                    <a href="{{ route('detail', $item->slug) }}"
+                                                    <a href="{{ route('detail', $item->Sparepart->slug) }}"
                                                         class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
                                                     <a href="#"
                                                         class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
@@ -108,9 +107,9 @@ Categories
                                             <!--begin::Details-->
                                             <div
                                                 class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
-                                                <a href="{{ route('detail', $item->slug) }}"
-                                                    class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item -> nama_sparepart }}</a>
-                                                <span class="font-size-sm">{{ $item ->Bengkel['nama_bengkel'] }}</span>
+                                                <a href="{{ route('detail', $item->Sparepart->slug) }}"
+                                                    class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item->Sparepart->nama_sparepart }}</a>
+                                                <span class="font-size-sm">{{ $item->Sparepart->Bengkel['nama_bengkel'] }}</span>
 
                                                 <div class="d-flex align-items-center flex-wrap">
                                                     <!--begin: Item-->
@@ -126,12 +125,10 @@ Categories
                                                     <div class="d-flex align-items-right  my-1">
                                                         <div class="d-flex flex-column text-dark-75 ">
                                                             <span class="font-weight-bolder font-size-h5"><span
-                                                                    class="text-dark-50  font-weight-bold">Rp.</span>{{ $item -> Harga ->last()['harga_jual'] }}</span>
+                                                                    class="text-dark-50  font-weight-bold">Rp.</span>{{ $item->Sparepart->Harga->last()['harga_jual'] }}</span>
                                                         </div>
                                                     </div>
                                                     <!--end: Item-->
-
-
                                                 </div>
                                             </div>
                                             <!--end::Details-->
@@ -140,10 +137,7 @@ Categories
                                     <!--end::Card-->
                                 </div>
                                 <!--end::Product-->
-
-
                                 @empty
-
                                 @endforelse
                             </div>
                             <!--end::Section-->

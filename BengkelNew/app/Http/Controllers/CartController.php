@@ -29,4 +29,11 @@ class CartController extends Controller
             $cart->delete();
             return redirect()->route('cart');
     }
+
+    public function update(Request $request){
+        $item = Cart::findOrFail($request->id_cart);
+        $data['jumlah'] = $request->qty;
+        $item -> update($data);
+        return response()->json(['success'=>'Ajax request submitted successfully']);
+    }
 }

@@ -32,4 +32,8 @@ class Sparepart extends Model
     public function Bengkel(){
         return $this->hasOne(Bengkel::class, 'id_bengkel', 'id_bengkel');
     }
+    public function Detailtransaksi(){
+        return $this->hasMany(DetailTransaksi::class, 'id_sparepart');
+    }
+
 }

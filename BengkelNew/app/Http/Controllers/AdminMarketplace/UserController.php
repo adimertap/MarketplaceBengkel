@@ -5,7 +5,7 @@ namespace App\Http\Controllers\AdminMarketplace;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Str;
 

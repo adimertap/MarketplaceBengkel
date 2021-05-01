@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user-views.layouts.app')
 @push('addon-style')
 <style>
     .slider {
@@ -119,8 +119,7 @@ Bengkel Detail
                             <div class="card card-custom card-stretch gutter-b">
                                 <!--begin::Card Body-->
                                 <div class="card-body">
-                                    <h3 class="font-weight-bold font-size-h2 text-dark-75 mb-3">Bengkel Satu
-                                        Hati</h3>
+                                    <h3 class="font-weight-bold font-size-h2 text-dark-75 mb-3">{{ $bengkel->nama_bengkel }}</h3>
 
                                     <div class="row">
 
@@ -128,10 +127,9 @@ Bengkel Detail
                                             <div class="separator separator-solid separator-border-4"></div>
 
 
-                                            <p class="font-size-h6">Jalan nusan gang nuri 4 no 15 sebelah cocomart pagar
-                                                kuning</p>
-                                            <p class="font-size-h6">08.00 - 24.00</p>
-                                            <p class="font-size-h6">081 934 630 073</p>
+                                            <p class="font-size-h6">{{ $bengkel->alamat_bengkel }}</p>
+                                            <p class="font-size-h6">08.00 - 24.00 belummmmm</p>
+                                            <p class="font-size-h6">{{ $bengkel->nohp_bengkel }}</p>
 
                                         </div>
                                         <div class="col-3">
@@ -168,34 +166,12 @@ Bengkel Detail
                                 <div class="card-body">
                                     <div class="scroll scroll-pull ps ps--active-y" data-scroll="true"
                                         style="height: 400px; overflow: hidden;">
-                                        <div class="d-flex py-5">
+                                        @forelse ($sparepart as $item)
+                                            <div class="d-flex py-5">
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
                                                 <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid" style=" margin:auto">
-                                                <!--begin::Info-->
-                                                <div class=" flex-wrap" >
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <div class="separator separator-solid separator-border-2"></div>
-                                                    
-                                                </div>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
+                                                    <img src="{{ asset('/image/'.$item ->Galleries->first()['photo'] )}}"
                                                         class="h-75 align-self-end" alt="">
                                                 </span>
                                             </div>
@@ -204,293 +180,22 @@ Bengkel Detail
                                             <div class="d-flex flex-column flex-row-fluid">
                                                 <!--begin::Info-->
                                                 <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
+                                                    <a href="{{ route('detail', $item->slug) }}"
+                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">{{ $item->nama_sparepart }}</a>
                                                     <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
+                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">Rp. {{number_format($item->Harga->last()['harga_jual'])}}</span>
                                                     <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
+                                                        class="text-muted font-weight-normal font-size-sm">review belummmm</span>
                                                 </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
+                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->keterangan }}</span>
                                                 <!--end::Info-->
                                             </div>
                                             <!--end::Info-->
                                         </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
+                                        @empty
+                                            
+                                        @endforelse
+                                        
                                     </div>
                                     <!--begin: Example code-->
 
@@ -511,7 +216,8 @@ Bengkel Detail
                                 <div class="card-body">
                                     <div class="scroll scroll-pull ps ps--active-y" data-scroll="true"
                                         style="height: 400px; overflow: hidden;">
-                                        <div class="d-flex py-5">
+                                        @forelse ($perbaikan as $item)
+                                         <div class="d-flex py-5">
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
                                                 <span class="symbol-label">
@@ -525,321 +231,21 @@ Bengkel Detail
                                                 <!--begin::Info-->
                                                 <div class="d-flex align-items-center flex-wrap">
                                                     <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
+                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">{{$item->nama_jenis_perbaikan}}</a>
                                                     <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span class="text-muted font-weight-normal font-size-sm">4</span>
+                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">{{$item->harga_jenis_perbaikan}}</span>
                                                 </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
+                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->group_jenis_perbaikan }}</span>
                                                 <!--end::Info-->
                                             </div>
                                             <!--end::Info-->
                                         </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <div class="d-flex py-5">
-                                            <!--begin::Symbol-->
-                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                                <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
-                                                </span>
-                                            </div>
-                                            <!--end::Symbol-->
-                                            <!--begin::Info-->
-                                            <div class="d-flex flex-column flex-row-fluid">
-                                                <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
-                                                    <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mr.
-                                                        Anderson</a>
-                                                    <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">1
-                                                        Day ago</span>
-                                                    <span
-                                                        class="text-muted font-weight-normal font-size-sm">Reply</span>
-                                                </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">Long
-                                                    before you sit dow to put digital pen to paper you need to make
-                                                    sure
-                                                    you have to sit down and write.</span>
-                                                <!--end::Info-->
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
+                                            
+                                        @empty
+                                            
+                                        @endforelse
+                                       
+                                        
                                     </div>
                                     <!--begin: Example code-->
 

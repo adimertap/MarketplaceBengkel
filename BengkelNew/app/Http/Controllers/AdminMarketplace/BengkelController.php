@@ -19,7 +19,7 @@ class BengkelController extends Controller
     public function index()
 
     {
-         $bengkel = Bengkel::All();
+        $bengkel = Bengkel::All();
         //  dd($bengkel);
         return view('admin-views.pages.bengkel.index',compact('bengkel'));
     }
