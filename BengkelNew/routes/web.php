@@ -30,9 +30,15 @@ Route::get("/a", "CheckoutController@ongkir");
 
 Route::post("/checkout/process", "CheckoutController@process")->name('checkout-process');
 Route::get("/checkout/callback", "CheckoutController@callbak")->name('checkout-callback');
-
-
 Route::get("/getkabupaten/{id}", "CheckoutController@kabupaten");
+
+Route::get("/bengkel/{id}/faq", "FaqController@index")->name('faq');
+
+Route::post("/faq/send-faq", "FaqController@send")->name('send-faq');
+Route::get("/maps", "MapsController@index")->name('maps');
+
+
+
 
 Route::prefix('admin')
     ->namespace('AdminMarketplace')
@@ -62,8 +68,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post("/review", "TransaksiController@review")->name('review');
     Route::post("/konfirmasi", "TransaksiController@diterima")->name('diterima');
 
+    Route::get("/account-setting", "AccountController@index")->name('account-setting');
+    Route::post("/account-update", "AccountController@update")->name('account-update');
+
 
 });
+
+    Route::get("/cekresi", "TransaksiController@cekresi")->name('cekresi');
 
     
 
@@ -82,7 +93,7 @@ Route::group(['middleware' => ['auth']], function(){
 // });
 
 // Route::get('/faq', function () {
-//     return view('pages.faq');
+//     return view('user-views.pages.faq');
 // });
 
 // Route::get('/productdetail', function () {

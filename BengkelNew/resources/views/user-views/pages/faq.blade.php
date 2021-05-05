@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user-views.layouts.app')
 
 @section('name')
 FAQ
@@ -23,21 +23,30 @@ FAQ
                                 <!--begin::Header-->
                                 <div class="card-header border-0">
                                     <h3 class="card-title font-weight-bold text-dark">Send Message</h3>
-
                                 </div>
                                 <!--end::Header-->
 
                                 <!--begin::Body-->
                                 <div class="card-body pt-2">
                                     <!--begin::Form-->
-                                    <form class="form" id="kt_form_1">
+                                    <form class="form" id="kt_form_1" action="{{ route('send-faq') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="id_bengkel" value="{{ $bengkel->id_bengkel }}"/>
+                                        <input type="hidden" name="slug" value="{{ $bengkel->slug }}"/>
+
                                         <div class="form-group">
-                                            <textarea class="form-control border-0" name="memo" rows="4"
+                                            <textarea class="form-control border-0" name="pertanyaan_faq" rows="4"
                                                 placeholder="Message" id="kt_forms_widget_1_input"
                                                 style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 94px;"></textarea>
                                         </div>
                                         <div class="mt-10">
-                                            <button class="btn btn-primary font-weight-bold">Kirim</button>
+                                            @auth
+                                                <button type="submit" class="btn btn-primary font-weight-bold">Kirim</button>
+                                            @endauth
+                                            @guest
+                                                <a href="{{ route('login') }}" class="btn btn-primary font-weight-bold">Login for Asking</a>
+
+                                            @endguest
                                         </div>
                                     </form>
                                     <!--end::Form-->
@@ -54,6 +63,7 @@ FAQ
                 <!--begin::Layout-->
                 <div class="flex-row-fluid ml-lg-7">
                     <!--begin::Card-->
+                    @forelse ($faq as $item)
                     <div class="card card-custom gutter-b">
                         <!--begin::Body-->
                         <div class="card-body">
@@ -64,7 +74,7 @@ FAQ
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-40 symbol-light-success mr-5">
                                         <span class="symbol-label">
-                                            <img src="assets/media/svg/avatars/018-girl-9.svg"
+                                            <img src="{{ asset('/image/'.$item->User->foto )}}"
                                                 class="h-75 align-self-end" alt="">
                                         </span>
                                     </div>
@@ -73,13 +83,12 @@ FAQ
                                     <!--begin::Info-->
                                     <div class="d-flex flex-column flex-grow-1">
                                         <a href="#"
-                                            class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Grace
-                                            Logan</a>
-                                        <span class="text-muted font-weight-bold">Yestarday at 5:06 PM</span>
+                                            class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">{{ $item->User->nama_user }}</a>
+                                        <span class="text-muted font-weight-bold">{{ $item->tanggal_pertanyaan }}</span>
                                     </div>
                                     <!--end::Info-->
 
-                                  
+
                                 </div>
                                 <!--end::Header-->
 
@@ -87,231 +96,51 @@ FAQ
                                 <div>
                                     <!--begin::Text-->
                                     <p class="text-dark-75 font-size-lg font-weight-normal">
-                                        Outlines keep you honest. They stop you from indulging in
-                                        poorly thought-out metaphors about driving and keep you
-                                        focused on the overall structure of your post
+                                        {{$item->pertanyaan_faq}}
                                     </p>
                                     <!--end::Text-->
-
-                                 
-                                
-                                    <!--begin::Item-->
-                                    <div class="d-flex">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/avatars/003-girl-1.svg"
-                                                    class="h-75 align-self-end" alt="">
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-
-                                        <!--begin::Info-->
-                                        <div class="d-flex flex-column flex-row-fluid">
-                                            <!--begin::Info-->
-                                            <div class="d-flex align-items-center flex-wrap">
-                                                <a href="#"
-                                                    class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mrs.
-                                                    Anderson</a>
-                                                <span class="text-muted font-weight-normal flex-grow-1 font-size-sm">2
-                                                    Days ago</span>
+                                    @if ($item->jawaban_faq)
+                                        <!--begin::Item-->
+                                        <div class="d-flex ml-10">
+                                            <!--begin::Symbol-->
+                                            <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
+                                                <span class="symbol-label">
+                                                    <img src="{{ asset('/image/'.$bengkel->logo_bengkel )}}"
+                                                        class="h-75 align-self-end" alt="">
+                                                </span>
                                             </div>
+                                            <!--end::Symbol-->
 
-                                            <span class="text-dark-75 font-size-sm font-weight-normal pt-1">
-                                                Long before you sit down to put digital pen to paper
-                                            </span>
+                                            <!--begin::Info-->
+                                            <div class="d-flex flex-column flex-row-fluid">
+                                                <!--begin::Info-->
+                                                <div class="d-flex align-items-center flex-wrap">
+                                                    <a href="#"
+                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">{{$bengkel->nama_bengkel}}</a>
+                                                    <span class="text-muted font-weight-normal flex-grow-1 font-size-sm">{{ $item->tanggal_jawaban }}</span>
+                                                </div>
+
+                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">
+                                                    {{ $item->jawaban_faq }}
+                                                </span>
+                                                <!--end::Info-->
+                                            </div>
                                             <!--end::Info-->
                                         </div>
-                                        <!--end::Info-->
-                                    </div>
-                                    <!--end::Item-->
+                                        <!--end::Item-->
+                                    @endif
+
                                 </div>
                                 <!--end::Body-->
                             </div>
                             <!--end::Container-->
-
-                            <!--begin::Separator-->
-                            <div class="separator separator-solid mt-5 mb-4"></div>
-                            <!--end::Separator-->
-
-                           
                         </div>
-
-
                         <!--end::Body-->
                     </div>
-                    <div class="card card-custom gutter-b">
-                        <!--begin::Body-->
-                        <div class="card-body">
-                            <!--begin::Container-->
-                            <div>
-                                <!--begin::Header-->
-                                <div class="d-flex align-items-center pb-4">
-                                    <!--begin::Symbol-->
-                                    <div class="symbol symbol-40 symbol-light-success mr-5">
-                                        <span class="symbol-label">
-                                            <img src="assets/media/svg/avatars/018-girl-9.svg"
-                                                class="h-75 align-self-end" alt="">
-                                        </span>
-                                    </div>
-                                    <!--end::Symbol-->
+                    @empty
 
-                                    <!--begin::Info-->
-                                    <div class="d-flex flex-column flex-grow-1">
-                                        <a href="#"
-                                            class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Grace
-                                            Logan</a>
-                                        <span class="text-muted font-weight-bold">Yestarday at 5:06 PM</span>
-                                    </div>
-                                    <!--end::Info-->
+                    @endforelse
 
-                                  
-                                </div>
-                                <!--end::Header-->
-
-                                <!--begin::Body-->
-                                <div>
-                                    <!--begin::Text-->
-                                    <p class="text-dark-75 font-size-lg font-weight-normal">
-                                        Outlines keep you honest. They stop you from indulging in
-                                        poorly thought-out metaphors about driving and keep you
-                                        focused on the overall structure of your post
-                                    </p>
-                                    <!--end::Text-->
-
-                                 
-                                
-                                    <!--begin::Item-->
-                                    <div class="d-flex">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/avatars/003-girl-1.svg"
-                                                    class="h-75 align-self-end" alt="">
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-
-                                        <!--begin::Info-->
-                                        <div class="d-flex flex-column flex-row-fluid">
-                                            <!--begin::Info-->
-                                            <div class="d-flex align-items-center flex-wrap">
-                                                <a href="#"
-                                                    class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mrs.
-                                                    Anderson</a>
-                                                <span class="text-muted font-weight-normal flex-grow-1 font-size-sm">2
-                                                    Days ago</span>
-                                            </div>
-
-                                            <span class="text-dark-75 font-size-sm font-weight-normal pt-1">
-                                                Long before you sit down to put digital pen to paper
-                                            </span>
-                                            <!--end::Info-->
-                                        </div>
-                                        <!--end::Info-->
-                                    </div>
-                                    <!--end::Item-->
-                                </div>
-                                <!--end::Body-->
-                            </div>
-                            <!--end::Container-->
-
-                            <!--begin::Separator-->
-                            <div class="separator separator-solid mt-5 mb-4"></div>
-                            <!--end::Separator-->
-
-                           
-                        </div>
-
-                        
-                        <!--end::Body-->
-                    </div>
-                    <div class="card card-custom gutter-b">
-                        <!--begin::Body-->
-                        <div class="card-body">
-                            <!--begin::Container-->
-                            <div>
-                                <!--begin::Header-->
-                                <div class="d-flex align-items-center pb-4">
-                                    <!--begin::Symbol-->
-                                    <div class="symbol symbol-40 symbol-light-success mr-5">
-                                        <span class="symbol-label">
-                                            <img src="assets/media/svg/avatars/018-girl-9.svg"
-                                                class="h-75 align-self-end" alt="">
-                                        </span>
-                                    </div>
-                                    <!--end::Symbol-->
-
-                                    <!--begin::Info-->
-                                    <div class="d-flex flex-column flex-grow-1">
-                                        <a href="#"
-                                            class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder">Grace
-                                            Logan</a>
-                                        <span class="text-muted font-weight-bold">Yestarday at 5:06 PM</span>
-                                    </div>
-                                    <!--end::Info-->
-
-                                  
-                                </div>
-                                <!--end::Header-->
-
-                                <!--begin::Body-->
-                                <div>
-                                    <!--begin::Text-->
-                                    <p class="text-dark-75 font-size-lg font-weight-normal">
-                                        Outlines keep you honest. They stop you from indulging in
-                                        poorly thought-out metaphors about driving and keep you
-                                        focused on the overall structure of your post
-                                    </p>
-                                    <!--end::Text-->
-
-                                 
-                                
-                                    <!--begin::Item-->
-                                    <div class="d-flex">
-                                        <!--begin::Symbol-->
-                                        <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
-                                            <span class="symbol-label">
-                                                <img src="assets/media/svg/avatars/003-girl-1.svg"
-                                                    class="h-75 align-self-end" alt="">
-                                            </span>
-                                        </div>
-                                        <!--end::Symbol-->
-
-                                        <!--begin::Info-->
-                                        <div class="d-flex flex-column flex-row-fluid">
-                                            <!--begin::Info-->
-                                            <div class="d-flex align-items-center flex-wrap">
-                                                <a href="#"
-                                                    class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">Mrs.
-                                                    Anderson</a>
-                                                <span class="text-muted font-weight-normal flex-grow-1 font-size-sm">2
-                                                    Days ago</span>
-                                            </div>
-
-                                            <span class="text-dark-75 font-size-sm font-weight-normal pt-1">
-                                                Long before you sit down to put digital pen to paper
-                                            </span>
-                                            <!--end::Info-->
-                                        </div>
-                                        <!--end::Info-->
-                                    </div>
-                                    <!--end::Item-->
-                                </div>
-                                <!--end::Body-->
-                            </div>
-                            <!--end::Container-->
-
-                            <!--begin::Separator-->
-                            <div class="separator separator-solid mt-5 mb-4"></div>
-                            <!--end::Separator-->
-
-                           
-                        </div>
-
-                        
-                        <!--end::Body-->
-                    </div>
                     <!--end::Card-->
                 </div>
                 <!--end::Layout-->
@@ -327,9 +156,9 @@ FAQ
 
 @push('addon-script')
 <!--begin::Page Scripts(used by this page)-->
-<script src="user/assets/js/pages/widgets.js"></script>
+<script src="user-assets/assets/js/pages/widgets.js"></script>
 <!--end::Page Scripts-->
 <!--begin::Page Scripts(used by this page)-->
-<script src="user/assets/js/pages/features/miscellaneous/sticky-panels.js?v=7.0.6"></script>
+<script src="user-assets/assets/js/pages/features/miscellaneous/sticky-panels.js?v=7.0.6"></script>
 <!--end::Page Scripts-->
 @endpush

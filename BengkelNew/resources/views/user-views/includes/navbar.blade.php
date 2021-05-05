@@ -232,7 +232,7 @@
                                     <span
                                         class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{ Auth::user()->nama_user }}</span>
                                     <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
-                                        <span class="symbol-label font-size-h5 font-weight-bold">S</span>
+                                        <span class="symbol-label font-size-h5 font-weight-bold">{{ Auth::user()->nama_user[0] }}</span>
                                     </span>
                                 </div>
                             </div>
@@ -406,13 +406,13 @@
     @endauth
     
 
-
-    <!-- begin::User Panel-->
+@auth
+     <!-- begin::User Panel-->
     <div id="kt_quick_user" class="offcanvas offcanvas-right p-10">
         <!--begin::Header-->
         <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
             <h3 class="font-weight-bold m-0">User Profile
-                <small class="text-muted font-size-sm ml-2">12 messages</small></h3>
+                {{-- <small class="text-muted font-size-sm ml-2">12 messages</small></h3> --}}
             <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
                 <i class="ki ki-close icon-xs text-muted"></i>
             </a>
@@ -424,13 +424,14 @@
             <div class="d-flex align-items-center mt-5">
                 <div class="symbol symbol-100 mr-5">
                     <div class="symbol-label"
-                        style="background-image:url('user-assets/assets/media/users/300_21.jpg')">
+
+                         style="background-image:url('{{ asset('/image/'.Auth::user()->foto )}}')">                       
                     </div>
                     <i class="symbol-badge bg-success"></i>
                 </div>
                 <div class="d-flex flex-column">
-                    <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">James Jones</a>
-                    <div class="text-muted mt-1">Application Developer</div>
+                    <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{ Auth::user()->nama_user }}</a>
+                    {{-- <div class="text-muted mt-1">Application Developer</div> --}}
                     <div class="navi mt-2">
                         <a href="#" class="navi-item">
                             <span class="navi-link p-0 pb-2">
@@ -451,7 +452,7 @@
                                         <!--end::Svg Icon-->
                                     </span>
                                 </span>
-                                <span class="navi-text text-muted text-hover-primary">jm@softplus.com</span>
+                                <span class="navi-text text-muted text-hover-primary">{{ Auth::user()->email }}</span>
                             </span>
                         </a>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -470,7 +471,7 @@
             <!--begin::Nav-->
             <div class="navi navi-spacer-x-0 p-0">
                 <!--begin::Item-->
-                <a href="/metronic/demo1/custom/apps/user/profile-1/personal-information.html" class="navi-item">
+                <a href="{{ route("account-setting") }}" class="navi-item">
                     <div class="navi-link">
                         <div class="symbol symbol-40 bg-light mr-3">
                             <div class="symbol-label">
@@ -492,47 +493,16 @@
                         </div>
                         <div class="navi-text">
                             <div class="font-weight-bold">My Profile</div>
-                            <div class="text-muted">Account settings and more
+                            <div class="text-muted">My Profile
                                 <span class="label label-light-danger label-inline font-weight-bold">update</span></div>
                         </div>
                     </div>
                 </a>
                 <!--end:Item-->
                 <!--begin::Item-->
-                <a href="/metronic/demo1/custom/apps/user/profile-3.html" class="navi-item">
-                    <div class="navi-link">
-                        <div class="symbol symbol-40 bg-light mr-3">
-                            <div class="symbol-label">
-                                <span class="svg-icon svg-icon-md svg-icon-warning">
-                                    <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Shopping/Chart-bar1.svg-->
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <rect x="0" y="0" width="24" height="24" />
-                                            <rect fill="#000000" opacity="0.3" x="12" y="4" width="3" height="13"
-                                                rx="1.5" />
-                                            <rect fill="#000000" opacity="0.3" x="7" y="9" width="3" height="8"
-                                                rx="1.5" />
-                                            <path
-                                                d="M5,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 C4.55228475,3 5,3.44771525 5,4 L5,19 Z"
-                                                fill="#000000" fill-rule="nonzero" />
-                                            <rect fill="#000000" opacity="0.3" x="17" y="11" width="3" height="6"
-                                                rx="1.5" />
-                                        </g>
-                                    </svg>
-                                    <!--end::Svg Icon-->
-                                </span>
-                            </div>
-                        </div>
-                        <div class="navi-text">
-                            <div class="font-weight-bold">My Messages</div>
-                            <div class="text-muted">Inbox and tasks</div>
-                        </div>
-                    </div>
-                </a>
-                <!--end:Item-->
+               
                 <!--begin::Item-->
-                <a href="/metronic/demo1/custom/apps/user/profile-2.html" class="navi-item">
+                <a href="{{ route('cart') }}" class="navi-item">
                     <div class="navi-link">
                         <div class="symbol symbol-40 bg-light mr-3">
                             <div class="symbol-label">
@@ -555,14 +525,14 @@
                             </div>
                         </div>
                         <div class="navi-text">
-                            <div class="font-weight-bold">My Activities</div>
-                            <div class="text-muted">Logs and notifications</div>
+                            <div class="font-weight-bold">My Cart</div>
+                            <div class="text-muted">Keranjang Belanja</div>
                         </div>
                     </div>
                 </a>
                 <!--end:Item-->
                 <!--begin::Item-->
-                <a href="/metronic/demo1/custom/apps/userprofile-1/overview.html" class="navi-item">
+                <a href="{{ route('transaksi') }}" class="navi-item">
                     <div class="navi-link">
                         <div class="symbol symbol-40 bg-light mr-3">
                             <div class="symbol-label">
@@ -585,8 +555,8 @@
                             </div>
                         </div>
                         <div class="navi-text">
-                            <div class="font-weight-bold">My Tasks</div>
-                            <div class="text-muted">latest tasks and projects</div>
+                            <div class="font-weight-bold">My Transaction</div>
+                            <div class="text-muted">Riwayat Transaksi</div>
                         </div>
                     </div>
                 </a>
@@ -601,3 +571,5 @@
         <!--end::Content-->
     </div>
     <!-- end::User Panel-->
+@endauth
+   

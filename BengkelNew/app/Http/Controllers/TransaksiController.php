@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Transaksi;
 use App\DetailTransaksi;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use App\Models\multiModel;
 
 
@@ -45,4 +46,19 @@ class TransaksiController extends Controller
 
         return redirect()->route('transaksi');
     }
+
+    public function cekresi(Request $request)
+    {
+        $response = Http::asForm()->get('http://api.binderbyte.com/v1/track', [
+            'api_key'=> '7670544b4f934178daf4370b0165e656ee26abccf78a7d0f66c38c49df35090f',
+            'courier'=> $request->kurir,
+            'awb' => $request->resi
+
+        ]);
+
+        $cekongkir =  $response['data'] ;
+        return json_encode($cekongkir);
+    }
+
+
 }

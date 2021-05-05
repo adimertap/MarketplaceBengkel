@@ -100,8 +100,6 @@ class CheckoutController extends Controller
         catch (Exception $e) {
             echo $e->getMessage();
         }
-
-
     }
 
     public function callback(Request $request)
@@ -115,7 +113,6 @@ class CheckoutController extends Controller
         $carts = Cart::with(['Sparepart.Galleries','Sparepart.Bengkel', 'user', 'Sparepart.Harga'])
                 ->where('id_user', Auth::user()->id_user)
                 ->get();
-        
 
         return view('user-views.pages.checkout',[
             'provinsi' => $provinsi,
@@ -130,8 +127,6 @@ class CheckoutController extends Controller
     }
 
     public function ongkir (Request $request){
-
-
         $carts = Cart::with(['Sparepart.Galleries','Sparepart.Bengkel', 'user', 'Sparepart.Harga'])
                 ->where('id_user', Auth::user()->id_user)
                 ->get();
@@ -139,7 +134,6 @@ class CheckoutController extends Controller
         foreach ($carts as $item) {
             $weight += ($item->jumlah)*($item->Sparepart->berat_sparepart);
         }
-
         $origin = $item->first()->Sparepart->Bengkel->id_kabupaten;
         $destination = $request->kabupaten;
         $courier = $request->kurir;
