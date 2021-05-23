@@ -125,7 +125,7 @@ Categories
                                                     <div class="d-flex align-items-right  my-1">
                                                         <div class="d-flex flex-column text-dark-75 ">
                                                             <span class="font-weight-bolder font-size-h5"><span
-                                                                    class="text-dark-50  font-weight-bold">Rp.</span>{{ $item->Sparepart->Harga->last()['harga_jual'] }}</span>
+                                                                    class="text-dark-50  font-weight-bold">Rp.</span>{{ $item->Sparepart->Harga['harga_jual'] }}</span>
                                                         </div>
                                                     </div>
                                                     <!--end: Item-->

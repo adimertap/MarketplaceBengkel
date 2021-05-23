@@ -11,7 +11,7 @@ class Cart extends Model
     protected $primaryKey = 'id_cart';
 
     protected $fillable = [
-        'id_user', 'id_sparepart', 'jumlah'
+        'id_user', 'id_sparepart', 'jumlah', 'id_bengkel'
     ];
 
     public function Sparepart(){
@@ -22,4 +22,5 @@ class Cart extends Model
         return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
 }
+
 

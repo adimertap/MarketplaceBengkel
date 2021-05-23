@@ -119,7 +119,7 @@ Marketplace Homepage
                                                 <div
                                                     class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
                                                     <a href="{{ route('detail', $item->slug) }}"
-                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item -> nama_sparepart }}</a>
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item ->nama_sparepart }}</a>
                                                     <a href="{{ route('bengkel', $item->Bengkel->slug) }}"
                                                         class="font-size-sm">{{ $item ->Bengkel['nama_bengkel'] }}</a>
 
@@ -137,7 +137,7 @@ Marketplace Homepage
                                                         <div class="d-flex align-items-right  my-1">
                                                             <div class="d-flex flex-column text-dark-75 ">
                                                                 <span class="font-weight-bolder font-size-h5"><span
-                                                                        class="text-dark-50  font-weight-bold">Rp.</span>{{ $item -> Harga ->last()['harga_jual'] }}</span>
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>{{ $item -> Harga['harga_jual'] }}</span>
                                                             </div>
                                                         </div>
                                                         <!--end: Item-->
@@ -232,7 +232,7 @@ Marketplace Homepage
                                                         <div class="d-flex align-items-right  my-1">
                                                             <div class="d-flex flex-column text-dark-75 ">
                                                                 <span class="font-weight-bolder font-size-h5"><span
-                                                                        class="text-dark-50  font-weight-bold">Rp.</span>{{ $item->Sparepart->Harga->last()['harga_jual'] }}</span>
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>{{ $item->Sparepart->Harga['harga_jual'] }}</span>
                                                             </div>
                                                         </div>
                                                         <!--end: Item-->

@@ -204,7 +204,7 @@ Product Detail
                                                     Tersedia</span>
                                                 <span class="font-weight-bolder font-size-h1">
                                                     <span class="text-dark-50 font-weight-bold">Rp
-                                                    </span>{{ number_format($sparepart -> Harga ->last()['harga_jual']) }}</span>
+                                                    </span>{{ number_format($sparepart -> Harga['harga_jual']) }}</span>
                                             </div>
                                         </div>
                                         <!--end: Item-->
@@ -258,6 +258,6 @@ Product Detail
 <!--end::Content-->
 @endsection
 
-@push('addon-style')
+@push('addon-script')
 <script src="http://thecodeplayer.com/uploads/js/prefixfree.js" type="text/javascript"></script>
 @endpush

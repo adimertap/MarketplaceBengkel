@@ -34,6 +34,8 @@ class HomeController extends Controller
         ->groupBy('id_sparepart')->orderBy('penjualan', 'DESC')->take(8)
         ->get();
 
+        // return $sparepart;
+
         // return $terlaris;
         // return $sparepart;
         return view('user-views.pages.home', [

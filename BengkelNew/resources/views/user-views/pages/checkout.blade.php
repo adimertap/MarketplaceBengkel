@@ -54,7 +54,7 @@ Checkout
                         <div class="row justify-content-center py-10 px-8 py-lg-12 px-lg-10">
                             <div class="col-xl-12 col-xxl-9">
                                 <!--begin: Wizard Form-->
-                                <form class="form" id="kt_form" action="{{ route('checkout-process') }}" method="post">
+                                <form class="form" id="kt_form" action="{{ route('checkout-process', $cart->id_carts) }}" method="post">
                                     <!--begin: Wizard Step 1-->
                                     @csrf
                                     <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
@@ -178,7 +178,7 @@ Checkout
                                                                 <!--end::Logo-->
                                                                 <span
                                                                     class="text-white d-flex flex-column align-items-md-end opacity-70">
-                                                                    <span>{{ $cart->first()->Sparepart->Bengkel->nama_bengkel }}</span>
+                                                                    <span>{{ $cart->Bengkel->nama_bengkel }}</span>
                                                                     {{-- <span>081-123-123-123</span> --}}
                                                                 </span>
                                                             </div>
@@ -215,14 +215,14 @@ Checkout
                                                                     $totalbarang = 0;
                                                                     $jumlahberat =0;
                                                                     @endphp
-                                                                    @foreach ($cart as $item)
+                                                                    @foreach ($items as $item)
                                                                     <tr
                                                                         class="font-weight-boldest border-bottom-0 font-size-lg">
                                                                         <td class="border-top-0 pl-0 py-4">
                                                                             {{ $item->Sparepart->nama_sparepart }}</td>
                                                                         <td class="border-top-0 text-right py-4">Rp.
                                                                             <span></span>
-                                                                            {{ number_format($item->Sparepart->Harga->last()['harga_jual']) }}
+                                                                            {{ number_format($item->Sparepart->Harga['harga_jual']) }}
                                                                         </td>
                                                                         <td class="border-top-0 text-right py-4">
                                                                             {{ $item->jumlah }}
@@ -230,13 +230,13 @@ Checkout
                                                                         <td
                                                                             class="text-danger border-top-0 pr-0 py-4 text-right">
                                                                             Rp.
-                                                                            {{ number_format($item->jumlah * $item->Sparepart->Harga->last()['harga_jual']) }}
+                                                                            {{ number_format($item->jumlah * $item->Sparepart->Harga['harga_jual']) }}
                                                                         </td>
                                                                         @php
                                                                         $jumlahberat +=
                                                                         $item->Sparepart->berat_sparepart;
                                                                         $totalbarang +=
-                                                                        $item->jumlah*$item->Sparepart->Harga->last()['harga_jual'];
+                                                                        $item->jumlah*$item->Sparepart->Harga['harga_jual'];
                                                                         @endphp
                                                                     </tr>
                                                                     @endforeach

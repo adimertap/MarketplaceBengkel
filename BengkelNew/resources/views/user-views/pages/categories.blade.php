@@ -22,7 +22,7 @@ Categories
                             <!--begin::Body-->
                             <div class="card-body">
                                 <!--begin::Form-->
-                                <form>
+                                <form action="{{ route("all") }}" method="get">
                                     <!--begin::Categories-->
                                     <div class="form-group mb-11">
                                         <label class="font-size-h2 font-weight-bolder text-dark">{{ $categories }}</label>
@@ -35,12 +35,12 @@ Categories
                                         <!--begin::Radio list-->
                                         <div class="form-group" style="margin-bottom: 10px">
                                             <label>Min</label>
-                                            <input type="number" class="form-control form-control-lg"
+                                            <input type="number" name="min" class="form-control form-control-lg"
                                                 placeholder="Large input" />
                                         </div>
                                         <div class="form-group " style="margin-bottom: 10px">
                                             <label>Maks</label>
-                                            <input type=" number" class="form-control form-control-lg"
+                                            <input type=" number" name="max" class="form-control form-control-lg"
                                                 placeholder="Large input" />
                                         </div>
 
@@ -53,10 +53,10 @@ Categories
                                         <label class="font-size-h5 font-weight-bolder text-dark ">Urutkan
                                             Menurut</label>
                                         <!--begin::Radio list-->
-                                        <select class="custom-select form-control">
+                                        <select class="custom-select form-control" name="urutan">
                                             <option selected>Urutkan</option>
-                                            <option value="1">Terbaru</option>
-                                            <option value="2">Terlaris</option>
+                                            <option value="terbaru">Terbaru</option>
+                                            <option value="terlaris">Terlaris</option>
                                         </select>
 
                                         <!--end::Radio sort-->
@@ -126,7 +126,7 @@ Categories
                                                     <div class="d-flex align-items-right  my-1">
                                                         <div class="d-flex flex-column text-dark-75 ">
                                                             <span class="font-weight-bolder font-size-h5"><span
-                                                                    class="text-dark-50  font-weight-bold">Rp.</span>{{ $item -> Harga ->last()['harga_jual'] }}</span>
+                                                                    class="text-dark-50  font-weight-bold">Rp.</span>{{ $item -> Harga['harga_jual'] }}</span>
                                                         </div>
                                                     </div>
                                                     <!--end: Item-->
@@ -146,6 +146,7 @@ Categories
 
                                 @endforelse
                             </div>
+                            {{ $sparepart->appends(['search' => request()->query('search')])->links() }}
                             <!--end::Section-->
                             <div class="text-center">
                                 <button type="button"

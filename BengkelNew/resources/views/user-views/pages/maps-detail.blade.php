@@ -41,14 +41,14 @@ MAPS
                                         Shopping</a>
                                 </div>
                             </div>
+                            <input type="hidden" id="id_bengkel" value="{{ $bengkel->id_bengkel }}"/>
+
                         </div>
                         <!--end::Header-->
                         <div class="card-body">
                             <div class="container">
                                 <div id="mapid">
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -62,14 +62,6 @@ MAPS
     </div>
     <!--end::Entry-->
 </div>
-
-
-
-
-
-
-
-
 <!--end::Content-->
 @endsection
 
@@ -78,15 +70,17 @@ MAPS
 <script>
     var map = ""
 
+    var id_bengkel = $("#id_bengkel").val();
+    
     var BengkelIcon = L.icon({
         iconUrl: 'user-assets/icon/bengkel.png',
         iconSize: [35, 35],
         iconAnchore: [22, 94],
-        popupAnchore: [-3, -76]
+        popupAnchore: [-200, -200]
     });
 
     $(document).ready(function () {
-        map = L.map('mapid').fitWorld();
+         map = L.map('mapid').fitWorld();
         L.tileLayer(
             'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -95,14 +89,11 @@ MAPS
                 tileSize: 512,
                 zoomOffset: -1,
                 accessToken: 'pk.eyJ1IjoiYXJ0YW5pbGExNSIsImEiOiJja29hN2IxeW0weWRlMm9zMnA3eTlmem04In0.O2Mk0N3OYzJ40NXBuOCevQ'
-            }).addTo(map);
+        }).addTo(map);
 
         function onLocationFound(e) {
-
-            map.flyTo(e.latlng, 10)
             L.marker(e.latlng).addTo(map)
-                .bindPopup("You are here").openPopup();
-                
+                .bindPopup("You are here");
         }
 
         function onLocationError(e) {
@@ -121,11 +112,9 @@ MAPS
         $.getJSON('maps/databengkel', function (data) {
 
             $.each(data, function (index) {
-                var marker = L.marker([data[index].latitude, data[index].longitude], {
-                    icon: BengkelIcon
-                }).addTo(map).on('click', function (e) {
-                    var html =
-                        '<div class="card-body"><div class="d-flex justify-content-between flex-column pt-4 "><div class="pb-5"><div class="d-flex flex-column flex-center">'
+                var newpopup ='';
+                var html =
+                        '<div class=""><div class="d-flex justify-content-between flex-column pt-4 "><div class="pb-5"><div class="d-flex flex-column flex-center">'
                     html +=
                         '<div class="bgi-no-repeat bgi-size-cover rounded min-h-180px w-100" style="background-image: url(image/' +
                         data[index].logo_bengkel + ')"></div>'
@@ -140,13 +129,16 @@ MAPS
                     html += '<a href="http://maps.google.com/?q=' + data[index]
                         .latitude + ',' + data[index].longitude +
                         '" target="_blank" class="btn btn-primary font-weight-bolder font-size-sm py-3 px-14" >Lihat di Google Maps</a></div></div></div>'
+               
+                if(data[index].id_bengkel == id_bengkel){
+                         map.flyTo([(parseFloat(data[index].latitude)+0.25) , data[index].longitude], 10)
+                       L.marker([data[index].latitude, data[index].longitude], {icon: BengkelIcon}).addTo(map).bindPopup(html).openPopup();
 
-                    L.popup()
-                        .setLatLng([data[index].latitude, data[index].longitude])
-                        .setContent(html)
-                        .openOn(map);
+                }else{
+                       L.marker([data[index].latitude, data[index].longitude], {icon: BengkelIcon}).addTo(map).bindPopup(html);
 
-                });
+                }
+        
             });
         });
     });

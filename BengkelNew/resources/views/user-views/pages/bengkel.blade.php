@@ -78,40 +78,15 @@ Bengkel Detail
                 <div class="flex-row-fluid">
                     <!--begin::Section-->
                     <div class="row">
-                        <div class="col-md-6 col-lg-12 col-xxl-6">
+                        <div class="col-md-7 col-lg-12 col-xxl-6">
                             <!--begin::Engage Widget 14-->
                             <div class="card card-custom gutter-b gutter-b">
                                 <div class="slider">
-                                    <input type="radio" name="slide_switch" id="id1" />
-                                    <label for="id1">
-                                        <img src="http://thecodeplayer.com/uploads/media/3yiC6Yq.jpg" width="100" />
-                                    </label>
-                                    <img src="http://thecodeplayer.com/uploads/media/3yiC6Yq.jpg" />
-
-                                    <!--Lets show the second image by default on page load-->
-                                    <input type="radio" name="slide_switch" id="id2" checked="checked" />
+                                   <input type="radio" name="slide_switch" id="id2" checked ="checked"  />
                                     <label for="id2">
-                                        <img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg" width="100" />
+                                        <img src="{{ asset('/image/'.$bengkel->logo_bengkel )}}" width="100" height="80"/>
                                     </label>
-                                    <img src="http://thecodeplayer.com/uploads/media/40Ly3VB.jpg" />
-
-                                    <input type="radio" name="slide_switch" id="id3" />
-                                    <label for="id3">
-                                        <img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" width="100" />
-                                    </label>
-                                    <img src="http://thecodeplayer.com/uploads/media/00kih8g.jpg" />
-
-                                    <input type="radio" name="slide_switch" id="id4" />
-                                    <label for="id4">
-                                        <img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg" width="100" />
-                                    </label>
-                                    <img src="http://thecodeplayer.com/uploads/media/2rT2vdx.jpg" />
-
-                                    <input type="radio" name="slide_switch" id="id5" />
-                                    <label for="id5">
-                                        <img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg" width="100" />
-                                    </label>
-                                    <img src="http://thecodeplayer.com/uploads/media/8k3N3EL.jpg" />
+                                    <img src="{{ asset('/image/'.$bengkel->logo_bengkel )}}" height="320" />
                                 </div>
                             </div>
                         </div>
@@ -120,43 +95,29 @@ Bengkel Detail
                                 <!--begin::Card Body-->
                                 <div class="card-body">
                                     <h3 class="font-weight-bold font-size-h2 text-dark-75 mb-3">{{ $bengkel->nama_bengkel }}</h3>
-
                                     <div class="row">
-
                                         <div class="col-9">
                                             <div class="separator separator-solid separator-border-4"></div>
-
-
                                             <p class="font-size-h6">{{ $bengkel->alamat_bengkel }}</p>
                                             <p class="font-size-h6">08.00 - 24.00 belummmmm</p>
                                             <p class="font-size-h6">{{ $bengkel->nohp_bengkel }}</p>
-
                                         </div>
                                         <div class="col-3">
-                                            <a href="{{ route('bengkel-maps', $bengkel->slug ) }}" class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block">MAPS</a>
-                                            <a href="#" class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block">FAQ</a>
+                                            <a href="{{ route('bengkel-maps', $bengkel->slug) }}" class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block">MAPS</a>
+                                            <a href="{{ route('faq', $bengkel->slug) }}" class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block">FAQ</a>
                                             <a href="#" class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block ">Reservasi</a>
 
                                         </div>
                                     </div>
-
-
-
-                                    <!--begin::Info-->
-
-                                    <!--end::Info-->
-
                                 </div>
-
                                 <!--end::Card Body-->
                             </div>
                             <!--end::Card-->
-                            <!--end::Stats Widget 33-->
                         </div>
-
+                        
                         <div class="col-md-6 col-lg-12 col-xxl-6">
                             <!--begin::List Widget 19-->
-                            <div class="card card-custom example example-compact gutter-b">
+                            <div class="card card-custom gutter-b">
                                 <div class="card-header">
                                     <div class="card-title">
                                         <h3 class="card-label">Sparepart</h3>
@@ -175,6 +136,21 @@ Bengkel Detail
                                                         class="h-75 align-self-end" alt="">
                                                 </span>
                                             </div>
+                                            @php
+                                                    $average = 0;
+                                                    $rating = 0;
+                                                    $count = 1;
+                                                @endphp
+
+                                                @foreach ($item->Detailtransaksi as $star)
+                                                    @php
+                                                        $rating += $star->rating;
+                                                        $average = $rating/$count;
+                                                        if($star->rating > 0){
+                                                            $count += 1;
+                                                        }
+                                                    @endphp
+                                                @endforeach
                                             <!--end::Symbol-->
                                             <!--begin::Info-->
                                             <div class="d-flex flex-column flex-row-fluid">
@@ -185,7 +161,7 @@ Bengkel Detail
                                                     <span
                                                         class="text-muted font-weight-normal flex-grow-1 font-size-sm">Rp. {{number_format($item->Harga['harga_jual'])}}</span>
                                                     <span
-                                                        class="text-muted font-weight-normal font-size-sm">review belummmm</span>
+                                                        class="text-muted font-weight-normal font-size-sm">{{ $average }}</span>
                                                 </div>
                                                 <span class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->keterangan }}</span>
                                                 <!--end::Info-->
@@ -206,7 +182,7 @@ Bengkel Detail
                         </div>
                         <div class="col-md-6 col-lg-12 col-xxl-6">
                             <!--begin::List Widget 19-->
-                            <div class="card card-custom example example-compact gutter-b">
+                            <div class="card card-custom  gutter-b">
                                 <div class="card-header">
                                     <div class="card-title">
                                         <h3 class="card-label">Perbaikan</h3>
@@ -254,19 +230,18 @@ Bengkel Detail
 
 
                         </div>
+                        
 
                     </div>
-
+                    <!--end::Section-->
                 </div>
-                <!--end::Section-->
+                <!--end::Layout-->
             </div>
-            <!--end::Layout-->
+            <!--end::Page Layout-->
         </div>
-        <!--end::Page Layout-->
+        <!--end::Container-->
     </div>
-    <!--end::Container-->
-</div>
-<!--end::Entry-->
+    <!--end::Entry-->
 </div>
 <!--end::Content-->
 @endsection

@@ -11,7 +11,7 @@ class Transaksi extends Model
     protected $primaryKey = 'id_transaksi_online';
 
     protected $fillable = [
-        'id_transaksi_online','id_user', 'harga_pengiriman', 'harga_total', 
+        'id_transaksi_online','id_user', 'harga_pengiriman', 'harga_total', 'id_bengkel',
         'code_transaksi', 'transaksi_status','resi', 'nama_penerima', 'alamat_penerima', 'nohp_penerima', 'id_kabupaten', 'kurir_pengiriman'
     ];
 
@@ -23,6 +23,7 @@ class Transaksi extends Model
         return $this->belongsToMany(Sparepart::class, 'tb_marketplace_detail_transaksi', 'id_transaksi_online', 'id_sparepart')->withPivot('id_detail_transaksi','jumlah_produk','rating', 'review'
         , 'code_detail_transaksi');
     }
+    
 
     
 }

@@ -58,9 +58,9 @@
                             <!--end::kategori-->
 
                             <!--begin::Desktop Search-->
-                            <div class="quick-search quick-search-inline ml-20 w-750px" id="kt_quick_search_inline">
+                            <div class="quick-search quick-search-inline ml-20 w-750px" >
                                 <!--begin::Form-->
-                                <form method="get" class="quick-search-form">
+                                <form method="get" class="quick-search-form" action="{{ route("all") }}" >
                                     <div class="input-group rounded bg-light">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
@@ -84,7 +84,7 @@
                                             </span>
                                         </div>
 
-                                        <input type="text" class="form-control h-45px" placeholder="Search..." />
+                                        <input value="{{ request()->query('search') }}" type="text" name="search" class="form-control h-45px" placeholder="Search..." />
 
                                         <div class="input-group-append">
                                             <span class="input-group-text">
@@ -95,16 +95,16 @@
                                 </form>
                                 <!--end::Form-->
 
-                                <!--begin::Search Toggle-->
+                                {{-- <!--begin::Search Toggle-->
                                 <div id="kt_quick_search_toggle" data-toggle="dropdown" data-offset="0px,1px"></div>
-                                <!--end::Search Toggle-->
+                                <!--end::Search Toggle--> --}}
 
-                                <!--begin::Dropdown-->
+                                {{-- <!--begin::Dropdown-->
                                 <div class="dropdown-menu dropdown-menu-left dropdown-menu-lg dropdown-menu-anim-up">
                                     <div class="quick-search-wrapper scroll" data-scroll="true" data-height="350"
                                         data-mobile-height="200"></div>
                                 </div>
-                                <!--end::Dropdown-->
+                                <!--end::Dropdown--> --}}
                             </div>
                             <!--end::Desktop Search-->
                         </div>
@@ -343,9 +343,10 @@
             <div class="offcanvas-wrapper mb-5 scroll-pull">
                 @php
                 $subtotal = 0;
-                $carts= \App\Cart::with(['Sparepart.Galleries', 'user', 'Sparepart.Harga'])
-                ->where('id_user', Auth::user()->id_user)
-                ->get();
+                $carts= \App\Detailcarts::with(['Carts','Sparepart.Galleries', 'Sparepart.Harga'])
+                ->whereHas('Carts', function ($q) {
+                        $q->where('id_user', '=', Auth::user()->id_user);
+                        })->get();
                 @endphp
                 @foreach ($carts as $item)
                 <!--begin::Item-->
@@ -356,7 +357,7 @@
                         {{-- <span class="text-muted">The best kitchen gadget in 2020</span> --}}
                         <div class="d-flex align-items-center mt-2">
                             <span class="font-weight-bold mr-1 text-dark-75 font-size-lg">Rp.
-                                {{ number_format($item->Sparepart->Harga->last()['harga_jual'] )}}</span>
+                                {{ number_format($item->Sparepart->Harga['harga_jual'] )}}</span>
                             <span class="text-muted mr-1">Untuk</span>
                             <span class="font-weight-bold mr-2 text-dark-75 font-size-lg">{{  number_format($item->jumlah)  }}</span>
                             {{-- <a href="#" class="btn btn-xs btn-light-success btn-icon mr-2">
@@ -378,7 +379,7 @@
                 <div class="separator separator-solid"></div>
                 <!--end::Separator-->
                 @php
-                    $subtotal += $item->Sparepart->Harga->last()['harga_jual']
+                    $subtotal += $item->Sparepart->Harga['harga_jual']
                 @endphp
                 @endforeach
 
@@ -395,7 +396,7 @@
                     <span class="font-weight-bolder text-primary text-right">$5640.00</span>
                 </div> --}}
                 <div class="text-right">
-                    <a href="{{ route('checkout') }}" type="button" class="btn btn-primary text-weight-bold">Check Out</a>
+                    <a href="{{ route('cart') }}" type="button" class="btn btn-primary text-weight-bold">Cart</a>
                 </div>
             </div>
             <!--end::Purchase-->

@@ -12,31 +12,36 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 // */
+
+
+Auth::routes();
+
 Route::get("/", "HomeController@index") ->name('home');
 
 Route::get("/bengkel/{id}", "BengkelController@index") ->name('bengkel');
-Route::get("/categories", "CategoriesController@index");
 
+Route::get("/categories", "CategoriesController@index");
 Route::get("/categories/{id}", "CategoriesController@index")->name('categories-detail');
 Route::get("/sparepart/terlaris", "CategoriesController@terlaris")->name('categories-terlaris');
 Route::get("/sparepart/terbaru", "CategoriesController@terbaru")->name('categories-terbaru');
+
+Route::get("/sparepart/all", "CategoriesController@all")->name('all');
 
 
 Route::get("/details/{id}", "DetailController@index")->name('detail');
 Route::post("/details/{id}", "DetailController@add")->name('detail-add');
 
 Route::get("/a", "CheckoutController@ongkir");
-
-
-Route::post("/checkout/process", "CheckoutController@process")->name('checkout-process');
+Route::post("/checkout/process/{id}", "CheckoutController@process")->name('checkout-process');
 Route::get("/checkout/callback", "CheckoutController@callbak")->name('checkout-callback');
 Route::get("/getkabupaten/{id}", "CheckoutController@kabupaten");
 
 Route::get("/bengkel/{id}/faq", "FaqController@index")->name('faq');
-
 Route::post("/faq/send-faq", "FaqController@send")->name('send-faq');
-Route::get("/maps", "MapsController@index")->name('maps');
 
+Route::get("/maps", "MapsController@index")->name('maps');
+Route::get("/maps/databengkel", "MapsController@data")->name('maps-data');
+Route::get("/maps/{id}", "MapsController@bengkel")->name('bengkel-maps');
 
 
 
@@ -52,7 +57,6 @@ Route::prefix('admin')
 
     });
 
-Auth::routes();
 Route::get("/getcity/ajax/{id}", "Auth\RegisterController@ajax");
 
 Route::group(['middleware' => ['auth']], function(){
@@ -62,7 +66,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::delete("/cart/{id}", "CartController@delete")->name('cart-delete');
 
-    Route::get("/checkout", "CheckoutController@index")->name('checkout');
+    Route::get("/checkout/{id}", "CheckoutController@index")->name('checkout');
 
     Route::get("/transaksi", "TransaksiController@index")->name('transaksi');
     Route::post("/review", "TransaksiController@review")->name('review');
@@ -74,55 +78,8 @@ Route::group(['middleware' => ['auth']], function(){
 
 });
 
-    Route::get("/cekresi", "TransaksiController@cekresi")->name('cekresi');
+Route::get("/cekresi", "TransaksiController@cekresi")->name('cekresi');
 
-    
-
-
-
-
-
-
-// Route::get("/checkout", "getApi@index");
-// Route::get("/registeri", "getApi@register");
-
-
-
-// Route::get('/trans', function () {
-//     return view('pages.trans');
-// });
-
-// Route::get('/faq', function () {
-//     return view('user-views.pages.faq');
-// });
-
-// Route::get('/productdetail', function () {
-//     return view('pages.productdetail');
-// });
-
-Route::get('/bengkeldetail', function () {
-    return view('user-views.pages.bengkeldetail');
-});
-
-// Route::get('/categories', function () {
-//     return view('pages.categories');
-// });
 // Route::get('/debug-sentry', function () {
 //     throw new Exception('My first Sentry error!');
-// });
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
-
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
-
-
-
-
-// // admin
-// Route::get('/adminku', function () {
-//     return view('admin.pages.dashboard');
 // });

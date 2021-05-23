@@ -7,6 +7,8 @@ use App\Category;
 use App\Provinsi;
 use App\Kabupaten;
 use App\Cart;
+use App\Carts;
+use App\Detailcarts;
 use App\Transaksi;
 use App\DetailTransaksi;
 use Illuminate\Support\Facades\Auth;
@@ -21,13 +23,15 @@ use Midtrans\Config;
 class CheckoutController extends Controller
 {
     use SoftDeletes;
-    public function process(Request $request)
+    public function process(Request $request, $id)
     {
         //save user data
         // dd($request);
         $code_transaksi = 'STORE'.mt_rand(00000,99999);
-        $carts = Cart::with(['Sparepart.Galleries','Sparepart.Bengkel', 'user', 'Sparepart.Harga'])
-                ->where('id_user', Auth::user()->id_user)
+        $cart = Carts::with('user', 'Bengkel')->where('id_carts', $id)->first();
+
+        $items = Detailcarts::with(['Sparepart.Galleries_one', 'Sparepart.Harga'])
+                ->where('id_carts', $id)
                 ->get();
 
         //buat transaksi
@@ -43,11 +47,12 @@ class CheckoutController extends Controller
             'nohp_penerima'=> $request->nohp_penerima,
             'id_kabupaten'=> $request->id_kabupaten,
             'kurir_pengiriman'=> $request->kurir_pengiriman,
+            'id_bengkel'=> $cart->id_bengkel
 
         ]);
 
         // dd($transaksi);
-        foreach($carts as $item){
+        foreach($items as $item){
             $trx = 'TRX_' . mt_rand(00000, 99999);
             DetailTransaksi::create([
                 'id_transaksi_online' => $transaksi -> id_transaksi_online,
@@ -59,7 +64,8 @@ class CheckoutController extends Controller
             ]);
         }
 
-        Cart::where('id_user', Auth::user()->id_user)->delete();
+        Detailcarts::where('id_carts',$id)->delete();
+        $cart->delete();
         
 
         //configurasi midtrans
@@ -107,16 +113,24 @@ class CheckoutController extends Controller
         
     }
 
-    public function index()
+    public function index($id)
     {
         $provinsi = Provinsi::all();
-        $carts = Cart::with(['Sparepart.Galleries','Sparepart.Bengkel', 'user', 'Sparepart.Harga'])
-                ->where('id_user', Auth::user()->id_user)
-                ->get();
 
+        $cart = Carts::with('user', 'Bengkel')->where('id_carts', $id)->first();
+
+        $item = Detailcarts::with(['Sparepart.Galleries_one', 'Sparepart.Harga'])->where('id_carts', $id)
+                ->get();
+        // return $item;
+
+        // $carts = Cart::with(['Sparepart.Galleries','Sparepart.Bengkel', 'user', 'Sparepart.Harga'])
+        //         ->where('id_user', Auth::user()->id_user)
+        //         ->get();
+                        
         return view('user-views.pages.checkout',[
             'provinsi' => $provinsi,
-            'cart'=> $carts
+            'items'=> $item,
+            'cart' =>$cart
             ]);
 
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Bengkel;
+use App\DetailTransaksi;
 use App\Sparepart;
 use App\Perbaikan;
 
@@ -18,11 +19,11 @@ class BengkelController extends Controller
 
     {
         $bengkel = Bengkel::where('slug', $id)->firstOrFail();
-        $sparepart = Sparepart::with(['Galleries', 'Harga'])->where('id_bengkel', $bengkel->id_bengkel)->get();
+        $sparepart = Sparepart::with(['Galleries', 'Harga', 'Detailtransaksi'])->where('id_bengkel', $bengkel->id_bengkel)->get();
         $perbaikan = Perbaikan::where('id_bengkel', $bengkel->id_bengkel)->get();
 
-        // return $perbaikan;
-        return view('user-views.pages.bengkeldetail', [
+        // return $bengkel;
+        return view('user-views.pages.bengkel', [
             'sparepart' =>$sparepart,
             'bengkel'=> $bengkel,
             'perbaikan'=> $perbaikan
