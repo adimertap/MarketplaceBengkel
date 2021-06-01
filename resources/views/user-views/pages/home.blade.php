@@ -87,8 +87,12 @@ Marketplace Homepage
                                                 <!--begin::Image-->
                                                 <div class="overlay">
                                                     <div class="overlay-wrapper rounded bg-light text-center">
-                                                        <img src="{{ asset('/image/'.$item ->Galleries->first()['photo'] )}}"
+                                                        @if ($item->Galleries_one)
+                                                            <img src="{{ asset('/image/'.$item ->Galleries_one->photo )}}"
                                                             alt="" class="mh-100 h-200px mw-100 w-200px" />
+                                                        @endif
+                                                            
+                                                        
                                                     </div>
                                                     <div class="overlay-layer">
                                                         <a href="{{ route('detail', $item->slug) }}"
@@ -198,7 +202,7 @@ Marketplace Homepage
                                                 <!--begin::Image-->
                                                 <div class="overlay">
                                                     <div class="overlay-wrapper rounded bg-light text-center">
-                                                        <img src="{{ asset('/image/'.$item->Sparepart ->Galleries->first()['photo'] )}}"
+                                                        <img src="{{ asset('/image/'.$item->Sparepart ->Galleries_one->photot )}}"
                                                             alt="" class="mh-100 h-200px mw-100 w-200px" />
                                                     </div>
                                                     <div class="overlay-layer">
