@@ -64,20 +64,19 @@ class CheckoutController extends Controller
             ]);
         }
 
-        Detailcarts::where('id_carts',$id)->delete();
-        $cart->delete();
+        // Detailcarts::where('id_carts',$id)->delete();
+        // $cart->delete();
         
 
         //configurasi midtrans
         // Set your Merchant Server Key
-        Config::$serverKey = config('services.midtrans.serverKey');
+       $data = Config::$serverKey = config('services.midtrans.serverKey');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         Config::$isProduction = config('services.midtrans.isProduction');
         // Set sanitization on (default)
         Config::$isSanitized = config('services.midtrans.isSanitized');
         // Set 3DS transaction for credit card to true
         Config::$is3ds = config('services.midtrans.is3ds');
-
 
         //buat array untuk midtrans
         $midtrans=[
@@ -89,21 +88,22 @@ class CheckoutController extends Controller
                 'first_name'=> Auth::user()->nama_user,
                 'email' => Auth::user()->email,
             ],
-            'enabled_payment'=>[
-                'gopay',
+            'enabled_payments'=>[
+                'gopay'
             ],
-            'vtwen'=>[]
-
+            'vtweb'=>[]
         ];
+
+        // dd($midtrans);
 
         try {
             // Get Snap Payment Page URL
-            $paymentUrl = \Midtrans\Snap::createTransaction($midtrans)->redirect_url;
-            
+            $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
+            // dd($paymentUrl);
             // Redirect to Snap Payment Page
-            return redirect($paymentUrl);
-            }
-        catch (Exception $e) {
+            header('Location: ' . $paymentUrl);
+            exit();
+            } catch (Exception $e) {
             echo $e->getMessage();
         }
     }

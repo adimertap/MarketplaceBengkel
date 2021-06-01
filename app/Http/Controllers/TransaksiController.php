@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Transaksi;
+use Illuminate\Support\Carbon;
 use App\DetailTransaksi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -42,6 +43,7 @@ class TransaksiController extends Controller
         // return $request;
             $trx = Transaksi::findOrFail($request->id_transaksi_online);
             $trx->transaksi_status = 'DITERIMA';
+            $trx->tanggal_transaksi = Carbon::now();
             $trx->save();
 
         return redirect()->route('transaksi');

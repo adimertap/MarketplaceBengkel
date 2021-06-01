@@ -101,7 +101,7 @@ Trnansaction
                                                                 <div
                                                                     class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
                                                                     <div class="symbol-label"
-                                                                        style="background-image: url(https://bengkel-kuy.com/image/{{ $sparepart->Galleries_one->photo )}})">
+                                                                        style="background-image: url(https://bengkel-kuy.com/image/{{ $sparepart->Galleries_one->photo }})">
                                                                     </div>
                                                                 </div>
                                                                 <!--end::Symbol-->
