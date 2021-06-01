@@ -105,7 +105,7 @@ FAQ
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
                                                 <span class="symbol-label">
-                                                    <img src="{{ asset('/image/'.$bengkel->logo_bengkel )}}"
+                                                    <img src="https://bengkel-kuy.com/image/{{ .$bengkel->logo_bengkel }}"
                                                         class="h-75 align-self-end" alt="">
                                                 </span>
                                             </div>

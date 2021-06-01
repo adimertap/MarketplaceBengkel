@@ -61,7 +61,7 @@ Product Detail
                                                     @if ($item->Sparepart->Galleries_one)
                                                     <div class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
                                                         <div class="symbol-label"
-                                                            style="background-image: url({{  asset('/image/'.$item->Sparepart->Galleries_one->photo ) }})">
+                                                            style="background-image: url(https://bengkel-kuy.com/image/{{  $item->Sparepart->Galleries_one->photo  }})">
                                                         </div>
 
                                                     </div>

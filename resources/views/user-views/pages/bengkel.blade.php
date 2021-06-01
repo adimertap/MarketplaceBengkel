@@ -84,9 +84,9 @@ Bengkel Detail
                                 <div class="slider">
                                    <input type="radio" name="slide_switch" id="id2" checked ="checked"  />
                                     <label for="id2">
-                                        <img src="{{ asset('/image/'.$bengkel->logo_bengkel )}}" width="100" height="80"/>
+                                        <img src="https://bengkel-kuy.com/image/{{$bengkel->logo_bengkel}}" width="100" height="80"/>
                                     </label>
-                                    <img src="{{ asset('/image/'.$bengkel->logo_bengkel )}}" height="320" />
+                                    <img src="https://bengkel-kuy.com/image/{{$bengkel->logo_bengkel }}" height="320" />
                                 </div>
                             </div>
                         </div>
@@ -132,7 +132,7 @@ Bengkel Detail
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
                                                 <span class="symbol-label">
-                                                    <img src="{{ asset('/image/'.$item ->Galleries->first()['photo'] )}}"
+                                                    <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo }}"
                                                         class="h-75 align-self-end" alt="">
                                                 </span>
                                             </div>

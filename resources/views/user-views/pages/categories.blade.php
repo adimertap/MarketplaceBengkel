@@ -93,7 +93,7 @@ Categories
                                             <!--begin::Image-->
                                             <div class="overlay">
                                                 <div class="overlay-wrapper rounded bg-light text-center">
-                                                    <img src="{{ asset('/image/'.$item ->Galleries->first()['photo'] )}}"
+                                                    <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo}}"
                                                         alt="" class="mh-100 h-200px mw-100 w-200px" />
                                                 </div>
                                                 <div class="overlay-layer">

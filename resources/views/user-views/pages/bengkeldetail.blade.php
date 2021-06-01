@@ -171,7 +171,7 @@ Bengkel Detail
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
                                                 <span class="symbol-label">
-                                                    <img src="{{ asset('/image/'.$item ->Galleries->first()['photo'] )}}"
+                                                    <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo }}"
                                                         class="h-75 align-self-end" alt="">
                                                 </span>
                                             </div>

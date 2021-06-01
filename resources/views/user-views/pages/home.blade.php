@@ -88,7 +88,7 @@ Marketplace Homepage
                                                 <div class="overlay">
                                                     <div class="overlay-wrapper rounded bg-light text-center">
                                                         @if ($item->Galleries_one)
-                                                            <img src="{{ asset('/image/'.$item ->Galleries_one->photo )}}"
+                                                            <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo }}"
                                                             alt="" class="mh-100 h-200px mw-100 w-200px" />
                                                         @endif
                                                             
@@ -202,7 +202,7 @@ Marketplace Homepage
                                                 <!--begin::Image-->
                                                 <div class="overlay">
                                                     <div class="overlay-wrapper rounded bg-light text-center">
-                                                        <img src="{{ asset('/image/'.$item->Sparepart ->Galleries_one->photot )}}"
+                                                        <img src="https://bengkel-kuy.com/image/{{ $item->Sparepart ->Galleries_one->photo }}"
                                                             alt="" class="mh-100 h-200px mw-100 w-200px" />
                                                     </div>
                                                     <div class="overlay-layer">

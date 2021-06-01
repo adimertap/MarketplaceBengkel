@@ -93,15 +93,15 @@ Product Detail
                                     <input type="radio" name="slide_switch" id="{{ $item->id_gallery }}"
                                         checked='checked' />
                                     <label for="{{ $item->id_gallery }}">
-                                        <img src="{{ asset('/image/'.$item['photo'] )}}" width="100" height="80" />
+                                        <img src="https://bengkel-kuy.com/image/{{ $item['photo'] }}" width="100" height="80" />
                                     </label>
-                                    <img src="{{ asset('/image/'.$item['photo'] )}} " height="320" />
+                                    <img src="https://bengkel-kuy.com/image/{{ $item['photo'] }} " height="320" />
                                     @else
                                     <input type="radio" name="slide_switch" id="{{ $item->id_gallery }}" />
                                     <label for="{{ $item->id_gallery }}">
-                                        <img src="{{ asset('/image/'.$item['photo'] )}}" width="100" height="80" />
+                                        <img src="https://bengkel-kuy.com/image/{{ $item['photo'] }}" width="100" height="80" />
                                     </label>
-                                    <img src="{{ asset('/image/'.$item['photo'] )}} " height="320" />
+                                    <img src="https://bengkel-kuy.com/image/{{ $item['photo'] }} " height="320" />
                                     @endif
 
                                     @empty

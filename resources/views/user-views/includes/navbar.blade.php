@@ -343,7 +343,7 @@
             <div class="offcanvas-wrapper mb-5 scroll-pull">
                 @php
                 $subtotal = 0;
-                $carts= \App\Detailcarts::with(['Carts','Sparepart.Galleries', 'Sparepart.Harga'])
+                $carts= \App\Detailcarts::with(['Carts','Sparepart.Galleries_one', 'Sparepart.Harga'])
                 ->whereHas('Carts', function ($q) {
                         $q->where('id_user', '=', Auth::user()->id_user);
                         })->get();
@@ -369,7 +369,7 @@
                         </div>
                     </div>
                     <a href="#" class="symbol symbol-70 flex-shrink-0">
-                        <img src="{{  asset('/image/'.$item->Sparepart->Galleries->first()['photo'] ) }}" title=""
+                        <img src="{{  asset('/image/'.$item->Sparepart->Galleries_one->photo ) }}" title=""
                             alt="" />
                             
                     </a>
