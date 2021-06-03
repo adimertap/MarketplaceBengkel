@@ -41,7 +41,7 @@ Route::post("/faq/send-faq", "FaqController@send")->name('send-faq');
 Route::get("/maps", "MapsController@index")->name('maps');
 Route::get("/maps/databengkel", "MapsController@data")->name('maps-data');
 Route::get("/maps/{id}", "MapsController@bengkel")->name('bengkel-maps');
-Route::post("/callback", "CheckoutController@callbak")->name('checkout-callback');
+Route::post("/callback", "CheckoutController@callback")->name('checkout-callback');
 
 
 
