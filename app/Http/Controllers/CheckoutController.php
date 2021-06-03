@@ -82,7 +82,7 @@ class CheckoutController extends Controller
         //buat array untuk midtrans
         $midtrans=[
             'transaction_details' =>[
-                'order_id' =>$id_transaksi_online,
+                'order_id' =>$transaksi->id_transaksi_online,
                 'gross_amount' =>(int) $request->harga_total,
             ],
             'customer_details'=>[
