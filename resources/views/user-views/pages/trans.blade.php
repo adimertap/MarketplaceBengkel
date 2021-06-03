@@ -281,7 +281,7 @@ Trnansaction
                                                     <!--begin::Body-->
                                                     <div class="card-body">
                                                         <!--begin::Content-->
-                                                        <a href="#"
+                                                        <a href="{{ route('bayar', $item->id_transaksi_online) }}"
                                                             class="btn btn-light-success btn-block font-weight-bold mr-2">Bayar</a>
                                                         <!--end::Content-->
 

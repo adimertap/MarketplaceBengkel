@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Models\multiModel;
 
+use Exception;
+use Midtrans\Snap;
+use Midtrans\Config;
+use Midtrans\Notification;
 
 
 class TransaksiController extends Controller
@@ -60,6 +64,51 @@ class TransaksiController extends Controller
 
         $cekongkir =  $response['data'] ;
         return json_encode($cekongkir);
+    }
+
+    public function bayar(Request $request, $id)
+    {
+        $item = Transaksi::findOrFail($id);
+        
+
+        // Set your Merchant Server Key
+        Config::$serverKey = config('services.midtrans.serverKey');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        Config::$isProduction = config('services.midtrans.isProduction');
+        // Set sanitization on (default)
+        Config::$isSanitized = config('services.midtrans.isSanitized');
+        // Set 3DS transaction for credit card to true
+        Config::$is3ds = config('services.midtrans.is3ds');
+
+        //buat array untuk midtrans
+        $midtrans=[
+            'transaction_details' =>[
+                'order_id' =>$item->code_transaksi,
+                'gross_amount' =>(int) $item->harga_total,
+            ],
+            'customer_details'=>[
+                'first_name'=> Auth::user()->nama_user,
+                'email' => Auth::user()->email,
+            ],
+            'enabled_payments'=>[
+                'gopay'
+            ],
+            'vtweb'=>[]
+        ];
+
+        // dd($midtrans);
+
+        try {
+            // Get Snap Payment Page URL
+            $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
+            // dd($paymentUrl);
+            // Redirect to Snap Payment Page
+            return redirect($paymentUrl);
+            
+        } 
+        catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
 

@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Exception;
 use Midtrans\Snap;
 use Midtrans\Config;
+use Midtrans\Notification;
 
 
 class CheckoutController extends Controller
@@ -70,7 +71,7 @@ class CheckoutController extends Controller
 
         //configurasi midtrans
         // Set your Merchant Server Key
-       $data = Config::$serverKey = config('services.midtrans.serverKey');
+        Config::$serverKey = config('services.midtrans.serverKey');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         Config::$isProduction = config('services.midtrans.isProduction');
         // Set sanitization on (default)
@@ -101,16 +102,57 @@ class CheckoutController extends Controller
             $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
             // dd($paymentUrl);
             // Redirect to Snap Payment Page
-            header('Location: ' . $paymentUrl);
-            exit();
-            } catch (Exception $e) {
+            return redirect($paymentUrl);
+            
+        } 
+        catch (Exception $e) {
             echo $e->getMessage();
         }
     }
 
     public function callback(Request $request)
     {
-        
+        //set konfogurasi midtrans
+        Config::$serverKey = config('services.midtrans.serverKey');
+        Config::$isProduction = config('services.midtrans.isProduction');
+        Config::$isSanitized = config('services.midtrans.isSanitized');
+        Config::$is3ds = config('services.midtrans.is3ds');
+
+        //instance midtrans notification
+        $notification = new Notification();
+       
+        //assign ke variabel untuk memudahkan coding
+        $status = $notification->transaction_status;
+        $type = $notification->payment_type;
+        $fraud = $notification->fraud_status;
+        $order_id = $notification->order_id;
+
+        //cari transaksi berdasarkan id
+
+        $transaksi = Transaksi::findOrFail($order_id);
+        //handle notificarion status
+        if($status == 'capture'){
+            if($type == 'credit_card'){
+                if($fraud == 'challenge'){
+                    $transaksi->status_transaksi = "MENUNGGU";
+                }else{
+                    $transaksi->status_transaksi = "DIBAYAR";
+                }
+            }
+        }else if($status == 'settlement'){
+            $transaksi->status_transaksi="DIBAYAR";
+        }else if($status == 'pending'){
+             $transaksi->status_transaksi="MENUNGGU";
+        }else if($status == 'deny'){
+             $transaksi->status_transaksi="CANCELLED";
+        }else if($status == 'expire'){
+             $transaksi->status_transaksi="CANCELLED";
+        }else if($status == 'cancel'){
+             $transaksi->status_transaksi="CANCELLED";
+        }
+        //simpan transaksi
+
+        $transaksi->save();
     }
 
     public function index($id)
