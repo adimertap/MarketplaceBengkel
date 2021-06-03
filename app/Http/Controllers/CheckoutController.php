@@ -134,21 +134,21 @@ class CheckoutController extends Controller
         if($status == 'capture'){
             if($type == 'credit_card'){
                 if($fraud == 'challenge'){
-                    $transaksi->status_transaksi = "MENUNGGU";
+                    $transaksi->transaksi_status = "MENUNGGU";
                 }else{
-                    $transaksi->status_transaksi = "DIBAYAR";
+                    $transaksi->transaksi_status = "DIBAYAR";
                 }
             }
         }else if($status == 'settlement'){
-            $transaksi->status_transaksi="DIBAYAR";
+            $transaksi->transaksi_status="DIBAYAR";
         }else if($status == 'pending'){
-             $transaksi->status_transaksi="MENUNGGU";
+             $transaksi->transaksi_status="MENUNGGU";
         }else if($status == 'deny'){
-             $transaksi->status_transaksi="CANCELLED";
+             $transaksi->transaksi_status="CANCELLED";
         }else if($status == 'expire'){
-             $transaksi->status_transaksi="CANCELLED";
+             $transaksi->transaksi_status="CANCELLED";
         }else if($status == 'cancel'){
-             $transaksi->status_transaksi="CANCELLED";
+             $transaksi->transaksi_status="CANCELLED";
         }
         //simpan transaksi
 
