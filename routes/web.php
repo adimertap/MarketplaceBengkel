@@ -33,7 +33,6 @@ Route::post("/details/{id}", "DetailController@add")->name('detail-add');
 
 Route::get("/a", "CheckoutController@ongkir");
 Route::post("/checkout/process/{id}", "CheckoutController@process")->name('checkout-process');
-Route::post("/callback", "CheckoutController@callbak")->name('checkout-callback');
 Route::get("/getkabupaten/{id}", "CheckoutController@kabupaten");
 
 Route::get("/bengkel/{id}/faq", "FaqController@index")->name('faq');
