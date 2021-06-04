@@ -127,7 +127,7 @@ MAPS
                     var html =
                         '<div class="card-body"><div class="d-flex justify-content-between flex-column pt-4 "><div class="pb-5"><div class="d-flex flex-column flex-center">'
                     html +=
-                        '<div class="bgi-no-repeat bgi-size-cover rounded min-h-180px w-100" style="background-image: url(image/' +
+                        '<div class="bgi-no-repeat bgi-size-cover rounded min-h-180px w-100" style="background-image: url(https://bengkel-kuy.com/image/' +
                         data[index].logo_bengkel + ')"></div>'
                     html += '</div>'
                     html += '<a href="/bengkel/' + data[index].slug +

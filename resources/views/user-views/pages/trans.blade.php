@@ -292,6 +292,42 @@ Trnansaction
                                             </div>
 
                                         </div>
+                                        @elseif ($item->transaksi_status == 'CANCELLED')
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <!--begin::Card-->
+                                                <div class="card card-custom gutter-b card-stretch">
+                                                    <!--begin::Body-->
+                                                    <div class="card-body">
+                                                        <!--begin::Content-->
+                                                        <div class="btn btn-light-danger btn-block font-weight-bold mr-2">DIBATALKAN</div>
+                                                        <!--end::Content-->
+
+                                                    </div>
+                                                    <!--end::Body-->
+                                                </div>
+                                                <!--end::Card-->
+                                            </div>
+
+                                        </div>
+                                        @elseif ($item->transaksi_status == 'MENUNGGU')
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <!--begin::Card-->
+                                                <div class="card card-custom gutter-b card-stretch">
+                                                    <!--begin::Body-->
+                                                    <div class="card-body">
+                                                        <!--begin::Content-->
+                                                        <div class="btn btn-light-success btn-block font-weight-bold mr-2">MENUNGGU DIKIRIM</div>
+                                                        <!--end::Content-->
+
+                                                    </div>
+                                                    <!--end::Body-->
+                                                </div>
+                                                <!--end::Card-->
+                                            </div>
+
+                                        </div>
                                         @elseif ($item->transaksi_status == 'DITERIMA')
                                         <div class="row">
                                             <div class="col-xl-6">
@@ -475,6 +511,7 @@ Trnansaction
 
                                         </div>
                                         @endif
+                                        
 
                                     </div>
                                 </div>

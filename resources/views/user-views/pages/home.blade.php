@@ -25,13 +25,17 @@ Marketplace Homepage
                                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                 </ol>
                                 <div class="carousel-inner">
+                                    
                                     <div class="carousel-item active">
                                         <img class="d-block w-100"
                                             src="user-assets/assets/media/bengkel/map_panjang.png" alt="First slide">
                                         <div class="carousel-caption d-none d-md-block">
-                                            <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel Terdekat
+                                            <a href="#">
+<h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel Terdekat
                                             </h1>
                                             <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
+                                            </a>
+                                            
                                         </div>
                                     </div>
                                     <div class="carousel-item">

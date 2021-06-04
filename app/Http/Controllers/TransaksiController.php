@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Transaksi;
 use Illuminate\Support\Carbon;
 use App\DetailTransaksi;
+use App\Keuangan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use App\Models\multiModel;
@@ -49,6 +50,7 @@ class TransaksiController extends Controller
             $trx->transaksi_status = 'DITERIMA';
             $trx->tanggal_transaksi = Carbon::now();
             $trx->save();
+
 
         return redirect()->route('transaksi');
     }

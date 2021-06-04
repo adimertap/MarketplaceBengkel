@@ -55,6 +55,9 @@ Route::prefix('admin')
         Route::resource('sparepart', 'SparepartController');
         Route::resource('bengkel', 'BengkelController');
 
+        Route::resource('keuangan', 'KeuanganController');
+
+
     });
 
 Route::get("/getcity/ajax/{id}", "Auth\RegisterController@ajax");

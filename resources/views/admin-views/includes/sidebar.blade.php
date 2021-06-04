@@ -23,6 +23,10 @@
                     <div class="nav-link-icon"><i data-feather="filter"></i></div>
                     Bengkel
                 </a>
+                <a class="nav-link {{ (request()-> is('admin/bengkel*')) ?'active' :''}}" href={{ route('keuangan.index') }}>
+                    <div class="nav-link-icon"><i data-feather="filter"></i></div>
+                    Penarikan Saldo
+                </a>
             </div>
         </div>
         <div class="sidenav-footer">
