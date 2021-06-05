@@ -383,7 +383,7 @@ Trnansaction
                                                                                 class="ki ki-close"></i>
                                                                         </button>
                                                                     </div>
-                                                                    <form action="{{ route('review')}}" method="POST">
+                                                                    <form action="{{ route('review')}}" method="POST" target="_blank">
                                                                         @csrf
                                                                         <div class="modal-body pt-0">
                                                                             <!--begin::Shopping Cart-->
