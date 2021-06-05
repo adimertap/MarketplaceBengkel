@@ -56,7 +56,7 @@ Checkout
                                 <!--begin: Wizard Form-->
                                 <form class="form" id="kt_form"
                                     action="{{ route('checkout-process', $cart->id_carts) }}" method="post"
-                                    target="_blank" <!--begin: Wizard Step 1-->
+                                    > <!--begin: Wizard Step 1-->
                                     @csrf
                                     <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                         <h4 class="mb-10 font-weight-bold text-dark">Detail Pengiriman
@@ -392,7 +392,7 @@ Checkout
     $(document).ready(function () {
         $(function () {
             $("#kt_form").on("submit", function () {
-                location.href = "http://stackoverflow.com";
+                window.open('www.toko.bengkel-kuy.com/transaksi','_blank');
             });
         });
 

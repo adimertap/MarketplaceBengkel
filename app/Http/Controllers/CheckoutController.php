@@ -103,8 +103,8 @@ class CheckoutController extends Controller
             $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
             // dd($paymentUrl);
             // Redirect to Snap Payment Page
-            // return redirect($paymentUrl);
-            return Redirect::to($paymentUrl);
+            return redirect($paymentUrl);
+            // return Redirect::to($paymentUrl);
             
         } 
         catch (Exception $e) {
