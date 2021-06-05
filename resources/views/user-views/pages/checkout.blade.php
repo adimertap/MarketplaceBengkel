@@ -392,7 +392,7 @@ Checkout
     $(document).ready(function () {
         $(function () {
             $("#kt_form").on("submit", function () {
-                window.open('www.toko.bengkel-kuy.com/transaksi','_blank');
+                window.open('/transaksi','_blank');
             });
         });
 
