@@ -386,11 +386,7 @@ Checkout
 <script src="user-assets/assets/js/pages/custom/wizard/wizard-3.js?v=7.0.6"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#sumbit').on("click", function (e) {
-        e.preventDefault();
-        var url = "https://toko.bengkel-kuy.com/transaksi"
-        window.open(url, '_self')
-    });
+        
 
         $('select[name="provinsi"]').on('change', function () {
             var cityId = $(this).val();
