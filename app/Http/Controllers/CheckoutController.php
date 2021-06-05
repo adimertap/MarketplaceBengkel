@@ -183,14 +183,18 @@ class CheckoutController extends Controller
     }
 
     public function ongkir (Request $request){
-        $carts = Cart::with(['Sparepart.Galleries','Sparepart.Bengkel', 'user', 'Sparepart.Harga'])
-                ->where('id_user', Auth::user()->id_user)
+        $id = $request->id_cart;
+        $cart = Carts::with('user', 'Bengkel')->where('id_carts', $id)->first();
+
+        $items = Detailcarts::with(['Sparepart'])
+                ->where('id_carts', $id)
                 ->get();
+
         $weight = 0;
-        foreach ($carts as $item) {
+        foreach ($items as $item) {
             $weight += ($item->jumlah)*($item->Sparepart->berat_sparepart);
         }
-        $origin = $item->first()->Sparepart->Bengkel->id_kabupaten;
+        $origin = $cart->Bengkel->id_kabupaten;
         $destination = $request->kabupaten;
         $courier = $request->kurir;
 

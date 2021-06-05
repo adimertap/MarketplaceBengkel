@@ -65,6 +65,8 @@ Checkout
                                             <label>Nama Penerim</label>
                                             <input type="text" class="form-control" name="nama penerima" id="nama_penerima"
                                                 placeholder="Nama Penerima" value="{{ Auth::user()->nama_user }}" />
+                                            <input type="hidden" class="form-control" name="id_cart" id="id_cart"
+                                                 value="{{ $cart->id_carts }}" />
                                             <span class="form-text text-muted">Masukan nama penerima</span>
                                         </div>
                                         <!--end::Input-->
@@ -409,6 +411,8 @@ Checkout
         $('select[name="kurir"]').on('change', function () {
             var thedestination = $('select[name=id_kabupaten] option').filter(':selected').val();
             var thecourier = $('select[name=kurir] option').filter(':selected').val();
+            var id_cart = $("#id_cart").val();
+
 
             $.ajax({
                 type: 'get',
