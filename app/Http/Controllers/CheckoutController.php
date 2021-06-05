@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Exception;
+use Illuminate\Support\Facades\Redirect;
 use Midtrans\Snap;
 use Midtrans\Config;
 use Midtrans\Notification;
@@ -102,7 +103,8 @@ class CheckoutController extends Controller
             $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
             // dd($paymentUrl);
             // Redirect to Snap Payment Page
-            return redirect($paymentUrl);
+            // return redirect($paymentUrl);
+            return Redirect::to($paymentUrl);
             
         } 
         catch (Exception $e) {
