@@ -74,6 +74,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get("/checkout/{id}", "CheckoutController@index")->name('checkout');
 
     Route::get("/transaksi", "TransaksiController@index")->name('transaksi');
+
+    Route::get("/booking", "BookingController@index")->name('booking');
     Route::get("/transaksi/bayar/{id}", "TransaksiController@bayar")->name('bayar');
 
     Route::post("/review", "TransaksiController@review")->name('review');
