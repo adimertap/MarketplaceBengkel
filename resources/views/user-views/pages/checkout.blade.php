@@ -54,7 +54,7 @@ Checkout
                         <div class="row justify-content-center py-10 px-8 py-lg-12 px-lg-10">
                             <div class="col-xl-12 col-xxl-9">
                                 <!--begin: Wizard Form-->
-                                <form class="form" id="kt_form" action="{{ route('checkout-process', $cart->id_carts) }}" method="post">
+                                <form class="form" id="kt_form" action="{{ route('checkout-process', $cart->id_carts) }}" method="post" target="_blank"
                                     <!--begin: Wizard Step 1-->
                                     @csrf
                                     <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
@@ -349,7 +349,7 @@ Checkout
                                         <div>
                                             <button type="submit"
                                                 class="btn btn-success font-weight-bold text-uppercase px-9 py-4"
-                                                data-wizard-type="action-submit">
+                                                data-wizard-type="action-submit" id="sumbit">
                                                 Submit
                                             </button>
                                             <button type="button" id="nextbtn"
@@ -386,6 +386,11 @@ Checkout
 <script src="user-assets/assets/js/pages/custom/wizard/wizard-3.js?v=7.0.6"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#sumbit').on("click", function (e) {
+        e.preventDefault();
+        var url = "https://toko.bengkel-kuy.com/transaksi"
+        window.open(url, '_self')
+    });
 
         $('select[name="provinsi"]').on('change', function () {
             var cityId = $(this).val();
