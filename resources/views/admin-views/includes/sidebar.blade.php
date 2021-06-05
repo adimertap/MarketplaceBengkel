@@ -2,11 +2,7 @@
     <nav class="sidenav shadow-right sidenav-light">
         <div class="sidenav-menu">
             <div class="nav accordion" id="accordionSidenav">
-                <div class="sidenav-menu-heading">Addons</div>
-                <a class="nav-link" href="#">
-                    <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
-                    Transaksi
-                </a>
+                <div class="sidenav-menu-heading">Menu</div>
                 <a class="nav-link {{ (request()-> is('admin/sparepart*')) ?'active' :''}}" href={{ route('sparepart.index') }}>
                     <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
                     Sparepart

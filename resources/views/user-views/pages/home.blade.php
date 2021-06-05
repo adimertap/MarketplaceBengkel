@@ -13,7 +13,7 @@ Marketplace Homepage
             <!--begin::Page Layout-->
             <div class="d-flex flex-row">
                 <!--begin::Layout-->
-                <div class="flex-row-fluid ml-lg-12">
+                <div class="flex-row-fluid ml-12">
                     <!--begin::Card-->
                     <div class="card card-custom card-stretch gutter-b">
                         <div class="card-body">
@@ -25,35 +25,42 @@ Marketplace Homepage
                                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                 </ol>
                                 <div class="carousel-inner">
-                                    
+
                                     <div class="carousel-item active">
                                         <img class="d-block w-100"
                                             src="user-assets/assets/media/bengkel/map_panjang.png" alt="First slide">
                                         <div class="carousel-caption d-none d-md-block">
-                                            <a href="#">
-<h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel Terdekat
-                                            </h1>
-                                            <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
+                                            <a href="{{ route('maps') }}">
+                                                <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel
+                                                    Terdekat
+                                                </h1>
+                                                <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
                                             </a>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="carousel-item">
                                         <img class="d-block w-100"
                                             src="user-assets/assets/media/bengkel/map_panjang.png" alt="First slide">
                                         <div class="carousel-caption d-none d-md-block">
-                                            <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel Terdekat
-                                            </h1>
-                                            <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
+                                            <a href="{{ route('maps') }}">
+                                                <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel
+                                                    Terdekat
+                                                </h1>
+                                                <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="carousel-item">
                                         <img class="d-block w-100"
                                             src="user-assets/assets/media/bengkel/map_panjang.png" alt="First slide">
                                         <div class="carousel-caption d-none d-md-block">
-                                            <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel Terdekat
-                                            </h1>
-                                            <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
+                                           <a href="{{ route('maps') }}">
+                                                <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel
+                                                    Terdekat
+                                                </h1>
+                                                <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +91,7 @@ Marketplace Homepage
                                 <div class="row">
                                     @forelse ($sparepart as $item)
                                     <!--begin::Product-->
-                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                    <div class="col-md-4 col-xxl-3 col-12">
                                         <!--begin::Card-->
                                         <div class="card card-custom card-shadowless">
                                             <div class="card-body p-0">
@@ -92,11 +99,11 @@ Marketplace Homepage
                                                 <div class="overlay">
                                                     <div class="overlay-wrapper rounded bg-light text-center">
                                                         @if ($item->Galleries_one)
-                                                            <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo }}"
+                                                        <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo }}"
                                                             alt="" class="mh-100 h-200px mw-100 w-200px" />
                                                         @endif
-                                                            
-                                                        
+
+
                                                     </div>
                                                     <div class="overlay-layer">
                                                         <a href="{{ route('detail', $item->slug) }}"
@@ -109,23 +116,23 @@ Marketplace Homepage
                                                 <!--end::Image-->
                                                 <!--begin::Details-->
                                                 @php
-                                                    $average = 0;
-                                                    $rating = 0;
-                                                    $count = 1;
+                                                $average = 0;
+                                                $rating = 0;
+                                                $count = 1;
                                                 @endphp
 
                                                 @foreach ($item->Detailtransaksi as $star)
-                                                    @php
-                                                        $rating += $star->rating;
-                                                        $average = $rating/$count;
-                                                        if($star->rating > 0){
-                                                            $count += 1;
-                                                        }
-                                                    @endphp
+                                                @php
+                                                $rating += $star->rating;
+                                                $average = $rating/$count;
+                                                if($star->rating > 0){
+                                                $count += 1;
+                                                }
+                                                @endphp
                                                 @endforeach
 
                                                 <div
-                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    class="text-center mt-2 mb-md-0 mb-5 mb-md-0 mb-5 mb-0 mb-5 d-flex flex-column">
                                                     <a href="{{ route('detail', $item->slug) }}"
                                                         class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item ->nama_sparepart }}</a>
                                                     <a href="{{ route('bengkel', $item->Bengkel->slug) }}"
@@ -133,7 +140,7 @@ Marketplace Homepage
 
                                                     <div class="d-flex align-items-center flex-wrap">
                                                         <!--begin: Item-->
-                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                        <div class="d-flex align-items-center flex-fill mr-5 my-1">
                                                             <div class="d-flex flex-column text-dark-75">
                                                                 <span
                                                                     class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">{{ $average }}</span>
@@ -184,22 +191,22 @@ Marketplace Homepage
                                     @forelse ($terlaris as $item)
 
                                     @php
-                                        $average = 0;
-                                        $rating = 0;
-                                        $count = 1;
+                                    $average = 0;
+                                    $rating = 0;
+                                    $count = 1;
                                     @endphp
 
                                     @foreach ($item->Sparepart->Detailtransaksi as $star)
-                                        @php
-                                            $rating += $star->rating;
-                                            $average = $rating/$count;
-                                            if($star->rating > 0){
-                                                $count += 1;
-                                            }
-                                        @endphp
+                                    @php
+                                    $rating += $star->rating;
+                                    $average = $rating/$count;
+                                    if($star->rating > 0){
+                                    $count += 1;
+                                    }
+                                    @endphp
                                     @endforeach
                                     <!--begin::Product-->
-                                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                                    <div class="col-12">
                                         <!--begin::Card-->
                                         <div class="card card-custom card-shadowless">
                                             <div class="card-body p-0">
@@ -220,7 +227,7 @@ Marketplace Homepage
                                                 <!--end::Image-->
                                                 <!--begin::Details-->
                                                 <div
-                                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
+                                                    class="text-center mt-2 mb-md-0 mb-5 mb-md-0 mb-5 mb-0 mb-5 d-flex flex-column">
                                                     <a href="{{ route('detail', $item->Sparepart->slug) }}"
                                                         class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item->Sparepart->nama_sparepart }}</a>
                                                     <a href="{{ route('bengkel', $item->Sparepart->Bengkel->slug) }}"
@@ -228,7 +235,7 @@ Marketplace Homepage
 
                                                     <div class="d-flex align-items-center flex-wrap">
                                                         <!--begin: Item-->
-                                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                                        <div class="d-flex align-items-center flex-fill mr-5 my-1">
                                                             <div class="d-flex flex-column text-dark-75">
                                                                 <span
                                                                     class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">{{ $average }}</span>

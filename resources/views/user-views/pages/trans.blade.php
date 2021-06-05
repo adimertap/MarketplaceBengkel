@@ -263,7 +263,7 @@ Trnansaction
                                                     <!--begin::Body-->
                                                     <div class="card-body">
                                                         <!--begin::Content-->
-                                                        <a href="#"
+                                                        <a href="https://wa.me/{{ $item->Detailtransaksi->first()->Bengkel->nohp_bengkel }}?text=Permisi mau komplain terkait pesanan dengan kode {{$item->code_transaksi}}"
                                                             class="btn btn-light-danger btn-block font-weight-bold mr-2">Komplain</a>
                                                         <!--end::Content-->
 

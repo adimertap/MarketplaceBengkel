@@ -369,9 +369,12 @@
                         </div>
                     </div>
                     <a href="#" class="symbol symbol-70 flex-shrink-0">
-                        <img src="{{  asset('/image/'.$item->Sparepart->Galleries_one->photo ) }}" title=""
+                        @if ($item->Sparepart->Galleries_one)
+                            <img src="{{  asset('/image/'.$item->Sparepart->Galleries_one->photo ) }}" title=""
                             alt="" />
                             
+                        @endif
+                        
                     </a>
                 </div>
                 <!--end::Item-->

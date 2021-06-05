@@ -65,8 +65,8 @@ class CheckoutController extends Controller
             ]);
         }
 
-        // Detailcarts::where('id_carts',$id)->delete();
-        // $cart->delete();
+        Detailcarts::where('id_carts',$id)->delete();
+        $cart->delete();
         
 
         //configurasi midtrans

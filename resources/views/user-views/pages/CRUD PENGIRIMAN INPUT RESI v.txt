@@ -11,6 +11,12 @@ filter                              susahh
 komplain                            diskusi hasilnya chat 2 pihak saja
 ganti password                      minta bantuan angga kalo bisa diy
 lupa password                      minta bantuan angga kalo bisa diy
-Call Back Midtrans                  
-chat
-saldo
+Call Back Midtrans                  v
+chat                                langsung ke WA
+saldo                               v
+
+
+benerin tampilan untuk tampilan lg ke md            v
+benerin dari admin setelah resi diberikan           v
+history reservasi                                   
+admin global transaksi                              v
