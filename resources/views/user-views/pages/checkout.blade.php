@@ -54,8 +54,9 @@ Checkout
                         <div class="row justify-content-center py-10 px-8 py-lg-12 px-lg-10">
                             <div class="col-xl-12 col-xxl-9">
                                 <!--begin: Wizard Form-->
-                                <form class="form" id="kt_form" action="{{ route('checkout-process', $cart->id_carts) }}" method="post" target="_blank"
-                                    <!--begin: Wizard Step 1-->
+                                <form class="form" id="kt_form"
+                                    action="{{ route('checkout-process', $cart->id_carts) }}" method="post"
+                                    target="_blank" <!--begin: Wizard Step 1-->
                                     @csrf
                                     <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                         <h4 class="mb-10 font-weight-bold text-dark">Detail Pengiriman
@@ -63,10 +64,11 @@ Checkout
                                         <!--begin::Input-->
                                         <div class="form-group">
                                             <label>Nama Penerim</label>
-                                            <input type="text" class="form-control" name="nama penerima" id="nama_penerima"
-                                                placeholder="Nama Penerima" value="{{ Auth::user()->nama_user }}" />
+                                            <input type="text" class="form-control" name="nama penerima"
+                                                id="nama_penerima" placeholder="Nama Penerima"
+                                                value="{{ Auth::user()->nama_user }}" />
                                             <input type="hidden" class="form-control" name="id_cart" id="id_cart"
-                                                 value="{{ $cart->id_carts }}" />
+                                                value="{{ $cart->id_carts }}" />
                                             <span class="form-text text-muted">Masukan nama penerima</span>
                                         </div>
                                         <!--end::Input-->
@@ -74,8 +76,9 @@ Checkout
                                         <!--begin::Input-->
                                         <div class="form-group">
                                             <label>Alamat Penerima</label>
-                                            <input type="text" class="form-control" name="alamat_penerima" id="alamat_penerima"
-                                                placeholder="Address Line 2" value="{{ Auth::user()->alamat_user }}" />
+                                            <input type="text" class="form-control" name="alamat_penerima"
+                                                id="alamat_penerima" placeholder="Address Line 2"
+                                                value="{{ Auth::user()->alamat_user }}" />
                                             <span class="form-text text-muted">Masukan alamat </span>
                                         </div>
                                         <!--end::Input-->
@@ -84,8 +87,9 @@ Checkout
                                                 <!--begin::Input-->
                                                 <div class="form-group">
                                                     <label>No Hp</label>
-                                                    <input type="text" class="form-control" name="nohp_penerima" id="nohp_penerima"
-                                                        placeholder="City" value="{{ Auth::user()->nohp_user }}" />
+                                                    <input type="text" class="form-control" name="nohp_penerima"
+                                                        id="nohp_penerima" placeholder="City"
+                                                        value="{{ Auth::user()->nohp_user }}" />
                                                     <span class="form-text text-muted">Masukkan no hp</span>
                                                 </div>
                                                 <!--end::Input-->
@@ -386,7 +390,11 @@ Checkout
 <script src="user-assets/assets/js/pages/custom/wizard/wizard-3.js?v=7.0.6"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        
+        $(function () {
+            $("#kt_form").on("submit", function () {
+                location.href = "http://stackoverflow.com";
+            });
+        });
 
         $('select[name="provinsi"]').on('change', function () {
             var cityId = $(this).val();
@@ -443,7 +451,8 @@ Checkout
 
 
         $("#nextbtn").click(function () {
-            var ongkir = parseInt($('select[name=expedisi] option').filter(':selected').text().split("Rp ")
+            var ongkir = parseInt($('select[name=expedisi] option').filter(':selected').text().split(
+                    "Rp ")
                 .pop()
                 .split('=')[0]);
             var subtotal = parseInt($("#subtotal").text().split("Rp ").pop().replace(',', ''));
@@ -463,7 +472,8 @@ Checkout
             $("#totalkeseluruhan").text(subtotal + ongkir);
 
             $("#rangkumannama").text($("#nama_penerima").val());
-            $("#rangkumanalamat").text(inputalamat.concat(', ').concat(kabupaten).concat(', ').concat(provinsi));
+            $("#rangkumanalamat").text(inputalamat.concat(', ').concat(kabupaten).concat(', ').concat(
+                provinsi));
             $("#rangkumannohp").text($("#nohp_penerima").val());
             $("#rangkumankurir").text(kurir.concat(' ').concat(paket));
 
