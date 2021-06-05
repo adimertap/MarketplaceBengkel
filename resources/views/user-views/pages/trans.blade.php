@@ -409,9 +409,12 @@ Trnansaction
                                                                                                             @if($sparepart->Galleries)
                                                                                                             <div
                                                                                                                 class="symbol symbol-60 flex-shrink-0 mr-4 bg-light ml-4">
-                                                                                                                <div class="symbol-label"
+                                                                                                                @if ($sparepart->Galleries_one)
+                                                                                                                    <div class="symbol-label"
                                                                                                                     style="background-image: url(https://bengkel-kuy.com/image/{{$sparepart->Galleries_one->photo }})">
                                                                                                                 </div>
+                                                                                                                @endif
+                                                                                                                
                                                                                                             </div>
                                                                                                             @endif
                                                                                                             <!--end::Symbol-->
