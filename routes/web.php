@@ -56,8 +56,6 @@ Route::prefix('admin')
         Route::resource('bengkel', 'BengkelController');
 
         Route::resource('keuangan', 'KeuanganController');
-
-
     });
 
 Route::get("/getcity/ajax/{id}", "Auth\RegisterController@ajax");
@@ -65,6 +63,10 @@ Route::get("/getcity/ajax/{id}", "Auth\RegisterController@ajax");
 Route::group(['middleware' => ['auth']], function(){
 
     Route::get("/cart", "CartController@index")->name('cart');
+    Route::get("/bengkel/{id}/reservasi", "BengkelController@reservasi")->name('reservasi');
+    Route::post("/bengkel/{id}/reservasi/kirim", "BengkelController@kirim")->name('reservasi-kirim');
+
+
     Route::post("/updateqty", "CartController@update");
 
     Route::delete("/cart/{id}", "CartController@delete")->name('cart-delete');

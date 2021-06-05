@@ -82,9 +82,10 @@ Bengkel Detail
                             <!--begin::Engage Widget 14-->
                             <div class="card card-custom gutter-b gutter-b">
                                 <div class="slider">
-                                   <input type="radio" name="slide_switch" id="id2" checked ="checked"  />
+                                    <input type="radio" name="slide_switch" id="id2" checked="checked" />
                                     <label for="id2">
-                                        <img src="https://bengkel-kuy.com/image/{{$bengkel->logo_bengkel}}" width="100" height="80"/>
+                                        <img src="https://bengkel-kuy.com/image/{{$bengkel->logo_bengkel}}" width="100"
+                                            height="80" />
                                     </label>
                                     <img src="https://bengkel-kuy.com/image/{{$bengkel->logo_bengkel }}" height="320" />
                                 </div>
@@ -94,7 +95,8 @@ Bengkel Detail
                             <div class="card card-custom card-stretch gutter-b">
                                 <!--begin::Card Body-->
                                 <div class="card-body">
-                                    <h3 class="font-weight-bold font-size-h2 text-dark-75 mb-3">{{ $bengkel->nama_bengkel }}</h3>
+                                    <h3 class="font-weight-bold font-size-h2 text-dark-75 mb-3">
+                                        {{ $bengkel->nama_bengkel }}</h3>
                                     <div class="row">
                                         <div class="col-9">
                                             <div class="separator separator-solid separator-border-4"></div>
@@ -103,10 +105,19 @@ Bengkel Detail
                                             <p class="font-size-h6">{{ $bengkel->nohp_bengkel }}</p>
                                         </div>
                                         <div class="col-3">
-                                            <a href="{{ route('bengkel-maps', $bengkel->slug) }}" class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block">MAPS</a>
-                                            <a href="{{ route('faq', $bengkel->slug) }}" class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block">FAQ</a>
-                                            <a href="#" class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block ">Reservasi</a>
+                                            <a href="{{ route('bengkel-maps', $bengkel->slug) }}"
+                                                class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block">MAPS</a>
+                                            <a href="{{ route('faq', $bengkel->slug) }}"
+                                                class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block">FAQ</a>
 
+
+                                            @auth
+                                             <a href="{{ route('reservasi', $bengkel->slug) }}"
+                                                class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block">RESERVASI</a>
+                                            @else
+                                             <a href="{{ route('login') }}"
+                                                class="btn btn-light-success font-weight-bold mr-3 mb-5 btn-block">RESERVASI</a>
+                                            @endauth
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +125,7 @@ Bengkel Detail
                             </div>
                             <!--end::Card-->
                         </div>
-                        
+
                         <div class="col-md-6 col-lg-12 col-xxl-6">
                             <!--begin::List Widget 19-->
                             <div class="card card-custom gutter-b">
@@ -128,29 +139,31 @@ Bengkel Detail
                                     <div class="scroll scroll-pull ps ps--active-y" data-scroll="true"
                                         style="height: 400px; overflow: hidden;">
                                         @forelse ($sparepart as $item)
-                                            <div class="d-flex py-5">
+                                        <div class="d-flex py-5">
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
                                                 <span class="symbol-label">
+                                                    @if ( $item ->Galleries_one)
                                                     <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo }}"
                                                         class="h-75 align-self-end" alt="">
+                                                    @endif
                                                 </span>
                                             </div>
                                             @php
-                                                    $average = 0;
-                                                    $rating = 0;
-                                                    $count = 1;
-                                                @endphp
+                                            $average = 0;
+                                            $rating = 0;
+                                            $count = 1;
+                                            @endphp
 
-                                                @foreach ($item->Detailtransaksi as $star)
-                                                    @php
-                                                        $rating += $star->rating;
-                                                        $average = $rating/$count;
-                                                        if($star->rating > 0){
-                                                            $count += 1;
-                                                        }
-                                                    @endphp
-                                                @endforeach
+                                            @foreach ($item->Detailtransaksi as $star)
+                                            @php
+                                            $rating += $star->rating;
+                                            $average = $rating/$count;
+                                            if($star->rating > 0){
+                                            $count += 1;
+                                            }
+                                            @endphp
+                                            @endforeach
                                             <!--end::Symbol-->
                                             <!--begin::Info-->
                                             <div class="d-flex flex-column flex-row-fluid">
@@ -159,19 +172,21 @@ Bengkel Detail
                                                     <a href="{{ route('detail', $item->slug) }}"
                                                         class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">{{ $item->nama_sparepart }}</a>
                                                     <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">Rp. {{number_format($item->Harga['harga_jual'])}}</span>
+                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">Rp.
+                                                        {{number_format($item->Harga['harga_jual'])}}</span>
                                                     <span
                                                         class="text-muted font-weight-normal font-size-sm">{{ $average }}</span>
                                                 </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->keterangan }}</span>
+                                                <span
+                                                    class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->keterangan }}</span>
                                                 <!--end::Info-->
                                             </div>
                                             <!--end::Info-->
                                         </div>
                                         @empty
-                                            
+
                                         @endforelse
-                                        
+
                                     </div>
                                     <!--begin: Example code-->
 
@@ -193,7 +208,7 @@ Bengkel Detail
                                     <div class="scroll scroll-pull ps ps--active-y" data-scroll="true"
                                         style="height: 400px; overflow: hidden;">
                                         @forelse ($perbaikan as $item)
-                                         <div class="d-flex py-5">
+                                        <div class="d-flex py-5">
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
                                                 <span class="symbol-label">
@@ -211,17 +226,18 @@ Bengkel Detail
                                                     <span
                                                         class="text-muted font-weight-normal flex-grow-1 font-size-sm">{{$item->harga_jenis_perbaikan}}</span>
                                                 </div>
-                                                <span class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->group_jenis_perbaikan }}</span>
+                                                <span
+                                                    class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->group_jenis_perbaikan }}</span>
                                                 <!--end::Info-->
                                             </div>
                                             <!--end::Info-->
                                         </div>
-                                            
+
                                         @empty
-                                            
+
                                         @endforelse
-                                       
-                                        
+
+
                                     </div>
                                     <!--begin: Example code-->
 
@@ -230,7 +246,7 @@ Bengkel Detail
 
 
                         </div>
-                        
+
 
                     </div>
                     <!--end::Section-->
