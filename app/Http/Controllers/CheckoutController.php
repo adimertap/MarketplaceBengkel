@@ -41,7 +41,7 @@ class CheckoutController extends Controller
             'harga_pengiriman'=> $request->harga_pengiriman,
             'harga_total'=> $request->harga_total,
             'code_transaksi'=> $code_transaksi,
-            'transaksi_status'=>  "PENDING",
+            'transaksi_status'=>  "MENUNGGU",
             'resi'=> '',
             'nama_penerima'=> $request->nama_penerima,
             'alamat_penerima'=> $request->alamat_penerima,

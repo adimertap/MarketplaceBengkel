@@ -276,7 +276,7 @@ Trnansaction
                                                 <!--end::Card-->
                                             </div>
                                         </div>
-                                        @elseif ($item->transaksi_status == 'PENDING')
+                                        @elseif ($item->transaksi_status == 'MENUNGGU')
                                         <div class="row">
                                             <div class="col-xl-12">
                                                 <!--begin::Card-->
@@ -284,8 +284,8 @@ Trnansaction
                                                     <!--begin::Body-->
                                                     <div class="card-body">
                                                         <!--begin::Content-->
-                                                        <a href="{{ route('bayar', $item->id_transaksi_online) }}"
-                                                            class="btn btn-light-success btn-block font-weight-bold mr-2">Bayar</a>
+                                                        <a href=""
+                                                            class="btn btn-light-success btn-block font-weight-bold mr-2">Menunggu Dibayar</a>
                                                         <!--end::Content-->
 
                                                     </div>
@@ -313,7 +313,7 @@ Trnansaction
                                             </div>
 
                                         </div>
-                                        @elseif ($item->transaksi_status == 'MENUNGGU')
+                                        @elseif ($item->transaksi_status == 'DIBAYAR')
                                         <div class="row">
                                             <div class="col-xl-12">
                                                 <!--begin::Card-->
