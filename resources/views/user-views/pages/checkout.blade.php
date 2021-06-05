@@ -420,7 +420,8 @@ Checkout
                 dataType: "json",
                 data: {
                     kabupaten: thedestination,
-                    kurir: thecourier
+                    kurir: thecourier,
+                    id_cart: id_cart
                 },
                 success: function (data) {
                     $('select[name="expedisi"]').empty();
