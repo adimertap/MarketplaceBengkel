@@ -370,11 +370,8 @@
                     </div>
                     <a href="#" class="symbol symbol-70 flex-shrink-0">
                         @if ($item->Sparepart->Galleries_one)
-                            {{-- <img src="{{  asset('/image/'.$item->Sparepart->Galleries_one->photo ) }}" title=""
-                            alt="" /> --}}
-                            <i>
-                                {{ $item->Sparepart->Galleries_one }}
-                            </i>
+                            <img src="{{  asset('/image/'.$item->Sparepart->Galleries_one->photo ) }}" title=""
+                            alt="" />
                         @endif
                         
                     </a>
