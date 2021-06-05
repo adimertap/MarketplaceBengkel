@@ -100,9 +100,12 @@ Trnansaction
                                                                 <!--begin::Symbol-->
                                                                 <div
                                                                     class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
-                                                                    <div class="symbol-label"
+                                                                    @if ($sparepart->Galleries_one)
+                                                                        <div class="symbol-label"
                                                                         style="background-image: url(https://bengkel-kuy.com/image/{{ $sparepart->Galleries_one->photo }})">
                                                                     </div>
+                                                                    @endif
+                                                                    
                                                                 </div>
                                                                 <!--end::Symbol-->
                                                                 <a href="#"
@@ -406,7 +409,6 @@ Trnansaction
                                                                                                         <!--begin::Symbol-->
                                                                                                         <div
                                                                                                             class="row">
-                                                                                                            @if($sparepart->Galleries)
                                                                                                             <div
                                                                                                                 class="symbol symbol-60 flex-shrink-0 mr-4 bg-light ml-4">
                                                                                                                 @if ($sparepart->Galleries_one)
@@ -416,7 +418,6 @@ Trnansaction
                                                                                                                 @endif
                                                                                                                 
                                                                                                             </div>
-                                                                                                            @endif
                                                                                                             <!--end::Symbol-->
                                                                                                             <div
                                                                                                                 class="align-middle pb-4">
