@@ -58,7 +58,7 @@ class TransaksiController extends Controller
     public function cekresi(Request $request)
     {
         $response = Http::asForm()->get('http://api.binderbyte.com/v1/track', [
-            'api_key'=> '7670544b4f934178daf4370b0165e656ee26abccf78a7d0f66c38c49df35090f',
+            'api_key'=> '83b89eed3d0a24749e2897bf624f2ee1cfce847a156ba2a43923e5d5ceb1bb0e',
             'courier'=> $request->kurir,
             'awb' => $request->resi
 
