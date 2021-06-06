@@ -37,7 +37,7 @@ Marketplace Homepage
                             <div class="text-center pb-8">
                                 <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">{{ __('Login') }}
                                 </h2>
-                                <span class="text-muted font-weight-bold font-size-h4">Or <a href=""
+                                <span class="text-muted font-weight-bold font-size-h4">Or <a href="{{ route('register') }}"
                                         class="text-primary font-weight-bolder" id="kt_login_signup">Create An
                                         Account</a></span>
                             </div>

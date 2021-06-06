@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layoutsuser-views.layouts.app-withoutheader')
 
 @section('content')
 <div class="container">

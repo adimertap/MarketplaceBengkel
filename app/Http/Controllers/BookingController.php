@@ -8,8 +8,11 @@ class BookingController extends Controller
 {
      public function index()
     {
-        $reservasi = Reservasi::where('id_user', Auth::user()->id_user)->get();
-        return $reservasi;
+        $booking = Reservasi::with('Bengkel', 'Kendaraan')->where('id_user', Auth::user()->id_user)->orderBy('id_reservasi', 'DESC')->get();
+        // return $booking;
+        return view('user-views.pages.booking', [
+            'booking' =>$booking
+        ]);
     }
    
 }
