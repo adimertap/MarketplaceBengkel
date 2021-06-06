@@ -206,7 +206,7 @@ Marketplace Homepage
                                     @endphp
                                     @endforeach
                                     <!--begin::Product-->
-                                    <div class="col-12">
+                                    <div class="col-md-4 col-xxl-3 col-12">
                                         <!--begin::Card-->
                                         <div class="card card-custom card-shadowless">
                                             <div class="card-body p-0">

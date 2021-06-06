@@ -18,7 +18,7 @@ Trnansaction
             <div class="d-flex flex-row">
                 <div class="flex-row-fluid ml-lg-8">
                     <div class="example-preview ">
-                        <ul class="nav nav-light-success nav-pills " id="myTab3" role="tablist">
+                        {{-- <ul class="nav nav-light-success nav-pills " id="myTab3" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="semua-tab-3" data-toggle="tab" href="#semua-3">
                                     <span class="nav-icon"><i class="flaticon2-chat-1"></i></span>
@@ -46,7 +46,7 @@ Trnansaction
                                     <span class="nav-text">selesai</span>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> --}}
 
                         <div class="tab-content mt-5" id="myTabContent3">
                             @forelse ($transaksi as $item)

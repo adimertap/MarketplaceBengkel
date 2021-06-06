@@ -22,7 +22,7 @@ Categories
                             <!--begin::Body-->
                             <div class="card-body">
                                 <!--begin::Form-->
-                                <form action="{{ route("all") }}" method="get">
+                                <form action="#" method="get">
                                     <!--begin::Categories-->
                                     <div class="form-group mb-11">
                                         <label class="font-size-h2 font-weight-bolder text-dark">{{ $categories }}</label>
@@ -37,6 +37,10 @@ Categories
                                             <label>Min</label>
                                             <input type="number" name="min" class="form-control form-control-lg"
                                                 placeholder="Large input" />
+                                            @if ($categories != 'Terbaru' && $categories != 'Terlaris')
+                                                <input type="hidden" name="cat" class="form-control form-control-lg" value="{{ $categories }}"/>
+
+                                            @endif
                                         </div>
                                         <div class="form-group " style="margin-bottom: 10px">
                                             <label>Maks</label>
@@ -54,7 +58,6 @@ Categories
                                             Menurut</label>
                                         <!--begin::Radio list-->
                                         <select class="custom-select form-control" name="urutan">
-                                            <option selected>Urutkan</option>
                                             <option value="terbaru">Terbaru</option>
                                             <option value="terlaris">Terlaris</option>
                                         </select>
@@ -93,8 +96,11 @@ Categories
                                             <!--begin::Image-->
                                             <div class="overlay">
                                                 <div class="overlay-wrapper rounded bg-light text-center">
-                                                    <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo}}"
+                                                    @if ($item ->Galleries_one)
+                                                        <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo}}"
                                                         alt="" class="mh-100 h-200px mw-100 w-200px" />
+                                                    @endif
+                                                    
                                                 </div>
                                                 <div class="overlay-layer">
                                                     <a href="{{ route('detail', $item->slug) }}"
@@ -130,8 +136,6 @@ Categories
                                                         </div>
                                                     </div>
                                                     <!--end: Item-->
-
-
                                                 </div>
                                             </div>
                                             <!--end::Details-->
@@ -148,11 +152,11 @@ Categories
                             </div>
                             {{ $sparepart->appends(['search' => request()->query('search')])->links() }}
                             <!--end::Section-->
-                            <div class="text-center">
+                            {{-- <div class="text-center">
                                 <button type="button"
                                     class="btn btn-outline-success btn-lg align-items-lg-center">Tampilkan Lebih
                                     Bnayk</button>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <!--end::Card-->
