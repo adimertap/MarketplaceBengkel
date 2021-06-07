@@ -108,9 +108,24 @@ Marketplace Homepage
                                                     <div class="overlay-layer">
                                                         <a href="{{ route('detail', $item->slug) }}"
                                                             class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
-                                                        <a href="#"
-                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
-                                                            Ke Keranjang</a>
+                                                        @auth
+                                <form action="{{ route('detail-add', $item->id_sparepart) }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <!--begin: Item-->
+                                            <div class="d-flex align-items-center flex-lg my-1">
+                                                <span class="">
+                                                    <button type="submit"
+                                                        class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                        Ke Keranjang</button> </span>
+
+                                            </div>
+                                            <!--end: Item-->
+                                        </form>
+                                @else
+                                <a href="{{ route('login') }}"
+                                    class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                    Ke Keranjang</a>
+                                @endauth
                                                     </div>
                                                 </div>
                                                 <!--end::Image-->
@@ -222,9 +237,24 @@ Marketplace Homepage
                                                     <div class="overlay-layer">
                                                         <a href="{{ route('detail', $item->Sparepart->slug) }}"
                                                             class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
-                                                        <a href="#"
-                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
-                                                            Ke Keranjang</a>
+                                                       @auth
+                                <form action="{{ route('detail-add', $item->sparepart->id_sparepart) }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <!--begin: Item-->
+                                            <div class="d-flex align-items-center flex-lg my-1">
+                                                <span class="">
+                                                    <button type="submit"
+                                                        class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                        Ke Keranjang</button> </span>
+
+                                            </div>
+                                            <!--end: Item-->
+                                        </form>
+                                @else
+                                <a href="{{ route('login') }}"
+                                    class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                    Ke Keranjang</a>
+                                @endauth
                                                     </div>
                                                 </div>
                                                 <!--end::Image-->

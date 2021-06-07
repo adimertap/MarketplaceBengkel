@@ -13,7 +13,7 @@ Categories
             <!--begin::Page Layout-->
             <div class="d-flex flex-row">
                 <!--begin::Aside-->
-                <div class="flex-column offcanvas-mobile w-300px w-xl-325px" id="kt_profile_aside"
+                {{-- <div class="flex-column offcanvas-mobile w-300px w-xl-325px" id="kt_profile_aside"
                     data-sticky-container>
                     <!--begin::Forms Widget 15-->
                     <div class="card card-custom sticky" data-sticky="true" data-margin-top="140px"
@@ -77,13 +77,15 @@ Categories
                         <!--end::Body-->
                     </div>
                     <!--end::Forms Widget 15-->
-                </div>
+                </div> --}}
                 <!--end::Aside-->
                 <!--begin::Layout-->
-                <div class="flex-row-fluid ml-lg-8">
+                <div class="flex-row-fluid ml-lg-12">
                     <!--begin::Card-->
                     <div class="card card-custom card-stretch gutter-b">
                         <div class="card-body">
+                            <label
+                                                class="font-size-h2 font-weight-bolder text-dark">{{ $categories }}</label>
                             <!--begin::Section-->
                             <div class="row mb-7">
                                 @forelse ($sparepart as $item)
@@ -105,9 +107,24 @@ Categories
                                                 <div class="overlay-layer">
                                                     <a href="{{ route('detail', $item->slug) }}"
                                                         class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
-                                                    <a href="#"
+                                                    @auth
+                               <form action="{{ route('detail-add', $item->id_sparepart) }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <!--begin: Item-->
+                                            <div class="d-flex align-items-center flex-lg my-1">
+                                                <span class="">
+                                                    <button type="submit"
                                                         class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
-                                                        Ke Keranjang</a>
+                                                        Ke Keranjang</button> </span>
+
+                                            </div>
+                                            <!--end: Item-->
+                                        </form>
+                                @else
+                                <a href="{{ route('login') }}"
+                                    class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                    Ke Keranjang</a>
+                                @endauth
                                                 </div>
                                             </div>
                                             <!--end::Image-->

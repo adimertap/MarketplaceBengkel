@@ -16,25 +16,26 @@ class CategoriesController extends Controller
 
     public function all(Request $request)
     {
+        $search= request()->query("search");
 
-        if($request->urutan== 'Terbaru'){
-             $sparepart = Sparepart::with('Galleries', 'Bengkel', 'Harga');
-        }else{
-            $sparepart = DetailTransaksi::with('Sparepart.Galleries', 'Sparepart.Bengkel', 'Sparepart.Harga');
-        }
+        // if($request->urutan== 'Terbaru'){
+        //      $sparepart = Sparepart::with('Galleries', 'Bengkel', 'Harga');
+        // }else{
+        //     $sparepart = DetailTransaksi::with('Sparepart.Galleries', 'Sparepart.Bengkel', 'Sparepart.Harga');
+        // }
 
-        if($request->cat){
-            $sparepart = $sparepart->where('jenis_sparepart', $request->cat);
-        }
+        // if($request->cat){
+        //     $sparepart = $sparepart->where('jenis_sparepart', $request->cat);
+        // }
 
-        if($request->min){
-            $min = $request->min;
-            $sparepart = $sparepart->whereHas('Harga', function ($q) {
-                        $q->where('harga_jual', '>', "0");
-                        });
-        }
+        // if($request->min){
+        //     $min = $request->min;
+        //     $sparepart = $sparepart->whereHas('Harga', function ($q) {
+        //                 $q->where('harga_jual', '>', "0");
+        //                 });
+        // }
 
-        return $sparepart->get();
+        // return $sparepart->get();
 
 
 
@@ -57,6 +58,25 @@ class CategoriesController extends Controller
         //     'sparepart' => $sparepart,
         //      'categories' =>$categories
         // ]);
+
+
+
+        if($search)
+        {
+            $categories = $search;
+            $sparepart = Sparepart::with('Galleries', 'Bengkel', 'Harga')->orderBy('id_sparepart', 'DESC')->where('nama_sparepart', 'LIKE', "%{$search}%")->simplePaginate(8); 
+        }
+        else
+        {
+            $categories = 'All';
+            $sparepart = Sparepart::with('Galleries', 'Bengkel', 'Harga')->orderBy('id_sparepart', 'DESC')->simplePaginate(8); 
+        }
+       
+        // return $sparepart;
+        return view('user-views.pages.categories', [
+            'sparepart' => $sparepart,
+             'categories' =>$categories
+        ]);
     }
 
     public function index(Request $request, $slug)
