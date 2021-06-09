@@ -9,7 +9,7 @@ Dashboard
     crossorigin="anonymous" />
 <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet"
     crossorigin="anonymous" />
-<link rel="icon" type="image/x-icon" href="admin-assets/assets/img/favicon.png" />
+<link rel="icon" type="image/x-icon" href="image/logo_new.png" />
 @endpush
 
 @section('content')
@@ -23,7 +23,6 @@ Dashboard
                             <div class="page-header-icon"><i data-feather="activity"></i></div>
                             Dashboard
                         </h1>
-                        <div class="page-header-subtitle">Example dashboard overview and content summary</div>
                     </div>
                     <div class="col-12 col-xl-auto mt-4">
                         <button class="btn btn-white btn-sm line-height-normal p-3" id="reportrange">
@@ -52,10 +51,7 @@ Dashboard
                             <i class="feather-xl text-white-50" data-feather="calendar"></i>
                         </div>
                     </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Report</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-xxl-3 col-lg-6">
@@ -69,10 +65,7 @@ Dashboard
                             <i class="feather-xl text-white-50" data-feather="dollar-sign"></i>
                         </div>
                     </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Report</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-xxl-3 col-lg-6">
@@ -86,10 +79,7 @@ Dashboard
                             <i class="feather-xl text-white-50" data-feather="check-square"></i>
                         </div>
                     </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Tasks</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-xxl-3 col-lg-6">
@@ -103,10 +93,7 @@ Dashboard
                             <i class="feather-xl text-white-50" data-feather="check-square"></i>
                         </div>
                     </div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Tasks</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
+                    
                 </div>
             </div>
 

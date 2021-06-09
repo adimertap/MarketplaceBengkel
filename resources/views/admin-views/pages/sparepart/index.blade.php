@@ -9,7 +9,7 @@ Dashboard
     crossorigin="anonymous" />
 <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet"
     crossorigin="anonymous" />
-<link rel="icon" type="image/x-icon" href="/admin-assets/assets/img/favicon.png" />
+<link rel="icon" type="image/x-icon" href="{{ url('image/logo_new.png') }}" />
 @endpush
 
 @section('content')

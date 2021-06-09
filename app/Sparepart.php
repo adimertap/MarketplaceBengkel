@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Sparepart extends Model
 {
@@ -38,5 +39,11 @@ class Sparepart extends Model
     public function Detailtransaksi(){
         return $this->hasMany(DetailTransaksi::class, 'id_sparepart');
     }
+    
+    public function Rating(){
+        return $this->hasMany(DetailTransaksi::class, 'id_sparepart');
+    }
+
+   
 
 }

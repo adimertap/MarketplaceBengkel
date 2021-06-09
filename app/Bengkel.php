@@ -10,4 +10,8 @@ class Bengkel extends Model
     protected $primaryKey = 'id_bengkel';
 
     public $timestamps = false;
+
+    public function Desa(){
+        return $this->hasOne(DesaBaru::class, 'id_desa', 'id_desa');
+    }
   }

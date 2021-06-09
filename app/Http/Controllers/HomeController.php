@@ -27,18 +27,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $sparepart = Sparepart::with('Galleries','Detailtransaksi','Bengkel', 'Harga')->latest()->take(8)->get();
+        $sparepart = Sparepart::with('Galleries_one','Detailtransaksi','Bengkel', 'Harga')->latest()->take(8)->get();
 
-        $terlaris = DetailTransaksi::with('Sparepart.Galleries','Sparepart.Detailtransaksi' , 'Sparepart.Bengkel', 'Sparepart.Harga')->select(
+        $terlaris = DetailTransaksi::with('Sparepart.Galleries_one','Sparepart.Detailtransaksi' , 'Sparepart.Bengkel', 'Sparepart.Harga')->whereNotNull('rating')->select(
             '*',
             DB::raw('sum(jumlah_produk) as penjualan')
         )
         ->groupBy('id_sparepart')->orderBy('penjualan', 'DESC')->take(8)
         ->get();
 
-        // return $sparepart;
 
+        // $terlaris = Sparepart::with('Detailtransaksi', 'Galleries_one', 'Bengkel')->withCount('Detailtransaksi')->whereHas('Detailtransaksi', function ($q) {
+        //                 $q->whereNotNull('rating');
+        //                 })->orderBy('Detailtransaksi_count', 'DESC')->take(8)->get();
         // return $terlaris;
+
         // return $sparepart;
         return view('user-views.pages.home', [
             'sparepart' => $sparepart,

@@ -8,7 +8,6 @@ use App\KabupatenBaru;
 use App\KecamatanBaru;
 use Illuminate\Http\Request;
 use App\User;
-use App\Provinsi;
 use App\ProvinsiBaru;
 use Illuminate\Support\Facades\Auth;
 

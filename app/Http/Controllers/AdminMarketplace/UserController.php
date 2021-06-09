@@ -103,7 +103,7 @@ class UserController extends Controller
         }
         $item -> update($data);
         return redirect()->route('user.index')
-            ->with('messageberhasil','Data Jenis Sparepart Berhasil Diubah');
+            ->with('messageberhasil','Data User Berhasil Diubah');
     }
 
     /**
@@ -118,7 +118,7 @@ class UserController extends Controller
         $item->delete();
 
          return redirect()->route('user.index')
-            ->with('messageberhasil','Data Jenis Sparepart Berhasil DiHapus');
+            ->with('messageberhasil','Data User Berhasil DiHapus');
    
     }
 }

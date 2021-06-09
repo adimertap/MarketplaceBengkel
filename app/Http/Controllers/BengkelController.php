@@ -89,6 +89,6 @@ class BengkelController extends Controller
             ]);
 
         }
-        return redirect()->route('home');
+        return redirect()->route('booking')->with('status','Reservasi Berhasil Dibuat');
     }
 }

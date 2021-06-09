@@ -9,7 +9,7 @@ Dashboard
     crossorigin="anonymous" />
 <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet"
     crossorigin="anonymous" />
-<link rel="icon" type="image/x-icon" href="/admin-assets/assets/img/favicon.png" />
+<link rel="icon" type="image/x-icon" href="{{ url('image/logo_new.png') }}" />
 @endpush
 
 @section('content')
@@ -94,6 +94,9 @@ Dashboard
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Role</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Actions: activate to sort column ascending"
+                                                style="width: 77px;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>

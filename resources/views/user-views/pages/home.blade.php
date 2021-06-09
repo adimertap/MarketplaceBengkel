@@ -138,10 +138,11 @@ Marketplace Homepage
 
                                                 @foreach ($item->Detailtransaksi as $star)
                                                 @php
-                                                $rating += $star->rating;
-                                                $average = $rating/$count;
-                                                if($star->rating > 0){
-                                                $count += 1;
+                                                
+                                                if($star->rating){
+                                                    $rating += $star->rating;
+                                                    $average = $rating/$count;
+                                                    $count += 1;
                                                 }
                                                 @endphp
                                                 @endforeach
@@ -213,10 +214,12 @@ Marketplace Homepage
 
                                     @foreach ($item->Sparepart->Detailtransaksi as $star)
                                     @php
-                                    $rating += $star->rating;
+                                   
+                                    if($star->rating){
+                                     $rating += $star->rating;
                                     $average = $rating/$count;
-                                    if($star->rating > 0){
                                     $count += 1;
+
                                     }
                                     @endphp
                                     @endforeach

@@ -55,8 +55,8 @@ Checkout
                             <div class="col-xl-12 col-xxl-9">
                                 <!--begin: Wizard Form-->
                                 <form class="form" id="kt_form"
-                                    action="{{ route('checkout-process', $cart->id_carts) }}" method="post"
-                                    > <!--begin: Wizard Step 1-->
+                                    action="{{ route('checkout-process', $cart->id_carts) }}" method="post">
+                                    <!--begin: Wizard Step 1-->
                                     @csrf
                                     <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
                                         <h4 class="mb-10 font-weight-bold text-dark">Detail Pengiriman
@@ -103,22 +103,26 @@ Checkout
                                                     <select class="form-control" id="exampleSelect1" name="provinsi">
                                                         <option value="" holder>provinsi</option>
                                                         @foreach ($provinsi as $item)
-                                                        <option value="{{ $item->id_provinsi }}">
-                                                            {{ $item->nama_provinsi }}</option>
+                                                        <option value="{{ $item->id_provinsi }}"
+                                                            {{ ( $cart->user->Desa->Kecamatan->Kabupaten->Provinsi->id_provinsi == $item->id_provinsi) ? 'selected' : '' }}>
+                                                            {{ $item->name }}</option>
                                                         @endforeach
-
                                                     </select>
                                                     <span class="form-text text-muted">Provinsi</span>
                                                 </div>
                                                 <!--end::Input-->
                                             </div>
-                                            <div class="col-xl-8">
+                                            <div class="col-xl-4">
                                                 <!--begin::Input-->
                                                 <div class="form-group">
                                                     <label>Kota</label>
                                                     <select class="form-control" id="exampleSelect1 id_kabupaten"
                                                         name="id_kabupaten">
-                                                        <option value="" holder>Kota</option>
+                                                        @foreach ($kabupaten as $item)
+                                                        <option value="{{ $item->id_kabupaten }}"
+                                                            {{ ( $cart->user->Desa->Kecamatan->Kabupaten->id_kabupaten == $item->id_kabupaten) ? 'selected' : '' }}>
+                                                            {{ $item->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                     <span class="form-text text-muted">Kota</span>
                                                 </div>
@@ -126,6 +130,38 @@ Checkout
                                             </div>
                                         </div>
 
+                                        <div class="row">
+                                            <div class="col-xl-4">
+                                                <!--begin::Input-->
+                                                <div class="form-group">
+                                                    <label>Kecamatan</label>
+                                                    <select class="form-control" id="exampleSelect1 id_kabupaten"
+                                                        name="id_kecamatan">
+                                                        @foreach ($kecamatan as $item)
+                                                        <option value="{{ $item->id_kecamatan }}"
+                                                            {{ ( $cart->user->Desa->Kecamatan->id_kecamatan == $item->id_kecamatan) ? 'selected' : '' }}>
+                                                            {{ $item->name }}</option>
+                                                        @endforeach </select>
+                                                    <span class="form-text text-muted">Kecamatan</span>
+                                                </div>
+                                                <!--end::Input-->
+                                            </div>
+                                            <div class="col-xl-4">
+                                                <!--begin::Input-->
+                                                <div class="form-group">
+                                                    <label>Desa</label>
+                                                    <select class="form-control" id="exampleSelect1 id_kabupaten"
+                                                        name="id_desa">
+                                                        @foreach ($desa as $item)
+                                                        <option value="{{ $item->id_desa }}"
+                                                            {{ ( $cart->user->Desa->id_desa == $item->id_desa) ? 'selected' : '' }}>
+                                                            {{ $item->name }}</option>
+                                                        @endforeach </select>
+                                                    <span class="form-text text-muted">Desa</span>
+                                                </div>
+                                                <!--end::Input-->
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-xl-4">
                                                 <!--begin::Input-->
@@ -392,29 +428,8 @@ Checkout
     $(document).ready(function () {
         $(function () {
             $("#kt_form").on("submit", function () {
-                window.open('/transaksi','_blank');
+                window.open('/transaksi', '_blank');
             });
-        });
-
-        $('select[name="provinsi"]').on('change', function () {
-            var cityId = $(this).val();
-            if (cityId) {
-                $.ajax({
-                    url: 'getkabupaten/' + cityId,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        $('select[name="id_kabupaten"]').empty();
-                        $.each(data, function (key, value) {
-                            $('select[name="id_kabupaten"]').append(
-                                '<option value="' +
-                                key + '">' + value + '</option>');
-                        });
-                    }
-                });
-            } else {
-                $('select[name="id_kabupaten"]').empty();
-            }
         });
 
         $('select[name="kurir"]').on('change', function () {
@@ -462,10 +477,9 @@ Checkout
             var kurir = $('select[name=kurir] option').filter(':selected').text();
             var paket = $('select[name=expedisi] option').filter(':selected').text().slice(0, 3);
 
-
             // alert( kabupaten );
             $("#harga_pengiriman").val(ongkir);
-            $("#harga_total").val(subtotal + ongkir);
+            $("#harga_total").val(subtotal);
             $("#kurir_pengiriman").val(kurir.concat(' ').concat(paket));
 
             $("#ongkir").text(ongkir);
@@ -478,6 +492,103 @@ Checkout
             $("#rangkumankurir").text(kurir.concat(' ').concat(paket));
 
         });
+    });
+
+    $(document).ready(function () {
+        $('select[name="provinsi"]').on('change', function () {
+            var cityId = $(this).val();
+            if (cityId) {
+                $.ajax({
+                    url: 'kabupaten/' + cityId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="id_kabupaten"]').empty();
+                        $('select[name="id_kecamatan"]').empty();
+                        $('select[name="id_desa"]').empty();
+                                                $('#kurir').prop('selectedIndex',0);
+
+                        $('select[name="expedisi"]').empty();
+                        $('select[name="id_kabupaten"]').append(
+                            '<option value="" holder>Pilih Kabupaten/Kota</option>');
+                        $('select[name="id_kecamatan"]').append(
+                            '<option value="" holder>Pilih Kecamatan</option>');
+                        $('select[name="id_desa"]').append(
+                            '<option value="" holder>Pilih Desa</option>');
+                        $.each(data, function (key, value) {
+                            $('select[name="id_kabupaten"]').append(
+                                '<option value="' +
+                                key + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('select[name="id_kabupaten"]').empty();
+            }
+        });
+
+    });
+
+    $(document).ready(function () {
+        $('select[name="id_kabupaten"]').on('change', function () {
+            var cityId = $(this).val();
+            if (cityId) {
+                $.ajax({
+                    url: 'kecamatan/' + cityId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="id_kecamatan"]').empty();
+                        $('select[name="id_desa"]').empty();
+                        $('select[name="expedisi"]').empty();
+                                                $('#kurir').prop('selectedIndex',0);
+
+                        $('select[name="id_kecamatan"]').append(
+                            '<option value="" holder>Pilih Kecamatan</option>'
+                        );
+                        $('select[name="id_desa"]').append(
+                            '<option value="" holder>Pilih Desa</option>')
+
+                        $.each(data, function (key, value) {
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="' +
+                                key + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('select[name="id_kecamatan"]').empty();
+            }
+        });
+
+    });
+
+    $(document).ready(function () {
+        $('select[name="id_kecamatan"]').on('change', function () {
+            var cityId = $(this).val();
+            if (cityId) {
+                $.ajax({
+                    url: 'desa/' + cityId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="id_desa"]').empty();
+                        $('select[name="expedisi"]').empty();
+                        $('#kurir').prop('selectedIndex',0);
+                        $('select[name="id_desa"]').append(
+                            '<option value="" holder>Pilih Desa</option>')
+                        $.each(data, function (key, value) {
+                            $('select[name="id_desa"]').append(
+                                '<option value="' +
+                                key + '">' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('select[name="id_desa"]').empty();
+            }
+        });
+
     });
 
 </script>

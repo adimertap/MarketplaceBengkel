@@ -96,5 +96,11 @@ History Reservasi
 <!--begin::Page Vendors(used by this page)-->
 <script src="user-assets/assets/js/pages/crud/ktdatatable/base/html-table.js?v=7.0.6"></script>
 
+
+@if (session('status'))
+<script>
+    toastr.info("{{ session('status') }}");
+
 </script>
+@endif
 @endpush

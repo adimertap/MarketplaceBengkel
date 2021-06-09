@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
-use App\Provinsi;
+use App\DesaBaru;
+use App\KecamatanBaru;
+use App\KabupatenBaru;
+use App\ProvinsiBaru;
 use App\Kabupaten;
-use App\Cart;
 use App\Carts;
 use App\Detailcarts;
 use App\Transaksi;
@@ -16,7 +17,6 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Exception;
-use Illuminate\Support\Facades\Redirect;
 use Midtrans\Snap;
 use Midtrans\Config;
 use Midtrans\Notification;
@@ -42,12 +42,12 @@ class CheckoutController extends Controller
             'harga_pengiriman'=> $request->harga_pengiriman,
             'harga_total'=> $request->harga_total,
             'code_transaksi'=> $code_transaksi,
-            'transaksi_status'=>  "MENUNGGU",
+            'transaksi_status'=>  "CANCELLED",
             'resi'=> '',
             'nama_penerima'=> $request->nama_penerima,
             'alamat_penerima'=> $request->alamat_penerima,
             'nohp_penerima'=> $request->nohp_penerima,
-            'id_kabupaten'=> $request->id_kabupaten,
+            'id_desa'=> $request->id_desa,
             'kurir_pengiriman'=> $request->kurir_pengiriman,
             'id_bengkel'=> $cart->id_bengkel
 
@@ -84,7 +84,7 @@ class CheckoutController extends Controller
         $midtrans=[
             'transaction_details' =>[
                 'order_id' =>$transaksi->id_transaksi_online,
-                'gross_amount' =>(int) $request->harga_total,
+                'gross_amount' =>(int) $request->harga_total + (int) $request->harga_pengiriman,
             ],
             'customer_details'=>[
                 'first_name'=> Auth::user()->nama_user,
@@ -159,20 +159,20 @@ class CheckoutController extends Controller
 
     public function index($id)
     {
-        $provinsi = Provinsi::all();
-
-        $cart = Carts::with('user', 'Bengkel')->where('id_carts', $id)->first();
+        $cart = Carts::with('user.Desa.Kecamatan.Kabupaten.Provinsi', 'Bengkel')->where('id_carts', $id)->first();
 
         $item = Detailcarts::with(['Sparepart.Galleries_one', 'Sparepart.Harga'])->where('id_carts', $id)
                 ->get();
-        // return $item;
 
-        // $carts = Cart::with(['Sparepart.Galleries','Sparepart.Bengkel', 'user', 'Sparepart.Harga'])
-        //         ->where('id_user', Auth::user()->id_user)
-        //         ->get();
-                        
+        $desa = DesaBaru::where('id_kecamatan', $cart->user->Desa->Kecamatan->id_kecamatan)->get(); //mengambil data kecamatan
+        $kecamatan = KecamatanBaru::where('id_kabupaten', $cart->user->Desa->Kecamatan->Kabupaten->id_kabupaten)->get();
+        $kabupaten = KabupatenBaru::where('id_provinsi', $cart->user->Desa->Kecamatan->Kabupaten->Provinsi->id_provinsi)->get();
+        $provinsi = ProvinsiBaru::get();
         return view('user-views.pages.checkout',[
-            'provinsi' => $provinsi,
+            'provinsi'=> $provinsi,
+            'kabupaten'=>$kabupaten,
+            'kecamatan'=> $kecamatan,
+            'desa'=> $desa,
             'items'=> $item,
             'cart' =>$cart
             ]);
@@ -186,7 +186,7 @@ class CheckoutController extends Controller
 
     public function ongkir (Request $request){
         $id = $request->id_cart;
-        $cart = Carts::with('user', 'Bengkel')->where('id_carts', $id)->first();
+        $cart = Carts::with('user', 'Bengkel.Desa.Kecamatan.Kabupaten')->where('id_carts', $id)->first();
 
         $items = Detailcarts::with(['Sparepart'])
                 ->where('id_carts', $id)
@@ -196,19 +196,37 @@ class CheckoutController extends Controller
         foreach ($items as $item) {
             $weight += ($item->jumlah)*($item->Sparepart->berat_sparepart);
         }
-        $origin = $cart->Bengkel->id_kabupaten;
-        $destination = $request->kabupaten;
+
+        $kabupaten_name = $cart->Bengkel->Desa->Kecamatan->kabupaten->name;
+        if(substr($kabupaten_name, 0, 9) == 'KABUPATEN'){
+            $kabupaten_cut = substr($kabupaten_name,10);
+        }else{
+             $kabupaten_cut = substr($kabupaten_name,6);
+        }
+        $origin = Kabupaten::where('nama_kabupaten', ucwords($kabupaten_cut))->first();
+
+        $tujuan_id = $request->kabupaten;
+        $tujuan_name = KabupatenBaru::where('id_kabupaten', $tujuan_id)->first();
+        if(substr($tujuan_name->name, 0, 9) == 'KABUPATEN'){
+            $tujuan_cut = substr($tujuan_name->name,10);
+        }else{
+             $tujuan_cut = substr($tujuan_name->name,5);
+        }
+        $destination = Kabupaten::where('nama_kabupaten', ucwords($tujuan_cut))->first();
         $courier = $request->kurir;
+
+
 
         $response = Http::asForm()->withHeaders([
             'key'=> '941b51f4786c2ad2cf4e8a43828be7c4'
         ])->post('https://api.rajaongkir.com/starter/cost', [
-            'origin'=> $origin,
-            'destination' => $destination, 
+            'origin'=> $origin->id_kabupaten,
+            'destination' => $destination->id_kabupaten, 
             'weight' => $weight, 
             'courier' => $courier
         ]);
-
+        // return $destination;
+        // $cekongkir =  $response->body();
         $cekongkir =  $response['rajaongkir']['results'][0]['costs'];
         return json_encode($cekongkir);
 
