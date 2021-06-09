@@ -158,7 +158,7 @@ Marketplace Homepage
                                                         <div class="d-flex align-items-center flex-fill mr-5 my-1">
                                                             <div class="d-flex flex-column text-dark-75">
                                                                 <span
-                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">{{ $average }}</span>
+                                                                    class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px">{{ $average }}</span>
                                                             </div>
                                                         </div>
                                                         <!--end: Item-->
@@ -271,7 +271,7 @@ Marketplace Homepage
                                                         <div class="d-flex align-items-center flex-fill mr-5 my-1">
                                                             <div class="d-flex flex-column text-dark-75">
                                                                 <span
-                                                                    class="font-weight-bolder label label-l label-light-success label-inline px-2 py-4 min-w-40px">{{ $average }}</span>
+                                                                    class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px">{{ $average }}</span>
                                                             </div>
                                                         </div>
                                                         <!--end: Item-->

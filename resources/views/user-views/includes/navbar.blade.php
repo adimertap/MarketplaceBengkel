@@ -1,8 +1,8 @@
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile header-mobile-fixed">
         <!--begin::Logo-->
-        <a href="index.html">
-            <img alt="Logo" src="user-assets/assets/media/logos/logo-letter-1.png" class="logo-default max-h-30px" />
+        <a href="{{ route("home") }}">
+            <img alt="Logo" src="image/logo_new.png" class="logo-default max-h-30px" />
         </a>
         <!--end::Logo-->
 
@@ -46,7 +46,7 @@
                         <div class="d-none d-lg-flex align-items-center mr-3">
                             <!--begin::Logo-->
                             <a href="{{ route('home') }}">
-                                <img alt="Logo" src="user-assets/assets/media/logos/logo-letter-1.png"
+                                <img alt="Logo" src="image/logo_new.png"
                                     class="logo-sticky max-h-35px" />
                             </a>
                             <!--end::Logo-->
@@ -189,14 +189,14 @@
                             <!--begin::Quick Actions-->
                             <div class="topbar-item mr-4 lg-col-10">
                                 <a href="{{ route('login') }}" type="button"
-                                    class="btn btn-success btn-block ml-20 w-110px">Masuk</a>
+                                    class="btn btn-primary btn-block ml-20 w-110px">Masuk</a>
                             </div>
                             <!--end::Quick panel-->
 
                             <!--begin::Quick Actions-->
                             <div class="topbar-item">
                                 <a href="{{ route('register') }}" type="button"
-                                    class="btn btn-outline-success w-110px">Daftar</a>
+                                    class="btn btn-outline-primary w-110px">Daftar</a>
                             </div>
                             <!--end::Quick panel-->
                             @endguest

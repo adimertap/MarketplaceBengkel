@@ -6,7 +6,7 @@
 @endpush
 
 @section('name')
-Marketplace Homepage
+Masuk
 @endsection
 
 
@@ -21,12 +21,12 @@ Marketplace Homepage
             <div class="d-flex flex-column-fluid flex-column justify-content-between py-9 px-7 py-lg-13 px-lg-35">
                 <!--begin::Logo-->
                 <a href="#" class="text-center pt-2">
-                    <img src="user-assets/assets/media/logos/logo.png" class="max-h-75px" alt="" />
+                    <img src="image/logo_new.png" class="max-h-200px" alt="" />
                 </a>
                 <!--end::Logo-->
 
                 <!--begin::Aside body-->
-                <div class="d-flex flex-column-fluid flex-column flex-center">
+                <div class="d-flex flex-column-fluid flex-column ">
                     <!--begin::Signin-->
                     <div class="login-form login-signin py-11">
                         <!--begin::Form-->
@@ -37,9 +37,8 @@ Marketplace Homepage
                             <div class="text-center pb-8">
                                 <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">{{ __('Login') }}
                                 </h2>
-                                <span class="text-muted font-weight-bold font-size-h4">Or <a href="{{ route('register') }}"
-                                        class="text-primary font-weight-bolder" id="kt_login_signup">Create An
-                                        Account</a></span>
+                                <span class="text-muted font-weight-bold font-size-h4">Atau <a href="{{ route('register') }}"
+                                        class="text-primary font-weight-bolder" id="kt_login_signup">Buat Akun</a></span>
                             </div>
                             <!--end::Title-->
 
@@ -93,13 +92,13 @@ Marketplace Homepage
                             <div class="text-center pt-2">
 
                                 <button type="submit" id="kt_login_signin_submit"
-                                    class="btn btn-dark font-weight-bolder font-size-h6 px-8 py-4 my-3">
+                                    class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3">
                                     {{ __('Login') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                    lupa Password
                                 </a>
                                 @endif
                             </div>
@@ -117,15 +116,15 @@ Marketplace Homepage
         <!--begin::Aside-->
 
         <!--begin::Content-->
-        <div class="content order-1 order-lg-2 d-flex flex-column w-100 pb-0" style="background-color: #B1DCED;">
+        <div class="content order-1 order-lg-2 d-flex flex-column w-100 pb-0" style="background-color: #66C3FF;">
             <!--begin::Title-->
             <div
-                class="d-flex flex-column justify-content-center text-center pt-lg-40 pt-md-5 pt-sm-5 px-lg-0 pt-5 px-7">
-                <h3 class="display4 font-weight-bolder my-7 text-dark" style="color: #986923;">Amazing Wireframes
+                class="d-flex flex-column justify-content-center text-center pt-md-5 pt-sm-5 px-lg-0 pt-5 px-7">
+                <h3 class="display4 font-weight-bolder my-7 text-dark" style="color: #986923;">Sistem Terintegrasi
                 </h3>
                 <p class="font-weight-bolder font-size-h2-md font-size-lg text-dark opacity-70">
-                    User Experience & Interface Design, Product Strategy<br />
-                    Web Application SaaS Solutions
+                    Memberikan Inovasi Pemberian Informasi Serta Kenyamanan<br />
+                    Payment Gateway 
                 </p>
             </div>
             <!--end::Title-->

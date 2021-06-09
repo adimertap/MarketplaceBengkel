@@ -21,7 +21,7 @@ class User extends Authenticatable
 
     protected $fillable = [
 
-        'nama_user', 'email', 'password', 'role', 'alamat_user','id_kabupaten', 'nohp_user', 
+        'nama_user', 'email', 'password', 'role', 'alamat_user', 'nohp_user', 'id_desa'
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function Kabupaten(){
-        return $this->hasOne(Kabupaten::class, 'id_kabupaten', 'id_kabupaten');
+    public function Desa(){
+        return $this->hasOne(DesaBaru::class, 'id_desa', 'id_desa');
     }
 }

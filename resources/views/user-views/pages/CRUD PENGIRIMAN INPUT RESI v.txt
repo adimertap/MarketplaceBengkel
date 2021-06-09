@@ -8,9 +8,9 @@ pagination                          v
 cart per bengkel                    v
 
 filter                              susahh
-komplain                            diskusi hasilnya chat 2 pihak saja
+komplain                            v
 ganti password                      minta bantuan angga kalo bisa diy
-lupa password                      minta bantuan angga kalo bisa diy
+lupa password                       v
 Call Back Midtrans                  v
 chat                                langsung ke WA
 saldo                               v
@@ -18,5 +18,5 @@ saldo                               v
 
 benerin tampilan untuk tampilan lg ke md            v
 benerin dari admin setelah resi diberikan           v
-history reservasi                                   
+history reservasi                                   v
 admin global transaksi                              v

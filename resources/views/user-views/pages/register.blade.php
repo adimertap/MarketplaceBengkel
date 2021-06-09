@@ -2,7 +2,7 @@
 
 
 @section('name')
-Marketplace Homepage
+Daftar
 @endsection
 
 @push('prepend-style')
@@ -102,7 +102,7 @@ Marketplace Homepage
                                 <div class="text-muted font-weight-bold font-size-h4">
                                     Sudah punya Akun?
                                     <a href="custom/pages/login/login-4/signin.html"
-                                        class="text-primary font-weight-bolder">Sign In</a>
+                                        class="text-primary font-weight-bolder">masuk</a>
                                 </div>
                             </div>
                             <!--begin::Title-->
@@ -153,7 +153,7 @@ Marketplace Homepage
                                 <input type="text"
                                     class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
                                     name="kodepos" placeholder="kode pos" />
-                                <span class="form-text text-muted">masukkan kode pos</span>
+                                <span class="form-text text-muted">Masukkan kode pos</span>
                             </div>
                             <!--end::Input-->
                             <!--begin::Row-->
@@ -220,7 +220,7 @@ Marketplace Homepage
                                                     transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) " />
                                             </g>
                                         </svg>
-                                        <!--end::Svg Icon--></span> Previous
+                                        <!--end::Svg Icon--></span> Semelumnya
                                 </button>
                             </div>
                             <div>
@@ -228,7 +228,7 @@ Marketplace Homepage
                                     class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3"
                                     data-wizard-type="action-submit" type="submit"
                                     id="kt_login_signup_form_submit_button">
-                                    Submit
+                                    Kirim
                                     <span class="svg-icon svg-icon-md ml-2">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -250,7 +250,7 @@ Marketplace Homepage
                                 <button type="button"
                                     class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3"
                                     data-wizard-type="action-next">
-                                    Next
+                                    Berikutnya
                                     <span class="svg-icon svg-icon-md ml-2">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -287,9 +287,9 @@ Marketplace Homepage
                 <!--begin::Aside title-->
                 <h3
                     class="pt-lg-40 pl-lg-20 pb-lg-0 pl-10 py-20 m-0 d-flex justify-content-lg-start font-weight-boldest display5 display1-lg text-white">
-                    We Got<br />
-                    A Surprise<br />
-                    For You
+                   Permudah Hidupmu<br />
+                    Dapatkan Keperluanmua<br />
+                    Dengan Mudah
                 </h3>
                 <!--end::Aside title-->
             </div>

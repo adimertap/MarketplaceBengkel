@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get("/", "HomeController@index") ->name('home');
+Route::get("/kabupaten/{id}", "HomeController@kabupaten_baru");
+Route::get("/kecamatan/{id}", "HomeController@kecamatan_baru");
+Route::get("/desa/{id}", "HomeController@desa_baru");
 
 Route::get("/bengkel/{id}", "BengkelController@index") ->name('bengkel');
 
@@ -58,7 +61,10 @@ Route::prefix('admin')
         Route::resource('keuangan', 'KeuanganController');
     });
 
-Route::get("/getcity/ajax/{id}", "Auth\RegisterController@ajax");
+Route::get("/getkabupaten/{id}", "Auth\RegisterController@kabupaten_baru");
+Route::get("/getkecamatan/{id}", "Auth\RegisterController@kecamatan_baru");
+Route::get("/getdesa/{id}", "Auth\RegisterController@desa_baru");
+
 
 Route::group(['middleware' => ['auth']], function(){
 

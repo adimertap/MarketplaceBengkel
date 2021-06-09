@@ -25,4 +25,4 @@
 
 <!--begin::Layout Themes(used by all pages)-->
 <!--end::Layout Themes-->
-<link rel="shortcut icon" href="user-assets/assets/media/logos/favicon.ico" />
+<link rel="shortcut icon" href="image/logo_new.png" />

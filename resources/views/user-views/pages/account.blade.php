@@ -60,8 +60,11 @@ Account
                                 <div class="d-flex align-items-center justify-content-between">
                                     <span class="font-weight-bold mr-2">Alamat:</span>
                                     <span class="text-muted">{{ $user->alamat_user }},
-                                        {{ $user->Kabupaten->nama_kabupaten }},
-                                        {{ $user->Kabupaten->Provinsi->nama_provinsi }}</span>
+                                        {{ $user->Desa->name }},
+                                        {{ $user->Desa->Kecamatan->name }},
+                                        {{ $user->Desa->Kecamatan->Kabupaten->name }},
+                                        {{ $user->Desa->Kecamatan->Kabupaten->Provinsi->name }}
+                                    </span>
                                 </div>
                             </div>
                             <!--end::Contact-->
@@ -80,28 +83,28 @@ Account
 
                         <div class="card-header py-3">
                             <div class="card-title align-items-start flex-column">
-                                <h3 class="card-label font-weight-bolder text-dark">Personal Information
+                                <h3 class="card-label font-weight-bolder text-dark">Informasi Akun
                                 </h3>
-                                <span class="text-muted font-weight-bold font-size-sm mt-1">Update your
-                                    personal informaiton</span>
+                                <span class="text-muted font-weight-bold font-size-sm mt-1">Ubah Informasi</span>
                             </div>
                         </div>
                         <!--end::Header-->
 
                         <!--begin::Form-->
-                        <form class="form" id="kt_form" action="{{ route('account-update') }}" method="post" enctype="multipart/form-data">
+                        <form class="form" id="kt_form" action="{{ route('account-update') }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <!--begin::Body-->
                             <div class="card-body">
                                 <div class="row">
                                     <label class="col-xl-3"></label>
                                     <div class="col-lg-9 col-xl-7">
-                                        <h5 class="font-weight-bold mb-6">Customer Info</h5>
+                                        <h5 class="font-weight-bold mb-6">Informasi User</h5>
                                     </div>
                                 </div>
-    
+
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label text-right">Avatar</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label text-right">Foto</label>
                                     <div class="col-lg-9 col-xl-7">
                                         <div class="image-input image-input-outline" id="kt_profile_avatar"
                                             style="background-image: url(user-assets/assets/media/users/blank.png)">
@@ -130,59 +133,58 @@ Account
                                                 <i class="ki ki-bold-close icon-xs text-muted"></i>
                                             </span>
                                         </div>
-                                        <span class="form-text text-muted">Allowed file types: png, jpg,
+                                        <span class="form-text text-muted">File yang didukung: png, jpg,
                                             jpeg.</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Nama</label>
                                     <div class="col-lg-9 col-xl-7">
-                                        <input class="form-control form-control-lg form-control-solid" type="text" name="nama_user"
-                                            value="{{ $user->nama_user }}" />
+                                        <input class="form-control form-control-lg form-control-solid" type="text"
+                                            name="nama_user" value="{{ $user->nama_user }}" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label text-right">Email
-                                        Address</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label text-right">E-mail</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <div class="input-group input-group-lg input-group-solid">
                                             <div class="input-group-prepend"><span class="input-group-text"><i
                                                         class="la la-at"></i></span></div>
-                                            <input type="text" class="form-control form-control-lg form-control-solid" name="email"
-                                                value="{{ $user->email }}" placeholder="Email" />
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                name="email" value="{{ $user->email }}" placeholder="Email" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label text-right">Contact
-                                        Phone</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label text-right">No HP</label>
                                     <div class="col-lg-9 col-xl-7">
                                         <div class="input-group input-group-lg input-group-solid">
                                             <div class="input-group-prepend"><span class="input-group-text"><i
                                                         class="la la-phone"></i></span></div>
-                                            <input type="text" class="form-control form-control-lg form-control-solid" name="nohp"
-                                                value="{{ $user->nohp_user }}" placeholder="Phone" />
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                name="nohp" value="{{ $user->nohp_user }}" placeholder="Phone" />
                                         </div>
-                                        <span class="form-text text-muted">We'll never share your phone
-                                            with anyone else.</span>
+                                        {{-- <span class="form-text text-muted">We'll never share your phone
+                                            with anyone else.</span> --}}
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Alamat</label>
                                     <div class="col-lg-9 col-xl-7">
-                                        <input class="form-control form-control-lg form-control-solid" type="text" name="alamat_user"
-                                            value="{{ $user->alamat_user }}" />
-                                        <span class="form-text text-muted">If you want your invoices
-                                            addressed to a company. Leave blank to use your full
-                                            name.</span>
+                                        <input class="form-control form-control-lg form-control-solid" type="text"
+                                            name="alamat_user" value="{{ $user->alamat_user }}" />
+                                        <span class="form-text text-muted">Alamat ini akan digunakan sebagai pilihan
+                                            tempat pengiriman</span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Provinsi</label>
                                     <div class="col-lg-9 col-xl-7">
                                         <select class="form-control form-control-lg form-control-solid" name="provinsi">
-                                            @foreach ($provinsi as $item) 
-                                                <option value="{{ $item->id_provinsi }}" {{ ( $user->Kabupaten->Provinsi->id_provinsi == $item->id_provinsi) ? 'selected' : '' }}>{{ $item->nama_provinsi }}</option>
+                                            @foreach ($provinsi as $item)
+                                            <option value="{{ $item->id_provinsi }}"
+                                                {{ ( $user->Desa->Kecamatan->Kabupaten->Provinsi->id_provinsi == $item->id_provinsi) ? 'selected' : '' }}>
+                                                {{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -190,22 +192,51 @@ Account
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Kabupaten</label>
                                     <div class="col-lg-9 col-xl-7">
-                                        <select class="form-control form-control-lg form-control-solid" name="id_kabupaten">
-                                            @foreach ($kabupaten as $item) 
-                                                <option value="{{ $item->id_kabupaten }}"  {{ ( $user->Kabupaten->id_kabupaten == $item->id_kabupaten) ? 'selected' : '' }}>{{ $item->nama_kabupaten }}</option>
+                                        <select class="form-control form-control-lg form-control-solid"
+                                            name="id_kabupaten">
+                                            @foreach ($kabupaten as $item)
+                                            <option value="{{ $item->id_kabupaten }}"
+                                                {{ ( $user->Desa->Kecamatan->Kabupaten->id_kabupaten == $item->id_kabupaten) ? 'selected' : '' }}>
+                                                {{ $item->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                    <div class="d-flex justify-content-between border-top mt-5 pt-10">
-                                        <div>
-                                            <button type="submit"
-                                                class="btn btn-success font-weight-bold text-uppercase px-9 py-4"
-                                                data-wizard-type="action-submit">
-                                                Submit
-                                            </button>
-                                        </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label text-right">Kecamatan</label>
+                                    <div class="col-lg-9 col-xl-7">
+                                        <select class="form-control form-control-lg form-control-solid"
+                                            name="id_kecamatan">
+                                            @foreach ($kecamatan as $item)
+                                            <option value="{{ $item->id_kecamatan }}"
+                                                {{ ( $user->Desa->Kecamatan->id_kecamatan == $item->id_kecamatan) ? 'selected' : '' }}>
+                                                {{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label text-right">Desa</label>
+                                    <div class="col-lg-9 col-xl-7">
+                                        <select class="form-control form-control-lg form-control-solid"
+                                            name="id_desa">
+                                            @foreach ($desa as $item)
+                                            <option value="{{ $item->id_desa }}"
+                                                {{ ( $user->Desa->id_desa == $item->id_desa) ? 'selected' : '' }}>
+                                                {{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between border-top mt-5 pt-10">
+                                    <div>
+                                        <button type="submit"
+                                            class="btn btn-primary font-weight-bold text-uppercase px-9 py-4"
+                                            data-wizard-type="action-submit">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
 
                             <!--end::Body-->
@@ -231,29 +262,100 @@ Account
 <script src="user-assets/assets/js/pages/custom/profile/profile.js?v=7.0.6"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('select[name="provinsi"]').on('change', function () {
-            var cityId = $(this).val();
-            if (cityId) {
-                $.ajax({
-                    url: 'getkabupaten/' + cityId,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        $('select[name="id_kabupaten"]').empty();
-                        $.each(data, function (key, value) {
+   $(document).ready(function () {
+            $('select[name="provinsi"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'kabupaten/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_kabupaten"]').empty();
+                            $('select[name="id_kecamatan"]').empty();
+                            $('select[name="id_desa"]').empty();
                             $('select[name="id_kabupaten"]').append(
-                                '<option value="' +
-                                key + '">' + value + '</option>');
-                        });
-                    }
-                });
-            } else {
-                $('select[name="id_kabupaten"]').empty();
-            }
+                                '<option value="" holder>Pilih Kabupaten/Kota</option>');
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="" holder>Pilih Kecamatan</option>');
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>');
+                            $.each(data, function (key, value) {
+                                $('select[name="id_kabupaten"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_kabupaten"]').empty();
+                }
+            });
+
         });
-    });
+
+        $(document).ready(function () {
+            $('select[name="id_kabupaten"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'kecamatan/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_kecamatan"]').empty();
+                            $('select[name="id_desa"]').empty();
+
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="" holder>Pilih Kecamatan</option>'
+                            );
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>')
+
+                            $.each(data, function (key, value) {
+                                $('select[name="id_kecamatan"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_kecamatan"]').empty();
+                }
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('select[name="id_kecamatan"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'desa/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_desa"]').empty();
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>')
+                            $.each(data, function (key, value) {
+                                $('select[name="id_desa"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_desa"]').empty();
+                }
+            });
+
+        });
+</script>
+@if (session('status'))
+<script>
+    toastr.info("{{ session('status') }}");
 
 </script>
-<!--end::Page Scripts-->
+@endif<!--end::Page Scripts-->
 @endpush

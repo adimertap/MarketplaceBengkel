@@ -17,25 +17,25 @@
                 theme: {
                     base: {
                         white: "#ffffff",
-                        primary: "#6993FF",
-                        secondary: "#E5EAEE",
+                        primary: "#f9f7f7",
+                        secondary: "#dbe2ef",
                         success: "#1BC5BD",
                         info: "#8950FC",
                         warning: "#FFA800",
                         danger: "#F64E60",
-                        light: "#F3F6F9",
-                        dark: "#212121",
+                        light: "#3f72af",
+                        dark: "#112d4e",
                     },
                     light: {
                         white: "#ffffff",
-                        primary: "#E1E9FF",
-                        secondary: "#ECF0F3",
-                        success: "#C9F7F5",
-                        info: "#EEE5FF",
-                        warning: "#FFF4DE",
-                        danger: "#FFE2E5",
-                        light: "#F3F6F9",
-                        dark: "#D6D6E0",
+                        primary: "#f9f7f7",
+                        secondary: "#dbe2ef",
+                        success: "#1BC5BD",
+                        info: "#8950FC",
+                        warning: "#FFA800",
+                        danger: "#F64E60",
+                        light: "#3f72af",
+                        dark: "#112d4e",
                     },
                     inverse: {
                         white: "#ffffff",
@@ -74,4 +74,29 @@
     <script src="user-assets/assets/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
     <script src="user-assets/assets/js/scripts.bundle.js?v=7.0.6"></script>
     <!--end::Global Theme Bundle-->
+
+
+        <!--Toaster-->
+
+    <script src="user-assets/assets/js/pages/features/miscellaneous/toastr.js?v=7.0.6"></script>
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "debug": true,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "4000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+</script>
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Category;
+
 use App\Sparepart;
 use App\DetailTransaksi;
 use Illuminate\Support\Facades\DB;
+use App\KecamatanBaru;
+use App\KabupatenBaru;
+use App\DesaBaru;
 
 
 class HomeController extends Controller
@@ -43,5 +45,22 @@ class HomeController extends Controller
             'terlaris'=> $terlaris
         ]);
 
+    }
+      public function kabupaten_baru($id)
+    {
+        $kabupaten = KabupatenBaru::where('id_provinsi', '=', $id)->pluck('name', 'id_kabupaten');
+        return json_encode($kabupaten);
+    }
+
+    public function kecamatan_baru($id)
+    {
+        $kecamatan = KecamatanBaru::where('id_kabupaten', '=', $id)->pluck('name', 'id_kecamatan');
+        return json_encode($kecamatan);
+    }
+
+    public function desa_baru($id)
+    {
+        $desa = DesaBaru::where('id_kecamatan', '=', $id)->pluck('name', 'id_desa');
+        return json_encode($desa);
     }
 }

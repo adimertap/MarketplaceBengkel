@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
-use App\Provinsi;
-use App\Kabupaten;
+use App\KabupatenBaru;
+use App\KecamatanBaru;
+use App\DesaBaru;
+use App\ProvinsiBaru;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,16 +52,29 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $provinsi = Provinsi::all();
+        $provinsi = ProvinsiBaru::all();
         return view('auth.register',
         [
             'provinsi' => $provinsi
         ]);
     }
 
-    public function ajax ($id){
-        $kabupaten = Kabupaten::where('id_provinsi', '=', $id)->pluck('nama_kabupaten', 'id_kabupaten');
+    public function kabupaten_baru($id)
+    {
+        $kabupaten = KabupatenBaru::where('id_provinsi', '=', $id)->pluck('name', 'id_kabupaten');
         return json_encode($kabupaten);
+    }
+
+    public function kecamatan_baru($id)
+    {
+        $kecamatan = KecamatanBaru::where('id_kabupaten', '=', $id)->pluck('name', 'id_kecamatan');
+        return json_encode($kecamatan);
+    }
+
+    public function desa_baru($id)
+    {
+        $desa = DesaBaru::where('id_kecamatan', '=', $id)->pluck('name', 'id_desa');
+        return json_encode($desa);
     }
 
 
@@ -71,7 +86,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        // dd($data);
+        
         return Validator::make($data, [
             'nama_user' => ['required', 'string', 'max:255'],
             'nohp_user' => ['required', 'string', 'max:20'],
@@ -94,7 +109,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'nohp_user' => $data['nohp_user'],
             'alamat_user' => isset($data['alamat_user']) ? $data['alamat_user'] : "",
-            'id_kabupaten' => isset($data['id_kabupaten']) ? $data['id_kabupaten'] : NULL,            
+            'id_kabupaten' => isset($data['id_kabupaten']) ? $data['id_kabupaten'] : NULL,  
+            'id_desa' => isset($data['id_desa']) ? $data['id_desa'] : NULL,            
+          
         ]);
     }
 }

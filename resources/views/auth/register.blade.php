@@ -1,7 +1,7 @@
 @extends('user-views.layouts.app-withoutheader')
 
 @section('name')
-REgister
+Daftar
 @endsection
 
 @push('prepend-style')
@@ -102,8 +102,7 @@ REgister
                                 </h3>
                                 <div class="text-muted font-weight-bold font-size-h4">
                                     Sudah punya Akun?
-                                    <a href="custom/pages/login/login-4/signin.html"
-                                        class="text-primary font-weight-bolder">Sign In</a>
+                                    <a href="{{ route('login') }}" class="text-primary font-weight-bolder">Masuk</a>
                                 </div>
                             </div>
                             <!--begin::Title-->
@@ -113,12 +112,8 @@ REgister
                                 <label class="font-size-h6 font-weight-bolder text-dark">Nama Lengkap</label>
                                 <input type="text"
                                     class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6  @error('nama_user') is-invalid @enderror"
-                                    name="nama_user" 
-                                    placeholder="Nama Lengkap" 
-                                    value="{{old('nama_user')}}" 
-                                    required
-                                    autocomplete="nama_user" 
-                                    autofocus />
+                                    name="nama_user" placeholder="Nama Lengkap" value="{{old('nama_user')}}" required
+                                    autocomplete="nama_user" autofocus />
                                 @error('nama_user')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -132,9 +127,7 @@ REgister
                                 <label class="font-size-h6 font-weight-bolder text-dark">E-mail</label>
                                 <input type="text"
                                     class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6 @error('email') is-invalid @enderror"
-                                    name="email" 
-                                    placeholder="E-mail" 
-                                    value="{{ old('email') }}" required
+                                    name="email" placeholder="E-mail" value="{{ old('email') }}" required
                                     autocomplete="email" />
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -169,7 +162,7 @@ REgister
                                 <input type="text"
                                     class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6 @error('alamat_user') is-invalid @enderror"
                                     name="alamat_user" placeholder="Alamat Lengkap" value="{{ old('alamat_user') }}"
-                                    autocomplete="alamat_user"  />
+                                    autocomplete="alamat_user" />
                                 <span class="form-text text-muted">Masukkan alamat lengkap</span>
                                 @error('alamat_user')
                                 <span class="invalid-feedback" role="alert">
@@ -178,7 +171,7 @@ REgister
                                 @enderror
                             </div>
                             <!--end::Input-->
-                            
+
                             <!--begin::Row-->
                             <div class="row">
                                 <div class="col-xl-6">
@@ -189,14 +182,14 @@ REgister
                                             class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6 @error('provinsi') is-invalid @enderror">
                                             <option value="">Select</option>
                                             @foreach ($provinsi as $item)
-                                            <option value="{{ $item->id_provinsi }}">{{ $item->nama_provinsi }}</option>
+                                            <option value="{{ $item->id_provinsi }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
-                                         @error('provinsi')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                        @error('provinsi')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                     <!--end::Input-->
                                 </div>
@@ -208,11 +201,45 @@ REgister
                                             class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6 @error('id_kabupaten') is-invalid @enderror">
                                             <option value="">Select</option>
                                         </select>
-                                         @error('id_kabupaten')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                        @error('id_kabupaten')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <!--end::Input-->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <!--begin::Select-->
+                                    <div class="form-group">
+                                        <label class="font-size-h6 font-weight-bolder text-dark">Kecamatan</label>
+                                        <select name="id_kecamatan"
+                                            class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6 @error('provinsi') is-invalid @enderror">
+                                            <option value="">Pilih Kecamatan/ Kota</option>
+                                        </select>
+                                        @error('id_kecamatan')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <!--end::Input-->
+                                </div>
+                                <div class="col-xl-6">
+                                    <!--begin::Select-->
+                                    <div class="form-group">
+                                        <label class="font-size-h6 font-weight-bolder text-dark">Desa</label>
+                                        <select name="id_desa"
+                                            class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6 @error('id_desa') is-invalid @enderror">
+                                            <option value="">Select</option>
+                                        </select>
+                                        @error('id_desa')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                     <!--end::Input-->
                                 </div>
@@ -223,7 +250,7 @@ REgister
                                 <label class="font-size-h6 font-weight-bolder text-dark">Password</label>
                                 <input type="password"
                                     class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6 @error('password') is-invalid @enderror"
-                                    name="password" placeholder="Password" required autocomplete="new-password"/>
+                                    name="password" placeholder="Password" required autocomplete="new-password" />
                                 <span class="form-text text-muted">masukkan password</span>
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -232,12 +259,13 @@ REgister
                                 @enderror
                             </div>
 
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">Password Konfirmasi</label>
-                                
+
                                 <input type="password"
                                     class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
-                                    placeholder="Password" name="password_confirmation" required autocomplete="new-password"/>
+                                    placeholder="Password" name="password_confirmation" required
+                                    autocomplete="new-password" />
                                 <span class="form-text text-muted">masukkan password</span>
                             </div>
                         </div>
@@ -267,7 +295,7 @@ REgister
                                                     transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) " />
                                             </g>
                                         </svg>
-                                        <!--end::Svg Icon--></span> Previous
+                                        <!--end::Svg Icon--></span> Sebelumnya
                                 </button>
                             </div>
                             <div>
@@ -275,7 +303,7 @@ REgister
                                     class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3"
                                     data-wizard-type="action-submit" type="submit"
                                     id="kt_login_signup_form_submit_button">
-                                    Submit
+                                    Kirim
                                     <span class="svg-icon svg-icon-md ml-2">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -297,7 +325,7 @@ REgister
                                 <button type="button"
                                     class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3"
                                     data-wizard-type="action-next">
-                                    Next
+                                    Selanjutnya
                                     <span class="svg-icon svg-icon-md ml-2">
                                         <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg--><svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -330,13 +358,13 @@ REgister
         <!--begin::Aside-->
         <div class="login-aside order-1 order-lg-2 bgi-no-repeat bgi-position-x-right">
             <div class="login-conteiner bgi-no-repeat bgi-position-x-right bgi-position-y-bottom"
-                style="background-image: url(assets/media/svg/illustrations/login-visual-4.svg);">
+                style="background-image: url(image/register.jpg);">
                 <!--begin::Aside title-->
-                <h3
+                <h3 style="text-shadow: 2px 2px 4px #000000;"
                     class="pt-lg-40 pl-lg-20 pb-lg-0 pl-10 py-20 m-0 d-flex justify-content-lg-start font-weight-boldest display5 display1-lg text-white">
-                    We Got<br />
-                    A Surprise<br />
-                    For You
+                    Dapatkan<br />
+                    Barang<br />
+                    Dengan Mudah
                 </h3>
                 <!--end::Aside title-->
             </div>
@@ -345,88 +373,6 @@ REgister
     </div>
     <!--end::Login-->
 </div>
-
-{{-- <div class="container hide">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email"
-                                class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="new-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control"
-                                    name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 @endsection
 
 
@@ -434,28 +380,95 @@ REgister
 <script src="user-assets/assets/js/pages/custom/login/login-4.js?v=7.0.6"></script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('select[name="provinsi"]').on('change', function () {
-            var cityId = $(this).val();
-            if (cityId) {
-                $.ajax({
-                    url: 'getcity/ajax/' + cityId,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        $('select[name="id_kabupaten"]').empty();
-                        $.each(data, function (key, value) {
+   $(document).ready(function () {
+            $('select[name="provinsi"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getkabupaten/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_kabupaten"]').empty();
+                            $('select[name="id_kecamatan"]').empty();
+                            $('select[name="id_desa"]').empty();
                             $('select[name="id_kabupaten"]').append(
-                                '<option value="' +
-                                key + '">' + value + '</option>');
-                        });
-                    }
-                });
-            } else {
-                $('select[name="id_kabupaten"]').empty();
-            }
+                                '<option value="" holder>Pilih Kabupaten/Kota</option>');
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="" holder>Pilih Kecamatan</option>');
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>');
+                            $.each(data, function (key, value) {
+                                $('select[name="id_kabupaten"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_kabupaten"]').empty();
+                }
+            });
+
         });
-    });
+
+        $(document).ready(function () {
+            $('select[name="id_kabupaten"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getkecamatan/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_kecamatan"]').empty();
+                            $('select[name="id_desa"]').empty();
+
+                            $('select[name="id_kecamatan"]').append(
+                                '<option value="" holder>Pilih Kecamatan</option>'
+                            );
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>')
+
+                            $.each(data, function (key, value) {
+                                $('select[name="id_kecamatan"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_kecamatan"]').empty();
+                }
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('select[name="id_kecamatan"]').on('change', function () {
+                var cityId = $(this).val();
+                if (cityId) {
+                    $.ajax({
+                        url: 'getdesa/' + cityId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="id_desa"]').empty();
+                            $('select[name="id_desa"]').append(
+                                '<option value="" holder>Pilih Desa</option>')
+                            $.each(data, function (key, value) {
+                                $('select[name="id_desa"]').append(
+                                    '<option value="' +
+                                    key + '">' + value + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('select[name="id_desa"]').empty();
+                }
+            });
+
+        });
 
 </script>
 @endpush
