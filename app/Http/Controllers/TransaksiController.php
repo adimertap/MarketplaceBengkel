@@ -36,6 +36,7 @@ class TransaksiController extends Controller
         foreach($request->review as $key=>$review){
             $trx = DetailTransaksi::findOrFail($request->id_detail_transaksi[$key]);
             $trx->review = $review;
+            $trx->status = 'DITERIMA';
             $trx->rating = $request->rating[$key];
             $trx->save();
         }

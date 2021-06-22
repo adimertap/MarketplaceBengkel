@@ -136,7 +136,7 @@ Marketplace Homepage
                                                 $count = 1;
                                                 @endphp
 
-                                                @foreach ($item->Detailtransaksi as $star)
+                                                @foreach ($item->Rating as $star)
                                                 @php
                                                 
                                                 if($star->rating){
@@ -159,7 +159,7 @@ Marketplace Homepage
                                                         <div class="d-flex align-items-center flex-fill mr-5 my-1">
                                                             <div class="d-flex flex-column text-dark-75">
                                                                 <span
-                                                                    class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px">{{ $average }}</span>
+                                                                    class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px">{{ round($average, 1) }}</span>
                                                             </div>
                                                         </div>
                                                         <!--end: Item-->
@@ -212,7 +212,7 @@ Marketplace Homepage
                                     $count = 1;
                                     @endphp
 
-                                    @foreach ($item->Sparepart->Detailtransaksi as $star)
+                                    @foreach ($item->Sparepart->Rating as $star)
                                     @php
                                    
                                     if($star->rating){
@@ -274,7 +274,7 @@ Marketplace Homepage
                                                         <div class="d-flex align-items-center flex-fill mr-5 my-1">
                                                             <div class="d-flex flex-column text-dark-75">
                                                                 <span
-                                                                    class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px">{{ $average }}</span>
+                                                                    class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px">{{ round($average, 1) }}</span>
                                                             </div>
                                                         </div>
                                                         <!--end: Item-->

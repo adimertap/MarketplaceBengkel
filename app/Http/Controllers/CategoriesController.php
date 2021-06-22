@@ -7,13 +7,10 @@ use App\Category;
 use App\Sparepart;
 use Illuminate\Support\Facades\DB;
 use App\DetailTransaksi;
-use App\SparepartHarga;
 
 class CategoriesController extends Controller
 
 {
-   
-
     public function all(Request $request)
     {
         $search= request()->query("search");
@@ -83,8 +80,9 @@ class CategoriesController extends Controller
     {
 
         $categories = Category::where('slug', $slug)->firstOrFail();
-        $sparepart = Sparepart::with('Galleries', 'Bengkel', 'Harga')->where('id_jenis_sparepart', $categories->id_jenis_sparepart)->paginate(6);
-                return view('user-views.pages.categories', [
+        $sparepart = Sparepart::with('Galleries_one', 'Bengkel', 'Harga', 'Rating')->where('id_jenis_sparepart', $categories->id_jenis_sparepart)->paginate(6);
+        // return $sparepart;
+        return view('user-views.pages.categories', [
             'sparepart' => $sparepart,
             'categories' =>$categories->jenis_sparepart
         ]);
@@ -93,7 +91,7 @@ class CategoriesController extends Controller
     public function terbaru(Request $request)
     {
         $categories = 'Terbaru';
-        $sparepart = Sparepart::with('Galleries', 'Bengkel', 'Harga')->orderBy('id_sparepart', 'DESC')->paginate(6);
+        $sparepart = Sparepart::with('Galleries_one', 'Bengkel', 'Harga', 'Rating')->orderBy('id_sparepart', 'DESC')->paginate(6);
         
         // return $sparepart;
         return view('user-views.pages.categories', [
@@ -105,7 +103,7 @@ class CategoriesController extends Controller
     public function terlaris(Request $request)
     {
         $categories = 'Terlaris';
-        $sparepart = DetailTransaksi::with('Sparepart.Galleries', 'Sparepart.Bengkel', 'Sparepart.Harga')->select('*',DB::raw('sum(jumlah_produk) as penjualan'))
+        $sparepart = DetailTransaksi::with('Sparepart.Galleries_one', 'Sparepart.Bengkel', 'Sparepart.Harga', 'Sparepart.Rating')->select('*',DB::raw("sum(jumlah_produk) as penjualan"))->where('rating','>', '0')
                     ->groupBy('id_sparepart')->orderBy('penjualan', 'DESC')
                     ->paginate(10);
 

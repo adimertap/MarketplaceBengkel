@@ -426,12 +426,6 @@ Checkout
 <script src="user-assets/assets/js/pages/custom/wizard/wizard-3.js?v=7.0.6"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $(function () {
-            $("#kt_form").on("submit", function () {
-                window.open('/transaksi', '_blank');
-            });
-        });
-
         $('select[name="kurir"]').on('change', function () {
             var thedestination = $('select[name=id_kabupaten] option').filter(':selected').val();
             var thecourier = $('select[name=kurir] option').filter(':selected').val();

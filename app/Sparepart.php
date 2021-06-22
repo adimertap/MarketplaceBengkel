@@ -38,10 +38,11 @@ class Sparepart extends Model
     }
     public function Detailtransaksi(){
         return $this->hasMany(DetailTransaksi::class, 'id_sparepart');
+
     }
     
     public function Rating(){
-        return $this->hasMany(DetailTransaksi::class, 'id_sparepart');
+        return $this->hasMany(DetailTransaksi::class, 'id_sparepart')->where('status', 'DITERIMA');
     }
 
    
