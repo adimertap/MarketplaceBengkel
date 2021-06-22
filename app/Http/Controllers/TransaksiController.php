@@ -30,6 +30,10 @@ class TransaksiController extends Controller
             'transaksi' => $transaksi
         ]);
     }
+     public function emulator()
+    {
+        return view('user-views.pages.emulator');
+    }
     public function review(Request $request)
     {
         // return $request;

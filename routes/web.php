@@ -95,6 +95,9 @@ Route::group(['middleware' => ['auth']], function(){
 
 Route::get("/cekresi", "TransaksiController@cekresi")->name('cekresi');
 
+Route::get("/bayar", "TransaksiController@emulator")->name('emulator');
+
+
 // Route::get('/debug-sentry', function () {
 //     throw new Exception('My first Sentry error!');
 // });
