@@ -52,7 +52,7 @@ Route::prefix('admin')
     ->namespace('AdminMarketplace')
     ->middleware(['auth', 'admin'])
     ->group(function(){
-        Route::get('/', "DashboardController@index");
+        Route::get('/', "DashboardController@index")->name('dashboard-admin');
         Route::resource('category', 'CategoryController');
         Route::resource('user', 'UserController');
         Route::resource('sparepart', 'SparepartController');

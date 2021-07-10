@@ -71,7 +71,7 @@ Product Detail
                                                         <a href="{{ route('detail', $item->Sparepart->slug) }}"
                                                             class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $item ->Sparepart->nama_sparepart}}</a>
                                                         <div class="font-weight-bold text-muted">Rp.
-                                                            {{ number_format($item->Sparepart->Harga['harga_jual'] )}}
+                                                            {{ number_format($item->Sparepart->harga_market )}}
                                                         </div>
                                                     </div>
 
@@ -88,7 +88,7 @@ Product Detail
                                                         <input type="hidden" class="qty-id"
                                                             value="{{ $item->id_detail_carts }}">
                                                         <input type="hidden" class="qty-harga"
-                                                            value="{{ $item->Sparepart->Harga['harga_jual'] }}">
+                                                            value="{{ $item->Sparepart->harga_market }}">
 
                                                         <div class="btn btn-xs btn-light-success btn-icon increment-btn increment-btn mt-2 ml-2"
                                                             style="cursor: pointer">
@@ -101,7 +101,7 @@ Product Detail
                                                         Rp.
                                                     </span>
                                                     <span id="totali{{ $item->id_detail_carts }}">
-                                                        {{ ($item->Sparepart->Harga['harga_jual'] ) * ($item->jumlah)}}
+                                                        {{ ($item->Sparepart->harga_market ) * ($item->jumlah)}}
 
                                                     </span>
                                                 </td>
@@ -118,7 +118,7 @@ Product Detail
 
                                         </tr>
                                         @php
-                                        $totalharga += ($item->Sparepart->Harga['harga_jual'] ) *
+                                        $totalharga += ($item->Sparepart->harga_market ) *
                                         ($item->jumlah)
                                         @endphp
                                         @endforeach

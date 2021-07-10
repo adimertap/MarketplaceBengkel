@@ -13,7 +13,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        $carts = Carts::with(['Detailcarts.Sparepart.Galleries_one', 'Detailcarts.Sparepart.Harga', 'Bengkel'])
+        $carts = Carts::with(['Detailcarts.Sparepart.Galleries_one', 'Bengkel'])
                 ->where('id_user', Auth::user()->id_user)
                 ->get();
 

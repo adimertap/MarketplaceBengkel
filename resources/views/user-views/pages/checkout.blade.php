@@ -183,6 +183,7 @@ Checkout
                                                 <div class="form-group">
                                                     <label for="exampleSelect1">Paket Pengiriman</label>
                                                     <select class="form-control" id="exampleSelect1" name="expedisi">
+                                                        <option>Pilih Kurir</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -263,8 +264,9 @@ Checkout
                                                                         <td class="border-top-0 pl-0 py-4">
                                                                             {{ $item->Sparepart->nama_sparepart }}</td>
                                                                         <td class="border-top-0 text-right py-4">Rp.
-                                                                            <span></span>
-                                                                            {{ number_format($item->Sparepart->Harga['harga_jual']) }}
+                                                                            <span>
+                                                                                {{ number_format($item->Sparepart->harga_market)}}
+                                                                            </span>
                                                                         </td>
                                                                         <td class="border-top-0 text-right py-4">
                                                                             {{ $item->jumlah }}
@@ -272,13 +274,13 @@ Checkout
                                                                         <td
                                                                             class="text-danger border-top-0 pr-0 py-4 text-right">
                                                                             Rp.
-                                                                            {{ number_format($item->jumlah * $item->Sparepart->Harga['harga_jual']) }}
+                                                                            {{ number_format($item->jumlah * $item->Sparepart->harga_market) }}
                                                                         </td>
                                                                         @php
                                                                         $jumlahberat +=
                                                                         $item->Sparepart->berat_sparepart;
                                                                         $totalbarang +=
-                                                                        $item->jumlah*$item->Sparepart->Harga['harga_jual'];
+                                                                        $item->jumlah*$item->Sparepart->harga_market;
                                                                         @endphp
                                                                     </tr>
                                                                     @endforeach
@@ -394,7 +396,7 @@ Checkout
                                             </button>
                                             <button type="button" id="nextbtn"
                                                 class="btn btn-primary font-weight-bold text-uppercase px-9 py-4"
-                                                data-wizard-type="action-next">
+                                                data-wizard-type="action-next" disabled>
                                                 Next
                                             </button>
                                         </div>
@@ -430,8 +432,6 @@ Checkout
             var thedestination = $('select[name=id_kabupaten] option').filter(':selected').val();
             var thecourier = $('select[name=kurir] option').filter(':selected').val();
             var id_cart = $("#id_cart").val();
-
-
             $.ajax({
                 type: 'get',
                 url: '/a',
@@ -445,6 +445,8 @@ Checkout
                     $('select[name="expedisi"]').empty();
 
                     //jalan keluar ke-2 gunakan if statment
+                    $('select[name="expedisi"]').append(
+                            '<option holder>Pilih Paket Pengiriman </option>');
                     $.each(data, function (key, value) {
                         $('select[name="expedisi"]').append(
                             '<option value="' +
@@ -457,6 +459,10 @@ Checkout
             });
         });
 
+        $('select[name="expedisi"]').on('change', function () {
+            document.getElementById("nextbtn").disabled = false;
+        });
+
 
 
         $("#nextbtn").click(function () {
@@ -464,14 +470,13 @@ Checkout
                     "Rp ")
                 .pop()
                 .split('=')[0]);
+
             var subtotal = parseInt($("#subtotal").text().split("Rp ").pop().replace(',', ''));
             var inputalamat = $("#alamat_penerima").val();
             var provinsi = $('select[name=provinsi] option').filter(':selected').text();
             var kabupaten = $('select[name=id_kabupaten] option').filter(':selected').text();
             var kurir = $('select[name=kurir] option').filter(':selected').text();
             var paket = $('select[name=expedisi] option').filter(':selected').text().slice(0, 3);
-
-            // alert( kabupaten );
             $("#harga_pengiriman").val(ongkir);
             $("#harga_total").val(subtotal);
             $("#kurir_pengiriman").val(kurir.concat(' ').concat(paket));
@@ -500,7 +505,7 @@ Checkout
                         $('select[name="id_kabupaten"]').empty();
                         $('select[name="id_kecamatan"]').empty();
                         $('select[name="id_desa"]').empty();
-                                                $('#kurir').prop('selectedIndex',0);
+                        $('#kurir').prop('selectedIndex', 0);
 
                         $('select[name="expedisi"]').empty();
                         $('select[name="id_kabupaten"]').append(
@@ -535,7 +540,7 @@ Checkout
                         $('select[name="id_kecamatan"]').empty();
                         $('select[name="id_desa"]').empty();
                         $('select[name="expedisi"]').empty();
-                                                $('#kurir').prop('selectedIndex',0);
+                        $('#kurir').prop('selectedIndex', 0);
 
                         $('select[name="id_kecamatan"]').append(
                             '<option value="" holder>Pilih Kecamatan</option>'
@@ -568,7 +573,7 @@ Checkout
                     success: function (data) {
                         $('select[name="id_desa"]').empty();
                         $('select[name="expedisi"]').empty();
-                        $('#kurir').prop('selectedIndex',0);
+                        $('#kurir').prop('selectedIndex', 0);
                         $('select[name="id_desa"]').append(
                             '<option value="" holder>Pilih Desa</option>')
                         $.each(data, function (key, value) {

@@ -32,7 +32,7 @@ class CheckoutController extends Controller
         $code_transaksi = 'STORE'.mt_rand(00000,99999);
         $cart = Carts::with('user', 'Bengkel')->where('id_carts', $id)->first();
 
-        $items = Detailcarts::with(['Sparepart.Galleries_one', 'Sparepart.Harga'])
+        $items = Detailcarts::with(['Sparepart.Galleries_one'])
                 ->where('id_carts', $id)
                 ->get();
 
@@ -161,7 +161,8 @@ class CheckoutController extends Controller
     {
         $cart = Carts::with('user.Desa.Kecamatan.Kabupaten.Provinsi', 'Bengkel')->where('id_carts', $id)->first();
 
-        $item = Detailcarts::with(['Sparepart.Galleries_one', 'Sparepart.Harga'])->where('id_carts', $id)
+        // return $cart;
+        $item = Detailcarts::with(['Sparepart.Galleries_one'])->where('id_carts', $id)
                 ->get();
 
         $desa = DesaBaru::where('id_kecamatan', $cart->user->Desa->Kecamatan->id_kecamatan)->get(); //mengambil data kecamatan

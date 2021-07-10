@@ -81,7 +81,7 @@
                             <!--end::Svg Icon--></span></div>
                     Bengkel
                 </a>
-                <a class="nav-link {{ (request()-> is('admin/bengkel*')) ?'active' :''}}"
+                <a class="nav-link {{ (request()-> is('admin/keuangan*')) ?'active' :''}}"
                     href={{ route('keuangan.index') }}>
                     <div class="nav-link-icon"><span class="svg-icon svg-icon-primary svg-icon-2x">
                             <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo5\dist/../src/media/svg/icons\Shopping\Wallet2.svg--><svg

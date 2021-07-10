@@ -24,7 +24,7 @@ class BengkelController extends Controller
 
     {
         $bengkel = Bengkel::where('slug', $id)->firstOrFail();
-        $sparepart = Sparepart::with(['Galleries_one', 'Harga', 'Detailtransaksi'])->where('id_bengkel', $bengkel->id_bengkel)->get();
+        $sparepart = Sparepart::with(['Galleries_one', 'Detailtransaksi'])->whereNotNull('harga_market')->where('id_bengkel', $bengkel->id_bengkel)->get();
         $perbaikan = Perbaikan::where('id_bengkel', $bengkel->id_bengkel)->get();
 
         // return $sparepart;

@@ -115,7 +115,7 @@ Trnansaction
 
                                                             <td
                                                                 class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                Rp.{{ number_format(($sparepart->Harga->harga_jual) * ($sparepart->pivot->jumlah_produk))}}
+                                                                Rp.{{ number_format(($sparepart->harga_market) * ($sparepart->pivot->jumlah_produk))}}
                                                             </td>
 
                                                         </tr>
@@ -426,7 +426,7 @@ Trnansaction
                                                                                                                 <div
                                                                                                                     class="font-weight-bold text-muted">
                                                                                                                     Rp.
-                                                                                                                    {{ number_format($sparepart->Harga['harga_jual'] )}}
+                                                                                                                    {{ number_format($sparepart->harga_market )}}
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -606,7 +606,6 @@ Trnansaction
     crossorigin="anonymous"></script> --}}
 <script>
     var stars = new StarRating('.star-rating');
-
 </script>
 <script>
     $(document).ready(function () {
@@ -626,7 +625,7 @@ Trnansaction
                     kurir: kurir,
                     resi: resi
                 },
-                success: function (data) {
+        success: function (data) {
                     $('#resi').text(data['summary'].awb);
                     $('#status').text(data['summary'].status);
                     $('#tanggal').text(data['summary'].date);

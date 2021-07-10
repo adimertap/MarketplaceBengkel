@@ -15,7 +15,7 @@ class DetailController extends Controller
 {
     public function index(Request $request, $id)
     {   
-        $sparepart = Sparepart::with(['Galleries','Detailtransaksi.Transaksi.User', 'Harga', 'Bengkel'])->where('slug', $id) -> firstOrFail();
+        $sparepart = Sparepart::with(['Galleries','Detailtransaksi.Transaksi.User', 'Bengkel'])->where('slug', $id) -> firstOrFail();
         // return $sparepart;
         return view('user-views.pages.detail', [
             'sparepart' =>$sparepart,

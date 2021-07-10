@@ -1,15 +1,8 @@
  <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-     <a class="navbar-brand" href="index.html">MARKETPLACE</a>
+     <a class="navbar-brand" href="{{ route('dashboard-admin') }}">MARKETPLACE</a>
      <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i
              data-feather="menu"></i></button>
-     <form class="form-inline mr-auto d-none d-md-block">
-         <div class="input-group input-group-joined input-group-solid">
-             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-             <div class="input-group-append">
-                 <div class="input-group-text"><i data-feather="search"></i></div>
-             </div>
-         </div>
-     </form>
+    
      <ul class="navbar-nav align-items-center ml-auto">
          
          <li class="nav-item dropdown no-caret mr-2 dropdown-user">

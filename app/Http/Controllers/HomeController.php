@@ -27,11 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $sparepart = Sparepart::with('Galleries_one','Rating','Bengkel', 'Harga')->latest()->take(8)->get();
+        $sparepart = Sparepart::with('Galleries_one','Rating','Bengkel')->whereNotNull('harga_market')->latest()->take(8)->get();
 
         // return $sparepart;
 
-        $terlaris = DetailTransaksi::with('Sparepart.Galleries_one','Sparepart.Rating' , 'Sparepart.Bengkel', 'Sparepart.Harga')->whereNotNull('rating')->select(
+        $terlaris = DetailTransaksi::with('Sparepart.Galleries_one','Sparepart.Rating' , 'Sparepart.Bengkel')->whereNotNull('rating')
+            ->whereHas('Sparepart', function ($q) {
+                        $q->whereNotNull('harga_market');
+                        })->select(
             '*',
             DB::raw('sum(jumlah_produk) as penjualan')
         )

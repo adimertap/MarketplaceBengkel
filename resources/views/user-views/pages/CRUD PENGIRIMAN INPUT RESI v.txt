@@ -20,3 +20,12 @@ benerin tampilan untuk tampilan lg ke md            v
 benerin dari admin setelah resi diberikan           v
 history reservasi                                   v
 admin global transaksi                              v
+
+
+
+
+
+rating di awal
+redirect di checkout
+setelah redirect ke login lagi
+alert saat memberikan ulasan

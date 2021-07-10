@@ -173,9 +173,11 @@ Bengkel Detail
                                                         class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">{{ $item->nama_sparepart }}</a>
                                                     <span
                                                         class="text-muted font-weight-normal flex-grow-1 font-size-sm">Rp.
-                                                        {{number_format($item->Harga['harga_jual'])}}</span>
+                                                        {{number_format($item->harga_market)}}</span>
                                                     <span
-                                                        class="text-muted font-weight-normal font-size-sm">{{ $average }}</span>
+                                                        class="text-muted font-weight-normal font-size-sm">
+                                                        <i class="flaticon-star text-primary"></i>
+                                                        {{ $average }}</span>
                                                 </div>
                                                 <span
                                                     class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->keterangan }}</span>

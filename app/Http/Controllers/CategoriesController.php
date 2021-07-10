@@ -61,12 +61,12 @@ class CategoriesController extends Controller
         if($search)
         {
             $categories = $search;
-            $sparepart = Sparepart::with('Galleries', 'Bengkel', 'Harga')->orderBy('id_sparepart', 'DESC')->where('nama_sparepart', 'LIKE', "%{$search}%")->simplePaginate(8); 
+            $sparepart = Sparepart::with('Galleries', 'Bengkel')->orderBy('id_sparepart', 'DESC')->where('nama_sparepart', 'LIKE', "%{$search}%")->simplePaginate(8); 
         }
         else
         {
             $categories = 'All';
-            $sparepart = Sparepart::with('Galleries', 'Bengkel', 'Harga')->orderBy('id_sparepart', 'DESC')->simplePaginate(8); 
+            $sparepart = Sparepart::with('Galleries', 'Bengkel')->orderBy('id_sparepart', 'DESC')->simplePaginate(8); 
         }
        
         // return $sparepart;
@@ -80,7 +80,7 @@ class CategoriesController extends Controller
     {
 
         $categories = Category::where('slug', $slug)->firstOrFail();
-        $sparepart = Sparepart::with('Galleries_one', 'Bengkel', 'Harga', 'Rating')->where('id_jenis_sparepart', $categories->id_jenis_sparepart)->paginate(6);
+        $sparepart = Sparepart::with('Galleries_one', 'Bengkel', 'Rating')->whereNotNull('harga_market')->where('id_jenis_sparepart', $categories->id_jenis_sparepart)->paginate(6);
         // return $sparepart;
         return view('user-views.pages.categories', [
             'sparepart' => $sparepart,
@@ -91,7 +91,7 @@ class CategoriesController extends Controller
     public function terbaru(Request $request)
     {
         $categories = 'Terbaru';
-        $sparepart = Sparepart::with('Galleries_one', 'Bengkel', 'Harga', 'Rating')->orderBy('id_sparepart', 'DESC')->paginate(6);
+        $sparepart = Sparepart::with('Galleries_one', 'Bengkel', 'Rating')->whereNotNull('harga_market')->orderBy('id_sparepart', 'DESC')->paginate(6);
         
         // return $sparepart;
         return view('user-views.pages.categories', [
@@ -103,7 +103,10 @@ class CategoriesController extends Controller
     public function terlaris(Request $request)
     {
         $categories = 'Terlaris';
-        $sparepart = DetailTransaksi::with('Sparepart.Galleries_one', 'Sparepart.Bengkel', 'Sparepart.Harga', 'Sparepart.Rating')->select('*',DB::raw("sum(jumlah_produk) as penjualan"))->where('rating','>', '0')
+        $sparepart = DetailTransaksi::with('Sparepart.Galleries_one', 'Sparepart.Bengkel', 'Sparepart.Rating')->select('*',DB::raw("sum(jumlah_produk) as penjualan"))
+                ->where('rating','>', '0')->whereHas('Sparepart', function ($q) {
+                        $q->whereNotNull('harga_market');
+                        })
                     ->groupBy('id_sparepart')->orderBy('penjualan', 'DESC')
                     ->paginate(10);
 

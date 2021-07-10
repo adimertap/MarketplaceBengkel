@@ -25,44 +25,17 @@ Marketplace Homepage
                                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                 </ol>
                                 <div class="carousel-inner">
+                                    <a href="{{ route("maps") }}">
+                                        <div class="carousel-item active">
+                                            <img class="d-block w-100" src="../image/map.png" alt="First slide">
+                                        </div>
+                                    </a>
+                                    <a href="{{ route("maps") }}">
+                                        <div class="carousel-item active">
+                                            <img class="d-block w-100" src="../image/map.png" alt="First slide">
+                                        </div>
+                                    </a>
 
-                                    <div class="carousel-item active">
-                                        <img class="d-block w-100"
-                                            src="user-assets/assets/media/bengkel/map_panjang.png" alt="First slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <a href="{{ route('maps') }}">
-                                                <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel
-                                                    Terdekat
-                                                </h1>
-                                                <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100"
-                                            src="user-assets/assets/media/bengkel/map_panjang.png" alt="First slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <a href="{{ route('maps') }}">
-                                                <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel
-                                                    Terdekat
-                                                </h1>
-                                                <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100"
-                                            src="user-assets/assets/media/bengkel/map_panjang.png" alt="First slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                           <a href="{{ route('maps') }}">
-                                                <h1 class="display-1 text-secondary text-bold">Lacak Lokasi Bengkel
-                                                    Terdekat
-                                                </h1>
-                                                <p>dapatkan lokasi bengkel terdekat dengan lebih mudah dan cepat</p>
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
                                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
                                     data-slide="prev">
@@ -109,23 +82,24 @@ Marketplace Homepage
                                                         <a href="{{ route('detail', $item->slug) }}"
                                                             class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
                                                         @auth
-                                <form action="{{ route('detail-add', $item->id_sparepart) }}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <!--begin: Item-->
-                                            <div class="d-flex align-items-center flex-lg my-1">
-                                                <span class="">
-                                                    <button type="submit"
-                                                        class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
-                                                        Ke Keranjang</button> </span>
+                                                        <form action="{{ route('detail-add', $item->id_sparepart) }}"
+                                                            method="post" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <!--begin: Item-->
+                                                            <div class="d-flex align-items-center flex-lg my-1">
+                                                                <span class="">
+                                                                    <button type="submit"
+                                                                        class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                                        Ke Keranjang</button> </span>
 
-                                            </div>
-                                            <!--end: Item-->
-                                        </form>
-                                @else
-                                <a href="{{ route('login') }}"
-                                    class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
-                                    Ke Keranjang</a>
-                                @endauth
+                                                            </div>
+                                                            <!--end: Item-->
+                                                        </form>
+                                                        @else
+                                                        <a href="{{ route('login') }}"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                        @endauth
                                                     </div>
                                                 </div>
                                                 <!--end::Image-->
@@ -138,11 +112,11 @@ Marketplace Homepage
 
                                                 @foreach ($item->Rating as $star)
                                                 @php
-                                                
+
                                                 if($star->rating){
-                                                    $rating += $star->rating;
-                                                    $average = $rating/$count;
-                                                    $count += 1;
+                                                $rating += $star->rating;
+                                                $average = $rating/$count;
+                                                $count += 1;
                                                 }
                                                 @endphp
                                                 @endforeach
@@ -159,7 +133,9 @@ Marketplace Homepage
                                                         <div class="d-flex align-items-center flex-fill mr-5 my-1">
                                                             <div class="d-flex flex-column text-dark-75">
                                                                 <span
-                                                                    class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px">{{ round($average, 1) }}</span>
+                                                                    class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px">
+                                                                    <i
+                                                                        class="flaticon-star text-primary"></i>{{ round($average, 1) }}</span>
                                                             </div>
                                                         </div>
                                                         <!--end: Item-->
@@ -168,7 +144,7 @@ Marketplace Homepage
                                                         <div class="d-flex align-items-right  my-1">
                                                             <div class="d-flex flex-column text-dark-75 ">
                                                                 <span class="font-weight-bolder font-size-h5"><span
-                                                                        class="text-dark-50  font-weight-bold">Rp.</span>{{ $item -> Harga['harga_jual'] }}</span>
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>{{ $item ->harga_market }}</span>
                                                             </div>
                                                         </div>
                                                         <!--end: Item-->
@@ -214,9 +190,9 @@ Marketplace Homepage
 
                                     @foreach ($item->Sparepart->Rating as $star)
                                     @php
-                                   
+
                                     if($star->rating){
-                                     $rating += $star->rating;
+                                    $rating += $star->rating;
                                     $average = $rating/$count;
                                     $count += 1;
 
@@ -232,32 +208,34 @@ Marketplace Homepage
                                                 <div class="overlay">
                                                     <div class="overlay-wrapper rounded bg-light text-center">
                                                         @if ($item->Sparepart ->Galleries_one)
-                                                            <img src="https://bengkel-kuy.com/image/{{ $item->Sparepart ->Galleries_one->photo }}"
+                                                        <img src="https://bengkel-kuy.com/image/{{ $item->Sparepart ->Galleries_one->photo }}"
                                                             alt="" class="mh-100 h-200px mw-100 w-200px" />
                                                         @endif
-                                                        
+
                                                     </div>
                                                     <div class="overlay-layer">
                                                         <a href="{{ route('detail', $item->Sparepart->slug) }}"
                                                             class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
-                                                       @auth
-                                <form action="{{ route('detail-add', $item->sparepart->id_sparepart) }}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <!--begin: Item-->
-                                            <div class="d-flex align-items-center flex-lg my-1">
-                                                <span class="">
-                                                    <button type="submit"
-                                                        class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
-                                                        Ke Keranjang</button> </span>
+                                                        @auth
+                                                        <form
+                                                            action="{{ route('detail-add', $item->sparepart->id_sparepart) }}"
+                                                            method="post" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <!--begin: Item-->
+                                                            <div class="d-flex align-items-center flex-lg my-1">
+                                                                <span class="">
+                                                                    <button type="submit"
+                                                                        class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                                        Ke Keranjang</button> </span>
 
-                                            </div>
-                                            <!--end: Item-->
-                                        </form>
-                                @else
-                                <a href="{{ route('login') }}"
-                                    class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
-                                    Ke Keranjang</a>
-                                @endauth
+                                                            </div>
+                                                            <!--end: Item-->
+                                                        </form>
+                                                        @else
+                                                        <a href="{{ route('login') }}"
+                                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                            Ke Keranjang</a>
+                                                        @endauth
                                                     </div>
                                                 </div>
                                                 <!--end::Image-->
@@ -274,7 +252,9 @@ Marketplace Homepage
                                                         <div class="d-flex align-items-center flex-fill mr-5 my-1">
                                                             <div class="d-flex flex-column text-dark-75">
                                                                 <span
-                                                                    class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px">{{ round($average, 1) }}</span>
+                                                                    class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px">
+                                                                    <i
+                                                                        class="flaticon-star text-primary"></i>{{ round($average, 1) }}</span>
                                                             </div>
                                                         </div>
                                                         <!--end: Item-->
@@ -283,7 +263,7 @@ Marketplace Homepage
                                                         <div class="d-flex align-items-right  my-1">
                                                             <div class="d-flex flex-column text-dark-75 ">
                                                                 <span class="font-weight-bolder font-size-h5"><span
-                                                                        class="text-dark-50  font-weight-bold">Rp.</span>{{ $item->Sparepart->Harga['harga_jual'] }}</span>
+                                                                        class="text-dark-50  font-weight-bold">Rp.</span>{{ $item->Sparepart->harga_market }}</span>
                                                             </div>
                                                         </div>
                                                         <!--end: Item-->

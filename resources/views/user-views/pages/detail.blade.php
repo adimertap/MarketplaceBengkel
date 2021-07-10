@@ -204,7 +204,7 @@ Product Detail
                                                     Tersedia</span>
                                                 <span class="font-weight-bolder font-size-h1">
                                                     <span class="text-dark-50 font-weight-bold">Rp
-                                                    </span>{{ number_format($sparepart -> Harga['harga_jual']) }}</span>
+                                                    </span>{{ number_format($sparepart ->harga_market) }}</span>
                                             </div>
                                         </div>
                                         <!--end: Item-->
