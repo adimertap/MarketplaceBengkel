@@ -101,7 +101,7 @@ Bengkel Detail
                                         <div class="col-9">
                                             <div class="separator separator-solid separator-border-4"></div>
                                             <p class="font-size-h6">{{ $bengkel->alamat_bengkel }}</p>
-                                            <p class="font-size-h6">08.00 - 24.00 belummmmm</p>
+                                            <p class="font-size-h6">{{ date('H:i',strtotime($bengkel->jam_buka_bengkel))  }} - {{ date('H:i',strtotime($bengkel->jam_tutup_bengkel))  }}</p>
                                             <p class="font-size-h6">{{ $bengkel->nohp_bengkel }}</p>
                                         </div>
                                         <div class="col-3">
@@ -214,8 +214,8 @@ Bengkel Detail
                                             <!--begin::Symbol-->
                                             <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
                                                 <span class="symbol-label">
-                                                    <img src="assets/media/svg/avatars/009-boy-4.svg"
-                                                        class="h-75 align-self-end" alt="">
+                                                    <img src="../image/ser.jpg"
+                                                        class="h-100 align-self-end" alt="">
                                                 </span>
                                             </div>
                                             <!--end::Symbol-->

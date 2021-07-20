@@ -128,7 +128,7 @@ Bengkel Detail
 
 
                                             <p class="font-size-h6">{{ $bengkel->alamat_bengkel }}</p>
-                                            <p class="font-size-h6">08.00 - 24.00 belummmmm</p>
+                                            <p class="font-size-h6">{{ $bengkel->jam_buka_bengkel }} - {{ $bengkel->jam_tutup_bengkel }}</p>
                                             <p class="font-size-h6">{{ $bengkel->nohp_bengkel }}</p>
 
                                         </div>

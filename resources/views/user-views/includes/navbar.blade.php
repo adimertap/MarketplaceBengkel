@@ -370,7 +370,7 @@
                     </div>
                     <a href="#" class="symbol symbol-70 flex-shrink-0">
                         @if ($item->Sparepart->Galleries_one)
-                            <img src="{{  asset('/image/'.$item->Sparepart->Galleries_one->photo ) }}" title=""
+                            <img src="https://bengkel-kuy.com/image/{{ $item ->Sparepart->Galleries_one->photo }}" title=""
                             alt="" />
                         @endif
                         
