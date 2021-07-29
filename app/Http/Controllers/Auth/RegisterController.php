@@ -92,6 +92,9 @@ class RegisterController extends Controller
             'nohp_user' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:tb_marketplace_user'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'alamat_user' => ['required', 'string', 'max:20'],
+            'kabupaten' => ['required', 'string', 'max:20'],
+            'desa' => ['required', 'string', 'max:20'],            
         ]);
     }
 
@@ -109,8 +112,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'nohp_user' => $data['nohp_user'],
             'alamat_user' => isset($data['alamat_user']) ? $data['alamat_user'] : "",
-            'id_kabupaten' => isset($data['id_kabupaten']) ? $data['id_kabupaten'] : NULL,  
-            'id_desa' => isset($data['id_desa']) ? $data['id_desa'] : NULL,            
+            'id_kabupaten' => isset($data['kabupaten']) ? $data['kabupaten'] : NULL,  
+            'id_desa' => isset($data['desa']) ? $data['desa'] : NULL,            
           
         ]);
     }

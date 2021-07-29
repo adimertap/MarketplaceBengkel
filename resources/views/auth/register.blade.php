@@ -197,11 +197,11 @@ Daftar
                                     <!--begin::Select-->
                                     <div class="form-group">
                                         <label class="font-size-h6 font-weight-bolder text-dark">Kota</label>
-                                        <select name="id_kabupaten"
-                                            class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6 @error('id_kabupaten') is-invalid @enderror">
+                                        <select name="kabupaten"
+                                            class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6 @error('kabupaten') is-invalid @enderror">
                                             <option value="">Select</option>
                                         </select>
-                                        @error('id_kabupaten')
+                                        @error('kabupaten')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -231,11 +231,11 @@ Daftar
                                     <!--begin::Select-->
                                     <div class="form-group">
                                         <label class="font-size-h6 font-weight-bolder text-dark">Desa</label>
-                                        <select name="id_desa"
-                                            class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6 @error('id_desa') is-invalid @enderror">
+                                        <select name="desa"
+                                            class="form-control form-control-solid h-auto py-7 px-5 border-0 rounded-lg font-size-h6 @error('desa') is-invalid @enderror">
                                             <option value="">Select</option>
                                         </select>
-                                        @error('id_desa')
+                                        @error('desa')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -389,31 +389,31 @@ Daftar
                         type: "GET",
                         dataType: "json",
                         success: function (data) {
-                            $('select[name="id_kabupaten"]').empty();
+                            $('select[name="kabupaten"]').empty();
                             $('select[name="id_kecamatan"]').empty();
-                            $('select[name="id_desa"]').empty();
-                            $('select[name="id_kabupaten"]').append(
+                            $('select[name="desa"]').empty();
+                            $('select[name="kabupaten"]').append(
                                 '<option value="" holder>Pilih Kabupaten/Kota</option>');
                             $('select[name="id_kecamatan"]').append(
                                 '<option value="" holder>Pilih Kecamatan</option>');
-                            $('select[name="id_desa"]').append(
+                            $('select[name="desa"]').append(
                                 '<option value="" holder>Pilih Desa</option>');
                             $.each(data, function (key, value) {
-                                $('select[name="id_kabupaten"]').append(
+                                $('select[name="kabupaten"]').append(
                                     '<option value="' +
                                     key + '">' + value + '</option>');
                             });
                         }
                     });
                 } else {
-                    $('select[name="id_kabupaten"]').empty();
+                    $('select[name="kabupaten"]').empty();
                 }
             });
 
         });
 
         $(document).ready(function () {
-            $('select[name="id_kabupaten"]').on('change', function () {
+            $('select[name="kabupaten"]').on('change', function () {
                 var cityId = $(this).val();
                 if (cityId) {
                     $.ajax({
@@ -422,12 +422,12 @@ Daftar
                         dataType: "json",
                         success: function (data) {
                             $('select[name="id_kecamatan"]').empty();
-                            $('select[name="id_desa"]').empty();
+                            $('select[name="desa"]').empty();
 
                             $('select[name="id_kecamatan"]').append(
                                 '<option value="" holder>Pilih Kecamatan</option>'
                             );
-                            $('select[name="id_desa"]').append(
+                            $('select[name="desa"]').append(
                                 '<option value="" holder>Pilih Desa</option>')
 
                             $.each(data, function (key, value) {
@@ -453,18 +453,18 @@ Daftar
                         type: "GET",
                         dataType: "json",
                         success: function (data) {
-                            $('select[name="id_desa"]').empty();
-                            $('select[name="id_desa"]').append(
+                            $('select[name="desa"]').empty();
+                            $('select[name="desa"]').append(
                                 '<option value="" holder>Pilih Desa</option>')
                             $.each(data, function (key, value) {
-                                $('select[name="id_desa"]').append(
+                                $('select[name="desa"]').append(
                                     '<option value="' +
                                     key + '">' + value + '</option>');
                             });
                         }
                     });
                 } else {
-                    $('select[name="id_desa"]').empty();
+                    $('select[name="desa"]').empty();
                 }
             });
 

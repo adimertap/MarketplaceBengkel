@@ -66,7 +66,7 @@ Checkout
                                             <label>Nama Penerim</label>
                                             <input type="text" class="form-control" name="nama penerima"
                                                 id="nama_penerima" placeholder="Nama Penerima"
-                                                value="{{ Auth::user()->nama_user }}" />
+                                                value="{{ Auth::user()->nama_user }}" required/>
                                             <input type="hidden" class="form-control" name="id_cart" id="id_cart"
                                                 value="{{ $cart->id_carts }}" />
                                             <span class="form-text text-muted">Masukan nama penerima</span>
@@ -78,7 +78,7 @@ Checkout
                                             <label>Alamat Penerima</label>
                                             <input type="text" class="form-control" name="alamat_penerima"
                                                 id="alamat_penerima" placeholder="Address Line 2"
-                                                value="{{ Auth::user()->alamat_user }}" />
+                                                value="{{ Auth::user()->alamat_user }}" required/>
                                             <span class="form-text text-muted">Masukan alamat </span>
                                         </div>
                                         <!--end::Input-->
@@ -89,7 +89,7 @@ Checkout
                                                     <label>No Hp</label>
                                                     <input type="text" class="form-control" name="nohp_penerima"
                                                         id="nohp_penerima" placeholder="City"
-                                                        value="{{ Auth::user()->nohp_user }}" />
+                                                        value="{{ Auth::user()->nohp_user }} " required />
                                                     <span class="form-text text-muted">Masukkan no hp</span>
                                                 </div>
                                                 <!--end::Input-->
@@ -455,6 +455,8 @@ Checkout
                             "=> estimasi sampai :" + value.cost[0].etd +
                             "hari" + '</option>');
                     });
+                    document.getElementById("nextbtn").disabled = true;
+
                 }
             });
         });
@@ -519,6 +521,7 @@ Checkout
                                 '<option value="' +
                                 key + '">' + value + '</option>');
                         });
+                        document.getElementById("nextbtn").disabled = true;
                     }
                 });
             } else {
@@ -553,6 +556,8 @@ Checkout
                                 '<option value="' +
                                 key + '">' + value + '</option>');
                         });
+                        document.getElementById("nextbtn").disabled = true;
+
                     }
                 });
             } else {
@@ -581,6 +586,8 @@ Checkout
                                 '<option value="' +
                                 key + '">' + value + '</option>');
                         });
+                        document.getElementById("nextbtn").disabled = true;
+
                     }
                 });
             } else {

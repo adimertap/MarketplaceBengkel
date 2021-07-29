@@ -61,7 +61,7 @@ class CheckoutController extends Controller
                 'id_sparepart' => $item->id_sparepart,
                 'jumlah_produk' => $item->jumlah,
                 'id_review' => NULL,
-                'status' => 'PENDING',
+                'status' => 'CANCELLED',
                 'code_detail_transaksi' => $trx,
             ]);
         }

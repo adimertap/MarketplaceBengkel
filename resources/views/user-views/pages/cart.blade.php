@@ -18,15 +18,17 @@ Product Detail
                 <div class="flex-row-fluid ml-lg-8">
                     <!--begin::Section-->
                     @forelse ($carts as $cart)
-                        <div class="card card-custom gutter-b">
+                    <div class="card card-custom gutter-b">
                         <!--begin::Header-->
                         <div class="card-header flex-wrap border-0 pt-6 pb-0">
                             <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label font-weight-bolder font-size-h3 text-dark">{{$cart->Bengkel->nama_bengkel}}</span>
+                                <span
+                                    class="card-label font-weight-bolder font-size-h3 text-dark">{{$cart->Bengkel->nama_bengkel}}</span>
                             </h3>
                             <div class="card-toolbar">
                                 <div class="dropdown dropdown-inline">
-                                    <a href="{{ route('home') }}" class="btn btn-primary font-weight-bolder font-size-sm">Continue
+                                    <a href="{{ route('home') }}"
+                                        class="btn btn-primary font-weight-bolder font-size-sm">Continue
                                         Shopping</a>
                                 </div>
                             </div>
@@ -55,7 +57,7 @@ Product Detail
                                         @foreach ($cart->Detailcarts as $item)
                                         <tr>
                                             <div class="qqquantity">
-                                                
+
                                                 <td class="d-flex align-items-center font-weight-bolder">
                                                     <!--begin::Symbol-->
                                                     @if ($item->Sparepart->Galleries_one)
@@ -84,11 +86,13 @@ Product Detail
                                                             <i class="ki ki-minus icon-xs"></i>
                                                         </div>
                                                         <input type="text" name="qty" class="qty-input form-control"
-                                                            maxlength="2" value="{{ $item->jumlah }}">
+                                                            maxlength="2" value="{{ $item->jumlah }}" disabled>
                                                         <input type="hidden" class="qty-id"
                                                             value="{{ $item->id_detail_carts }}">
                                                         <input type="hidden" class="qty-harga"
                                                             value="{{ $item->Sparepart->harga_market }}">
+                                                        <input type="hidden" class="qty-stok"
+                                                            value="{{ $item->Sparepart->stock }}">
 
                                                         <div class="btn btn-xs btn-light-success btn-icon increment-btn increment-btn mt-2 ml-2"
                                                             style="cursor: pointer">
@@ -131,7 +135,7 @@ Product Detail
                                             <td class="font-weight-bolder font-size-h4 text-right">Subtotal</td>
                                             <td class="font-weight-bolder font-size-h4 text-right">Rp.
                                                 <span id="subtotal">{{ $totalharga }}</span>
-                                               </td>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td colspan="4" class="border-0 text-muted text-right pt-0">Belum Termasuk
@@ -155,9 +159,9 @@ Product Detail
                         </div>
                     </div>
                     @empty
-                        
+
                     @endforelse
-                    
+
                     <!--end::Section-->
 
                 </div>
@@ -180,6 +184,7 @@ Product Detail
         $('.increment-btn').click(function (e) {
             e.preventDefault();
             var incre_value = $(this).parents('.quantity').find('.qty-input').val();
+            var max = $(this).parents('.quantity').find('.qty-stok').val();
             var id_detail_carts = $(this).parents('.quantity').find('.qty-id').val();
             var _token = $('meta[name="csrf-token"]').attr('content');
             var value = parseInt(incre_value, 10);
@@ -189,12 +194,13 @@ Product Detail
             var totalcart = parseInt(subtotal, 10);
             var value_before = parseInt(incre_value, 10);
 
-            value = isNaN(value) ? 0 : value;
+            if(value<max){
+                value = isNaN(value) ? 0 : value;
             value++;
-            var totali = "#totali"+id_detail_carts;
+            var totali = "#totali" + id_detail_carts;
             $(this).parents('.quantity').find('.qty-input').val(value);
-            $(totali).text(harga*value);
-            $('#subtotal').text(totalcart+((value-value_before)*harga));
+            $(totali).text(harga * value);
+            $('#subtotal').text(totalcart + ((value - value_before) * harga));
 
             $.ajax({
                 type: 'post',
@@ -209,6 +215,8 @@ Product Detail
 
                 }
             });
+            }
+            
         });
 
         $('.decrement-btn').click(function (e) {
@@ -223,26 +231,28 @@ Product Detail
             var totalcart = parseInt(subtotal, 10);
             var value_before = parseInt(decre_value, 10);
 
+            if (value > 1) {
+                value = isNaN(value) ? 0 : value;
+                value--;
+                var totali = "#totali" + id_detail_carts;
+                $(this).parents('.quantity').find('.qty-input').val(value);
+                $(totali).text(harga * value);
+                $('#subtotal').text(totalcart + ((value - value_before) * harga));
+                $.ajax({
+                    type: 'post',
+                    url: '/updateqty',
+                    dataType: "json",
+                    data: {
+                        id_detail_carts: id_detail_carts,
+                        qty: value,
+                        _token: _token
+                    },
+                    success: function (data) {
 
-            value = isNaN(value) ? 0 : value;
-            value--;
-            var totali = "#totali"+id_detail_carts;
-            $(this).parents('.quantity').find('.qty-input').val(value);
-            $(totali).text(harga*value);
-            $('#subtotal').text(totalcart+((value-value_before)*harga));
-            $.ajax({
-                type: 'post',
-                url: '/updateqty',
-                dataType: "json",
-                data: {
-                    id_detail_carts: id_detail_carts,
-                    qty: value,
-                    _token: _token
-                },
-                success: function (data) {
+                    }
+                });
+            }
 
-                }
-            });
         });
 
         $('input[name="qty"]').on('change', function () {
@@ -254,7 +264,7 @@ Product Detail
             var harga = parseInt(qty_harga, 10);
             var subtotal = $("#subtotal").text();
             var totalcart = parseInt(subtotal, 10);
-            var totali = "#totali"+id_detail_carts;
+            var totali = "#totali" + id_detail_carts;
             var value_before = $(totali).text();
             var harga_before = parseInt(value_before, 10)
 
@@ -262,8 +272,8 @@ Product Detail
 
             value = isNaN(value) ? 0 : value;
             $(this).parents('.quantity').find('.qty-input').val(value);
-            $(totali).text(harga*value);
-            $('#subtotal').text(totalcart-harga_before+(harga*value));
+            $(totali).text(harga * value);
+            $('#subtotal').text(totalcart - harga_before + (harga * value));
             $.ajax({
                 type: 'post',
                 url: '/updateqty',
