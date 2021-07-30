@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AdminMarketplace;
 
+use App\DesaBaru;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
@@ -21,12 +22,13 @@ class UserController extends Controller
     public function index()
 
     {
-
+        $users = User::with("Desa.Kecamatan.Kabupaten.Provinsi")->get();
+        // return $user;
         //  $user = User::All();
-         $users = DB::table('tb_marketplace_user')
-            ->join('tb_kabupaten', 'tb_marketplace_user.id_kabupaten', '=', 'tb_kabupaten.id_kabupaten')
-            ->join('tb_provinsi', 'tb_provinsi.id_provinsi', '=', 'tb_kabupaten.id_provinsi')
-            ->get();
+        //  $users = DB::table('tb_marketplace_user')
+        //     ->join('tb_kabupaten', 'tb_marketplace_user.id_kabupaten', '=', 'tb_kabupaten.id_kabupaten')
+        //     ->join('tb_provinsi', 'tb_provinsi.id_provinsi', '=', 'tb_kabupaten.id_provinsi')
+        //     ->get();
         //  dd($jenissparepart);
         // dd($users);
         return view('admin-views.pages.user.index',compact('users'));
@@ -88,8 +90,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id_user)
+    public function update(Request $request, $id_user)
     {   
+        
 
         $data = $request ->all();
         

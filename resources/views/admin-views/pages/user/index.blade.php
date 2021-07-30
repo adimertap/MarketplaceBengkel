@@ -31,14 +31,6 @@ Dashboard
     {{-- MAIN PAGE CONTENT --}}
     <div class="container-fluid">
         <div class="card mb-4">
-            <div class="card card-header-actions">
-                <div class="card-header">List User
-                    <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
-                        data-target="#Modaltambah">Tambah
-                        User</button>
-
-                </div>
-            </div>
             <div class="card-body">
                 <div class="datatable">
                     {{-- SHOW ENTRIES --}}
@@ -81,16 +73,7 @@ Dashboard
                                                 style="width: 77px;">Alamat</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Provinsi</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Kabupaten</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">No Hp</th>
-                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                                colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Kode Pos</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Role</th>
@@ -106,10 +89,7 @@ Dashboard
                                             <td>{{ $item->nama_user }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->alamat_user }}</td>
-                                            <td>{{ $item->nama_provinsi }}</td>
-                                            <td>{{ $item->nama_kabupaten }}</td>
                                             <td>{{ $item->nohp_user }}</td>
-                                            <td>{{ $item->postal_code }}</td>
                                             <td>{{ $item->role }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
@@ -139,92 +119,6 @@ Dashboard
         </div>
 
 
-        {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
-        <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Tambah User</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">×</span></button>
-                    </div>
-                    <form action="{{ route('user.store')}}" method="POST">
-                        @csrf
-                        <div class="modal-body">
-                            <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                            <div class="form-group">
-                                <label class="small mb-1" for="nama_user">Nama</label>
-                                <input class="form-control" name="nama_user" type="text" placeholder="Input Nama"
-                                    class="form-control @error('nama_user') is-invalid @enderror">
-                                @error('nama_user')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                            <div class="form-group">
-                                <label class="small mb-1" for="email">Email</label>
-                                <input class="form-control" name="email" type="text" placeholder="Input Email"
-                                    class="form-control @error('email') is-invalid @enderror">
-                                @error('email')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                            <div class="form-group">
-                                <label class="small mb-1" for="alamat_user">Alamat</label>
-                                <input class="form-control" name="alamat_user" type="text" placeholder="Input Alamat"
-                                    class="form-control @error('alamat_user') is-invalid @enderror">
-                                @error('alamat_user')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                            <div class="form-group">
-                                <label class="small mb-1" for="nama_provinsi">Provinsi</label>
-                                <input class="form-control" name="nama_provinsi" type="text" placeholder="Input Provinsi"
-                                    class="form-control @error('nama_provinsi') is-invalid @enderror">
-                                @error('nama_provinsi')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                            <div class="form-group">
-                                <label class="small mb-1" for="nama_kabupaten">Kabupaten</label>
-                                <input class="form-control" name="nama_kabupaten" type="text" placeholder="Input Kabupaten"
-                                    class="form-control @error('nama_kabupaten') is-invalid @enderror">
-                                @error('nama_kabupaten')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                            <div class="form-group">
-                                <label class="small mb-1" for="nohp_user">No Hp</label>
-                                <input class="form-control" name="nohp_user" type="text" placeholder="Input No Hp"
-                                    class="form-control @error('nohp_user') is-invalid @enderror">
-                                @error('nohp_user')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                            <div class="form-group">
-                                <label class="small mb-1" for="kodepos">Role</label>
-                                <select class="form-control" id="exampleFormControlSelect1" name="role">
-                                    <option value="ADMIN">ADMIN</option>
-                                    <option value="USER">USER</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="small mb-1" for="password">Password</label>
-                                <input class="form-control" name="password" type="password" placeholder="Input Password"
-                                    class="form-control @error('password') is-invalid @enderror">
-                                @error('password')<div class="text-danger small mb-1">{{ $message }}
-                                </div> @enderror
-                            </div>
-                        </div>
-
-                        {{-- Validasi Error --}}
-                        @if (count($errors) > 0)
-                        @endif
-
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                            <button class="btn btn-primary" type="Submit">Tambah</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
         {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
         @forelse ($users as $item)
         <div class="modal fade" id="Modaledit-{{ $item->id_user}}" data-backdrop="static" tabindex="-1" role="dialog"
@@ -240,41 +134,25 @@ Dashboard
                         @method('PUT')
                         @csrf
                         <div class="modal-body">
-
-                            <div class="form-group">
-                                <label class="small" for="id_user">Id</label>
-                                <input class="form-control" name="id_user" type="text"
-                                    value="{{ $item->id_user }}" />
-                            </div>
                             <div class="form-group">
                                 <label class="small" for="nama_user">Nama</label>
                                 <input class="form-control" name="nama_user" type="text"
-                                    value="{{ $item->nama_user }}" />
+                                    value="{{ $item->nama_user }}" required/>
                             </div>
                             <div class="form-group">
                                 <label class="small" for="email">Email</label>
                                 <input class="form-control" name="email" type="text"
-                                    value="{{ $item->email }}" />
+                                    value="{{ $item->email }}" required/>
                             </div>
                             <div class="form-group">
                                 <label class="small" for="alamat_user">Alamat</label>
                                 <input class="form-control" name="alamat_user" type="text"
-                                    value="{{ $item->alamat_user }}" />
-                            </div>
-                            <div class="form-group">
-                                <label class="small" for="nama_provinsi">Provinsi</label>
-                                <input class="form-control" name="nama_provinsi" type="text"
-                                    value="{{ $item->nama_provinsi }}" />
-                            </div>
-                            <div class="form-group">
-                                <label class="small" for="nama_kabupaten">Kabupaten</label>
-                                <input class="form-control" name="nama_kabupaten" type="text"
-                                    value="{{ $item->nama_kabupaten }}" />
+                                    value="{{ $item->alamat_user }}" required/>
                             </div>
                             <div class="form-group">
                                 <label class="small" for="nohp_user">No Hp</label>
                                 <input class="form-control" name="nohp_user" type="text"
-                                    value="{{ $item->nohp_user }}" />
+                                    value="{{ $item->nohp_user }}" required/>
                             </div>
 
                             <div class="form-group">
@@ -295,7 +173,7 @@ Dashboard
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                            <button class="btn btn-primary" type="Submit">Tambah</button>
+                            <button class="btn btn-primary" type="Submit">Simpan</button>
                         </div>
                     </form>
                 </div>

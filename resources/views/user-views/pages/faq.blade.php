@@ -37,7 +37,7 @@ FAQ
                                         <div class="form-group">
                                             <textarea class="form-control border-0" name="pertanyaan_faq" rows="4"
                                                 placeholder="Message" id="kt_forms_widget_1_input"
-                                                style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 94px;"></textarea>
+                                                style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 94px;" required></textarea>
                                         </div>
                                         <div class="mt-10">
                                             @auth

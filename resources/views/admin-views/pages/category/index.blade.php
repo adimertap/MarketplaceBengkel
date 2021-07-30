@@ -93,11 +93,6 @@ Dashboard
                                                     data-target="#Modaledit-{{ $item->id_jenis_sparepart }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="" class="btn btn-danger btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#Modalhapus-{{ $item->id_jenis_sparepart }}">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
                                             </td>
                                         </tr>
                                         @empty

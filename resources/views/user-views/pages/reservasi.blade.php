@@ -43,7 +43,7 @@ Reservasi
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kendaraan</label>
-                                    <select class="form-control form-control-solid" name="id_kendaraan">
+                                    <select class="form-control form-control-solid" name="id_kendaraan" required
                                         <option>pilih kendaraan</option>
 
                                         @forelse ($kendaraan as $item)
@@ -54,11 +54,11 @@ Reservasi
                                 </div>
                                 <div class="form-group">
                                     <label>No Plat Kendaraan</label>
-                                    <input type="text" class="form-control form-control-solid" name="no_plat"/>
+                                    <input type="text" class="form-control form-control-solid" name="no_plat" required/>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleTextarea">Keluhan</label>
-                                    <textarea class="form-control form-control-solid" rows="3" name="keluhan"></textarea>
+                                    <textarea class="form-control form-control-solid" rows="3" name="keluhan" required></textarea>
                                 </div>
                             </div>
                             <div class="card-footer">

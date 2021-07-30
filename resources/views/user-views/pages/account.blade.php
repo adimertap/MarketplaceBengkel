@@ -141,7 +141,7 @@ Account
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Nama</label>
                                     <div class="col-lg-9 col-xl-7">
                                         <input class="form-control form-control-lg form-control-solid" type="text"
-                                            name="nama_user" value="{{ $user->nama_user }}" />
+                                            name="nama_user" value="{{ $user->nama_user }}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -151,7 +151,7 @@ Account
                                             <div class="input-group-prepend"><span class="input-group-text"><i
                                                         class="la la-at"></i></span></div>
                                             <input type="text" class="form-control form-control-lg form-control-solid"
-                                                name="email" value="{{ $user->email }}" placeholder="Email" />
+                                                name="email" value="{{ $user->email }}" placeholder="Email" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@ Account
                                             <div class="input-group-prepend"><span class="input-group-text"><i
                                                         class="la la-phone"></i></span></div>
                                             <input type="text" class="form-control form-control-lg form-control-solid"
-                                                name="nohp" value="{{ $user->nohp_user }}" placeholder="Phone" />
+                                                name="nohp" value="{{ $user->nohp_user }}" placeholder="Phone" required />
                                         </div>
                                         {{-- <span class="form-text text-muted">We'll never share your phone
                                             with anyone else.</span> --}}
@@ -172,7 +172,7 @@ Account
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Alamat</label>
                                     <div class="col-lg-9 col-xl-7">
                                         <input class="form-control form-control-lg form-control-solid" type="text"
-                                            name="alamat_user" value="{{ $user->alamat_user }}" />
+                                            name="alamat_user" value="{{ $user->alamat_user }}" required />
                                         <span class="form-text text-muted">Alamat ini akan digunakan sebagai pilihan
                                             tempat pengiriman</span>
                                     </div>
@@ -180,7 +180,7 @@ Account
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Provinsi</label>
                                     <div class="col-lg-9 col-xl-7">
-                                        <select class="form-control form-control-lg form-control-solid" name="provinsi">
+                                        <select class="form-control form-control-lg form-control-solid" name="provinsi" required>
                                             @foreach ($provinsi as $item)
                                             <option value="{{ $item->id_provinsi }}"
                                                 {{ ( $user->Desa->Kecamatan->Kabupaten->Provinsi->id_provinsi == $item->id_provinsi) ? 'selected' : '' }}>
@@ -193,7 +193,7 @@ Account
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Kabupaten</label>
                                     <div class="col-lg-9 col-xl-7">
                                         <select class="form-control form-control-lg form-control-solid"
-                                            name="id_kabupaten">
+                                            name="id_kabupaten" required>
                                             @foreach ($kabupaten as $item)
                                             <option value="{{ $item->id_kabupaten }}"
                                                 {{ ( $user->Desa->Kecamatan->Kabupaten->id_kabupaten == $item->id_kabupaten) ? 'selected' : '' }}>
@@ -206,7 +206,7 @@ Account
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Kecamatan</label>
                                     <div class="col-lg-9 col-xl-7">
                                         <select class="form-control form-control-lg form-control-solid"
-                                            name="id_kecamatan">
+                                            name="id_kecamatan" required>
                                             @foreach ($kecamatan as $item)
                                             <option value="{{ $item->id_kecamatan }}"
                                                 {{ ( $user->Desa->Kecamatan->id_kecamatan == $item->id_kecamatan) ? 'selected' : '' }}>
@@ -219,7 +219,7 @@ Account
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Desa</label>
                                     <div class="col-lg-9 col-xl-7">
                                         <select class="form-control form-control-lg form-control-solid"
-                                            name="id_desa">
+                                            name="id_desa" required>
                                             @foreach ($desa as $item)
                                             <option value="{{ $item->id_desa }}"
                                                 {{ ( $user->Desa->id_desa == $item->id_desa) ? 'selected' : '' }}>
