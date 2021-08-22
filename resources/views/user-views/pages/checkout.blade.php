@@ -473,7 +473,7 @@ Checkout
                 .pop()
                 .split('=')[0]);
 
-            var subtotal = parseInt($("#subtotal").text().split("Rp ").pop().replace(',', ''));
+            var subtotal = parseInt($("#subtotal").text().split("Rp ").pop().replace(/,/g, ""));
             var inputalamat = $("#alamat_penerima").val();
             var provinsi = $('select[name=provinsi] option').filter(':selected').text();
             var kabupaten = $('select[name=id_kabupaten] option').filter(':selected').text();
