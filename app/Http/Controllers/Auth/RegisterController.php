@@ -92,7 +92,7 @@ class RegisterController extends Controller
             'nohp_user' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:tb_marketplace_user'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'alamat_user' => ['required', 'string', 'max:20'],
+            'alamat_user' => ['required', 'string', 'max:254'],
             'kabupaten' => ['required', 'string', 'max:20'],
             'desa' => ['required', 'string', 'max:20'],            
         ]);
