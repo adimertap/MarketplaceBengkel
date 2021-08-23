@@ -15,4 +15,8 @@ class Keuangan extends Model
        public function Bengkel(){
         return $this->belongsTo(Bengkel::class, 'id_bengkel', 'id_bengkel');
     }
+    public function Bank(){
+        return $this->belongsTo(Bank::class, 'nama_bank', 'id_bank');
+    }
+
 }

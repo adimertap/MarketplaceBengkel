@@ -20,7 +20,8 @@ class KeuanganController extends Controller
     public function index()
 
     {
-        $penarikan = Keuangan::with('Bengkel')->orderBy('id_keuangan', 'DESC')->get();
+        $penarikan = Keuangan::with(['Bengkel', 'Bank'])->orderBy('id_keuangan', 'DESC')->get();
+        // return $penarikan;
         return view('admin-views.pages.keuangan.index',compact('penarikan'));
     }
 
