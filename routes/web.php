@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,6 +57,12 @@ Route::prefix('admin')
         Route::resource('category', 'CategoryController');
         Route::resource('user', 'UserController');
         Route::resource('sparepart', 'SparepartController');
+        Route::post('sparepart/{id_sparepart}/Aktif', 'SparepartController@Aktif')
+                    ->name('sparepart-aktif');
+        Route::post('sparepart/{id_sparepart}/TidakAktif', 'SparepartController@TidakAktif')
+                    ->name('sparepart-tidak-aktif');
+        Route::get('sparepart/getmerk/{id}', 'SparepartController@getmerk');
+
         Route::resource('bengkel', 'BengkelController');
 
         Route::resource('keuangan', 'KeuanganController');

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Model\MasterData\Kemasan;
+use App\Model\MasterData\Konversi;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -12,7 +14,17 @@ class Sparepart extends Model
     protected $primaryKey = 'id_sparepart';
 
     protected $fillable = [
-        'id_jenis_sparepart', 'id_merk','kode_sparepart',  'nama_sparepart','slug', 'keterangan', 'id_bengkel'
+        'kode_sparepart',
+        'nama_sparepart',
+        'id_merk',
+        'id_jenis_sparepart',
+        'id_konversi',
+        'id_kemasan',
+        'status_sparepart',
+        'lifetime',
+        'jenis_barang',
+        'dimensi_berat',
+        'slug'
     ];
 
     public function Galleries(){
@@ -40,6 +52,27 @@ class Sparepart extends Model
     
     public function Rating(){
         return $this->hasMany(DetailTransaksi::class, 'id_sparepart')->where('status', 'DITERIMA');
+    }
+
+    public function Konversi()
+    {
+        return $this->belongsTo(Konversi::class, 'id_konversi', 'id_konversi')->withTrashed();
+    }
+
+    public function Kemasan()
+    {
+        return $this->belongsTo(Kemasan::class, 'id_kemasan', 'id_kemasan')->withTrashed();
+    }
+
+    public static function getId()
+    {
+        $getId = DB::table('tb_inventory_master_sparepart')->orderBy('id_sparepart', 'DESC')->take(1)->get();
+        if (count($getId) > 0) return $getId;
+        return (object)[
+            (object)[
+                'id_sparepart' => 0
+            ]
+        ];
     }
 
    
