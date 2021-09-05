@@ -28,6 +28,59 @@ Dashboard
             </div>
         </div>
     </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-4 col-md-6 mb-4">
+                <!-- Dashboard info widget 1-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-primary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-primary mb-1">Sparepart Aktif</div>
+                                <div class="h6">Total: {{ $sparepartaktif }}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-cubes" style="color: gainsboro"></i> </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6 mb-4">
+                <!-- Dashboard info widget 2-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-danger h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-danger mb-1">Sparepart Tidak Aktif</div>
+                                <div class="h6">Total: {{ $spareparttidakaktif }}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-cubes" style="color: gainsboro"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6 mb-4">
+                <!-- Dashboard info widget 4-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-secondary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-secondary mb-1">Pengajuan Sparepart Baru</div>
+                                <div class="h6">Total: {{ $sparepartpengajuan }}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-box-open" style="color: gainsboro"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     {{-- MAIN PAGE CONTENT --}}
     <div class="container-fluid">
         <div class="card">
@@ -149,7 +202,8 @@ Dashboard
                                                                     onclick="tidakaktif(event, {{ $item->id_sparepart }})"
                                                                     id="sparepart-{{ $item->id_sparepart }}"
                                                                     type="checkbox" />
-                                                                <label class="" for="customCheck1">Tidak Aktif</label>
+                                                                <label class="" for="customCheck1">Tidak
+                                                                    Aktif</label>
                                                             </div>
                                                         </form>
                                                         @else
@@ -211,7 +265,8 @@ Dashboard
                                                 name="nama_sparepart" placeholder="Input Nama Sparepart"
                                                 value="{{ old('nama_sparepart') }}"
                                                 class="form-control @error('nama_sparepart') is-invalid @enderror" />
-                                            @error('nama_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                                            @error('nama_sparepart')<div class="text-danger small mb-1">
+                                                {{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
@@ -295,11 +350,12 @@ Dashboard
                                             </div> @enderror
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label class="small mb-1 mr-1" for="jenis_barang">Jenis Barang</label><span
-                                                class="mr-4 mb-3" style="color: red">*</span>
+                                            <label class="small mb-1 mr-1" for="jenis_barang">Jenis
+                                                Barang</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <select name="jenis_barang" id="jenis_barang" class="form-control"
                                                 class="form-control @error('jenis_barang') is-invalid @enderror">
-                                                <option value="{{ old('jenis_barang')}}"> Pilih Jenis Barang</option>
+                                                <option value="{{ old('jenis_barang')}}"> Pilih Jenis Barang
+                                                </option>
                                                 <option value="Lokal">Lokal</option>
                                                 <option value="Import">Import</option>
                                             </select>
@@ -313,7 +369,8 @@ Dashboard
                                                 name="dimensi_berat" placeholder="Input Dimensi Berat"
                                                 value="{{ old('dimensi_berat') }}"
                                                 class="form-control @error('dimensi_berat') is-invalid @enderror" />
-                                            @error('dimensi_berat')<div class="text-danger small mb-1">{{ $message }}
+                                            @error('dimensi_berat')<div class="text-danger small mb-1">
+                                                {{ $message }}
                                             </div> @enderror
                                         </div>
                                     </div>
@@ -373,7 +430,7 @@ Dashboard
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
-                                                    style="width: 30px;">No</th>
+                                                    style="width: 10px;">No</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
                                                     style="width: 50px;">Kode</th>
@@ -388,19 +445,19 @@ Dashboard
                                                     style="width: 70px;">Merk</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 50px;">Satuan</th>
+                                                    style="width: 30px;">Satuan</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
                                                     style="width: 50px;">Kemasan</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 50px;">Jenis Barang</th>
+                                                    style="width: 30px;">Jenis Barang</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 50px;">Lifetime</th>
+                                                    style="width: 30px;">Lifetime</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Position: activate to sort column ascending"
-                                                    style="width: 50px;">Approved</th>
+                                                    style="width: 120px;">Status Approved</th>
 
                                             </tr>
                                         </thead>
@@ -417,6 +474,19 @@ Dashboard
                                                 <td>{{ $item->Kemasan->nama_kemasan }}</td>
                                                 <td>{{ $item->jenis_barang }}</td>
                                                 <td>{{ $item->lifetime }}</td>
+                                                <td>
+
+                                                    <a href="" class="btn btn-success btn-datatable" type="button"
+                                                        data-toggle="modal"
+                                                        data-target="#Modalkonfirmasisetuju-{{ $item->id_sparepart }}">
+                                                        <i class="fas fa-check"></i>
+                                                    </a>
+                                                    <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                        data-toggle="modal"
+                                                        data-target="#Modalkonfirmasitolak-{{ $item->id_sparepart }}">
+                                                        <i class="fas fa-times"></i>
+                                                    </a>
+                                                </td>
 
                                             </tr>
                                             @empty
@@ -433,10 +503,66 @@ Dashboard
         </div>
     </div>
     </div>
-    @if (count($errors) > 0)
-    <button id="validasierror" style="display: none" type="button" data-toggle="modal" data-target="#Modaltambah">Open
-        Modal</button>
-    @endif
+
+    @forelse ($sparepart as $items)
+    <div class="modal fade" id="Modalkonfirmasisetuju-{{ $items->id_sparepart }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success-soft">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Setujui Pengajuan Data</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('sparepart-status-pengajuan', $items->id_sparepart) }}?status=Aktif"
+                    method="POST" class="d-inline">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">Apakah Anda Yakin Menyetujui Data Pengajuan Sparepart
+                            <b>{{ $items->nama_sparepart }}</b> dengan kode {{ $items->kode_sparepart }} ?</div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-success" type="submit">Ya! Approve</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @empty
+    @endforelse
+
+    @forelse ($sparepart as $itemz)
+    <div class="modal fade" id="Modalkonfirmasitolak-{{ $itemz->id_sparepart }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger-soft">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Tolak Pengajuan Data</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('sparepart-status-pengajuan', $itemz->id_sparepart) }}?status=Tidak Aktif"
+                    method="POST" class="d-inline">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">Apakah Anda Yakin Menolak Data Pengajuan Sparepart
+                            <b>{{ $itemz->nama_sparepart }}</b> dengan kode {{ $itemz->kode_sparepart }} ?</div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-danger" type="submit">Ya! Tolak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @empty
+    @endforelse
+
+
 </main>
 
 
@@ -494,6 +620,7 @@ Dashboard
 
     $(document).ready(function () {
         $('#validasierror').click();
+
 
         $('select[name="id_jenis_sparepart"]').on('change', function () {
             var id_jenis_sparepart = $(this).val();

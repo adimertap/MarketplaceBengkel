@@ -33,14 +33,19 @@ class SparepartController extends Controller
 
             $kode_sparepart = 'SP-' . $blt . '/' . $idbaru;
         
-        $pengajuansparepart = Sparepart::where('status_sparepart','=','Tidak Aktif')->get();
+        $pengajuansparepart = Sparepart::where('status_sparepart','=','Diajukan')->get();
+
+        $sparepartaktif = Sparepart::where('status_sparepart','=','Aktif')->count();
+        $spareparttidakaktif = Sparepart::where('status_sparepart','=','Tidak Aktif')->count();
+        $sparepartpengajuan = Sparepart::where('status_sparepart','=','Diajukan')->count();
+        
             
         $jenis_sparepart = Category::where('status_jenis','=','Aktif')->get();
         $merk_sparepart = SparepartMerk::where('status_merk','=','Aktif')->get();
         $konversi = Konversi::where('status_konversi','=','Aktif')->get();
         $kemasan = Kemasan::where('status_kemasan','=','Aktif')->get();
         //  dd($sparepart);
-        return view('admin-views.pages.sparepart.index',compact('sparepart','kode_sparepart','jenis_sparepart','merk_sparepart','konversi','kemasan','pengajuansparepart'));
+        return view('admin-views.pages.sparepart.index',compact('sparepart','kode_sparepart','jenis_sparepart','merk_sparepart','konversi','kemasan','pengajuansparepart','sparepartaktif','spareparttidakaktif','sparepartpengajuan'));
     }
 
     /**
@@ -180,5 +185,15 @@ class SparepartController extends Controller
         $merk = SparepartMerk::where('id_jenis_sparepart', '=', $id)->pluck('merk_sparepart', 'id_merk');
         // return $merk;
         return json_encode($merk);
+    }
+
+    public function setStatus(Request $request, $id_sparepart)
+    {
+
+        $item = Sparepart::findOrFail($id_sparepart);
+        $item->status_sparepart = $request->status_sparepart;
+        
+        $item->save();
+        return redirect()->back()->with('messageberhasil', 'Data Pengajuan Sparepart Berhasil di Proses');
     }
 }

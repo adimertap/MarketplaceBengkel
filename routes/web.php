@@ -61,6 +61,8 @@ Route::prefix('admin')
                     ->name('sparepart-aktif');
         Route::post('sparepart/{id_sparepart}/TidakAktif', 'SparepartController@TidakAktif')
                     ->name('sparepart-tidak-aktif');
+        Route::post('sparepart/{id_sparepart}/set-status', 'SparepartController@setStatus')
+                    ->name('sparepart-status-pengajuan');
         Route::get('sparepart/getmerk/{id}', 'SparepartController@getmerk');
 
         Route::resource('bengkel', 'BengkelController');
