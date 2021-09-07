@@ -31,7 +31,7 @@ Dashboard
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-4 col-md-6 mb-4">
+            <div class="col-xl-6 col-md-6 mb-4">
                 <!-- Dashboard info widget 1-->
                 <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-primary h-100">
                     <div class="card-body">
@@ -46,22 +46,8 @@ Dashboard
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6 mb-4">
-                <!-- Dashboard info widget 2-->
-                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-danger h-100">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="flex-grow-1">
-                                <div class="small font-weight-bold text-danger mb-1">Sparepart Tidak Aktif</div>
-                                <div class="h6">Total: {{ $spareparttidakaktif }}</div>
-                            </div>
-                            <div class="ml-2"><i class="fas fa-cubes" style="color: gainsboro"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6 mb-4">
+           
+            <div class="col-xl-6 col-md-6 mb-4">
                 <!-- Dashboard info widget 4-->
                 <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-secondary h-100">
                     <div class="card-body">
@@ -170,10 +156,6 @@ Dashboard
                                                         style="width: 50px;">Lifetime</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
-                                                        aria-label="Position: activate to sort column ascending"
-                                                        style="width: 50px;">Set Status</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                                        rowspan="1" colspan="1"
                                                         aria-label="Actions: activate to sort column ascending"
                                                         style="width: 90px;">Actions</th>
                                                 </tr>
@@ -191,36 +173,6 @@ Dashboard
                                                     <td>{{ $item->Kemasan->nama_kemasan }}</td>
                                                     <td>{{ $item->jenis_barang }}</td>
                                                     <td>{{ $item->lifetime }}</td>
-                                                    <td>
-                                                        @if ($item->status_sparepart == 'Tidak Aktif')
-                                                        <form
-                                                            action="{{ route('sparepart-aktif', $item->id_sparepart) }}"
-                                                            method="POST" id="form1" class="d-inline">
-                                                            @csrf
-                                                            <div class="">
-                                                                <input class="checkaktif"
-                                                                    onclick="tidakaktif(event, {{ $item->id_sparepart }})"
-                                                                    id="sparepart-{{ $item->id_sparepart }}"
-                                                                    type="checkbox" />
-                                                                <label class="" for="customCheck1">Tidak
-                                                                    Aktif</label>
-                                                            </div>
-                                                        </form>
-                                                        @else
-                                                        <form
-                                                            action="{{ route('sparepart-tidak-aktif', $item->id_sparepart) }}"
-                                                            method="POST" id="form1" class="d-inline">
-                                                            @csrf
-                                                            <div class="">
-                                                                <input class="checktidakaktif"
-                                                                    onclick="tidakaktif(event, {{ $item->id_sparepart }})"
-                                                                    id="sparepart-{{ $item->id_sparepart }}"
-                                                                    type="checkbox" checked />
-                                                                <label class="" for="customCheck1">Aktif</label>
-                                                            </div>
-                                                        </form>
-                                                        @endif
-                                                    </td>
                                                     <td>
                                                         <a href="{{ route('sparepart.edit', $item->id_sparepart) }}"
                                                             class="btn btn-primary btn-datatable" type="button">
@@ -422,7 +374,7 @@ Dashboard
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <table class="table table-bordered table-hover dataTable" id="dataTable2"
+                                    <table class="table table-bordered table-hover dataTable" id="dataTablePengajuan"
                                         width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
                                         style="width: 100%;">
                                         <thead>
@@ -571,55 +523,12 @@ Dashboard
 
 @push('addon-script')
 <script>
-    function tidakaktif(event, id_sparepart) {
-        var form1 = $('#form1')
-        var _token = form1.find('input[name="_token"]').val()
-        var check = $(`#sparepart-${id_sparepart}`).each(function (index, element) {
-            var value = $(element).is(':checked')
-            if (value == true) {
-                var data = {
-                    _token: _token,
-                    id_sparepart: id_sparepart
-                }
-
-                $.ajax({
-                    method: 'post',
-                    url: '/admin/sparepart/' + id_sparepart + '/Aktif',
-                    data: data,
-                    success: function (response) {
-                        window.location.href = '/admin/sparepart'
-
-                    },
-                    error: function (response) {
-                        console.log(response)
-                    }
-                });
-            } else if (value == false) {
-                var data = {
-                    _token: _token,
-                    id_sparepart: id_sparepart
-                }
-
-                $.ajax({
-                    method: 'post',
-                    url: '/admin/sparepart/' + id_sparepart + '/TidakAktif',
-                    data: data,
-                    success: function (response) {
-                        window.location.href = '/admin/sparepart'
-
-                    },
-                    error: function (response) {
-                        console.log(response)
-                    }
-                });
-            }
-        })
-
-    }
+   
 
 
     $(document).ready(function () {
         $('#validasierror').click();
+        $('#dataTablePengajuan').DataTable();
 
 
         $('select[name="id_jenis_sparepart"]').on('change', function () {

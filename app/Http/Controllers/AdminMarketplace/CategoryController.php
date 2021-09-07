@@ -19,9 +19,14 @@ class CategoryController extends Controller
     public function index()
 
     {
-         $jenissparepart = Category::All();
+         $jenissparepart = Category::where('status_jenis','=','Aktif')->get();
+         $jenissparepartpengajuan = Category::where('status_jenis','=','Diajukan')->get();
+
+         $jenissparepartaktif = Category::where('status_jenis','=','Aktif')->count();
+         $jenisspareparttidakaktif = Category::where('status_jenis','=','Tidak Aktif')->count();
+         $jenissparepartdiajukan= Category::where('status_jenis','=','Diajukan')->count();
         //  dd($jenissparepart);
-        return view('admin-views.pages.category.index',compact('jenissparepart'));
+        return view('admin-views.pages.category.index',compact('jenissparepart','jenissparepartpengajuan','jenissparepartaktif','jenisspareparttidakaktif','jenissparepartdiajukan'));
     }
 
     /**
@@ -107,4 +112,15 @@ class CategoryController extends Controller
             ->with('messageberhasil','Data Jenis Sparepart Berhasil DiHapus');
    
     }
+
+    public function setStatus(Request $request, $id_jenis_sparepart)
+    {
+
+        $item = Category::findOrFail($id_jenis_sparepart);
+        $item->status_jenis = $request->status_jenis;
+        
+        $item->save();
+        return redirect()->back()->with('messageberhasil', 'Data Pengajuan Jenis Sparepart Berhasil di Proses');
+    }
+
 }

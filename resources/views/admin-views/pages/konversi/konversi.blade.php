@@ -21,7 +21,7 @@ Dashboard
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Data Jenis Sparepart
+                            Master Data Konversi
                         </h1>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ Dashboard
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
-                                <div class="small font-weight-bold text-primary mb-1">Tambah Data Jenis Sparepart</div>
+                                <div class="small font-weight-bold text-primary mb-1">Tambah Data Konversi</div>
                                 <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
                                     data-target="#Modaltambah">
                                     Tambah Data
@@ -61,8 +61,8 @@ Dashboard
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
-                                <div class="small font-weight-bold text-primary mb-1">Jenis Sparepart Aktif</div>
-                                <div class="h6">Total: {{ $jenissparepartaktif }}</div>
+                                <div class="small font-weight-bold text-primary mb-1">Konversi Aktif</div>
+                                <div class="h6">Total: {{ $countkonversiaktif }}</div>
                             </div>
                             <div class="ml-2"><i class="fas fa-cubes" style="color: gainsboro"></i> </svg>
                             </div>
@@ -77,7 +77,7 @@ Dashboard
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
                                 <div class="small font-weight-bold text-secondary mb-1">Pengajuan Jenis Baru</div>
-                                <div class="h6">Total: {{ $jenissparepartdiajukan }}</div>
+                                <div class="h6">Total: {{ $countkonversidiajukan }}</div>
                             </div>
                             <div class="ml-2"><i class="fas fa-box-open" style="color: gainsboro"></i>
                             </div>
@@ -142,7 +142,7 @@ Dashboard
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 350px;">Jenis Sparepart</th>
+                                                        style="width: 350px;">Satuan</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Actions: activate to sort column ascending"
@@ -150,20 +150,20 @@ Dashboard
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($jenissparepart as $item)
+                                                @forelse ($konversi as $item)
                                                 <tr role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
-                                                    <td>{{ $item->jenis_sparepart }}</td>
+                                                    <td>{{ $item->satuan }}</td>
                                                     <td>
                                                         <a href="" class="btn btn-primary btn-datatable  mr-2"
                                                             type="button" data-toggle="modal"
-                                                            data-target="#Modaledit-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modaledit-{{ $item->id_konversi }}">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         <a href="" class="btn btn-danger btn-datatable" type="button"
                                                             data-toggle="modal"
-                                                            data-target="#Modalhapus-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modalhapus-{{ $item->id_konversi }}">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
                                                     </td>
@@ -215,7 +215,7 @@ Dashboard
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 230px;">Jenis Sparepart</th>
+                                                        style="width: 230px;">Satuan</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Actions: activate to sort column ascending"
@@ -223,20 +223,20 @@ Dashboard
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($jenissparepartpengajuan as $item)
+                                                @forelse ($konversidiajukan as $item)
                                                 <tr role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
-                                                    <td>{{ $item->jenis_sparepart }}</td>
+                                                    <td>{{ $item->satuan }}</td>
                                                     <td>
                                                         <a href="" class="btn btn-success btn-datatable" type="button"
                                                             data-toggle="modal"
-                                                            data-target="#Modalkonfirmasisetuju-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modalkonfirmasisetuju-{{ $item->id_konversi }}">
                                                             <i class="fas fa-check"></i>
                                                         </a>
                                                         <a href="" class="btn btn-danger btn-datatable" type="button"
                                                             data-toggle="modal"
-                                                            data-target="#Modalkonfirmasitolak-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modalkonfirmasitolak-{{ $item->id_konversi }}">
                                                             <i class="fas fa-times"></i>
                                                         </a>
                                                     </td>
@@ -264,11 +264,11 @@ Dashboard
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Jenis Sparepart</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Data Konversi</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('category.store')}}" method="POST">
+                <form action="{{ route('konversi.store')}}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>

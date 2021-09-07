@@ -54,13 +54,26 @@ Route::prefix('admin')
     ->middleware(['auth', 'admin'])
     ->group(function(){
         Route::get('/', "DashboardController@index")->name('dashboard-admin');
+
+        // JENIS
         Route::resource('category', 'CategoryController');
+        Route::post('category/{id_jenis_sparepart}/set-status', 'CategoryController@setStatus')
+                    ->name('jenis-sparepart-pengajuan');
+
+        // MERK
+        Route::resource('merk', 'MerkController');
+        Route::post('merk/{id_merk}/set-status', 'MerkController@setStatus')
+                    ->name('merk-sparepart-pengajuan');
+
+        // KONVERSI
+        Route::resource('konversi', 'KonversiController');
+        Route::post('konversi/{id_konversi}/set-status', 'Konversi@setStatus')
+                    ->name('konversi-pengajuan');
+
         Route::resource('user', 'UserController');
+
+        // SPAREPART
         Route::resource('sparepart', 'SparepartController');
-        Route::post('sparepart/{id_sparepart}/Aktif', 'SparepartController@Aktif')
-                    ->name('sparepart-aktif');
-        Route::post('sparepart/{id_sparepart}/TidakAktif', 'SparepartController@TidakAktif')
-                    ->name('sparepart-tidak-aktif');
         Route::post('sparepart/{id_sparepart}/set-status', 'SparepartController@setStatus')
                     ->name('sparepart-status-pengajuan');
         Route::get('sparepart/getmerk/{id}', 'SparepartController@getmerk');
