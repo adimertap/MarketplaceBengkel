@@ -28,13 +28,13 @@
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
                             Jenis Sparepart
                         </a>
-                        <a class="nav-link {{ (request()-> is('admin/merksparepart*')) ?'active' :''}}"
-                            href={{ route('sparepart.index') }}>
+                        <a class="nav-link {{ (request()-> is('admin/konversi*')) ?'active' :''}}"
+                            href={{ route('konversi.index') }}>
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
                             Konversi
                         </a>
-                        <a class="nav-link {{ (request()-> is('admin/merksparepart*')) ?'active' :''}}"
-                            href={{ route('sparepart.index') }}>
+                        <a class="nav-link {{ (request()-> is('admin/kemasan*')) ?'active' :''}}"
+                            href={{ route('kemasan.index') }}>
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
                             Kemasan
                         </a>

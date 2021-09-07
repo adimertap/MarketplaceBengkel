@@ -431,7 +431,7 @@ Dashboard
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('merk-sparepart-pengajuan', $items->id_merk) }}?status=Aktif"
+                <form action="{{ route('merk-sparepart-pengajuan', $items->id_merk) }}?status_merk=Aktif"
                     method="POST" class="d-inline">
                     @csrf
                     <div class="modal-body">
@@ -460,7 +460,7 @@ Dashboard
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('merk-sparepart-pengajuan', $itemz->id_merk) }}?status=Tidak Aktif"
+                <form action="{{ route('merk-sparepart-pengajuan', $itemz->id_merk) }}?status_merk=Tidak Aktif"
                     method="POST" class="d-inline">
                     @csrf
                     <div class="modal-body">

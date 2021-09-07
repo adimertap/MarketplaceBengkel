@@ -67,8 +67,13 @@ Route::prefix('admin')
 
         // KONVERSI
         Route::resource('konversi', 'KonversiController');
-        Route::post('konversi/{id_konversi}/set-status', 'Konversi@setStatus')
+        Route::post('konversi/{id_konversi}/set-status', 'KonversiController@setStatus')
                     ->name('konversi-pengajuan');
+
+        // KEMASAN
+        Route::resource('kemasan', 'KemasanController');
+        Route::post('kemasan/{id_kemasan}/set-status', 'KemasanController@setStatus')
+                    ->name('kemasan-pengajuan');
 
         Route::resource('user', 'UserController');
 

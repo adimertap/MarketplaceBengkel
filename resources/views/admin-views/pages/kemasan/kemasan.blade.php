@@ -21,7 +21,7 @@ Dashboard
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Data Jenis Sparepart
+                            Master Data Kemasan
                         </h1>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ Dashboard
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
-                                <div class="small font-weight-bold text-primary mb-1">Tambah Data Jenis Sparepart</div>
+                                <div class="small font-weight-bold text-primary mb-1">Tambah Data Kemasan</div>
                                 <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
                                     data-target="#Modaltambah">
                                     Tambah Data
@@ -61,8 +61,8 @@ Dashboard
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
-                                <div class="small font-weight-bold text-primary mb-1">Jenis Sparepart Aktif</div>
-                                <div class="h6">Total: {{ $jenissparepartaktif }}</div>
+                                <div class="small font-weight-bold text-primary mb-1">Kemasan Aktif</div>
+                                <div class="h6">Total: {{ $countkemasanaktif }}</div>
                             </div>
                             <div class="ml-2"><i class="fas fa-cubes" style="color: gainsboro"></i> </svg>
                             </div>
@@ -76,8 +76,8 @@ Dashboard
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
-                                <div class="small font-weight-bold text-secondary mb-1">Pengajuan Jenis Baru</div>
-                                <div class="h6">Total: {{ $jenissparepartdiajukan }}</div>
+                                <div class="small font-weight-bold text-secondary mb-1">Pengajuan Kemasan Baru</div>
+                                <div class="h6">Total: {{ $countkemasandiajukan }}</div>
                             </div>
                             <div class="ml-2"><i class="fas fa-box-open" style="color: gainsboro"></i>
                             </div>
@@ -95,7 +95,7 @@ Dashboard
                 <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab"
-                            aria-controls="overview" aria-selected="true">Master Jenis</a>
+                            aria-controls="overview" aria-selected="true">Master Kemasan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="example-tab" href="#example" data-toggle="tab" role="tab"
@@ -142,7 +142,7 @@ Dashboard
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 350px;">Jenis Sparepart</th>
+                                                        style="width: 350px;">Kemasan</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Actions: activate to sort column ascending"
@@ -150,20 +150,20 @@ Dashboard
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($jenissparepart as $item)
+                                                @forelse ($kemasan as $item)
                                                 <tr role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
-                                                    <td>{{ $item->jenis_sparepart }}</td>
+                                                    <td>{{ $item->nama_kemasan }}</td>
                                                     <td>
                                                         <a href="" class="btn btn-primary btn-datatable  mr-2"
                                                             type="button" data-toggle="modal"
-                                                            data-target="#Modaledit-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modaledit-{{ $item->id_kemasan }}">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         <a href="" class="btn btn-danger btn-datatable" type="button"
                                                             data-toggle="modal"
-                                                            data-target="#Modalhapus-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modalhapus-{{ $item->id_kemasan }}">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
                                                     </td>
@@ -215,7 +215,7 @@ Dashboard
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 230px;">Jenis Sparepart</th>
+                                                        style="width: 230px;">Satuan</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Actions: activate to sort column ascending"
@@ -223,20 +223,20 @@ Dashboard
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($jenissparepartpengajuan as $item)
+                                                @forelse ($kemasandiajukan as $item)
                                                 <tr role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
-                                                    <td>{{ $item->jenis_sparepart }}</td>
+                                                    <td>{{ $item->nama_kemasan }}</td>
                                                     <td>
                                                         <a href="" class="btn btn-success btn-datatable" type="button"
                                                             data-toggle="modal"
-                                                            data-target="#Modalkonfirmasisetuju-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modalkonfirmasisetuju-{{ $item->id_kemasan }}">
                                                             <i class="fas fa-check"></i>
                                                         </a>
                                                         <a href="" class="btn btn-danger btn-datatable" type="button"
                                                             data-toggle="modal"
-                                                            data-target="#Modalkonfirmasitolak-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modalkonfirmasitolak-{{ $item->id_kemasan }}">
                                                             <i class="fas fa-times"></i>
                                                         </a>
                                                     </td>
@@ -256,64 +256,67 @@ Dashboard
         </div>
     </div>
 
-
-
     {{-- MODAL Tambah -------------------------------------------------------------------------------------------}}
     <div class="modal fade" id="Modaltambah" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Kemasan</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <form action="{{ route('kemasan.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                    <hr>
+                    </hr>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="nama_kemasan">Kemasan</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <input class="form-control" name="nama_kemasan" type="text" id="nama_kemasan"
+                            placeholder="Input Nama Kemasan" value="{{ old('nama_kemasan') }}"
+                            class="form-control @error('nama_kemasan') is-invalid @enderror"></input>
+                        @error('nama_kemasan')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
+                    </div>
+                </div>
+
+                {{-- Validasi Error --}}
+                @if (count($errors) > 0)
+                @endif
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="Submit">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
+    @forelse ($kemasan as $item)
+    <div class="modal fade" id="Modaledit-{{ $item->id_kemasan }}" data-backdrop="static" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Jenis Sparepart</h5>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Satuan</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('category.store')}}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <label class="small mb-1">Isikan Form Dibawah Ini</label>
-                        <div class="form-group">
-                            <label class="small mb-1" for="jenis_sparepart">Jenis Sparepart</label>
-                            <input class="form-control" name="jenis_sparepart" type="text" id="jenis_sparepart"
-                                placeholder="Input Jenis Sparepart" value="{{ old('jenis_sparepart') }}"
-                                class="form-control @error('jenis_sparepart') is-invalid @enderror">
-                            @error('jenis_sparepart')<div class="text-danger small mb-1">{{ $message }}
-                            </div> @enderror
-                        </div>
-                    </div>
-
-                    {{-- Validasi Error --}}
-                    @if (count($errors) > 0)
-                    @endif
-
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="Submit">Tambah</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
-    @forelse ($jenissparepart as $item)
-    <div class="modal fade" id="Modaledit-{{ $item->id_jenis_sparepart }}" data-backdrop="static" tabindex="-1"
-        role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Jenis Sparepart</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">×</span></button>
-                </div>
-                <form action="{{ route('category.update', $item->id_jenis_sparepart) }}" method="POST">
+                <form action="{{ route('kemasan.update', $item->id_kemasan) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
+                        <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                        <hr>
+                        </hr>
                         <div class="form-group">
-                            <label class="small" for="jenis_sparepart">Jenis Sparepart</label>
-                            <input class="form-control" name="jenis_sparepart" type="text" id="jenis_sparepart"
-                                value="{{ $item->jenis_sparepart }}" />
+                            <label class="small mb-1 mr-1" for="nama_kemasan">Nama Kemasan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                            <input class="form-control" name="nama_kemasan" type="text" id="nama_kemasan"
+                                value="{{ $item->nama_kemasan }}" required></input>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -325,12 +328,12 @@ Dashboard
         </div>
     </div>
     @empty
-
+    
     @endforelse
 
     {{-- MODAL DELETE ------------------------------------------------------------------------------}}
-    @forelse ($jenissparepart as $item)
-    <div class="modal fade" id="Modalhapus-{{ $item->id_jenis_sparepart }}" tabindex="-1" role="dialog"
+    @forelse ($kemasan as $item)
+    <div class="modal fade" id="Modalhapus-{{ $item->id_kemasan }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -339,11 +342,11 @@ Dashboard
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('category.destroy', $item->id_jenis_sparepart) }}" method="POST"
+                <form action="{{ route('kemasan.destroy', $item->id_kemasan) }}" method="POST"
                     class="d-inline">
                     @csrf
                     @method('delete')
-                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Merk {{ $item->jenis_sparepart }}?</div>
+                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Kemasan {{ $item->nama_kemasan }}?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                         <button class="btn btn-danger" type="submit">Ya! Hapus</button>
@@ -357,8 +360,8 @@ Dashboard
     @endforelse
 
     {{-- KONFIRMASI SETUJUI DATA --}}
-    @forelse ($jenissparepartpengajuan as $items)
-    <div class="modal fade" id="Modalkonfirmasisetuju-{{ $items->id_jenis_sparepart }}" tabindex="-1" role="dialog"
+    @forelse ($kemasandiajukan as $items)
+    <div class="modal fade" id="Modalkonfirmasisetuju-{{ $items->id_kemasan }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -367,12 +370,12 @@ Dashboard
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('jenis-sparepart-pengajuan', $items->id_jenis_sparepart) }}?status_jenis=Aktif"
+                <form action="{{ route('kemasan-pengajuan', $items->id_kemasan) }}?status_kemasan=Aktif"
                     method="POST" class="d-inline">
                     @csrf
                     <div class="modal-body">
-                        <div class="form-group">Apakah Anda Yakin Menyetujui Data Pengajuan Jenis Sparepart
-                            <b>{{ $items->jenis_sparepart }}</b> ?</div>
+                        <div class="form-group">Apakah Anda Yakin Menyetujui Data Pengajuan Kemasan
+                            <b>{{ $items->nama_kemasan }}</b> ?</div>
                     </div>
 
                     <div class="modal-footer">
@@ -386,8 +389,8 @@ Dashboard
     @empty
     @endforelse
 
-    @forelse ($jenissparepartpengajuan as $itemz)
-    <div class="modal fade" id="Modalkonfirmasitolak-{{ $itemz->id_jenis_sparepart }}" tabindex="-1" role="dialog"
+    @forelse ($kemasandiajukan as $itemz)
+    <div class="modal fade" id="Modalkonfirmasitolak-{{ $itemz->id_kemasan }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -396,12 +399,12 @@ Dashboard
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('jenis-sparepart-pengajuan', $itemz->id_jenis_sparepart) }}?status_jenis=Tidak Aktif"
+                <form action="{{ route('kemasan-pengajuan', $itemz->id_kemasan) }}?status_kemasan=Tidak Aktif"
                     method="POST" class="d-inline">
                     @csrf
                     <div class="modal-body">
-                        <div class="form-group">Apakah Anda Yakin Menolak Data Pengajuan Sparepart
-                            <b>{{ $itemz->jenis_sparepart }}</b> ?</div>
+                        <div class="form-group">Apakah Anda Yakin Menolak Data Pengajuan Kemasan
+                            <b>{{ $itemz->nama_kemasan }}</b> ?</div>
                     </div>
 
                     <div class="modal-footer">
