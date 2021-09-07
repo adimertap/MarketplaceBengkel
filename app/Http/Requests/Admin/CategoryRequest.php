@@ -24,8 +24,7 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'jenis_sparepart' => 'required|string',
-    	    'keterangan' => 'required|string'
+            'jenis_sparepart' => 'required|string|unique:tb_inventory_master_jenis_sparepart,jenis_sparepart',
         ];
     }
 }
