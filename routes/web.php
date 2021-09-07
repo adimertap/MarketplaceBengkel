@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get("/", "HomeController@index") ->name('home');
+Route::get("/", "DashboardController@index") ->name('home');
 Route::get("/kabupaten/{id}", "HomeController@kabupaten_baru");
 Route::get("/kecamatan/{id}", "HomeController@kecamatan_baru");
 Route::get("/desa/{id}", "HomeController@desa_baru");
