@@ -15,7 +15,6 @@ class Konversi extends Model
 
     protected $fillable = [
         'satuan',
-        'status_konversi'
     ];
 
     protected $hidden =[ 

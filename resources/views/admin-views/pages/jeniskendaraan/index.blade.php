@@ -21,22 +21,19 @@ Dashboard
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Data Kemasan
+                            Master Data Jenis Kendaraan
                         </h1>
                     </div>
                 </div>
             </div>
         </div>
     </header>
-
-
-
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">List Kemasan
+                <div class="card-header">List Jenis Kendaraan
                     <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
-                        data-target="#Modaltambah">Tambah Kemasan</button>
+                        data-target="#Modaltambah">Tambah Data Jenis</button>
                 </div>
             </div>
             <div class="card-body">
@@ -71,27 +68,31 @@ Dashboard
                                                 style="width: 30px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 350px;">Kemasan</th>
+                                                style="width: 70px;">Jenis Kendaraan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 250px;">Keterangan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
-                                                style="width: 77px;">Actions</th>
+                                                style="width: 50px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($kemasan as $item)
+                                        @forelse ($jenis as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">
                                                 {{ $loop->iteration}}</th>
-                                            <td>{{ $item->nama_kemasan }}</td>
+                                            <td>{{ $item->jenis_kendaraan }}</td>
+                                            <td>{{ $item->keterangan }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal"
-                                                    data-target="#Modaledit-{{ $item->id_kemasan }}">
+                                                    data-target="#Modaledit-{{ $item->id_jenis_kendaraan }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable" type="button"
                                                     data-toggle="modal"
-                                                    data-target="#Modalhapus-{{ $item->id_kemasan }}">
+                                                    data-target="#Modalhapus-{{ $item->id_jenis_kendaraan }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -116,30 +117,29 @@ Dashboard
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah Kemasan</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Jenis Kendaraan</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('kemasan.store') }}" method="POST">
+            <form action="{{ route('jenis-kendaraan.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="nama_kemasan">Kemasan</label><span class="mr-4 mb-3"
-                            style="color: red">*</span>
-                        <input class="form-control" name="nama_kemasan" type="text" id="nama_kemasan"
-                            placeholder="Input Nama Kemasan" value="{{ old('nama_kemasan') }}"
-                            class="form-control @error('nama_kemasan') is-invalid @enderror"></input>
-                        @error('nama_kemasan')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
+                        <label class="small mb-1 mr-1" for="jenis_kendaraan">Jenis Kendaraan</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="jenis_kendaraan" type="text" id="jenis_kendaraan"
+                            placeholder="Input Nama Jenis Kendaraan" value="{{ old('jenis_kendaraan') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="keterangan">Keterangan</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="keterangan" type="text" id="keterangan"
+                            placeholder="Input Keterangan" value="{{ old('keterangan') }}" required>
                     </div>
                 </div>
-
-                {{-- Validasi Error --}}
-                @if (count($errors) > 0)
-                @endif
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-primary" type="Submit">Tambah</button>
@@ -150,17 +150,17 @@ Dashboard
 </div>
 
 {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
-@forelse ($kemasan as $item)
-<div class="modal fade" id="Modaledit-{{ $item->id_kemasan }}" data-backdrop="static" tabindex="-1" role="dialog"
+@forelse ($jenis as $item)
+<div class="modal fade" id="Modaledit-{{ $item->id_jenis_kendaraan }}" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Satuan</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Merk Kendaraan</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('kemasan.update', $item->id_kemasan) }}" method="POST">
+            <form action="{{ route('jenis-kendaraan.update', $item->id_jenis_kendaraan) }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="modal-body">
@@ -168,10 +168,16 @@ Dashboard
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="nama_kemasan">Nama Kemasan</label><span class="mr-4 mb-3"
-                            style="color: red">*</span>
-                        <input class="form-control" name="nama_kemasan" type="text" id="nama_kemasan"
-                            value="{{ $item->nama_kemasan }}" required></input>
+                        <label class="small mb-1 mr-1" for="jenis_kendaraan">Jenis Kendaraan</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="jenis_kendaraan" type="text" id="jenis_kendaraan"
+                            placeholder="Input Nama Jenis Kendaraan" value="{{ $item->jenis_kendaraan }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="keterangan">Keterangan</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="keterangan" type="text" id="keterangan"
+                            placeholder="Input Keterangan" value="{{ $item->keterangan }}" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -187,8 +193,8 @@ Dashboard
 @endforelse
 
 {{-- MODAL DELETE ------------------------------------------------------------------------------}}
-@forelse ($kemasan as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_kemasan }}" tabindex="-1" role="dialog"
+@forelse ($jenis as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_jenis_kendaraan }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -197,10 +203,10 @@ Dashboard
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('kemasan.destroy', $item->id_kemasan) }}" method="POST" class="d-inline">
+            <form action="{{ route('jenis-kendaraan.destroy', $item->id_jenis_kendaraan) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Kemasan {{ $item->nama_kemasan }}?</div>
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Jenis Kendaraan {{ $item->jenis_kendaraan }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>

@@ -5,23 +5,24 @@ namespace App\Model\MasterData;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Kemasan extends Model
+class Jabatan extends Model
 {
     use SoftDeletes;
 
-    protected $table = "tb_inventory_master_kemasan";
+    protected $table = "tb_kepeg_master_jabatan";
 
-    protected $primaryKey = 'id_kemasan';
+    protected $primaryKey = 'id_jabatan';
 
     protected $fillable = [
-        'nama_kemasan',
+        'nama_jabatan',
     ];
 
-    protected $hidden =[ 
+    protected $hidden = [
         'created_at',
         'updated_at',
         'deleted_at'
     ];
 
     public $timestamps = true;
+
 }

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\AdminMarketplace;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\KemasanRequest;
-use App\Model\MasterData\Kemasan;
+use App\Http\Requests\Admin\JabatanRequest;
+use App\Model\MasterData\Jabatan;
 use Illuminate\Http\Request;
 
-class KemasanController extends Controller
+class JabatanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class KemasanController extends Controller
      */
     public function index()
     {
-        $kemasan = Kemasan::get();
-      
-        return view('admin-views.pages.kemasan.kemasan',compact('kemasan'));
+        $jabatan = Jabatan::get();
+
+        return view('admin-views.pages.jabatan.index',compact('jabatan'));
     }
 
     /**
@@ -37,13 +37,13 @@ class KemasanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KemasanRequest $request)
+    public function store(JabatanRequest $request)
     {
-        $kemasan = new Kemasan;
-        $kemasan->nama_kemasan = $request->nama_kemasan;
+        $jabatan = new Jabatan;
+        $jabatan->nama_jabatan = $request->nama_jabatan;
 
-        $kemasan->save();
-        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil ditambah');
+        $jabatan->save();
+        return redirect()->back()->with('messageberhasil','Data Jabatan Berhasil ditambah');
     }
 
     /**
@@ -75,13 +75,13 @@ class KemasanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_kemasan)
+    public function update(Request $request, $id_jabatan)
     {
-        $kemasan = Kemasan::findOrFail($id_kemasan);
-        $kemasan->nama_kemasan = $request->nama_kemasan;
-        
-        $kemasan->save();
-        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil diubah');
+        $jabatan = Jabatan::find($id_jabatan);
+        $jabatan->nama_jabatan = $request->nama_jabatan;
+
+        $jabatan->update();
+        return redirect()->back()->with('messageberhasil','Data Jabatan Berhasil diubah');
     }
 
     /**
@@ -90,11 +90,10 @@ class KemasanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_kemasan)
+    public function destroy($id_jabatan)
     {
-        $kemasan = Kemasan::findOrFail($id_kemasan);
-        $kemasan->delete();
-
-        return redirect()->back()->with('messagehapus','Data Kemasan Berhasil dihapus');
+        $jabatan = Jabatan::find($id_jabatan);
+        $jabatan->delete();
+        return redirect()->back()->with('messagehapus','Data Jabatan Berhasil dihapus');
     }
 }

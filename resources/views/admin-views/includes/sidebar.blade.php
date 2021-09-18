@@ -5,7 +5,7 @@
                 <div class="sidenav-menu-heading">Master Data</div>
                 <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                     data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
-                    <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                    <div class="nav-link-icon"><i class="fas fa-cubes"></i></div>
                     Inventory
                     <div class="sidenav-collapse-arrow">
                         <i class="fas fa-angle-down"></i>
@@ -40,6 +40,97 @@
                         </a>
                     </nav>
                 </div>
+                <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                    data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
+                    <div class="nav-link-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    Payroll
+                    <div class="sidenav-collapse-arrow">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+                </a>
+                <div class="collapse" id="collapseUtilities" data-parent="#accordionSidenav" style="">
+                    <nav class="sidenav-menu-nested nav">
+                        <a class="nav-link" href="{{ route('pph21.index') }}">
+                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            PPH21
+                        </a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                    data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <div class="nav-link-icon"><i class="fas fa-users"></i></div>
+                    Kepegawaian
+                    <div class="sidenav-collapse-arrow">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+                </a>
+                <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
+                        <a class="nav-link " href="{{ route('jabatan.index') }}">
+                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            Jabatan
+                        </a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                    data-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
+                    <div class="nav-link-icon"><i class="fas fa-calculator"></i></div>
+                    Accounting
+                    <div class="sidenav-collapse-arrow">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+                </a>
+                <div class="collapse" id="collapseComponents" data-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav">
+
+                        <a class="nav-link " href="{{ route('jenistransaksi.index') }}">
+                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            Jenis Transaksi
+                        </a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                    data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="nav-link-icon"><i class="fas fa-wrench"></i></div>
+                    Jasa Perbaikan
+                    <div class="sidenav-collapse-arrow">
+                        <i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts" data-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
+                        <a class="nav-link " href="{{ route('jenisperbaikan.index') }}">
+                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            Jenis Perbaikan
+                        </a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                    data-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
+                    <div class="nav-link-icon"><i class="fas fa-car"></i></div>
+                    Kendaraan
+                    <div class="sidenav-collapse-arrow">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+                </a>
+                <div class="collapse show" id="collapseFlows" data-parent="#accordionSidenav" style="">
+                    <nav class="sidenav-menu-nested nav">
+                        <a class="nav-link " href="{{ route('jenis-kendaraan.index') }}">
+                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            Jenis Kendaraan
+                        </a>
+                        <a class="nav-link " href="{{ route('merkkendaraan.index') }}">
+                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            Merk Kendaraan
+                        </a>
+                        <a class="nav-link " href="{{ route('kendaraan.index') }}">
+                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            Kendaraan
+                        </a>
+                    </nav>
+                </div>
+
             </div>
             <div class="nav accordion" id="accordionSidenav">
                 <div class="sidenav-menu-heading">Menu</div>

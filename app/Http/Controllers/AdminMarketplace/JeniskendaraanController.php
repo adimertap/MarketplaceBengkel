@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\AdminMarketplace;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\KemasanRequest;
-use App\Model\MasterData\Kemasan;
+use App\Model\MasterData\JenisKendaraan;
 use Illuminate\Http\Request;
 
-class KemasanController extends Controller
+class JeniskendaraanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,9 @@ class KemasanController extends Controller
      */
     public function index()
     {
-        $kemasan = Kemasan::get();
-      
-        return view('admin-views.pages.kemasan.kemasan',compact('kemasan'));
+        $jenis = JenisKendaraan::get();
+
+        return view('admin-views.pages.jeniskendaraan.index',compact('jenis'));
     }
 
     /**
@@ -37,13 +36,14 @@ class KemasanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KemasanRequest $request)
+    public function store(Request $request)
     {
-        $kemasan = new Kemasan;
-        $kemasan->nama_kemasan = $request->nama_kemasan;
+        $merk = new JenisKendaraan;
+        $merk->jenis_kendaraan = $request->jenis_kendaraan;
+        $merk->keterangan = $request->keterangan;
 
-        $kemasan->save();
-        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil ditambah');
+        $merk->save();
+        return redirect()->back()->with('messageberhasil','Data Jenis Kendaraan Berhasil ditambah');
     }
 
     /**
@@ -75,13 +75,14 @@ class KemasanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_kemasan)
+    public function update(Request $request, $id_jenis_kendaraan)
     {
-        $kemasan = Kemasan::findOrFail($id_kemasan);
-        $kemasan->nama_kemasan = $request->nama_kemasan;
-        
-        $kemasan->save();
-        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil diubah');
+        $merk =  JenisKendaraan::find($id_jenis_kendaraan);
+        $merk->jenis_kendaraan = $request->jenis_kendaraan;
+        $merk->keterangan = $request->keterangan;
+
+        $merk->update();
+        return redirect()->back()->with('messageberhasil','Data Jenis Kendaraan Berhasil diubah');
     }
 
     /**
@@ -90,11 +91,10 @@ class KemasanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_kemasan)
+    public function destroy($id_jenis_kendaraan)
     {
-        $kemasan = Kemasan::findOrFail($id_kemasan);
-        $kemasan->delete();
-
-        return redirect()->back()->with('messagehapus','Data Kemasan Berhasil dihapus');
+        $merk =  JenisKendaraan::find($id_jenis_kendaraan);
+        $merk->delete();
+        return redirect()->back()->with('messagehapus','Data Jenis Kendaraan Berhasil dihapus');
     }
 }

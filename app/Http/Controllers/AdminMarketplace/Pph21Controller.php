@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\AdminMarketplace;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\KemasanRequest;
-use App\Model\MasterData\Kemasan;
+use App\Http\Requests\Admin\Pph21Request;
+use App\Model\MasterData\PPH21;
 use Illuminate\Http\Request;
 
-class KemasanController extends Controller
+class Pph21Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class KemasanController extends Controller
      */
     public function index()
     {
-        $kemasan = Kemasan::get();
-      
-        return view('admin-views.pages.kemasan.kemasan',compact('kemasan'));
+        $pph21 = PPH21::get();
+
+        return view('admin-views.pages.pph21.index',compact('pph21'));
     }
 
     /**
@@ -37,13 +37,15 @@ class KemasanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KemasanRequest $request)
+    public function store(Pph21Request $request)
     {
-        $kemasan = new Kemasan;
-        $kemasan->nama_kemasan = $request->nama_kemasan;
+        $pph21 = new PPH21;
+        $pph21->nama_pph21 = $request->nama_pph21;
+        $pph21->kumulatif_bulanan = $request->kumulatif_bulanan;
+        $pph21->besaran_pph21 = $request->besaran_pph21;
 
-        $kemasan->save();
-        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil ditambah');
+        $pph21->save();
+        return redirect()->back()->with('messageberhasil','Data Pajak Penghasilan Berhasil ditambahkan');
     }
 
     /**
@@ -75,13 +77,15 @@ class KemasanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_kemasan)
+    public function update(Request $request, $id_pph21)
     {
-        $kemasan = Kemasan::findOrFail($id_kemasan);
-        $kemasan->nama_kemasan = $request->nama_kemasan;
-        
-        $kemasan->save();
-        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil diubah');
+        $pph21 = PPH21::find($id_pph21);
+        $pph21->nama_pph21 = $request->nama_pph21;
+        $pph21->kumulatif_bulanan = $request->kumulatif_bulanan;
+        $pph21->besaran_pph21 = $request->besaran_pph21;
+
+        $pph21->update();
+        return redirect()->back()->with('messageberhasil','Data Pajak Penghasilan Berhasil diubah');
     }
 
     /**
@@ -90,11 +94,11 @@ class KemasanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_kemasan)
+    public function destroy($id_pph21)
     {
-        $kemasan = Kemasan::findOrFail($id_kemasan);
-        $kemasan->delete();
+        $pph21 = PPH21::find($id_pph21);
+        $pph21->delete();
 
-        return redirect()->back()->with('messagehapus','Data Kemasan Berhasil dihapus');
+        return redirect()->back()->with('messagehapus','Data Pajak Penghasilan Berhasil dihapus');
     }
 }

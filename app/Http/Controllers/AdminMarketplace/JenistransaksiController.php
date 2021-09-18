@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\AdminMarketplace;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\KemasanRequest;
-use App\Model\MasterData\Kemasan;
+use App\Http\Requests\Admin\JenistransaksiRequest;
+use App\Model\MasterData\Jenistransaksi;
 use Illuminate\Http\Request;
 
-class KemasanController extends Controller
+class JenistransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class KemasanController extends Controller
      */
     public function index()
     {
-        $kemasan = Kemasan::get();
-      
-        return view('admin-views.pages.kemasan.kemasan',compact('kemasan'));
+        $jenistransaksi = Jenistransaksi::get();
+
+        return view('admin-views.pages.jenistransaksi.index',compact('jenistransaksi'));
     }
 
     /**
@@ -37,13 +37,13 @@ class KemasanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KemasanRequest $request)
+    public function store(JenistransaksiRequest $request)
     {
-        $kemasan = new Kemasan;
-        $kemasan->nama_kemasan = $request->nama_kemasan;
+        $jenistransaksi = new Jenistransaksi;
+        $jenistransaksi->nama_transaksi = $request->nama_transaksi;
 
-        $kemasan->save();
-        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil ditambah');
+        $jenistransaksi->save();
+        return redirect()->back()->with('messageberhasil','Data Jenis Transaksi Berhasil ditambah');
     }
 
     /**
@@ -75,13 +75,13 @@ class KemasanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_kemasan)
+    public function update(Request $request, $id_jenis_transaksi)
     {
-        $kemasan = Kemasan::findOrFail($id_kemasan);
-        $kemasan->nama_kemasan = $request->nama_kemasan;
-        
-        $kemasan->save();
-        return redirect()->back()->with('messageberhasil','Data Kemasan Berhasil diubah');
+        $jenistransaksi = Jenistransaksi::find($id_jenis_transaksi);
+        $jenistransaksi->nama_transaksi = $request->nama_transaksi;
+
+        $jenistransaksi->update();
+        return redirect()->back()->with('messageberhasil','Data Jenis Transaksi Berhasil diubah');
     }
 
     /**
@@ -90,11 +90,11 @@ class KemasanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_kemasan)
+    public function destroy($id_jenis_transaksi)
     {
-        $kemasan = Kemasan::findOrFail($id_kemasan);
-        $kemasan->delete();
+        $jenistransaksi = Jenistransaksi::find($id_jenis_transaksi);
+        $jenistransaksi->delete();
 
-        return redirect()->back()->with('messagehapus','Data Kemasan Berhasil dihapus');
+        return redirect()->back()->with('messagehapus','Data Jenis Transaksi Berhasil dihapus');
     }
 }

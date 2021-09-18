@@ -21,7 +21,7 @@ Dashboard
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Data Kemasan
+                            Master Data Merk Kendaraan
                         </h1>
                     </div>
                 </div>
@@ -34,9 +34,9 @@ Dashboard
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">List Kemasan
+                <div class="card-header">List Merk Kendaraan
                     <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
-                        data-target="#Modaltambah">Tambah Kemasan</button>
+                        data-target="#Modaltambah">Tambah Data Merk</button>
                 </div>
             </div>
             <div class="card-body">
@@ -71,27 +71,31 @@ Dashboard
                                                 style="width: 30px;">No</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Position: activate to sort column ascending"
-                                                style="width: 350px;">Kemasan</th>
+                                                style="width: 70px;">Kode Merk Kendaraan</th>
+                                            <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                colspan="1" aria-label="Position: activate to sort column ascending"
+                                                style="width: 170px;">Merk Kendaraan</th>
                                             <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                 colspan="1" aria-label="Actions: activate to sort column ascending"
                                                 style="width: 77px;">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($kemasan as $item)
+                                        @forelse ($merk as $item)
                                         <tr role="row" class="odd">
                                             <th scope="row" class="small" class="sorting_1">
                                                 {{ $loop->iteration}}</th>
-                                            <td>{{ $item->nama_kemasan }}</td>
+                                            <td>{{ $item->kode_merk_kendaraan }}</td>
+                                            <td>{{ $item->merk_kendaraan }}</td>
                                             <td>
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
                                                     data-toggle="modal"
-                                                    data-target="#Modaledit-{{ $item->id_kemasan }}">
+                                                    data-target="#Modaledit-{{ $item->id_merk_kendaraan }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="" class="btn btn-danger btn-datatable" type="button"
                                                     data-toggle="modal"
-                                                    data-target="#Modalhapus-{{ $item->id_kemasan }}">
+                                                    data-target="#Modalhapus-{{ $item->id_merk_kendaraan }}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -116,24 +120,27 @@ Dashboard
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah Kemasan</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Merk Kendaraan</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('kemasan.store') }}" method="POST">
+            <form action="{{ route('merkkendaraan.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="nama_kemasan">Kemasan</label><span class="mr-4 mb-3"
-                            style="color: red">*</span>
-                        <input class="form-control" name="nama_kemasan" type="text" id="nama_kemasan"
-                            placeholder="Input Nama Kemasan" value="{{ old('nama_kemasan') }}"
-                            class="form-control @error('nama_kemasan') is-invalid @enderror"></input>
-                        @error('nama_kemasan')<div class="text-danger small mb-1">{{ $message }}
-                        </div> @enderror
+                        <label class="small mb-1 mr-1" for="kode_merk_kendaraan">Kode Merk Kendaraan</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="kode_merk_kendaraan" type="text" id="kode_merk_kendaraan"
+                            placeholder="Input Nama Kemasan" value="{{ $kode_merk }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="merk_kendaraan">Merk Kendaraan</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="merk_kendaraan" type="text" id="merk_kendaraan"
+                            placeholder="Input Nama Merk Kendaraan" value="{{ old('merk_kendaraan') }}">
                     </div>
                 </div>
 
@@ -150,17 +157,17 @@ Dashboard
 </div>
 
 {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
-@forelse ($kemasan as $item)
-<div class="modal fade" id="Modaledit-{{ $item->id_kemasan }}" data-backdrop="static" tabindex="-1" role="dialog"
+@forelse ($merk as $item)
+<div class="modal fade" id="Modaledit-{{ $item->id_merk_kendaraan }}" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Satuan</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Merk Kendaraan</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('kemasan.update', $item->id_kemasan) }}" method="POST">
+            <form action="{{ route('merkkendaraan.update', $item->id_merk_kendaraan) }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="modal-body">
@@ -168,10 +175,16 @@ Dashboard
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="nama_kemasan">Nama Kemasan</label><span class="mr-4 mb-3"
-                            style="color: red">*</span>
-                        <input class="form-control" name="nama_kemasan" type="text" id="nama_kemasan"
-                            value="{{ $item->nama_kemasan }}" required></input>
+                        <label class="small mb-1 mr-1" for="kode_merk_kendaraan">Kode Merk Kendaraan</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="kode_merk_kendaraan" type="text" id="kode_merk_kendaraan"
+                            placeholder="Input Nama Kemasan" value="{{ $item->kode_merk_kendaraan }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1 mr-1" for="merk_kendaraan">Merk Kendaraan</label><span
+                            class="mr-4 mb-3" style="color: red">*</span>
+                        <input class="form-control" name="merk_kendaraan" type="text" id="merk_kendaraan"
+                            placeholder="Input Nama Merk Kendaraan" value="{{ $item->merk_kendaraan }}">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -187,8 +200,8 @@ Dashboard
 @endforelse
 
 {{-- MODAL DELETE ------------------------------------------------------------------------------}}
-@forelse ($kemasan as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_kemasan }}" tabindex="-1" role="dialog"
+@forelse ($merk as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_merk_kendaraan }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -197,10 +210,10 @@ Dashboard
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('kemasan.destroy', $item->id_kemasan) }}" method="POST" class="d-inline">
+            <form action="{{ route('merkkendaraan.destroy', $item->id_merk_kendaraan) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Kemasan {{ $item->nama_kemasan }}?</div>
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data Merk Kendaraan {{ $item->nama_kemasan }}?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>

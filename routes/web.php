@@ -26,33 +26,44 @@ Route::namespace('AdminMarketplace')
         Route::resource('category', 'CategoryController');
         Route::post('category/{id_jenis_sparepart}/set-status', 'CategoryController@setStatus')
                     ->name('jenis-sparepart-pengajuan');
-
         // MERK
         Route::resource('merk', 'MerkController');
         Route::post('merk/{id_merk}/set-status', 'MerkController@setStatus')
                     ->name('merk-sparepart-pengajuan');
-
-        // KONVERSI
-        Route::resource('konversi', 'KonversiController');
-        Route::post('konversi/{id_konversi}/set-status', 'KonversiController@setStatus')
-                    ->name('konversi-pengajuan');
-
-        // KEMASAN
-        Route::resource('kemasan', 'KemasanController');
-        Route::post('kemasan/{id_kemasan}/set-status', 'KemasanController@setStatus')
-                    ->name('kemasan-pengajuan');
-
-        Route::resource('user', 'UserController');
-
         // SPAREPART
         Route::resource('sparepart', 'SparepartController');
         Route::post('sparepart/{id_sparepart}/set-status', 'SparepartController@setStatus')
                     ->name('sparepart-status-pengajuan');
         Route::get('sparepart/getmerk/{id}', 'SparepartController@getmerk');
+         // KONVERSI
+         Route::resource('konversi', 'KonversiController');
+         // KEMASAN
+         Route::resource('kemasan', 'KemasanController');
+         // PPH21
+        Route::resource('pph21', 'Pph21Controller');
+         // JABATAN
+        Route::resource('jabatan', 'JabatanController');
+        // JENIS TRANSAKSI
+        Route::resource('jenistransaksi', 'JenistransaksiController');
+        // JENIS PERBAIKAN
+        Route::resource('jenisperbaikan', 'JenisperbaikanController');
+        Route::post('jenisperbaikan/{id_jenis_perbaikan}/set-status', 'JenisperbaikanController@setStatus')
+            ->name('jenisperbaikan-pengajuan');
+        // MERK KENDARAAN
+        Route::resource('merkkendaraan', 'MerkkendaraanController');
+         // JENIS KENDARAAN
+         Route::resource('jenis-kendaraan', 'JenisKendaraanController');
+          // KENDARAAN
+        Route::resource('kendaraan', 'KendaraanController');
+        Route::post('kendaraan/{id_kendaraan}/set-status', 'KendaraanController@setStatus')
+            ->name('kendaraan-pengajuan');
+        
+        
 
+        Route::resource('user', 'UserController');
         Route::resource('bengkel', 'BengkelController');
-
         Route::resource('keuangan', 'KeuanganController');
+
     });
 
 // Route::get('/debug-sentry', function () {

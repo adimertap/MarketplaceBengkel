@@ -16,12 +16,9 @@ class KonversiController extends Controller
      */
     public function index()
     {
-        $konversi = Konversi::where('status_konversi','=','Aktif')->get();
-        $konversidiajukan = Konversi::where('status_konversi','=','Diajukan')->get();
-        $countkonversiaktif = Konversi::where('status_konversi','=','Aktif')->count();
-        $countkonversidiajukan = Konversi::where('status_konversi','=','Diajukan')->count();
+        $konversi = Konversi::get();
 
-        return view('admin-views.pages.konversi.konversi',compact('konversi','konversidiajukan','countkonversiaktif','countkonversidiajukan'));
+        return view('admin-views.pages.konversi.konversi',compact('konversi'));
 
     }
 
@@ -45,7 +42,6 @@ class KonversiController extends Controller
     {
         $konversi = new Konversi;
         $konversi->satuan = $request->satuan;
-        $konversi->status_konversi = 'Aktif';
         
         $konversi->save();
         return redirect()->back()->with('messageberhasil','Data Konversi Satuan Berhasil ditambah');
@@ -103,15 +99,7 @@ class KonversiController extends Controller
         return redirect()->back()->with('messagehapus','Data Konversi Satuan Berhasil dihapus');
     }
 
-    public function setStatus(Request $request, $id_konversi)
-    {
-
-        $item = Konversi::findOrFail($id_konversi);
-        $item->status_konversi = $request->status_konversi;
-        
-        $item->save();
-        return redirect()->back()->with('messageberhasil', 'Data Pengajuan Konversi Satuan Berhasil di Proses');
-    }
+    
 
 
 }
