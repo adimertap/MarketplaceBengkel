@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\AdminMarketplace;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Pph21Request;
-use App\Model\MasterData\PPH21;
+use App\Http\Requests\Admin\PTKPRequest;
+use App\Model\MasterData\PTKP;
 use Illuminate\Http\Request;
 
-class Pph21Controller extends Controller
+class PTKPController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class Pph21Controller extends Controller
      */
     public function index()
     {
-        $pph21 = PPH21::get();
+        $ptkp = PTKP::get();
 
-        return view('admin-views.pages.pph21.index',compact('pph21'));
+        return view('admin-views.pages.ptkp.index', compact('ptkp'));
     }
 
     /**
@@ -37,15 +37,15 @@ class Pph21Controller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Pph21Request $request)
+    public function store(PTKPRequest $request)
     {
-        $pph21 = new PPH21;
-        $pph21->nama_pph21 = $request->nama_pph21;
-        $pph21->kumulatif_tahunan = $request->kumulatif_tahunan;
-        $pph21->besaran_pph21 = $request->besaran_pph21;
+        $ptkp = new PTKP;
+        $ptkp->nama_ptkp = $request->nama_ptkp;
+        $ptkp->besaran_ptkp = $request->besaran_ptkp;
+        $ptkp->keterangan_ptkp = $request->keterangan_ptkp;
+        $ptkp->save();
 
-        $pph21->save();
-        return redirect()->back()->with('messageberhasil','Data Pajak Penghasilan Berhasil ditambahkan');
+        return redirect()->back()->with('messageberhasil','Data PTKP Berhasil ditambahkan');
     }
 
     /**
@@ -77,15 +77,15 @@ class Pph21Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_pph21)
+    public function update(Request $request, $id_ptkp)
     {
-        $pph21 = PPH21::find($id_pph21);
-        $pph21->nama_pph21 = $request->nama_pph21;
-        $pph21->kumulatif_tahunan = $request->kumulatif_tahunan;
-        $pph21->besaran_pph21 = $request->besaran_pph21;
+        $ptkp = PTKP::find($id_ptkp);
+        $ptkp->nama_ptkp = $request->nama_ptkp;
+        $ptkp->besaran_ptkp = $request->besaran_ptkp;
+        $ptkp->keterangan_ptkp = $request->keterangan_ptkp;
+        $ptkp->update();
 
-        $pph21->update();
-        return redirect()->back()->with('messageberhasil','Data Pajak Penghasilan Berhasil diubah');
+        return redirect()->back()->with('messageberhasil','Data PTKP Berhasil diubah');
     }
 
     /**
@@ -94,11 +94,11 @@ class Pph21Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_pph21)
+    public function destroy($id_ptkp)
     {
-        $pph21 = PPH21::find($id_pph21);
-        $pph21->delete();
+        $ptkp = PTKP::find($id_ptkp);
+        $ptkp->delete();
 
-        return redirect()->back()->with('messagehapus','Data Pajak Penghasilan Berhasil dihapus');
+        return redirect()->back()->with('messagehapus','Data PTKP Berhasil dihapus');
     }
 }

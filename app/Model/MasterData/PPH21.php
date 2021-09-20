@@ -15,7 +15,7 @@ class PPH21 extends Model
 
     protected $fillable = [
         'nama_pph21',
-        'kumulatif_bulanan',
+        'kumulatif_tahunan',
         'besaran_pph21'
     ];
 

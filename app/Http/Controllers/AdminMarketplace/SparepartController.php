@@ -24,7 +24,7 @@ class SparepartController extends Controller
     public function index()
 
     {
-         $sparepart = Sparepart::with('Category','Galleries', 'Merk', 'Bengkel')->get();
+         $sparepart = Sparepart::with('Category', 'Merk', 'Bengkel')->get();
          $id = Sparepart::getId();
             foreach ($id as $value);
             $idlama = $value->id_sparepart;
@@ -32,6 +32,7 @@ class SparepartController extends Controller
             $blt = date('m');
 
             $kode_sparepart = 'SP-' . $blt . '/' . $idbaru;
+        
         
         $pengajuansparepart = Sparepart::where('status_sparepart','=','Diajukan')->get();
 

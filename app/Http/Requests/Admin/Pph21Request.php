@@ -25,8 +25,8 @@ class Pph21Request extends FormRequest
     {
         return [
             'nama_pph21' => 'required|min:2|unique:tb_payroll_master_pph21,nama_pph21',
-            'kumulatif_bulanan' => 'required',
-            'besaran_pph21' => 'required|min:1|max:3'
+            'kumulatif_tahunan' => 'required',
+            'besaran_pph21' => 'required|min:1'
         ];
     }
 
@@ -37,11 +37,10 @@ class Pph21Request extends FormRequest
             'nama_pph21.min' => 'Error! Character Minimal :min digit',
            
             'nama_pph21.unique' => 'Error! Pajak Penghasilan sudah Terdaftar',
-            'kumulatif_bulanan.required' => 'Error! Anda Belum Mengisi Besaran Kumulatif Bulanan',
+            'kumulatif_tahunan.required' => 'Error! Anda Belum Mengisi Besaran Kumulatif Tahunan',
 
             'besaran_pph21.required' => 'Error! Anda Belum Mengisi Besaran Pajak Penghasilan',
             'besaran_pph21.min' => 'Error! Character Minimal :min digit',
-            'besaran_pph21.max' => 'Error! Character Maximal :max digit',
 
         ];
     }

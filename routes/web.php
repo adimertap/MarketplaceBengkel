@@ -41,6 +41,8 @@ Route::namespace('AdminMarketplace')
          Route::resource('kemasan', 'KemasanController');
          // PPH21
         Route::resource('pph21', 'Pph21Controller');
+        // PTKP
+        Route::resource('ptkp', 'PTKPController');
          // JABATAN
         Route::resource('jabatan', 'JabatanController');
         // JENIS TRANSAKSI

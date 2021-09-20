@@ -21,7 +21,7 @@ Dashboard
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Data Pph21 / Pajak Penghasilan
+                            Master Data PTKP
                         </h1>
                     </div>
                 </div>
@@ -33,9 +33,9 @@ Dashboard
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card card-header-actions">
-                <div class="card-header">List Pph21
+                <div class="card-header">List PTKP
                     <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
-                        data-target="#Modaltambah">Tambah Pph21</button>
+                        data-target="#Modaltambah">Tambah PTKP</button>
                 </div>
             </div>
             <div class="card-body">
@@ -75,15 +75,15 @@ Dashboard
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 250px;">Nama Pph21</th>
+                                                        style="width: 80px;">Nama PTKP</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 100px;">Kumulatif Tahunan</th>
-                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        style="width: 180px;">Besaran PTKP</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 60px;">Besaran Pph21</th>
+                                                        style="width: 150px;">Keterangan PTKP</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Actions: activate to sort column ascending"
@@ -91,22 +91,22 @@ Dashboard
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($pph21 as $item)
+                                                @forelse ($ptkp as $item)
                                                 <tr role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
-                                                        {{ $loop->iteration}}</th>
-                                                    <td>{{ $item->nama_pph21 }}</td>
-                                                    <td>Rp. {{ number_format($item->kumulatif_tahunan,2,',','.') }}</td>
-                                                    <td class="text-center">{{ $item->besaran_pph21 }} <b>%</b></td>
+                                                        {{ $loop->iteration}}.</th>
+                                                    <td>{{ $item->nama_ptkp }}</td>
+                                                    <td>Rp. {{ number_format($item->besaran_ptkp,2,',','.') }}</td>
+                                                    <td>{{ $item->keterangan_ptkp }}</td>
                                                     <td>
                                                         <a href="" class="btn btn-primary btn-datatable  mr-2"
                                                             type="button" data-toggle="modal"
-                                                            data-target="#Modaledit-{{ $item->id_pph21 }}">
+                                                            data-target="#Modaledit-{{ $item->id_ptkp }}">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         <a href="" class="btn btn-danger btn-datatable" type="button"
                                                             data-toggle="modal"
-                                                            data-target="#Modalhapus-{{ $item->id_pph21 }}">
+                                                            data-target="#Modalhapus-{{ $item->id_ptkp }}">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
                                                     </td>
@@ -133,48 +133,42 @@ Dashboard
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
-                <h5 class="modal-title" id="staticBackdropLabel">Tambah Pph21</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Tambah Data PTKP</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('pph21.store') }}" method="POST">
+            <form action="{{ route('ptkp.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="nama_pph21">Nama Pph21</label><span class="mr-4 mb-3"
+                        <label class="small mb-1 mr-1" for="nama_ptkp">Nama PTKP</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
-                        <input class="form-control" name="nama_pph21" type="text" id="nama_pph21"
-                            placeholder="Input Nama Pajak Penghasilan" value="{{ old('nama_pph21') }}"
-                            class="form-control @error('nama_pph21') is-invalid @enderror"></input>
-                        @error('nama_pph21')<div class="text-danger small mb-1">{{ $message }}
+                        <input class="form-control" name="nama_ptkp" type="text" id="nama_ptkp"
+                            placeholder="Input Nama PTKP" value="{{ old('nama_ptkp') }}"
+                            class="form-control @error('nama_ptkp') is-invalid @enderror"></input>
+                        @error('nama_ptkp')<div class="text-danger small mb-1">{{ $message }}
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="kumulatif_tahunan">Kumulatif Tahunan</label><span class="mr-4 mb-3"
+                        <label class="small mb-1 mr-1" for="besaran_ptkp">Besaran PTKP</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
-                        <input class="form-control" name="kumulatif_tahunan" type="text" id="kumulatif_tahunan"
-                            placeholder="Input Besaran Kumulatif Tahunan" value="{{ old('kumulatif_tahunan') }}"
-                            class="form-control @error('kumulatif_tahunan') is-invalid @enderror"></input>
-                        @error('kumulatif_tahunan')<div class="text-danger small mb-1">{{ $message }}
+                        <input class="form-control" name="besaran_ptkp" type="number" id="besaran_ptkp"
+                            placeholder="Input Besaran PTKP" value="{{ old('besaran_ptkp') }}"
+                            class="form-control @error('besaran_ptkp') is-invalid @enderror"></input>
+                        @error('besaran_ptkp')<div class="text-danger small mb-1">{{ $message }}
                         </div> @enderror
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="besaran_pph21">Besaran Pph21</label><span class="mr-4 mb-3"
-                        style="color: red">*</span>
-                        <div class="input-group input-group-joined">
-                           
-                            <div class="input-group-prepend">
-                               
-                                <span class="input-group-text mr-2">
-                                    <i class="fas fa-percentage"></i>
-                                </span>
-                            </div>
-                            <input class="form-control" id="besaran_pph21" type="number" name="besaran_pph21"
-                            placeholder="Input Besaran Pajak Penghasilan" value="{{ old('besaran_pph21') }}">
-                        </div>
+                        <label class="small mb-1 mr-1" for="keterangan_ptkp">Keterangan PTKP</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <input class="form-control" name="keterangan_ptkp" type="text" id="keterangan_ptkp"
+                            placeholder="Input Keterangan PTKP" value="{{ old('keterangan_ptkp') }}"
+                            class="form-control @error('keterangan_ptkp') is-invalid @enderror"></input>
+                        @error('keterangan_ptkp')<div class="text-danger small mb-1">{{ $message }}
+                        </div> @enderror
                     </div>
                 </div>
 
@@ -191,17 +185,17 @@ Dashboard
 </div>
 
 {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
-@forelse ($pph21 as $item)
-<div class="modal fade" id="Modaledit-{{ $item->id_pph21 }}" data-backdrop="static" tabindex="-1" role="dialog"
+@forelse ($ptkp as $item)
+<div class="modal fade" id="Modaledit-{{ $item->id_ptkp }}" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-light">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Pph21</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit PTKP</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('pph21.update', $item->id_pph21) }}" method="POST">
+            <form action="{{ route('ptkp.update', $item->id_ptkp) }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="modal-body">
@@ -209,30 +203,22 @@ Dashboard
                     <hr>
                     </hr>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="nama_pph21">Nama Pph21</label><span class="mr-4 mb-3"
+                        <label class="small mb-1 mr-1" for="nama_ptkp">Nama PTKP</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
-                        <input class="form-control" name="nama_pph21" type="text" id="nama_pph21"
-                            placeholder="Input Nama Pajak Penghasilan" value="{{ $item->nama_pph21 }}" required>
+                        <input class="form-control" name="nama_ptkp" type="text" id="nama_ptkp"
+                            placeholder="Input Nama PTKP" value="{{ $item->nama_ptkp }}" required>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="kumulatif_tahunan">Kumulatif Tahunan</label><span class="mr-4 mb-3"
+                        <label class="small mb-1 mr-1" for="besaran_ptkp">Besaran PTKP</label><span class="mr-4 mb-3"
                             style="color: red">*</span>
-                        <input class="form-control" name="kumulatif_tahunan" type="text" id="kumulatif_tahunan"
-                            placeholder="Input Besaran Kumulatif Tahunan" value="{{ $item->kumulatif_tahunan }}" required>
+                        <input class="form-control" name="besaran_ptkp" type="number" id="besaran_ptkp"
+                            placeholder="Input Besaran PTKP" value="{{ $item->besaran_ptkp }}" required>
                     </div>
                     <div class="form-group">
-                        <label class="small mb-1 mr-1" for="besaran_pph21">Besaran Pph21</label><span class="mr-4 mb-3"
-                        style="color: red">*</span>
-                        <div class="input-group input-group-joined">
-                            <div class="input-group-prepend ">
-                                
-                                <span class="input-group-text  mr-2">
-                                    <i class="fas fa-percentage"></i>
-                                </span>
-                            </div>
-                            <input class="form-control" id="besaran_pph21" type="number" name="besaran_pph21"
-                            placeholder="Input Besaran Pajak Penghasilan" value="{{ $item->besaran_pph21 }}" required>
-                        </div>
+                        <label class="small mb-1 mr-1" for="keterangan_ptkp">Keterangan PTKP</label><span class="mr-4 mb-3"
+                            style="color: red">*</span>
+                        <input class="form-control" name="keterangan_ptkp" type="text" id="keterangan_ptkp"
+                            placeholder="Input Keterangan PTKP" value="{{ $item->keterangan_ptkp }}" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -248,8 +234,8 @@ Dashboard
 @endforelse
 
 {{-- MODAL DELETE ------------------------------------------------------------------------------}}
-@forelse ($pph21 as $item)
-<div class="modal fade" id="Modalhapus-{{ $item->id_pph21 }}" tabindex="-1" role="dialog"
+@forelse ($ptkp as $item)
+<div class="modal fade" id="Modalhapus-{{ $item->id_ptkp }}" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -258,10 +244,11 @@ Dashboard
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('pph21.destroy', $item->id_pph21) }}" method="POST" class="d-inline">
+            <form action="{{ route('ptkp.destroy', $item->id_ptkp) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
-                <div class="modal-body">Apakah Anda Yakin Menghapus Data Pajak Penghasilan <b>{{ $item->nama_pph21 }}</b> , dengan besaran <b>{{ $item->besaran_pph21 }}%</b> ?</div>
+                <div class="modal-body">Apakah Anda Yakin Menghapus Data PTKP
+                    <b>{{ $item->nama_ptkp }}</b> , dengan besaran <b>{{ $item->besaran_ptkp }}%</b> ?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                     <button class="btn btn-danger" type="submit">Ya! Hapus</button>

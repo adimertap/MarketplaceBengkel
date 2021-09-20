@@ -41,6 +41,22 @@
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
+                    data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <div class="nav-link-icon"><i class="fas fa-users"></i></div>
+                    Kepegawaian
+                    <div class="sidenav-collapse-arrow">
+                        <i class="fas fa-angle-down"></i>
+                    </div>
+                </a>
+                <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
+                        <a class="nav-link " href="{{ route('jabatan.index') }}">
+                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            Jabatan
+                        </a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
                     data-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
                     <div class="nav-link-icon">
                         <i class="fas fa-wallet"></i>
@@ -56,21 +72,9 @@
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
                             PPH21
                         </a>
-                    </nav>
-                </div>
-                <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse"
-                    data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                    <div class="nav-link-icon"><i class="fas fa-users"></i></div>
-                    Kepegawaian
-                    <div class="sidenav-collapse-arrow">
-                        <i class="fas fa-angle-down"></i>
-                    </div>
-                </a>
-                <div class="collapse" id="collapsePages" data-parent="#accordionSidenav">
-                    <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                        <a class="nav-link " href="{{ route('jabatan.index') }}">
+                        <a class="nav-link" href="{{ route('ptkp.index') }}">
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
-                            Jabatan
+                            PTKP
                         </a>
                     </nav>
                 </div>
@@ -114,7 +118,7 @@
                         <i class="fas fa-angle-down"></i>
                     </div>
                 </a>
-                <div class="collapse show" id="collapseFlows" data-parent="#accordionSidenav" style="">
+                <div class="collapse" id="collapseFlows" data-parent="#accordionSidenav" style="">
                     <nav class="sidenav-menu-nested nav">
                         <a class="nav-link " href="{{ route('jenis-kendaraan.index') }}">
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
