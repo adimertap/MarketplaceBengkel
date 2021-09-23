@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\KecamatanBaru;
 use App\KabupatenBaru;
 use App\DesaBaru;
-
+use App\DetailSparepart;
 
 class HomeController extends Controller
 {
@@ -27,7 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $sparepart = Sparepart::with('Galleries_one','Rating','Bengkel')->whereNotNull('harga_market')->latest()->take(8)->get();
+        $sparepart = DetailSparepart::with('Sparepart')->get();
+                // $sparepart = DetailSparepart::with('Sparepart')->whereNotNull('harga_market')->latest()->take(8)->get();
+
 
         // return $sparepart;
 
