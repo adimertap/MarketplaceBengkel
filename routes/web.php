@@ -48,18 +48,18 @@ Route::post("/callback", "CheckoutController@callback")->name('checkout-callback
 
 
 
-Route::prefix('admin')
-    ->namespace('AdminMarketplace')
-    ->middleware(['auth', 'admin'])
-    ->group(function(){
-        Route::get('/', "DashboardController@index")->name('dashboard-admin');
-        Route::resource('category', 'CategoryController');
-        Route::resource('user', 'UserController');
-        Route::resource('sparepart', 'SparepartController');
-        Route::resource('bengkel', 'BengkelController');
+// Route::prefix('admin')
+//     ->namespace('AdminMarketplace')
+//     ->middleware(['auth', 'admin'])
+//     ->group(function(){
+//         Route::get('/', "DashboardController@index")->name('dashboard-admin');
+//         Route::resource('category', 'CategoryController');
+//         Route::resource('user', 'UserController');
+//         Route::resource('sparepart', 'SparepartController');
+//         Route::resource('bengkel', 'BengkelController');
 
-        Route::resource('keuangan', 'KeuanganController');
-    });
+//         Route::resource('keuangan', 'KeuanganController');
+//     });
 
 Route::get("/getkabupaten/{id}", "Auth\RegisterController@kabupaten_baru");
 Route::get("/getkecamatan/{id}", "Auth\RegisterController@kecamatan_baru");
