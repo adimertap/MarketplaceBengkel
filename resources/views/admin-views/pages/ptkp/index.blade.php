@@ -1,7 +1,7 @@
 @extends('admin-views.layouts.app')
 
 @section('name')
-Dashboard
+PTKP
 @endsection
 
 @push('prepend-style')

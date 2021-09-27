@@ -19,4 +19,5 @@ class Category extends Model
         'jenis_sparepart', 'status_jenis', 'slug'
     ];
 
+    
 }

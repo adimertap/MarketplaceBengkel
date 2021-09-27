@@ -47,6 +47,8 @@ Route::namespace('AdminMarketplace')
         Route::resource('jabatan', 'JabatanController');
         // JENIS TRANSAKSI
         Route::resource('jenistransaksi', 'JenistransaksiController');
+        // FOP
+        Route::resource('fop', 'FOPControllerr');
         // JENIS PERBAIKAN
         Route::resource('jenisperbaikan', 'JenisperbaikanController');
         Route::post('jenisperbaikan/{id_jenis_perbaikan}/set-status', 'JenisperbaikanController@setStatus')

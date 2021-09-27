@@ -1,7 +1,7 @@
 @extends('admin-views.layouts.app')
 
 @section('name')
-Dashboard
+Merk Sparepart
 @endsection
 
 @push('prepend-style')

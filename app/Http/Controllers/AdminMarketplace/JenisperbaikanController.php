@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminMarketplace;
 
 use App\Http\Controllers\Controller;
 use App\Model\MasterData\JenisPerbaikan;
+use App\Model\SingleSignOn\JenisBengkel;
 use Illuminate\Http\Request;
 
 class JenisperbaikanController extends Controller
@@ -15,11 +16,14 @@ class JenisperbaikanController extends Controller
      */
     public function index()
     {
-        $jenisperbaikan = JenisPerbaikan::get();
-        $jenisperbaikanpengajuan = JenisPerbaikan::where('status','=','Diajukan')->get();
+        $jenisperbaikanmobil = JenisPerbaikan::with('JenisBengkel')->where('status','=','Aktif')->where('id_jenis_bengkel','=','1')->get();
+        $jenisperbaikanmotor = JenisPerbaikan::with('JenisBengkel')->where('status','=','Aktif')->where('id_jenis_bengkel','=','2')->get();
 
-        $jenisperbaikandiajukan = JenisPerbaikan::where('status','=','Diajukan')->count();
-        $jenisperbaikanaktif = JenisPerbaikan::where('status','=','Aktif')->count();
+        $jenisperbaikanpengajuan = JenisPerbaikan::with('JenisBengkel')->where('status','=','Diajukan')->get();
+
+        $jenisperbaikandiajukan = JenisPerbaikan::with('JenisBengkel')->where('status','=','Diajukan')->count();
+        $jenisperbaikanaktifmobil = JenisPerbaikan::with('JenisBengkel')->where('status','=','Aktif')->where('id_jenis_bengkel','=','1')->count();
+        $jenisperbaikanaktifmotor = JenisPerbaikan::with('JenisBengkel')->where('status','=','Aktif')->where('id_jenis_bengkel','=','2')->count();
 
         $id = JenisPerbaikan::getId();
         foreach($id as $value);
@@ -28,8 +32,9 @@ class JenisperbaikanController extends Controller
         $blt = date('m');
 
         $kodeperbaikan = 'JP-'.$blt.'/'.$idbaru;
+        $jenis_bengkel = JenisBengkel::get();
 
-        return view('admin-views.pages.jenisperbaikan.index',compact('jenisperbaikan','jenisperbaikandiajukan','jenisperbaikanaktif','jenisperbaikanpengajuan','kodeperbaikan'));
+        return view('admin-views.pages.jenisperbaikan.index',compact('jenis_bengkel','jenisperbaikanmobil','jenisperbaikanmotor','jenisperbaikandiajukan','jenisperbaikanaktifmobil','jenisperbaikanaktifmotor','jenisperbaikanpengajuan','kodeperbaikan'));
     }
 
     /**
@@ -55,6 +60,7 @@ class JenisperbaikanController extends Controller
         $jenisperbaikan->nama_jenis_perbaikan = $request->nama_jenis_perbaikan;
         $jenisperbaikan->group_jenis_perbaikan = $request->group_jenis_perbaikan;
         $jenisperbaikan->harga_jenis_perbaikan = $request->harga_jenis_perbaikan;
+        $jenisperbaikan->id_jenis_bengkel = $request->id_jenis_bengkel;
         $jenisperbaikan->status = 'Aktif';
 
         $jenisperbaikan->save();
@@ -97,6 +103,7 @@ class JenisperbaikanController extends Controller
         $jenisperbaikan->nama_jenis_perbaikan = $request->nama_jenis_perbaikan;
         $jenisperbaikan->group_jenis_perbaikan = $request->group_jenis_perbaikan;
         $jenisperbaikan->harga_jenis_perbaikan = $request->harga_jenis_perbaikan;
+        $jenisperbaikan->id_jenis_bengkel = $request->id_jenis_bengkel;
         $jenisperbaikan->status = 'Aktif';
 
         $jenisperbaikan->update();

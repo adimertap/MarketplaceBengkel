@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminMarketplace;
 
 use App\Http\Controllers\Controller;
 use App\Model\MasterData\MerkKendaraan;
+use App\Model\SingleSignOn\JenisBengkel;
 use Illuminate\Http\Request;
 
 class MerkkendaraanController extends Controller
@@ -15,7 +16,9 @@ class MerkkendaraanController extends Controller
      */
     public function index()
     {
-        $merk = MerkKendaraan::get();
+        $merkmobil = MerkKendaraan::with('JenisBengkel')->where('id_jenis_bengkel','=','1')->get();
+        $merkmotor = MerkKendaraan::with('JenisBengkel')->where('id_jenis_bengkel','=','2')->get();
+
         $id = MerkKendaraan::getId();
         foreach($id as $value);
         $idlama = $value->id_merk_kendaraan;
@@ -23,8 +26,9 @@ class MerkkendaraanController extends Controller
         $blt = date('m');
 
         $kode_merk = 'MRKKD-'.$blt.'/'.$idbaru;
+        $jenis_bengkel = JenisBengkel::get();
 
-        return view('admin-views.pages.merkkendaraan.index',compact('merk','kode_merk'));
+        return view('admin-views.pages.merkkendaraan.index',compact('jenis_bengkel','merkmobil','merkmotor','kode_merk'));
     }
 
     /**
@@ -48,6 +52,7 @@ class MerkkendaraanController extends Controller
         $merk = new MerkKendaraan;
         $merk->kode_merk_kendaraan = $request->kode_merk_kendaraan;
         $merk->merk_kendaraan = $request->merk_kendaraan;
+        $merk->id_jenis_bengkel = $request->id_jenis_bengkel;
 
         $merk->save();
         return redirect()->back()->with('messageberhasil','Data Merk Kendaraan Berhasil ditambah');
@@ -87,6 +92,7 @@ class MerkkendaraanController extends Controller
         $merk = MerkKendaraan::find($id_merk_kendaraan);
         $merk->kode_merk_kendaraan = $request->kode_merk_kendaraan;
         $merk->merk_kendaraan = $request->merk_kendaraan;
+        $merk->id_jenis_bengkel = $request->id_jenis_bengkel;
 
         $merk->save();
         return redirect()->back()->with('messageberhasil','Data Merk Kendaraan Berhasil diubah');

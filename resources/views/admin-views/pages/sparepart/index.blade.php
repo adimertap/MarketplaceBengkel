@@ -31,13 +31,13 @@ Dashboard
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-6 col-md-6 mb-4">
+            <div class="col-xl-4 col-md-6 mb-4">
                 <!-- Dashboard info widget 1-->
                 <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-primary h-100">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
-                                <div class="small font-weight-bold text-primary mb-1">Sparepart Aktif</div>
+                                <div class="small font-weight-bold text-primary mb-1">Sparepart Mobil Aktif</div>
                                 <div class="h6">Total: {{ $sparepartaktif }}</div>
                             </div>
                             <div class="ml-2"><i class="fas fa-cubes" style="color: gainsboro"></i> </svg>
@@ -46,8 +46,23 @@ Dashboard
                     </div>
                 </div>
             </div>
+            <div class="col-xl-4 col-md-6 mb-4">
+                <!-- Dashboard info widget 1-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-warning h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-primary mb-1">Sparepart Motor Aktif</div>
+                                <div class="h6">Total: {{ $sparepartaktifmotor }}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-cubes" style="color: gainsboro"></i> </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
            
-            <div class="col-xl-6 col-md-6 mb-4">
+            <div class="col-xl-4 col-md-6 mb-4">
                 <!-- Dashboard info widget 4-->
                 <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-secondary h-100">
                     <div class="card-body">
@@ -74,7 +89,11 @@ Dashboard
                 <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab"
-                            aria-controls="overview" aria-selected="true">Master Sparepart</a>
+                            aria-controls="overview" aria-selected="true">Sparepart Mobil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tes-tab" href="#tes" data-toggle="tab" role="tab"
+                            aria-controls="tes" aria-selected="false">Sparepart Motor</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="tambah-tab" href="#tambah" data-toggle="tab" role="tab"
@@ -161,7 +180,112 @@ Dashboard
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($sparepart as $item)
+                                                @forelse ($sparepartmobil as $item)
+                                                <tr role="row" class="odd">
+                                                    <th scope="row" class="small" class="sorting_1">
+                                                        {{ $loop->iteration}}</th>
+                                                    <td>{{ $item->kode_sparepart }}</td>
+                                                    <td>{{ $item->nama_sparepart }}</td>
+                                                    <td>{{ $item->Category->jenis_sparepart }}</td>
+                                                    <td>{{ $item->Merk->merk_sparepart }}</td>
+                                                    <td>{{ $item->Konversi->satuan }}</td>
+                                                    <td>{{ $item->Kemasan->nama_kemasan }}</td>
+                                                    <td>{{ $item->jenis_barang }}</td>
+                                                    <td>{{ $item->lifetime }}</td>
+                                                    <td>
+                                                        <a href="{{ route('sparepart.edit', $item->id_sparepart) }}"
+                                                            class="btn btn-primary btn-datatable" type="button">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <a href="" class="btn btn-danger btn-datatable" type="button"
+                                                            data-toggle="modal"
+                                                            data-target="#Modalhapus-{{ $item->id_sparepart }}">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                @empty
+
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tes" role="tabpanel" aria-labelledby="tes-tab">
+                        <div class="datatable">
+                            {{-- SHOW ENTRIES --}}
+                            @if(session('messageberhasil'))
+                            <div class="alert alert-success" role="alert"> <i class="fas fa-check"></i>
+                                {{ session('messageberhasil') }}
+                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            @endif
+
+                            @if(session('messagehapus'))
+                            <div class="alert alert-danger" role="alert"> <i class="fas fa-check"></i>
+                                {{ session('messagehapus') }}
+                                <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            @endif
+                            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-hover dataTable" id="dataTableMotor"
+                                            width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info"
+                                            style="width: 100%;">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 30px;">No</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 50px;">Kode</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 150px;">Nama Sparepart</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 70px;">Jenis</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 70px;">Merk</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 50px;">Satuan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 50px;">Kemasan</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 50px;">Jenis Barang</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 50px;">Lifetime</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Actions: activate to sort column ascending"
+                                                        style="width: 90px;">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($sparepartmotor as $item)
                                                 <tr role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
@@ -204,13 +328,26 @@ Dashboard
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-3">
                                             <label class="small mb-1" for="kode_sparepart">Kode Sparepart</label>
                                             <input class="form-control" id="kode_sparepart" type="text"
                                                 name="kode_sparepart" placeholder="Input Kode Sparepart"
                                                 value="{{ $kode_sparepart }}" readonly />
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1 mr-1" for="id_jenis_bengkel">Jenis Kegunaan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <select class="form-control" name="id_jenis_bengkel" id="id_jenis_bengkel"
+                                                class="form-control @error('id_jenis_bengkel') is-invalid @enderror">
+                                                <option>Pilih Jenis Kegunaan</option>
+                                                @foreach ($jenis_bengkel as $item)
+                                                <option value="{{ $item->id_jenis_bengkel }}">{{ $item->nama_jenis_bengkel }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                            @error('id_jenis_bengkel')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                        <div class="form-group col-md-5">
                                             <label class="small mb-1 mr-1" for="nama_sparepart">Nama
                                                 Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="nama_sparepart" type="text"
@@ -326,20 +463,6 @@ Dashboard
                                             </div> @enderror
                                         </div>
                                     </div>
-                                    {{-- <div class="form-group">
-                                        <label class="small mb-1 mr-1" for="id_supplier">Pilih Supplier Asal</label><span class="mr-4 mb-3"
-                                            style="color: red">*</span>
-                                        <select class="form-control" name="id_supplier" id="id_supplier"
-                                            class="form-control @error('id_supplier') is-invalid @enderror">
-                                            <option> Pilih Supplier</option>
-                                            @foreach ($supplier as $item)
-                                            <option value="{{ $item->id_supplier }}">{{ $item->nama_supplier }}
-                                    </option>
-                                    @endforeach
-                                    </select>
-                                    @error('id_supplier')<div class="text-danger small mb-1">{{ $message }}
-                                    </div> @enderror
-                            </div> --}}
                             <hr class="my-4" />
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('sparepart.index') }}" class="btn btn-light">Kembali</a>
@@ -427,7 +550,6 @@ Dashboard
                                                 <td>{{ $item->jenis_barang }}</td>
                                                 <td>{{ $item->lifetime }}</td>
                                                 <td>
-
                                                     <a href="" class="btn btn-success btn-datatable" type="button"
                                                         data-toggle="modal"
                                                         data-target="#Modalkonfirmasisetuju-{{ $item->id_sparepart }}">
@@ -456,7 +578,7 @@ Dashboard
     </div>
     </div>
 
-    @forelse ($sparepart as $items)
+    @forelse ($sparepartmobil as $items)
     <div class="modal fade" id="Modalkonfirmasisetuju-{{ $items->id_sparepart }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -485,7 +607,36 @@ Dashboard
     @empty
     @endforelse
 
-    @forelse ($sparepart as $itemz)
+    @forelse ($sparepartmotor as $items)
+    <div class="modal fade" id="Modalkonfirmasisetuju-{{ $items->id_sparepart }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success-soft">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Setujui Pengajuan Data</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('sparepart-status-pengajuan', $items->id_sparepart) }}?status=Aktif"
+                    method="POST" class="d-inline">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">Apakah Anda Yakin Menyetujui Data Pengajuan Sparepart
+                            <b>{{ $items->nama_sparepart }}</b> dengan kode {{ $items->kode_sparepart }} ?</div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-success" type="submit">Ya! Approve</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @empty
+    @endforelse
+
+    @forelse ($sparepartmobil as $itemz)
     <div class="modal fade" id="Modalkonfirmasitolak-{{ $itemz->id_sparepart }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -514,6 +665,91 @@ Dashboard
     @empty
     @endforelse
 
+    @forelse ($sparepartmotor as $itemz)
+    <div class="modal fade" id="Modalkonfirmasitolak-{{ $itemz->id_sparepart }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger-soft">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Tolak Pengajuan Data</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('sparepart-status-pengajuan', $itemz->id_sparepart) }}?status=Tidak Aktif"
+                    method="POST" class="d-inline">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">Apakah Anda Yakin Menolak Data Pengajuan Sparepart
+                            <b>{{ $itemz->nama_sparepart }}</b> dengan kode {{ $itemz->kode_sparepart }} ?</div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-danger" type="submit">Ya! Tolak</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @empty
+    @endforelse
+
+    {{-- MODAL DELETE ------------------------------------------------------------------------------}}
+    @forelse ($sparepartmobil as $item)
+    <div class="modal fade" id="Modalhapus-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger-soft">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('sparepart.destroy', $item->id_sparepart) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('delete')
+                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Sparepart
+                        <b>{{ $item->nama_sparepart }}</b> , dengan kode <b>{{ $item->kode_sparepart }}</b> ?</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @empty
+
+    @endforelse
+
+    {{-- MODAL DELETE ------------------------------------------------------------------------------}}
+    @forelse ($sparepartmotor as $item)
+    <div class="modal fade" id="Modalhapus-{{ $item->id_sparepart }}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger-soft">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Konfirmasi Hapus Data</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <form action="{{ route('sparepart.destroy', $item->id_sparepart) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('delete')
+                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Sparepart
+                        <b>{{ $item->nama_sparepart }}</b> , dengan kode <b>{{ $item->kode_sparepart }}</b> ?</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-danger" type="submit">Ya! Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @empty
+
+    @endforelse
+
 
 </main>
 
@@ -529,6 +765,7 @@ Dashboard
     $(document).ready(function () {
         $('#validasierror').click();
         $('#dataTablePengajuan').DataTable();
+        $('#dataTableMotor').DataTable();
 
 
         $('select[name="id_jenis_sparepart"]').on('change', function () {
@@ -539,6 +776,7 @@ Dashboard
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
+                        onsole.log(data)
                         $('select[name="id_merk"]').empty();
                         $('select[name="id_merk"]').append(
                             '<option value="" holder>Pilih Merk</option>')

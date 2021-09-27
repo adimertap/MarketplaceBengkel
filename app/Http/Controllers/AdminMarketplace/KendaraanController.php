@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\MasterData\JenisKendaraan;
 use App\Model\MasterData\Kendaraan;
 use App\Model\MasterData\MerkKendaraan;
+use App\Model\SingleSignOn\JenisBengkel;
 use Illuminate\Http\Request;
 
 class KendaraanController extends Controller
@@ -17,12 +18,14 @@ class KendaraanController extends Controller
      */
     public function index()
     {
-        $kendaraan = Kendaraan::with('Merk','Jenis')->get();
-        $kendaraanpengajuan = Kendaraan::where('status','=','Diajukan')->get();
-        $countkendaraanaktif = Kendaraan::where('status','=','Aktif')->count();
+        $kendaraanmobil = Kendaraan::with('Merk','Jenis','JenisBengkel')->where('status','=','Aktif')->where('id_jenis_bengkel','=','1')->get();
+        $kendaraanmotor = Kendaraan::with('Merk','Jenis','JenisBengkel')->where('status','=','Aktif')->where('id_jenis_bengkel','=','2')->get();
+
+        $countkendaraanaktif = Kendaraan::where('status','=','Aktif')->where('id_jenis_bengkel','=','1')->count();
+        $countkendaraanaktifmotor = Kendaraan::where('status','=','Aktif')->where('id_jenis_bengkel','=','2')->count();
         $countkendaraandiajukan = Kendaraan::where('status','=','Diajukan')->count();
 
-
+        $kendaraanpengajuan = Kendaraan::where('status','=','Diajukan')->get();
 
             $id = Kendaraan::getId();
             foreach($id as $value);
@@ -33,8 +36,9 @@ class KendaraanController extends Controller
         $kode_kendaraan = 'KD-'.$blt.'/'.$idbaru;
         $merk = MerkKendaraan::get();
         $jenis = JenisKendaraan::get();
+        $jenis_bengkel = JenisBengkel::get();
 
-        return view('admin-views.pages.kendaraan.index',compact('merk','kode_kendaraan','jenis','kendaraan','countkendaraanaktif','countkendaraandiajukan','kendaraanpengajuan'));
+        return view('admin-views.pages.kendaraan.index',compact('jenis_bengkel','merk','kode_kendaraan','jenis','kendaraanmobil','kendaraanmotor','countkendaraanaktif','countkendaraanaktifmotor','countkendaraandiajukan','kendaraanpengajuan'));
     }
 
     /**
@@ -60,6 +64,8 @@ class KendaraanController extends Controller
         $kendaraan->kode_kendaraan = $request->kode_kendaraan;
         $kendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
         $kendaraan->id_merk_kendaraan = $request->id_merk_kendaraan;
+        $kendaraan->id_jenis_bengkel = $request->id_jenis_bengkel;
+        $kendaraan->status = 'Aktif';
 
         $kendaraan->save();
         return redirect()->back()->with('messageberhasil','Data Kendaraan Berhasil ditambahkan');
@@ -101,6 +107,8 @@ class KendaraanController extends Controller
         $kendaraan->kode_kendaraan = $request->kode_kendaraan;
         $kendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
         $kendaraan->id_merk_kendaraan = $request->id_merk_kendaraan;
+        $kendaraan->id_jenis_bengkel = $request->id_jenis_bengkel;
+        $kendaraan->status = 'Aktif';
 
         $kendaraan->update();
         return redirect()->back()->with('messageberhasil','Data Kendaraan Berhasil diubah');

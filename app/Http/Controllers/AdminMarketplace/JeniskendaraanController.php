@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminMarketplace;
 
 use App\Http\Controllers\Controller;
 use App\Model\MasterData\JenisKendaraan;
+use App\Model\SingleSignOn\JenisBengkel;
 use Illuminate\Http\Request;
 
 class JeniskendaraanController extends Controller
@@ -15,9 +16,12 @@ class JeniskendaraanController extends Controller
      */
     public function index()
     {
-        $jenis = JenisKendaraan::get();
+        $jenismobil = JenisKendaraan::with('JenisBengkel')->where('id_jenis_bengkel','=','1')->get();
+        $jenismotor = JenisKendaraan::with('JenisBengkel')->where('id_jenis_bengkel','=','2')->get();
 
-        return view('admin-views.pages.jeniskendaraan.index',compact('jenis'));
+        $jenis_bengkel = JenisBengkel::get();
+
+        return view('admin-views.pages.jeniskendaraan.index',compact('jenismobil','jenismotor','jenis_bengkel'));
     }
 
     /**
@@ -38,11 +42,12 @@ class JeniskendaraanController extends Controller
      */
     public function store(Request $request)
     {
-        $merk = new JenisKendaraan;
-        $merk->jenis_kendaraan = $request->jenis_kendaraan;
-        $merk->keterangan = $request->keterangan;
+        $jenis = new JenisKendaraan;
+        $jenis->jenis_kendaraan = $request->jenis_kendaraan;
+        $jenis->keterangan = $request->keterangan;
+        $jenis->id_jenis_bengkel = $request->id_jenis_bengkel;
 
-        $merk->save();
+        $jenis->save();
         return redirect()->back()->with('messageberhasil','Data Jenis Kendaraan Berhasil ditambah');
     }
 
@@ -77,11 +82,12 @@ class JeniskendaraanController extends Controller
      */
     public function update(Request $request, $id_jenis_kendaraan)
     {
-        $merk =  JenisKendaraan::find($id_jenis_kendaraan);
-        $merk->jenis_kendaraan = $request->jenis_kendaraan;
-        $merk->keterangan = $request->keterangan;
+        $jenis =  JenisKendaraan::find($id_jenis_kendaraan);
+        $jenis->jenis_kendaraan = $request->jenis_kendaraan;
+        $jenis->keterangan = $request->keterangan;
+        $jenis->id_jenis_bengkel = $request->id_jenis_bengkel;
 
-        $merk->update();
+        $jenis->update();
         return redirect()->back()->with('messageberhasil','Data Jenis Kendaraan Berhasil diubah');
     }
 
@@ -93,8 +99,8 @@ class JeniskendaraanController extends Controller
      */
     public function destroy($id_jenis_kendaraan)
     {
-        $merk =  JenisKendaraan::find($id_jenis_kendaraan);
-        $merk->delete();
+        $jenis =  JenisKendaraan::find($id_jenis_kendaraan);
+        $jenis->delete();
         return redirect()->back()->with('messagehapus','Data Jenis Kendaraan Berhasil dihapus');
     }
 }

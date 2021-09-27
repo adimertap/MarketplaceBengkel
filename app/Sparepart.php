@@ -4,6 +4,7 @@ namespace App;
 
 use App\Model\MasterData\Kemasan;
 use App\Model\MasterData\Konversi;
+use App\Model\SingleSignOn\JenisBengkel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -62,6 +63,11 @@ class Sparepart extends Model
     public function Kemasan()
     {
         return $this->belongsTo(Kemasan::class, 'id_kemasan', 'id_kemasan')->withTrashed();
+    }
+
+    public function Jenisbengkel()
+    {
+        return $this->belongsTo(JenisBengkel::class, 'id_jenis_bengkel', 'id_jenis_bengkel');
     }
 
     public static function getId()

@@ -31,7 +31,8 @@ class SparepartRequest extends FormRequest
             'id_kemasan' => 'required|exists:tb_inventory_master_kemasan,id_kemasan',
             'dimensi_berat' =>  'required|min:1|max:4',
             'lifetime' => 'required',
-            'jenis_barang' => 'required'
+            'jenis_barang' => 'required',
+            'id_jenis_bengkel' => 'required'
         ];
     }
     public function messages()
@@ -41,6 +42,7 @@ class SparepartRequest extends FormRequest
             'id_merk.required' => 'Error! Anda Belum Mengisi Merk Sparepart',
             'id_konversi.required' => 'Error! Anda Belum Mengisi Satuan Konversi Sparepart',
             'id_kemasan.required' =>'Error! Anda Belum Mengisi Kemasan Sparepart',
+            'id_jenis_bengkel.required' =>'Error! Anda Belum Mengisi Kegunaan Sparepart',
             'lifetime' => 'Error! Anda Belum Mengisi Masa Berlaku Sparepart',
             'jenis_barang' => 'Error! Anda Belum Mengisi Jenis Barang Sparepart',
            

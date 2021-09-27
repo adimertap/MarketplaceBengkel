@@ -88,10 +88,13 @@
                 </a>
                 <div class="collapse" id="collapseComponents" data-parent="#accordionSidenav">
                     <nav class="sidenav-menu-nested nav">
-
                         <a class="nav-link " href="{{ route('jenistransaksi.index') }}">
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
                             Jenis Transaksi
+                        </a>
+                        <a class="nav-link " href="{{ route('fop.index') }}">
+                            <div class="nav-link-icon"><i class="fas fa-database"></i></div>
+                            Form of Payment
                         </a>
                     </nav>
                 </div>

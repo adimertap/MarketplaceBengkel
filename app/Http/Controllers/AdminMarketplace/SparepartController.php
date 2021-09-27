@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use App\Http\Requests\Admin\SparepartRequest;
 use App\Model\MasterData\Kemasan;
 use App\Model\MasterData\Konversi;
+use App\Model\SingleSignOn\JenisBengkel;
 use App\SparepartMerk;
 use Laravel\Ui\Presets\React;
 
@@ -24,7 +25,9 @@ class SparepartController extends Controller
     public function index()
 
     {
-         $sparepart = Sparepart::with('Category', 'Merk', 'Bengkel')->get();
+         $sparepartmobil = Sparepart::with('Category', 'Merk', 'Bengkel')->where('id_jenis_bengkel','=','1')->get();
+         $sparepartmotor = Sparepart::with('Category', 'Merk', 'Bengkel')->where('id_jenis_bengkel','=','2')->get();
+
          $id = Sparepart::getId();
             foreach ($id as $value);
             $idlama = $value->id_sparepart;
@@ -35,9 +38,8 @@ class SparepartController extends Controller
         
         
         $pengajuansparepart = Sparepart::where('status_sparepart','=','Diajukan')->get();
-
-        $sparepartaktif = Sparepart::where('status_sparepart','=','Aktif')->count();
-        $spareparttidakaktif = Sparepart::where('status_sparepart','=','Tidak Aktif')->count();
+        $sparepartaktif = Sparepart::where('status_sparepart','=','Aktif')->where('id_jenis_bengkel','=','1')->count();
+        $sparepartaktifmotor = Sparepart::where('status_sparepart','=','Aktif')->where('id_jenis_bengkel','=','2')->count();
         $sparepartpengajuan = Sparepart::where('status_sparepart','=','Diajukan')->count();
         
             
@@ -45,8 +47,10 @@ class SparepartController extends Controller
         $merk_sparepart = SparepartMerk::get();
         $konversi = Konversi::get();
         $kemasan = Kemasan::get();
-        //  dd($sparepart);
-        return view('admin-views.pages.sparepart.index',compact('sparepart','kode_sparepart','jenis_sparepart','merk_sparepart','konversi','kemasan','pengajuansparepart','sparepartaktif','spareparttidakaktif','sparepartpengajuan'));
+        $jenis_bengkel = JenisBengkel::get();
+        
+        
+        return view('admin-views.pages.sparepart.index',compact('jenis_bengkel','sparepartmobil','sparepartmotor','kode_sparepart','jenis_sparepart','merk_sparepart','konversi','kemasan','pengajuansparepart','sparepartaktif','sparepartaktifmotor','sparepartpengajuan'));
     }
 
     /**
@@ -87,6 +91,7 @@ class SparepartController extends Controller
         $sparepart->lifetime = $request->lifetime;
         $sparepart->jenis_barang = $request->jenis_barang;
         $sparepart->status_sparepart = 'Aktif';
+        $sparepart->id_jenis_bengkel = $request->id_jenis_bengkel;
         $sparepart->save();
 
         return redirect()->route('sparepart.index')->with('messageberhasil', 'Data Sparepart Berhasil ditambah');
@@ -111,11 +116,12 @@ class SparepartController extends Controller
      */
     public function edit($id_sparepart)
     {
-        $item = Sparepart::findOrFail($id_sparepart);
+        $item = Sparepart::with('Category', 'Merk', 'Bengkel','Jenisbengkel')->findOrFail($id_sparepart);
         $jenis_sparepart = Category::get();
         $merk_sparepart = SparepartMerk::get();
         $konversi = Konversi::get();
         $kemasan = Kemasan::get();
+        $jenis_bengkel = JenisBengkel::get();
 
         return view('admin-views.pages.sparepart.edit', [
             'item' => $item,
@@ -123,6 +129,7 @@ class SparepartController extends Controller
             'merk_sparepart' => $merk_sparepart,
             'konversi' => $konversi,
             'kemasan' => $kemasan,
+            'jenis_bengkel' => $jenis_bengkel
         ]);
     }
 
@@ -144,6 +151,7 @@ class SparepartController extends Controller
         $sparepart->dimensi_berat = $request->dimensi_berat;
         $sparepart->lifetime = $request->lifetime;
         $sparepart->jenis_barang = $request->jenis_barang;
+        $sparepart->id_jenis_bengkel = $request->id_jenis_bengkel;
         $sparepart->update();
 
         return redirect()->route('sparepart.index')->with('messageberhasil', 'Data Sparepart Berhasil diubah');
@@ -157,11 +165,10 @@ class SparepartController extends Controller
      */
     public function destroy($id)
     {
-        $item = Sparepart::findOrFail($id);
+        $item = Sparepart::find($id);
         $item->delete();
 
-         return redirect()->route('sparepart.index')
-            ->with('messageberhasil','Data Jenis Sparepart Berhasil DiHapus');
+         return redirect()->back()->with('messageberhasil','Data Sparepart Berhasil DiHapus');
    
     }
 
@@ -169,7 +176,6 @@ class SparepartController extends Controller
     public function getmerk($id)
     {
         $merk = SparepartMerk::where('id_jenis_sparepart', '=', $id)->pluck('merk_sparepart', 'id_merk');
-        // return $merk;
         return json_encode($merk);
     }
 

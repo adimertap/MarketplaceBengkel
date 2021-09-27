@@ -65,12 +65,26 @@ Dashboard
                                     @method('PUT')
                                     @csrf
                                     <div class="form-row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-3">
                                             <label class="small mb-1 mr-1" for="kode_sparepart">Kode Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="kode_sparepart" type="text"
                                                 name="kode_sparepart" value="{{ $item->kode_sparepart }}" readonly/>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-4">
+                                            <label class="small mb-1 mr-1" for="id_jenis_bengkel">Jenis Kegunaan</label><span class="mr-4 mb-3" style="color: red">*</span>
+                                            <select class="form-control" name="id_jenis_bengkel" id="id_jenis_bengkel"
+                                                class="form-control @error('id_jenis_bengkel') is-invalid @enderror">
+                                                <option value="{{ $item->Jenisbengkel->id_jenis_bengkel }}">
+                                                    {{ $item->Jenisbengkel->nama_jenis_bengkel }}</option>
+                                                @foreach ($jenis_bengkel as $item)
+                                                <option value="{{ $item->id_jenis_bengkel }}">{{ $item->nama_jenis_bengkel }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                            @error('id_jenis_bengkel')<div class="text-danger small mb-1">{{ $message }}
+                                            </div> @enderror
+                                        </div>
+                                        <div class="form-group col-md-5">
                                             <label class="small mb-1 mr-1" for="nama_sparepart">Nama Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
                                             <input class="form-control" id="nama_sparepart" type="text" 
                                                 name="nama_sparepart" value="{{ $item->nama_sparepart }}" 

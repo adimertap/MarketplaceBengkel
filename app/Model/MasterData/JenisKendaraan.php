@@ -2,6 +2,7 @@
 
 namespace App\Model\MasterData;
 
+use App\Model\SingleSignOn\JenisBengkel;
 use Illuminate\Database\Eloquent\Model;
 
 class JenisKendaraan extends Model
@@ -13,6 +14,7 @@ class JenisKendaraan extends Model
     protected $fillable = [
         'jenis_kendaraan',
         'keterangan',
+        'id_jenis_bengkel'
     ];
 
     protected $hidden =[ 
@@ -21,5 +23,9 @@ class JenisKendaraan extends Model
     ];
 
     public $timestamps = false;
+
+    public function JenisBengkel(){
+        return $this->belongsTo(JenisBengkel::class, 'id_jenis_bengkel', 'id_jenis_bengkel');
+    }
 
 }
