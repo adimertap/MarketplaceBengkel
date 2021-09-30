@@ -32,7 +32,7 @@ class CheckoutController extends Controller
         $code_transaksi = 'STORE'.mt_rand(00000,99999);
         $cart = Carts::with('user', 'Bengkel')->where('id_carts', $id)->first();
 
-        $items = Detailcarts::with(['Sparepart.Galleries_one'])
+        $items = Detailcarts::with(['DetailSparepart.Galleries_one'])
                 ->where('id_carts', $id)
                 ->get();
 
@@ -58,7 +58,7 @@ class CheckoutController extends Controller
             $trx = 'TRX_' . mt_rand(00000, 99999);
             DetailTransaksi::create([
                 'id_transaksi_online' => $transaksi -> id_transaksi_online,
-                'id_sparepart' => $item->id_sparepart,
+                'id_detailsparepart' => $item->id_detailsparepart,
                 'jumlah_produk' => $item->jumlah,
                 'id_review' => NULL,
                 'status' => 'CANCELLED',
@@ -162,7 +162,7 @@ class CheckoutController extends Controller
         $cart = Carts::with('user.Desa.Kecamatan.Kabupaten.Provinsi', 'Bengkel')->where('id_carts', $id)->first();
 
         // return $cart;
-        $item = Detailcarts::with(['Sparepart.Galleries_one'])->where('id_carts', $id)
+        $item = Detailcarts::with(['DetailSparepart.Galleries_one', 'DetailSparepart.Sparepart'])->where('id_carts', $id)
                 ->get();
 
         $desa = DesaBaru::where('id_kecamatan', $cart->user->Desa->Kecamatan->id_kecamatan)->get(); //mengambil data kecamatan
@@ -189,13 +189,13 @@ class CheckoutController extends Controller
         $id = $request->id_cart;
         $cart = Carts::with('user', 'Bengkel.Desa.Kecamatan.Kabupaten')->where('id_carts', $id)->first();
 
-        $items = Detailcarts::with(['Sparepart'])
+        $items = Detailcarts::with(['DetailSparepart.Sparepart'])
                 ->where('id_carts', $id)
                 ->get();
 
         $weight = 0;
         foreach ($items as $item) {
-            $weight += ($item->jumlah)*($item->Sparepart->berat_sparepart);
+            $weight += ($item->jumlah)*($item->DetailSparepart->Sparepart->dimensi_berat);
         }
 
         $kabupaten_name = $cart->Bengkel->Desa->Kecamatan->kabupaten->name;
@@ -226,7 +226,7 @@ class CheckoutController extends Controller
             'weight' => $weight, 
             'courier' => $courier
         ]);
-        // return $destination;
+        // return $items;
         // $cekongkir =  $response->body();
         $cekongkir =  $response['rajaongkir']['results'][0]['costs'];
         return json_encode($cekongkir);

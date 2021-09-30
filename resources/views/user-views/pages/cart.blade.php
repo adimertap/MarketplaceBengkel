@@ -60,20 +60,20 @@ Product Detail
 
                                                 <td class="d-flex align-items-center font-weight-bolder">
                                                     <!--begin::Symbol-->
-                                                    @if ($item->Sparepart->Galleries_one)
+                                                    @if ($item->DetailSparepart->Galleries_one)
                                                     <div class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
                                                         <div class="symbol-label"
-                                                            style="background-image: url(https://bengkel-kuy.com/image/{{  $item->Sparepart->Galleries_one->photo  }})">
+                                                            style="background-image: url(https://bengkel-kuy.com/image/{{  $item->DetailSparepart->Galleries_one->photo  }})">
                                                         </div>
 
                                                     </div>
                                                     @endif
                                                     <!--end::Symbol-->
                                                     <div class="align-middle pb-4">
-                                                        <a href="{{ route('detail', $item->Sparepart->slug) }}"
-                                                            class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $item ->Sparepart->nama_sparepart}}</a>
+                                                        <a href="{{ route('detail', $item->DetailSparepart->slug) }}"
+                                                            class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $item ->DetailSparepart->nama_Detailsparepart}}</a>
                                                         <div class="font-weight-bold text-muted">Rp.
-                                                            {{ number_format($item->Sparepart->harga_market )}}
+                                                            {{ number_format($item->DetailSparepart->harga_market )}}
                                                         </div>
                                                     </div>
 
@@ -90,11 +90,11 @@ Product Detail
                                                         <input type="hidden" class="qty-id"
                                                             value="{{ $item->id_detail_carts }}">
                                                         <input type="hidden" class="qty-harga"
-                                                            value="{{ $item->Sparepart->harga_market }}">
+                                                            value="{{ $item->DetailSparepart->harga_market }}">
                                                         <input type="hidden" class="qty-stok"
-                                                            value="{{ $item->Sparepart->stock }}">
+                                                            value="{{ $item->DetailSparepart->qty_stok }}">
 
-                                                        <div class="btn btn-xs btn-light-success btn-icon increment-btn increment-btn mt-2 ml-2"
+                                                        <div class="btn btn-xs btn-light-success btn-icon increment-btn mt-2 ml-2"
                                                             style="cursor: pointer">
                                                             <i class="ki ki-plus icon-xs"></i>
                                                         </div>
@@ -105,7 +105,7 @@ Product Detail
                                                         Rp.
                                                     </span>
                                                     <span id="totali{{ $item->id_detail_carts }}">
-                                                        {{ ($item->Sparepart->harga_market ) * ($item->jumlah)}}
+                                                        {{ ($item->DetailSparepart->harga_market ) * ($item->jumlah)}}
 
                                                     </span>
                                                 </td>
@@ -122,7 +122,7 @@ Product Detail
 
                                         </tr>
                                         @php
-                                        $totalharga += ($item->Sparepart->harga_market ) *
+                                        $totalharga += ($item->DetailSparepart->harga_market ) *
                                         ($item->jumlah)
                                         @endphp
                                         @endforeach
@@ -174,7 +174,6 @@ Product Detail
 </div>
 <!--end::Content-->
 @endsection
-
 
 @push('addon-style')
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="

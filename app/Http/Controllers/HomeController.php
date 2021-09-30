@@ -27,21 +27,32 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $sparepart = DetailSparepart::with('Sparepart')->get();
-                // $sparepart = DetailSparepart::with('Sparepart')->whereNotNull('harga_market')->latest()->take(8)->get();
-
-
+        
+        $sparepart =DetailSparepart::with('Sparepart','Galleries_one','Rating' , 'Bengkel')->where('harga_market', '>', 0)->get();
+        // $sparepart = DetailSparepart::with('Sparepart')->whereNotNull('harga_market')->latest()->take(8)->get();
         // return $sparepart;
 
-        $terlaris = DetailTransaksi::with('Sparepart.Galleries_one','Sparepart.Rating' , 'Sparepart.Bengkel')->whereNotNull('rating')
-            ->whereHas('Sparepart', function ($q) {
-                        $q->whereNotNull('harga_market');
+         $terlaris = DetailTransaksi::with('DetailSparepart.Sparepart','DetailSparepart.Galleries_one','DetailSparepart.Rating' , 'DetailSparepart.Bengkel')->whereNotNull('rating')
+            ->whereHas('DetailSparepart', function ($q) {
+                        $q->where('harga_market', '>', 0);
                         })->select(
             '*',
             DB::raw('sum(jumlah_produk) as penjualan')
         )
-        ->groupBy('id_sparepart')->orderBy('penjualan', 'DESC')->take(8)
+        ->groupBy('id_detail_sparepart')->orderBy('penjualan', 'DESC')->take(8)
         ->get();
+
+        // return $terlaris;
+
+        // $terlaris = DetailTransaksi::with('Sparepart.Galleries_one','Sparepart.Rating' , 'Sparepart.Bengkel')->whereNotNull('rating')
+        //     ->whereHas('Sparepart', function ($q) {
+        //                 $q->whereNotNull('harga_market');
+        //                 })->select(
+        //     '*',
+        //     DB::raw('sum(jumlah_produk) as penjualan')
+        // )
+        // ->groupBy('id_sparepart')->orderBy('penjualan', 'DESC')->take(8)
+        // ->get();
 
 
         // $terlaris = Sparepart::with('Detailtransaksi', 'Galleries_one', 'Bengkel')->withCount('Detailtransaksi')->whereHas('Detailtransaksi', function ($q) {

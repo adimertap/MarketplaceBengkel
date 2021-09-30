@@ -11,11 +11,11 @@ class Cart extends Model
     protected $primaryKey = 'id_cart';
 
     protected $fillable = [
-        'id_user', 'id_sparepart', 'jumlah', 'id_bengkel'
+        'id_user', 'id_detail_sparepart', 'jumlah', 'id_bengkel'
     ];
 
     public function Sparepart(){
-        return $this->hasOne(Sparepart::class, 'id_sparepart', 'id_sparepart');
+        return $this->hasOne(DetailSparepart::class, 'id_detail_sparepart', 'id_detail_sparepart');
     }
 
     public function user(){

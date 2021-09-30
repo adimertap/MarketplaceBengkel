@@ -11,11 +11,11 @@ class Detailcarts extends Model
     protected $primaryKey = 'id_detail_carts';
 
     protected $fillable = [
-        'id_sparepart', 'jumlah', 'id_carts'
+        'id_detail_sparepart', 'jumlah', 'id_carts'
     ];
 
-    public function Sparepart(){
-        return $this->hasOne(Sparepart::class, 'id_sparepart', 'id_sparepart');
+    public function DetailSparepart(){
+        return $this->hasOne(DetailSparepart::class, 'id_detail_sparepart', 'id_detail_sparepart');
     }
      public function Carts(){
         return $this->hasOne(Carts::class, 'id_carts', 'id_carts');

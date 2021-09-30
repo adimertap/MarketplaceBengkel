@@ -343,7 +343,7 @@
             <div class="offcanvas-wrapper mb-5 scroll-pull">
                 @php
                 $subtotal = 0;
-                $carts= \App\Detailcarts::with(['Carts','Sparepart.Galleries_one'])
+                $carts= \App\Detailcarts::with(['Carts','DetailSparepart.Galleries_one'])
                 ->whereHas('Carts', function ($q) {
                         $q->where('id_user', '=', Auth::user()->id_user);
                         })->get();
@@ -352,12 +352,12 @@
                 <!--begin::Item-->
                 <div class="d-flex align-items-center justify-content-between py-8">
                     <div class="d-flex flex-column mr-2">
-                        <a href="{{ route('detail', $item->Sparepart->slug) }}"
-                            class="font-weight-bold text-dark-75 font-size-lg text-hover-primary">{{ $item ->Sparepart->nama_sparepart }}</a>
+                        <a href="{{ route('detail', $item->DetailSparepart->slug) }}"
+                            class="font-weight-bold text-dark-75 font-size-lg text-hover-primary">{{ $item ->DetailSparepart->nama_sparepart }}</a>
                         {{-- <span class="text-muted">The best kitchen gadget in 2020</span> --}}
                         <div class="d-flex align-items-center mt-2">
                             <span class="font-weight-bold mr-1 text-dark-75 font-size-lg">Rp.
-                                {{ number_format($item->Sparepart->harga_market )}}</span>
+                                {{ number_format($item->DetailSparepart->harga_market )}}</span>
                             <span class="text-muted mr-1">Untuk</span>
                             <span class="font-weight-bold mr-2 text-dark-75 font-size-lg">{{  number_format($item->jumlah)  }}</span>
                             {{-- <a href="#" class="btn btn-xs btn-light-success btn-icon mr-2">
@@ -369,8 +369,8 @@
                         </div>
                     </div>
                     <a href="#" class="symbol symbol-70 flex-shrink-0">
-                        @if ($item->Sparepart->Galleries_one)
-                            <img src="https://bengkel-kuy.com/image/{{ $item ->Sparepart->Galleries_one->photo }}" title=""
+                        @if ($item->DetailSparepart->Galleries_one)
+                            <img src="https://bengkel-kuy.com/image/{{ $item ->DetailSparepart->Galleries_one->photo }}" title=""
                             alt="" />
                         @endif
                         
@@ -381,7 +381,7 @@
                 <div class="separator separator-solid"></div>
                 <!--end::Separator-->
                 @php
-                    $subtotal += $item->Sparepart->harga_market
+                    $subtotal += $item->DetailSparepart->harga_market
                 @endphp
                 @endforeach
 

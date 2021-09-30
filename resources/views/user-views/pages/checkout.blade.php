@@ -262,10 +262,10 @@ Checkout
                                                                     <tr
                                                                         class="font-weight-boldest border-bottom-0 font-size-lg">
                                                                         <td class="border-top-0 pl-0 py-4">
-                                                                            {{ $item->Sparepart->nama_sparepart }}</td>
+                                                                            {{ $item->DetailSparepart->nama_sparepart }}</td>
                                                                         <td class="border-top-0 text-right py-4">Rp.
                                                                             <span>
-                                                                                {{ number_format($item->Sparepart->harga_market)}}
+                                                                                {{ number_format($item->DetailSparepart->harga_market)}}
                                                                             </span>
                                                                         </td>
                                                                         <td class="border-top-0 text-right py-4">
@@ -274,13 +274,13 @@ Checkout
                                                                         <td
                                                                             class="text-danger border-top-0 pr-0 py-4 text-right">
                                                                             Rp.
-                                                                            {{ number_format($item->jumlah * $item->Sparepart->harga_market) }}
+                                                                            {{ number_format($item->jumlah * $item->DetailSparepart->harga_market) }}
                                                                         </td>
                                                                         @php
                                                                         $jumlahberat +=
-                                                                        $item->Sparepart->berat_sparepart;
+                                                                        $item->DetailSparepart->Sparepart->dimensi_berat;
                                                                         $totalbarang +=
-                                                                        $item->jumlah*$item->Sparepart->harga_market;
+                                                                        $item->jumlah*$item->DetailSparepart->harga_market;
                                                                         @endphp
                                                                     </tr>
                                                                     @endforeach

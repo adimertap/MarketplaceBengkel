@@ -72,7 +72,7 @@ Marketplace Homepage
                                                 <div class="overlay">
                                                     <div class="overlay-wrapper rounded bg-light text-center">
                                                         @if ($item->Galleries_one)
-                                                        <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo }}"
+                                                        <img src="https://bengkel-kuy.com/image/{{ $item->Galleries_one->photo }}"
                                                             alt="" class="mh-100 h-200px mw-100 w-200px" />
                                                         @endif
 
@@ -82,7 +82,7 @@ Marketplace Homepage
                                                         <a href="{{ route('detail', $item->slug) }}"
                                                             class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
                                                         @auth
-                                                        <form action="{{ route('detail-add', $item->id_sparepart) }}"
+                                                        <form action="{{ route('detail-add', $item->id_detail_sparepart) }}"
                                                             method="post" enctype="multipart/form-data">
                                                             @csrf
                                                             <!--begin: Item-->
@@ -179,7 +179,7 @@ Marketplace Homepage
                                 </div>
                                 <!--end::Heading-->
                                 <!--begin::Products-->
-                                <div class="row">
+                                {{-- <div class="row">
                                     @forelse ($terlaris as $item)
 
                                     @php
@@ -218,7 +218,7 @@ Marketplace Homepage
                                                             class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
                                                         @auth
                                                         <form
-                                                            action="{{ route('detail-add', $item->sparepart->id_sparepart) }}"
+                                                            action="{{ route('detail-add', $item->sparepart->id_detail_sparepart) }}"
                                                             method="post" enctype="multipart/form-data">
                                                             @csrf
                                                             <!--begin: Item-->
@@ -282,7 +282,7 @@ Marketplace Homepage
                                     @empty
 
                                     @endforelse
-                                </div>
+                                </div> --}}
                                 <!--end::Products-->
                             </div>
                             <!--end::Section-->

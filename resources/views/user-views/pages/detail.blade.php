@@ -128,7 +128,7 @@ Product Detail
                                             </div>
 
                                         </div>
-                                        <div class="font-size-lg mb-6">{{ $sparepart -> keterangan }}</div>
+                                        <div class="font-size-lg mb-6">{!! $sparepart -> keterangan !!}</div>
                                         <!--begin::Info-->
 
                                         <!--end::Info-->
@@ -200,7 +200,7 @@ Product Detail
                                         <div class="d-flex align-items-center flex-lg-fill my-1">
 
                                             <div class="d-flex flex-column text-dark-75">
-                                                <span class="font-weight-bolder font-size-sm">{{ $sparepart -> stock }}
+                                                <span class="font-weight-bolder font-size-sm">{{ $sparepart->qty_stok }}
                                                     Tersedia</span>
                                                 <span class="font-weight-bolder font-size-h1">
                                                     <span class="text-dark-50 font-weight-bold">Rp
@@ -210,7 +210,7 @@ Product Detail
                                         <!--end: Item-->
 
                                         @auth
-                                        <form action="{{ route('detail-add', $sparepart->id_sparepart) }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('detail-add', $sparepart->id_detail_sparepart) }}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             <!--begin: Item-->
                                             <div class="d-flex align-items-center flex-lg my-1">
