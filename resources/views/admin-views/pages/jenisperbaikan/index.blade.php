@@ -169,7 +169,7 @@ Dashboard
                                                     <td>{{ $item->kode_jenis_perbaikan }}</td>
                                                     <td>{{ $item->nama_jenis_perbaikan }}</td>
                                                     <td>{{ $item->group_jenis_perbaikan }}</td>
-                                                    <td>Rp.{{ number_format($item->harga_jenis_perbaikan,2,',','.')}}
+                                                    <td>Rp {{ number_format($item->harga_jenis_perbaikan,2,',','.')}}
                                                     </td>
                                                     <td>
                                                         <a href="" class="btn btn-primary btn-datatable  mr-2"
@@ -258,7 +258,7 @@ Dashboard
                                                     <td>{{ $item->kode_jenis_perbaikan }}</td>
                                                     <td>{{ $item->nama_jenis_perbaikan }}</td>
                                                     <td>{{ $item->group_jenis_perbaikan }}</td>
-                                                    <td>Rp.{{ number_format($item->harga_jenis_perbaikan,2,',','.')}}
+                                                    <td>Rp {{ number_format($item->harga_jenis_perbaikan,2,',','.')}}
                                                     </td>
                                                     <td>
                                                         <a href="" class="btn btn-success btn-datatable" type="button"

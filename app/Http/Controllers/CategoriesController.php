@@ -92,7 +92,7 @@ class CategoriesController extends Controller
     public function terbaru(Request $request)
     {
         $categories = 'Terbaru';
-        $sparepart = DetailSparepart::with('Galleries_one', 'Bengkel', 'Rating')->where('harga_market', '>', 0)->orderBy('id_sparepart', 'DESC')->paginate(6);
+        $sparepart = DetailSparepart::with('Galleries_one', 'Bengkel', 'Rating')->where('harga_market', '>', 0)->orderBy('id_detail_sparepart', 'DESC')->paginate(6);
         
         // return $sparepart;
         return view('user-views.pages.categories', [

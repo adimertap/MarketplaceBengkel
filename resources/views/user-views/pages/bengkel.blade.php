@@ -145,7 +145,7 @@ Bengkel Detail
                                                 <span class="symbol-label">
                                                     @if ( $item ->Galleries_one)
                                                     <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo }}"
-                                                        class="h-75 align-self-end" alt="">
+                                                        class="h-75 align-self-center" alt="">
                                                     @endif
                                                 </span>
                                             </div>
@@ -168,19 +168,20 @@ Bengkel Detail
                                             <!--begin::Info-->
                                             <div class="d-flex flex-column flex-row-fluid">
                                                 <!--begin::Info-->
-                                                <div class="d-flex align-items-center flex-wrap">
+                                                <div class="d-flex align-items-center flex-wrap mt-4">
                                                     <a href="{{ route('detail', $item->slug) }}"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">{{ $item->nama_sparepart }}</a>
+                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">{{ $item->Sparepart->nama_sparepart }}</a>
                                                     <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">Rp.
-                                                        {{number_format($item->harga_market)}}</span>
+                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">Rp {{number_format($item->harga_market, 0, ",", ".")}}</span>
                                                     <span
                                                         class="text-muted font-weight-normal font-size-sm">
                                                         <i class="flaticon-star text-primary"></i>
                                                         {{ $average }}</span>
+
+
+                                                        
                                                 </div>
-                                                <span
-                                                    class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->keterangan }}</span>
+                                                
                                                 <!--end::Info-->
                                             </div>
                                             <!--end::Info-->
@@ -226,7 +227,7 @@ Bengkel Detail
                                                     <a href="#"
                                                         class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">{{$item->nama_jenis_perbaikan}}</a>
                                                     <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">{{$item->harga_jenis_perbaikan}}</span>
+                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">Rp {{number_format($item->harga_jenis_perbaikan, 0, ",", ".")}}</span>
                                                 </div>
                                                 <span
                                                     class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->group_jenis_perbaikan }}</span>

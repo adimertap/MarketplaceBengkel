@@ -263,9 +263,9 @@ Checkout
                                                                         class="font-weight-boldest border-bottom-0 font-size-lg">
                                                                         <td class="border-top-0 pl-0 py-4">
                                                                             {{ $item->DetailSparepart->nama_sparepart }}</td>
-                                                                        <td class="border-top-0 text-right py-4">Rp.
+                                                                        <td class="border-top-0 text-right py-4">Rp 
                                                                             <span>
-                                                                                {{ number_format($item->DetailSparepart->harga_market)}}
+                                                                                {{ number_format($item->DetailSparepart->harga_market, 0, "," , ".")}}
                                                                             </span>
                                                                         </td>
                                                                         <td class="border-top-0 text-right py-4">
@@ -273,8 +273,7 @@ Checkout
                                                                         </td>
                                                                         <td
                                                                             class="text-danger border-top-0 pr-0 py-4 text-right">
-                                                                            Rp.
-                                                                            {{ number_format($item->jumlah * $item->DetailSparepart->harga_market) }}
+                                                                            Rp {{ number_format($item->jumlah * $item->DetailSparepart->harga_market, 0, ",", ".") }}
                                                                         </td>
                                                                         @php
                                                                         $jumlahberat +=
@@ -302,9 +301,9 @@ Checkout
                                                                             <div class="separator separator-dashed">
                                                                             </div>
                                                                             <div class="separator separator-solid">
-                                                                            </div>Rp.
+                                                                            </div>Rp 
                                                                             <span name="subtotal"
-                                                                                id="subtotal">{{number_format($totalbarang)}}</span>
+                                                                                id="subtotal">{{number_format($totalbarang, 0, ",", ".")}}</span>
                                                                         </td>
 
                                                                     </tr>
@@ -318,9 +317,8 @@ Checkout
                                                                         </td>
                                                                         <td
                                                                             class="text-danger border-top-0 pr-0 py-4 text-right">
-                                                                            Rp.
-
-                                                                            <span name="ongkir" id="ongkir">o</span>
+                                                                            Rp 
+                                                                            <span name="ongkir" id="ongkir">0</span>
                                                                         </td>
 
                                                                     </tr>
@@ -366,7 +364,7 @@ Checkout
                                                                 <span class="font-size-lg font-weight-bolder mb-1">TOTAL
                                                                     KESELURUHAN</span>
                                                                 <span
-                                                                    class="font-size-h2 font-weight-boldest text-danger mb-1">Rp.<span
+                                                                    class="font-size-h2 font-weight-boldest text-danger mb-1">Rp <span
                                                                         id="totalkeseluruhan"></span></span>
                                                             </div>
                                                         </div>

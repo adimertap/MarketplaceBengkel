@@ -96,7 +96,7 @@ Dashboard
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
                                                     <td>{{ $item->nama_pph21 }}</td>
-                                                    <td>Rp. {{ number_format($item->kumulatif_tahunan,2,',','.') }}</td>
+                                                    <td>Rp {{ number_format($item->kumulatif_tahunan,2,',','.') }}</td>
                                                     <td class="text-center">{{ $item->besaran_pph21 }} <b>%</b></td>
                                                     <td>
                                                         <a href="" class="btn btn-primary btn-datatable  mr-2"

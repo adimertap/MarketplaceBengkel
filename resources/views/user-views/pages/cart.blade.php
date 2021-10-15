@@ -72,8 +72,7 @@ Product Detail
                                                     <div class="align-middle pb-4">
                                                         <a href="{{ route('detail', $item->DetailSparepart->slug) }}"
                                                             class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $item ->DetailSparepart->nama_Detailsparepart}}</a>
-                                                        <div class="font-weight-bold text-muted">Rp.
-                                                            {{ number_format($item->DetailSparepart->harga_market )}}
+                                                        <div class="font-weight-bold text-muted">Rp {{ number_format($item->DetailSparepart->harga_market , 0, ",", ".")}}
                                                         </div>
                                                     </div>
 
@@ -102,10 +101,10 @@ Product Detail
                                                 </td>
                                                 <td class=" text-right align-middle font-weight-bolder font-size-h5">
                                                     <span>
-                                                        Rp.
+                                                        Rp 
                                                     </span>
                                                     <span id="totali{{ $item->id_detail_carts }}">
-                                                        {{ ($item->DetailSparepart->harga_market ) * ($item->jumlah)}}
+                                                        {{ number_format((($item->DetailSparepart->harga_market ) * ($item->jumlah)), 0, ",", ".") }}
 
                                                     </span>
                                                 </td>
@@ -133,8 +132,7 @@ Product Detail
                                         <tr>
                                             <td colspan="2"></td>
                                             <td class="font-weight-bolder font-size-h4 text-right">Subtotal</td>
-                                            <td class="font-weight-bolder font-size-h4 text-right">Rp.
-                                                <span id="subtotal">{{ $totalharga }}</span>
+                                            <td class="font-weight-bolder font-size-h4 text-right">Rp <span id="subtotal">{{ number_format($totalharga, 0, ",", ".") }}</span>
                                             </td>
                                         </tr>
                                         <tr>

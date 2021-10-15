@@ -115,7 +115,7 @@ Trnansaction
 
                                                             <td
                                                                 class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                Rp.{{ number_format(($sparepart->harga_market) * ($sparepart->pivot->jumlah_produk))}}
+                                                                Rp {{ number_format(($sparepart->harga_market) * ($sparepart->pivot->jumlah_produk), 0, ",", ".")}}
                                                             </td>
 
                                                         </tr>
@@ -181,7 +181,7 @@ Trnansaction
                                                                     Total:</span>
                                                                 <span
                                                                     class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                    Rp. {{ number_format($item->harga_total) }}
+                                                                    Rp {{ number_format($item->harga_total, 0, ",",".") }}
                                                                 </span>
                                                             </div>
                                                             <div
@@ -191,7 +191,7 @@ Trnansaction
                                                                     {{ $item->kurir_pengiriman }}</span>
                                                                 <span
                                                                     class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                    Rp. {{ number_format($item->harga_pengiriman) }}
+                                                                    Rp {{ number_format($item->harga_pengiriman, 0, ",",".") }}
                                                                 </span>
                                                             </div>
                                                             <div
@@ -203,8 +203,8 @@ Trnansaction
                                                                     :</span>
                                                                 <span
                                                                     class="text-right align-middle font-weight-bolder font-size-h5">
-                                                                    Rp.
-                                                                    {{ number_format(($item->harga_total)+($item->harga_pengiriman)) }}
+                                                                    Rp 
+                                                                    {{ number_format(($item->harga_total)+($item->harga_pengiriman), 0,",",".") }}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -425,8 +425,7 @@ Trnansaction
                                                                                                                     class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $sparepart->nama_sparepart}}</a>
                                                                                                                 <div
                                                                                                                     class="font-weight-bold text-muted">
-                                                                                                                    Rp.
-                                                                                                                    {{ number_format($sparepart->harga_market )}}
+                                                                                                                    Rp {{ number_format($sparepart->harga_market , 0, ",",".")}}
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>

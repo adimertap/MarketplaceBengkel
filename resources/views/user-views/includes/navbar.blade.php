@@ -356,8 +356,7 @@
                             class="font-weight-bold text-dark-75 font-size-lg text-hover-primary">{{ $item ->DetailSparepart->nama_sparepart }}</a>
                         {{-- <span class="text-muted">The best kitchen gadget in 2020</span> --}}
                         <div class="d-flex align-items-center mt-2">
-                            <span class="font-weight-bold mr-1 text-dark-75 font-size-lg">Rp.
-                                {{ number_format($item->DetailSparepart->harga_market )}}</span>
+                            <span class="font-weight-bold mr-1 text-dark-75 font-size-lg">Rp {{ number_format($item->DetailSparepart->harga_market , 0, ",", ".")}}</span>
                             <span class="text-muted mr-1">Untuk</span>
                             <span class="font-weight-bold mr-2 text-dark-75 font-size-lg">{{  number_format($item->jumlah)  }}</span>
                             {{-- <a href="#" class="btn btn-xs btn-light-success btn-icon mr-2">
@@ -391,7 +390,7 @@
             <div class="offcanvas-footer">
                 <div class="d-flex align-items-center justify-content-between mb-4">
                     <span class="font-weight-bold text-muted font-size-sm mr-2">Total</span>
-                    <span class="font-weight-bolder text-dark-50 text-right">Rp. {{ $subtotal }}</span>
+                    <span class="font-weight-bolder text-dark-50 text-right">Rp {{ number_format($subtotal, 0, ",", ".") }}</span>
                 </div>
                 {{-- <div class="d-flex align-items-center justify-content-between mb-7">
                     <span class="font-weight-bold text-muted font-size-sm mr-2">Sub total</span>

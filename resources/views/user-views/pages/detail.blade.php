@@ -82,7 +82,7 @@ Product Detail
                             <!--begin::Engage Widget 14-->
                             <div class="card card-custom gutter-b gutter-b">
                                 <h2 class="font-weight-bolder text-dark text-center"
-                                    style="font-size: 32px; margin-top: 10px;">{{ $sparepart -> nama_sparepart}}</h2>
+                                    style="font-size: 32px; margin-top: 10px;">{{ $sparepart ->Sparepart-> nama_sparepart}}</h2>
                                 <small
                                     class="font-weight-bolder text-dark text-center">{{ $sparepart -> Bengkel['nama_bengkel'] }}</small>
                                 <!--begin::Polygon Background-->
@@ -204,7 +204,7 @@ Product Detail
                                                     Tersedia</span>
                                                 <span class="font-weight-bolder font-size-h1">
                                                     <span class="text-dark-50 font-weight-bold">Rp
-                                                    </span>{{ number_format($sparepart ->harga_market) }}</span>
+                                                    </span>{{ number_format($sparepart ->harga_market, 0, ",", ".") }}</span>
                                             </div>
                                         </div>
                                         <!--end: Item-->

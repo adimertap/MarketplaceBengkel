@@ -120,7 +120,7 @@ Categories
                                     <a href="{{ route('detail', $item->Sparepart->slug) }}"
                                         class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
                                     @auth
-                                    <form action="{{ route('detail-add', $item->Sparepart->id_sparepart) }}" method="post"
+                                    <form action="{{ route('detail-add', $item->Sparepart->id_detail_sparepart) }}" method="post"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <!--begin: Item-->
@@ -162,7 +162,7 @@ Categories
                                     <div class="d-flex align-items-right  my-1">
                                         <div class="d-flex flex-column text-dark-75 ">
                                             <span class="font-weight-bolder font-size-h5"><span
-                                                    class="text-dark-50  font-weight-bold">Rp.</span>{{ $item->Sparepart ->harga_market }}</span>
+                                                    class="text-dark-50  font-weight-bold">Rp </span>{{ number_format($item->Sparepart->harga_market, 0, ",", ".") }}</span>
                                         </div>
                                     </div>
                                     <!--end: Item-->

@@ -96,7 +96,7 @@ Dashboard
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}.</th>
                                                     <td>{{ $item->nama_ptkp }}</td>
-                                                    <td>Rp. {{ number_format($item->besaran_ptkp,2,',','.') }}</td>
+                                                    <td>Rp {{ number_format($item->besaran_ptkp,2,',','.') }}</td>
                                                     <td>{{ $item->keterangan_ptkp }}</td>
                                                     <td>
                                                         <a href="" class="btn btn-primary btn-datatable  mr-2"
