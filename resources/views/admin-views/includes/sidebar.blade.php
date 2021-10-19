@@ -138,8 +138,8 @@
                     </nav>
                 </div>
                 <a class="nav-link {{ (request()-> is('admin/bengkel*')) ?'active' :''}}"
-                    href={{ route('bengkel.index') }}>
-                    <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    href={{ route('diskon.index') }}>
+                    <div class="nav-link-icon"><i class="fas fa-percent"></i></div>
                     Diskon
                 </a>
             </div>

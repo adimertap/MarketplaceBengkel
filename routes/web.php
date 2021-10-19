@@ -61,8 +61,8 @@ Route::namespace('AdminMarketplace')
         Route::resource('kendaraan', 'KendaraanController');
         Route::post('kendaraan/{id_kendaraan}/set-status', 'KendaraanController@setStatus')
             ->name('kendaraan-pengajuan');
-        
-        
+        // DISKON
+        Route::resource('diskon', 'DiskonControllerr');
 
         Route::resource('user', 'UserController');
         Route::resource('bengkel', 'BengkelController');
