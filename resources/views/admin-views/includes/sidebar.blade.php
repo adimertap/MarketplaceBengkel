@@ -137,7 +137,11 @@
                         </a>
                     </nav>
                 </div>
-
+                <a class="nav-link {{ (request()-> is('admin/bengkel*')) ?'active' :''}}"
+                    href={{ route('bengkel.index') }}>
+                    <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    Diskon
+                </a>
             </div>
             <div class="nav accordion" id="accordionSidenav">
                 <div class="sidenav-menu-heading">Menu</div>
