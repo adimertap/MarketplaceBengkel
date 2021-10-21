@@ -1,7 +1,7 @@
 @extends('admin-views.layouts.app')
 
 @section('name')
-Dashboard
+Merk Sparepart
 @endsection
 
 @push('prepend-style')
@@ -21,7 +21,7 @@ Dashboard
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon"><i class="fas fa-warehouse"></i></div>
-                            Master Data Jenis Sparepart
+                            Master Data Merk Sparepart
                         </h1>
                     </div>
                 </div>
@@ -37,7 +37,7 @@ Dashboard
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
-                                <div class="small font-weight-bold text-primary mb-1">Tambah Data Jenis Sparepart</div>
+                                <div class="small font-weight-bold text-primary mb-1">Tambah Data Merk Sparepart</div>
                                 <button class="btn btn-sm btn-primary" type="button" data-toggle="modal"
                                     data-target="#Modaltambah">
                                     Tambah Data
@@ -61,8 +61,8 @@ Dashboard
                     <div class="card-body">
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
-                                <div class="small font-weight-bold text-primary mb-1">Jenis Sparepart Aktif</div>
-                                <div class="h6">Total: {{ $jenissparepartaktif }}</div>
+                                <div class="small font-weight-bold text-primary mb-1">Merk Sparepart Aktif</div>
+                                <div class="h6">Total: {{ $countmerkaktif }}</div>
                             </div>
                             <div class="ml-2"><i class="fas fa-cubes" style="color: gainsboro"></i> </svg>
                             </div>
@@ -77,7 +77,7 @@ Dashboard
                         <div class="d-flex align-items-center">
                             <div class="flex-grow-1">
                                 <div class="small font-weight-bold text-secondary mb-1">Pengajuan Jenis Baru</div>
-                                <div class="h6">Total: {{ $jenissparepartdiajukan }}</div>
+                                <div class="h6">Total: {{ $countmerkdiajukan }}</div>
                             </div>
                             <div class="ml-2"><i class="fas fa-box-open" style="color: gainsboro"></i>
                             </div>
@@ -95,7 +95,7 @@ Dashboard
                 <ul class="nav nav-tabs card-header-tabs" id="cardTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="overview-tab" href="#overview" data-toggle="tab" role="tab"
-                            aria-controls="overview" aria-selected="true">Master Jenis</a>
+                            aria-controls="overview" aria-selected="true">Master Merk</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="example-tab" href="#example" data-toggle="tab" role="tab"
@@ -142,7 +142,15 @@ Dashboard
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 350px;">Jenis Sparepart</th>
+                                                        style="width: 100px;">Kode Merk</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 120px;">Jenis Sparepart</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 200px;">Merk Sparepart</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Actions: activate to sort column ascending"
@@ -150,20 +158,22 @@ Dashboard
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($jenissparepart as $item)
+                                                @forelse ($merk as $item)
                                                 <tr role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
-                                                    <td>{{ $item->jenis_sparepart }}</td>
+                                                        <td>{{ $item->kode_merk }}</td>
+                                                    <td>{{ $item->jenissparepart->jenis_sparepart }}</td>
+                                                    <td>{{ $item->merk_sparepart }}</td>
                                                     <td>
                                                         <a href="" class="btn btn-primary btn-datatable  mr-2"
                                                             type="button" data-toggle="modal"
-                                                            data-target="#Modaledit-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modaledit-{{ $item->id_merk }}">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         <a href="" class="btn btn-danger btn-datatable" type="button"
                                                             data-toggle="modal"
-                                                            data-target="#Modalhapus-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modalhapus-{{ $item->id_merk }}">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
                                                     </td>
@@ -215,7 +225,15 @@ Dashboard
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Position: activate to sort column ascending"
-                                                        style="width: 230px;">Jenis Sparepart</th>
+                                                        style="width: 100px;">Kode Merk</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 120px;">Jenis Sparepart</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 200px;">Merk Sparepart</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable"
                                                         rowspan="1" colspan="1"
                                                         aria-label="Actions: activate to sort column ascending"
@@ -223,20 +241,22 @@ Dashboard
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($jenissparepartpengajuan as $item)
+                                                @forelse ($merkdiajukan as $item)
                                                 <tr role="row" class="odd">
                                                     <th scope="row" class="small" class="sorting_1">
                                                         {{ $loop->iteration}}</th>
-                                                    <td>{{ $item->jenis_sparepart }}</td>
+                                                    <td>{{ $item->kode_merk }}</td>
+                                                    <td>{{ $item->jenissparepart->jenis_sparepart }}</td>
+                                                    <td>{{ $item->merk_sparepart }}</td>
                                                     <td>
                                                         <a href="" class="btn btn-success btn-datatable" type="button"
                                                             data-toggle="modal"
-                                                            data-target="#Modalkonfirmasisetuju-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modalkonfirmasisetuju-{{ $item->id_merk }}">
                                                             <i class="fas fa-check"></i>
                                                         </a>
                                                         <a href="" class="btn btn-danger btn-datatable" type="button"
                                                             data-toggle="modal"
-                                                            data-target="#Modalkonfirmasitolak-{{ $item->id_jenis_sparepart }}">
+                                                            data-target="#Modalkonfirmasitolak-{{ $item->id_merk }}">
                                                             <i class="fas fa-times"></i>
                                                         </a>
                                                     </td>
@@ -263,29 +283,50 @@ Dashboard
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Jenis Sparepart</h5>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Merk Sparepart</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('category.store')}}" method="POST">
+                <form action="{{ route('merk.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                        <hr>
+                        </hr>
                         <div class="form-group">
-                            <label class="small mb-1" for="jenis_sparepart">Jenis Sparepart</label>
-                            <input class="form-control" name="jenis_sparepart" type="text" id="jenis_sparepart"
-                                placeholder="Input Jenis Sparepart" value="{{ old('jenis_sparepart') }}"
-                                class="form-control @error('jenis_sparepart') is-invalid @enderror">
-                            @error('jenis_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                            <label class="small mb-1" for="kode_merk">Kode Merk</label>
+                            <input class="form-control" name="kode_merk" type="text" id="kode_merk"
+                                placeholder="Input Kode Merk" value="{{ $kode_merk }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span
+                                class="mr-4 mb-3" style="color: red">*</span>
+                            <select class="form-control" name="id_jenis_sparepart"
+                                class="form-control @error('id_jenis_sparepart') is-invalid @enderror"
+                                id="id_jenis_sparepart">
+                                <option>Pilih Jenis</option>
+                                @foreach ($jenissparepart as $item)
+                                <option value="{{ $item->id_jenis_sparepart }}">
+                                    {{ $item->jenis_sparepart }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('id_jenis_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1 mr-1" for="merk_sparepart">Merk Sparepart</label><span
+                                class="mr-4 mb-3" style="color: red">*</span>
+                            <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
+                                placeholder="Input Merk" value="{{ old('merk_sparepart') }}"
+                                class="form-control @error('merk_sparepart') is-invalid @enderror"></input>
+                            @error('merk_sparepart')<div class="text-danger small mb-1">{{ $message }}
                             </div> @enderror
                         </div>
                     </div>
-
-                    {{-- Validasi Error --}}
                     @if (count($errors) > 0)
                     @endif
-
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                         <button class="btn btn-primary" type="Submit">Tambah</button>
@@ -296,29 +337,53 @@ Dashboard
     </div>
 
     {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
-    @forelse ($jenissparepart as $item)
-    <div class="modal fade" id="Modaledit-{{ $item->id_jenis_sparepart }}" data-backdrop="static" tabindex="-1"
-        role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    @forelse ($merk as $item)
+    <div class="modal fade" id="Modaledit-{{ $item->id_merk }}" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Tambah Jenis Sparepart</h5>
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Merk Sparepart</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('category.update', $item->id_jenis_sparepart) }}" method="POST">
+                <form action="{{ route('merk.update',$item->id_merk) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="modal-body">
+                        <label class="small mb-1">Isikan Form Dibawah Ini</label>
+                        <hr>
+                        </hr>
                         <div class="form-group">
-                            <label class="small" for="jenis_sparepart">Jenis Sparepart</label>
-                            <input class="form-control" name="jenis_sparepart" type="text" id="jenis_sparepart"
-                                value="{{ $item->jenis_sparepart }}" />
+                            <label class="small" for="kode_merk">Kode Merk</label>
+                            <input class="form-control" name="kode_merk" type="text" id="kode_merk"
+                                value="{{ $item->kode_merk }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span
+                                class="mr-4 mb-3" style="color: red">*</span>
+                            <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart" required>
+                                <option value="{{ $item->jenissparepart->id_jenis_sparepart }}">
+                                    {{ $item->jenissparepart->jenis_sparepart }}</option>
+                                @foreach ($jenissparepart as $items)
+                                <option value="{{ $items->id_jenis_sparepart }}">
+                                    {{ $items->jenis_sparepart }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mr-1" for="merk_sparepart">Merk Sparepart</label><span class="mr-4 mb-3"
+                                style="color: red">*</span>
+                            <input class="form-control" name="merk_sparepart" type="text" id="merk_sparepart"
+                                value="{{ $item->merk_sparepart }}"
+                                class="form-control @error('merk_sparepart') is-invalid @enderror" required></input>
+                            @error('merk_sparepart')<div class="text-danger small mb-1">{{ $message }}
+                            </div> @enderror
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="Submit">Ubah</button>
+                        <button class="btn btn-primary" type="submit">Ubah</button>
                     </div>
                 </form>
             </div>
@@ -329,8 +394,8 @@ Dashboard
     @endforelse
 
     {{-- MODAL DELETE ------------------------------------------------------------------------------}}
-    @forelse ($jenissparepart as $item)
-    <div class="modal fade" id="Modalhapus-{{ $item->id_jenis_sparepart }}" tabindex="-1" role="dialog"
+    @forelse ($merk as $item)
+    <div class="modal fade" id="Modalhapus-{{ $item->id_merk }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -339,11 +404,10 @@ Dashboard
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('category.destroy', $item->id_jenis_sparepart) }}" method="POST"
-                    class="d-inline">
+                <form action="{{ route('merk.destroy', $item->id_merk) }}" method="POST" class="d-inline">
                     @csrf
                     @method('delete')
-                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Merk {{ $item->jenis_sparepart }}?</div>
+                    <div class="modal-body">Apakah Anda Yakin Menghapus Data Merk {{ $item->merk_sparepart }}?</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                         <button class="btn btn-danger" type="submit">Ya! Hapus</button>
@@ -357,8 +421,8 @@ Dashboard
     @endforelse
 
     {{-- KONFIRMASI SETUJUI DATA --}}
-    @forelse ($jenissparepartpengajuan as $items)
-    <div class="modal fade" id="Modalkonfirmasisetuju-{{ $items->id_jenis_sparepart }}" tabindex="-1" role="dialog"
+    @forelse ($merkdiajukan as $items)
+    <div class="modal fade" id="Modalkonfirmasisetuju-{{ $items->id_merk }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -367,12 +431,12 @@ Dashboard
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('jenis-sparepart-pengajuan', $items->id_jenis_sparepart) }}?status_jenis=Aktif"
+                <form action="{{ route('merk-sparepart-pengajuan', $items->id_merk) }}?status_merk=Aktif"
                     method="POST" class="d-inline">
                     @csrf
                     <div class="modal-body">
-                        <div class="form-group">Apakah Anda Yakin Menyetujui Data Pengajuan Jenis Sparepart
-                            <b>{{ $items->jenis_sparepart }}</b> ?</div>
+                        <div class="form-group">Apakah Anda Yakin Menyetujui Data Pengajuan Merk Sparepart
+                            <b>{{ $items->merk_sparepart }}</b> ?</div>
                     </div>
 
                     <div class="modal-footer">
@@ -386,8 +450,8 @@ Dashboard
     @empty
     @endforelse
 
-    @forelse ($jenissparepartpengajuan as $itemz)
-    <div class="modal fade" id="Modalkonfirmasitolak-{{ $itemz->id_jenis_sparepart }}" tabindex="-1" role="dialog"
+    @forelse ($merkdiajukan as $itemz)
+    <div class="modal fade" id="Modalkonfirmasitolak-{{ $itemz->id_merk }}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -396,12 +460,12 @@ Dashboard
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('jenis-sparepart-pengajuan', $itemz->id_jenis_sparepart) }}?status_jenis=Tidak Aktif"
+                <form action="{{ route('merk-sparepart-pengajuan', $itemz->id_merk) }}?status_merk=Tidak Aktif"
                     method="POST" class="d-inline">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">Apakah Anda Yakin Menolak Data Pengajuan Sparepart
-                            <b>{{ $itemz->jenis_sparepart }}</b> ?</div>
+                            <b>{{ $itemz->merk_sparepart }}</b> ?</div>
                     </div>
 
                     <div class="modal-footer">
