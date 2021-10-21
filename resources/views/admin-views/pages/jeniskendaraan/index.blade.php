@@ -210,7 +210,7 @@ Dashboard
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('jenis-kendaraan.store') }}" method="POST">
+            <form action="{{ route('jeniskendaraan.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <label class="small mb-1">Isikan Form Dibawah Ini</label>
@@ -262,7 +262,7 @@ Dashboard
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('jenis-kendaraan.update', $item->id_jenis_kendaraan) }}" method="POST">
+            <form action="{{ route('jeniskendaraan.update', $item->id_jenis_kendaraan) }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="modal-body">
@@ -318,7 +318,7 @@ Dashboard
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('jenis-kendaraan.update', $item->id_jenis_kendaraan) }}" method="POST">
+            <form action="{{ route('jeniskendaraan.update', $item->id_jenis_kendaraan) }}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="modal-body">
@@ -377,7 +377,7 @@ Dashboard
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('jenis-kendaraan.destroy', $item->id_jenis_kendaraan) }}" method="POST" class="d-inline">
+            <form action="{{ route('jeniskendaraan.destroy', $item->id_jenis_kendaraan) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
                 <div class="modal-body">Apakah Anda Yakin Menghapus Data Jenis Kendaraan {{ $item->jenis_kendaraan }}?</div>
@@ -403,7 +403,7 @@ Dashboard
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
             </div>
-            <form action="{{ route('jenis-kendaraan.destroy', $item->id_jenis_kendaraan) }}" method="POST" class="d-inline">
+            <form action="{{ route('jeniskendaraan.destroy', $item->id_jenis_kendaraan) }}" method="POST" class="d-inline">
                 @csrf
                 @method('delete')
                 <div class="modal-body">Apakah Anda Yakin Menghapus Data Jenis Kendaraan {{ $item->jenis_kendaraan }}?</div>

@@ -7,7 +7,7 @@ use App\Model\MasterData\JenisKendaraan;
 use App\Model\SingleSignOn\JenisBengkel;
 use Illuminate\Http\Request;
 
-class JeniskendaraanController extends Controller
+class JeniskendaraanControllerr extends Controller
 {
     /**
      * Display a listing of the resource.
