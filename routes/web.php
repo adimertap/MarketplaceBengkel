@@ -56,7 +56,7 @@ Route::namespace('AdminMarketplace')
         // MERK KENDARAAN
         Route::resource('merkkendaraan', 'MerkkendaraanController');
          // JENIS KENDARAAN
-         Route::resource('jenis-kendaraan', 'JenisKendaraanController');
+         Route::resource('jenis-kendaraan', 'JeniskendaraanController');
           // KENDARAAN
         Route::resource('kendaraan', 'KendaraanController');
         Route::post('kendaraan/{id_kendaraan}/set-status', 'KendaraanController@setStatus')
