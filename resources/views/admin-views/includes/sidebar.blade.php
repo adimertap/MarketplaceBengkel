@@ -123,7 +123,7 @@
                 </a>
                 <div class="collapse" id="collapseFlows" data-parent="#accordionSidenav" style="">
                     <nav class="sidenav-menu-nested nav">
-                        <a class="nav-link " href="{{ route('jenis-kendaraan.index') }}">
+                        <a class="nav-link " href="{{ route('jeniskendaraan.index') }}">
                             <div class="nav-link-icon"><i class="fas fa-database"></i></div>
                             Jenis Kendaraan
                         </a>
