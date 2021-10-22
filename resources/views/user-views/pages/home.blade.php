@@ -72,7 +72,7 @@ Marketplace Homepage
                                                 <div class="overlay">
                                                     <div class="overlay-wrapper rounded bg-light text-center">
                                                         @if ($item->Galleries_one)
-                                                        <img src="https://bengkel-kuy.com/image/{{ $item->Galleries_one->photo }}"
+                                                        <img src="https://inventory.bengkel-kuy.com/image/{{ $item->Galleries_one->photo }}"
                                                             alt="" class="mh-100 h-200px mw-100 w-200px" />
                                                         @endif
 
@@ -124,7 +124,7 @@ Marketplace Homepage
                                                 <div
                                                     class="text-center mt-2 mb-md-0 mb-5 mb-md-0 mb-5 mb-0 mb-5 d-flex flex-column">
                                                     <a href="{{ route('detail', $item->slug) }}"
-                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item ->nama_sparepart }}</a>
+                                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item ->Sparepart->nama_sparepart }}</a>
                                                     <a href="{{ route('bengkel', $item->Bengkel->slug) }}"
                                                         class="font-size-sm">{{ $item ->Bengkel['nama_bengkel'] }}</a>
 
@@ -208,7 +208,7 @@ Marketplace Homepage
                                                 <div class="overlay">
                                                     <div class="overlay-wrapper rounded bg-light text-center">
                                                         @if ($item->Sparepart ->Galleries_one)
-                                                        <img src="https://bengkel-kuy.com/image/{{ $item->Sparepart ->Galleries_one->photo }}"
+                                                        <img src="https://inventory.bengkel-kuy.com/image/{{ $item->Sparepart ->Galleries_one->photo }}"
                                                             alt="" class="mh-100 h-200px mw-100 w-200px" />
                                                         @endif
 

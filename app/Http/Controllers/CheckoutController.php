@@ -58,7 +58,7 @@ class CheckoutController extends Controller
             $trx = 'TRX_' . mt_rand(00000, 99999);
             DetailTransaksi::create([
                 'id_transaksi_online' => $transaksi -> id_transaksi_online,
-                'id_detailsparepart' => $item->id_detailsparepart,
+                'id_detail_sparepart' => $item->id_detail_sparepart,
                 'jumlah_produk' => $item->jumlah,
                 'id_review' => NULL,
                 'status' => 'CANCELLED',

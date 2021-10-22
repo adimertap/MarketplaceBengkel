@@ -22,10 +22,13 @@ class TransaksiController extends Controller
      public function index()
     {
 
-        $transaksi = Transaksi::with(['User', 'Detailtransaksi', 'Detailtransaksi.Bengkel', 'Detailtransaksi.Galleries'])->where('id_user', Auth::user()->id_user)->orderBy('id_transaksi_online', 'DESC')
+        $transaksi = Transaksi::with(['User', 'Detailtransaksi.Sparepart', 'Detailtransaksi.Bengkel', 'Detailtransaksi.Galleries'])->where('id_user', Auth::user()->id_user)->orderBy('id_transaksi_online', 'DESC')
                 ->get();
 
+        // $transaksi = Transaksi::with(['User', 'Detailtransaksi.Bengkel', ])->where('id_user', Auth::user()->id_user)->orderBy('id_transaksi_online', 'DESC')
+        //         ->get();
         // return $transaksi;
+
         return view('user-views.pages.trans', [
             'transaksi' => $transaksi
         ]);

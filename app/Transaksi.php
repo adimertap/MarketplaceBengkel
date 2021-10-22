@@ -23,7 +23,7 @@ class Transaksi extends Model
     }
 
     public function Detailtransaksi(){
-        return $this->belongsToMany(Sparepart::class, 'tb_marketplace_detail_transaksi', 'id_transaksi_online', 'id_sparepart')->withPivot('id_detail_transaksi','jumlah_produk','rating', 'review'
+        return $this->belongsToMany(DetailSparepart::class, 'tb_marketplace_detail_transaksi', 'id_transaksi_online', 'id_detail_sparepart')->withPivot('id_detail_transaksi','jumlah_produk','rating', 'review'
         , 'code_detail_transaksi');
     }
     

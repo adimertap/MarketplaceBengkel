@@ -102,14 +102,14 @@ Trnansaction
                                                                     class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
                                                                     @if ($sparepart->Galleries_one)
                                                                         <div class="symbol-label"
-                                                                        style="background-image: url(https://bengkel-kuy.com/image/{{ $sparepart->Galleries_one->photo }})">
+                                                                        style="background-image: url(https://inventory.bengkel-kuy.com/image/{{ $sparepart->Galleries_one->photo }})">
                                                                     </div>
                                                                     @endif
                                                                     
                                                                 </div>
                                                                 <!--end::Symbol-->
                                                                 <a href="#"
-                                                                    class="text-dark text-hover-primary">{{ $sparepart->nama_sparepart }}
+                                                                    class="text-dark text-hover-primary">{{ $sparepart->Sparepart->nama_sparepart }}
                                                                     x {{ $sparepart->pivot->jumlah_produk }}</a>
                                                             </td>
 

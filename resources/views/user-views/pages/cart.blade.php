@@ -63,7 +63,7 @@ Product Detail
                                                     @if ($item->DetailSparepart->Galleries_one)
                                                     <div class="symbol symbol-60 flex-shrink-0 mr-4 bg-light">
                                                         <div class="symbol-label"
-                                                            style="background-image: url(https://bengkel-kuy.com/image/{{  $item->DetailSparepart->Galleries_one->photo  }})">
+                                                            style="background-image: url(https://inventory.bengkel-kuy.com/image/{{  $item->DetailSparepart->Galleries_one->photo  }})">
                                                         </div>
 
                                                     </div>
@@ -71,7 +71,7 @@ Product Detail
                                                     <!--end::Symbol-->
                                                     <div class="align-middle pb-4">
                                                         <a href="{{ route('detail', $item->DetailSparepart->slug) }}"
-                                                            class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $item ->DetailSparepart->nama_Detailsparepart}}</a>
+                                                            class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $item ->DetailSparepart->Sparepart->nama_sparepart}}</a>
                                                         <div class="font-weight-bold text-muted">Rp {{ number_format($item->DetailSparepart->harga_market , 0, ",", ".")}}
                                                         </div>
                                                     </div>

@@ -84,10 +84,10 @@ Bengkel Detail
                                 <div class="slider">
                                     <input type="radio" name="slide_switch" id="id2" checked="checked" />
                                     <label for="id2">
-                                        <img src="https://bengkel-kuy.com/image/{{$bengkel->logo_bengkel}}" width="100"
+                                        <img src="https://inventory.bengkel-kuy.com/image/{{$bengkel->logo_bengkel}}" width="100"
                                             height="80" />
                                     </label>
-                                    <img src="https://bengkel-kuy.com/image/{{$bengkel->logo_bengkel }}" height="320" />
+                                    <img src="https://inventory.bengkel-kuy.com/image/{{$bengkel->logo_bengkel }}" height="320" />
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@ Bengkel Detail
                                             <div class="symbol symbol-40 symbol-light-success mr-5 mt-1">
                                                 <span class="symbol-label">
                                                     @if ( $item ->Galleries_one)
-                                                    <img src="https://bengkel-kuy.com/image/{{ $item ->Galleries_one->photo }}"
+                                                    <img src="https://inventory.bengkel-kuy.com/image/{{ $item ->Galleries_one->photo }}"
                                                         class="h-75 align-self-center" alt="">
                                                     @endif
                                                 </span>

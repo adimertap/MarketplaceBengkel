@@ -262,7 +262,7 @@ Checkout
                                                                     <tr
                                                                         class="font-weight-boldest border-bottom-0 font-size-lg">
                                                                         <td class="border-top-0 pl-0 py-4">
-                                                                            {{ $item->DetailSparepart->nama_sparepart }}</td>
+                                                                            {{ $item->DetailSparepart->Sparepart->nama_sparepart }}</td>
                                                                         <td class="border-top-0 text-right py-4">Rp 
                                                                             <span>
                                                                                 {{ number_format($item->DetailSparepart->harga_market, 0, "," , ".")}}

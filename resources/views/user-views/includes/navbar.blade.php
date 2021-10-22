@@ -369,7 +369,7 @@
                     </div>
                     <a href="#" class="symbol symbol-70 flex-shrink-0">
                         @if ($item->DetailSparepart->Galleries_one)
-                            <img src="https://bengkel-kuy.com/image/{{ $item ->DetailSparepart->Galleries_one->photo }}" title=""
+                            <img src="https://inventory.bengkel-kuy.com/image/{{ $item ->DetailSparepart->Galleries_one->photo }}" title=""
                             alt="" />
                         @endif
                         

@@ -87,21 +87,20 @@ Product Detail
                                     class="font-weight-bolder text-dark text-center">{{ $sparepart -> Bengkel['nama_bengkel'] }}</small>
                                 <!--begin::Polygon Background-->
                                 <div class="slider">
-
                                     @forelse ($sparepart->Galleries as $key => $item)
                                     @if ($key==0)
                                     <input type="radio" name="slide_switch" id="{{ $item->id_gallery }}"
                                         checked='checked' />
                                     <label for="{{ $item->id_gallery }}">
-                                        <img src="https://bengkel-kuy.com/image/{{ $item['photo'] }}" width="100" height="80" />
+                                        <img src="https://inventory.bengkel-kuy.com/image/{{ $item['photo'] }}" width="100" height="80" />
                                     </label>
-                                    <img src="https://bengkel-kuy.com/image/{{ $item['photo'] }} " height="320" />
+                                    <img src="https://inventory.bengkel-kuy.com/image/{{ $item['photo'] }} " height="320" />
                                     @else
                                     <input type="radio" name="slide_switch" id="{{ $item->id_gallery }}" />
                                     <label for="{{ $item->id_gallery }}">
-                                        <img src="https://bengkel-kuy.com/image/{{ $item['photo'] }}" width="100" height="80" />
+                                        <img src="https://inventory.bengkel-kuy.com/image/{{ $item['photo'] }}" width="100" height="80" />
                                     </label>
-                                    <img src="https://bengkel-kuy.com/image/{{ $item['photo'] }} " height="320" />
+                                    <img src="https://inventory.bengkel-kuy.com/image/{{ $item['photo'] }} " height="320" />
                                     @endif
 
                                     @empty
