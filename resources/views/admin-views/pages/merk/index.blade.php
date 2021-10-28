@@ -172,7 +172,7 @@ Dashboard
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         <a href="" class="btn btn-danger btn-datatable" type="button"
-                                                            data-toggle="modal"
+                                                            data-toggle="modaPl"
                                                             data-target="#Modalhapus-{{ $item->id_merk }}">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
