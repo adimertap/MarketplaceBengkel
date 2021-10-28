@@ -303,7 +303,8 @@ Checkout
                                                                             <div class="separator separator-solid">
                                                                             </div>Rp 
                                                                             <span name="subtotal"
-                                                                                id="subtotal">{{number_format($totalbarang, 0, ",", ".")}}</span>
+                                                                                {{-- id="subtotal">{{number_format($totalbarang, 0, ",", ".")}}</span> --}}
+                                                                                id="subtotal">{{$totalbarang}}</span>
                                                                         </td>
 
                                                                     </tr>
