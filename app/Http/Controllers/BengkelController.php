@@ -45,7 +45,9 @@ class BengkelController extends Controller
     {
         $id_bengkel = Bengkel::where('slug', $id)->firstOrFail();
         $bengkel = Bengkel::where('id_bengkel', $id_bengkel->id_bengkel)->first();
-        $kendaraan = MasterDataKendaraan::where('id_bengkel', $id_bengkel->id_bengkel)->get();
+        // $kendaraan = MasterDataKendaraan::where('id_bengkel', $id_bengkel->id_bengkel)->get();
+                $kendaraan = MasterDataKendaraan::get();
+
         $code = 'RSV-' .$id_bengkel->id_bengkel. mt_rand(00000, 99999);
 
         return view('user-views.pages.reservasi', [
