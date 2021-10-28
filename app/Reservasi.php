@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Model\MasterData\Kendaraan;
 use Illuminate\Database\Eloquent\Model;
 
 class Reservasi extends Model
