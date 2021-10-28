@@ -133,7 +133,8 @@ Product Detail
                                         <tr>
                                             <td colspan="2"></td>
                                             <td class="font-weight-bolder font-size-h4 text-right">Subtotal</td>
-                                            <td class="font-weight-bolder font-size-h4 text-right">Rp <span id="subtotal">{{ number_format($totalharga, 0, ",", ".") }}</span>
+                                            {{-- <td class="font-weight-bolder font-size-h4 text-right">Rp <span id="subtotal">{{ number_format($totalharga, 0, ",", ".") }}</span> --}}
+                                            <td class="font-weight-bolder font-size-h4 text-right">Rp <span id="subtotal">{{ $totalharga }}</span>
                                             </td>
                                         </tr>
                                         <tr>
