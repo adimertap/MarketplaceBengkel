@@ -104,7 +104,8 @@ Product Detail
                                                         Rp 
                                                     </span>
                                                     <span id="totali{{ $item->id_detail_carts }}">
-                                                        {{ number_format((($item->DetailSparepart->harga_market ) * ($item->jumlah)), 0, ",", ".") }}
+                                                        {{-- {{ number_format((($item->DetailSparepart->harga_market ) * ($item->jumlah)), 0, ",", ".") }} --}}
+                                                        {{ (($item->DetailSparepart->harga_market ) * ($item->jumlah)) }}
 
                                                     </span>
                                                 </td>
