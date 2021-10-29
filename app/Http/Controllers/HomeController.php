@@ -28,8 +28,8 @@ class HomeController extends Controller
     public function index()
     {
         
-        $sparepart =DetailSparepart::with('Sparepart','Galleries_one','Rating' , 'Bengkel')->where('harga_market', '>', 0)->get();
-        // $sparepart = DetailSparepart::with('Sparepart')->whereNotNull('harga_market')->latest()->take(8)->get();
+        $sparepart =DetailSparepart::with('Sparepart','Galleries_one','Rating' , 'Bengkel')->where('harga_market', '>', 0)->take(8)->get();
+        // $sparepart = DetailSparepart::with('Sparepart')->whereNotNull('harga_market')->latest()->get();
         // return $sparepart;
 
          $terlaris = DetailTransaksi::with('DetailSparepart.Sparepart','DetailSparepart.Galleries_one','DetailSparepart.Rating' , 'DetailSparepart.Bengkel')->whereNotNull('rating')
