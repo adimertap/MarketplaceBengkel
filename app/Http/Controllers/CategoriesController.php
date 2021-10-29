@@ -81,7 +81,7 @@ class CategoriesController extends Controller
     {
 
         $categories = Category::where('slug', $slug)->firstOrFail();
-        $sparepart = DetailSparepart::with('Galleries_one', 'Bengkel', 'Rating')->where('harga_market', '>', 0)->where('id_jenis_sparepart', $categories->id_jenis_sparepart)->paginate(6);
+        $sparepart = DetailSparepart::with('Galleries_one', 'Bengkel', 'Rating')->where('harga_market', '>', 0)->where('id_jenis_sparepart', $categories->id_jenis_sparepart)->paginate(8);
         // return $sparepart;
         return view('user-views.pages.categories', [
             'sparepart' => $sparepart,
@@ -92,7 +92,7 @@ class CategoriesController extends Controller
     public function terbaru(Request $request)
     {
         $categories = 'Terbaru';
-        $sparepart = DetailSparepart::with('Galleries_one', 'Bengkel', 'Rating')->where('harga_market', '>', 0)->orderBy('id_detail_sparepart', 'DESC')->paginate(6);
+        $sparepart = DetailSparepart::with('Galleries_one', 'Bengkel', 'Rating')->where('harga_market', '>', 0)->orderBy('id_detail_sparepart', 'DESC')->paginate(8);
         
         // return $sparepart;
         return view('user-views.pages.categories', [
