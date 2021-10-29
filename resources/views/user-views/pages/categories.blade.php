@@ -145,7 +145,7 @@ Categories
                             <div
                                 class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
                                 <a href="{{ route('detail', $item->slug) }}"
-                                    class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item -> nama_sparepart }}</a>
+                                    class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item ->Sparepart-> nama_sparepart }}</a>
                                 <span class="font-size-sm">{{ $item ->Bengkel['nama_bengkel'] }}</span>
 
                                 <div class="d-flex align-items-center flex-wrap">
