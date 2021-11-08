@@ -169,14 +169,14 @@ Marketplace Homepage
                             <!--end::Section-->
 
                             <!--begin::Section-->
-                            <div class="mb-8">
+                            {{-- <div class="mb-8"> --}}
                                 <!--begin::Heading-->
-                                <div class="d-flex justify-content-between align-items-center mb-7">
+                                {{-- <div class="d-flex justify-content-between align-items-center mb-7">
                                     <h2 class="font-weight-bolder text-dark font-size-h3 mb-0">Produk Terlaris</h2>
                                     <a href="{{ route('categories-terlaris') }}"
                                         class="btn btn-light-primary btn-sm font-weight-bolder">Lihat
                                         Selengkapnya</a>
-                                </div>
+                                </div> --}}
                                 <!--end::Heading-->
                                 <!--begin::Products-->
                                 {{-- <div class="row">
@@ -284,7 +284,7 @@ Marketplace Homepage
                                     @endforelse
                                 </div> --}}
                                 <!--end::Products-->
-                            </div>
+                            {{-- </div> --}}
                             <!--end::Section-->
 
                         </div>
