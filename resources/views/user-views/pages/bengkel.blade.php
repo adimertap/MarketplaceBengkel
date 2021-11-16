@@ -225,12 +225,12 @@ Bengkel Detail
                                                 <!--begin::Info-->
                                                 <div class="d-flex align-items-center flex-wrap">
                                                     <a href="#"
-                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">{{$item->nama_jenis_perbaikan}}</a>
+                                                        class="text-dark-75 text-hover-primary mb-1 font-size-lg font-weight-bolder pr-6">{{$item->Jenis_Perbaikan->nama_jenis_perbaikan}}</a>
                                                     <span
-                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">Rp {{number_format($item->harga_jenis_perbaikan, 0, ",", ".")}}</span>
+                                                        class="text-muted font-weight-normal flex-grow-1 font-size-sm">Rp {{number_format($item->Jenis_Perbaikan->harga_jenis_perbaikan, 0, ",", ".")}}</span>
                                                 </div>
                                                 <span
-                                                    class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->group_jenis_perbaikan }}</span>
+                                                    class="text-dark-75 font-size-sm font-weight-normal pt-1">{{ $item->Jenis_Perbaikan->group_jenis_perbaikan }}</span>
                                                 <!--end::Info-->
                                             </div>
                                             <!--end::Info-->

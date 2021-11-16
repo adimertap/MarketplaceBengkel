@@ -161,8 +161,8 @@ Account
                                         <div class="input-group input-group-lg input-group-solid">
                                             <div class="input-group-prepend"><span class="input-group-text"><i
                                                         class="la la-phone"></i></span></div>
-                                            <input type="text" class="form-control form-control-lg form-control-solid"
-                                                name="nohp" value="{{ $user->nohp_user }}" placeholder="Phone" required />
+                                            <input type="tel" class="form-control form-control-lg form-control-solid"
+                                                name="number" min="0" value="{{ $user->nohp_user }}" placeholder="Phone" required />
                                         </div>
                                         {{-- <span class="form-text text-muted">We'll never share your phone
                                             with anyone else.</span> --}}

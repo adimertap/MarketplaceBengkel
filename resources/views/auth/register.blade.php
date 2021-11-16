@@ -140,7 +140,7 @@ Daftar
                             <!--begin::Form Group-->
                             <div class="form-group">
                                 <label class="font-size-h6 font-weight-bolder text-dark">No Hp</label>
-                                <input type="number"
+                                <input type="number" min="0"
                                     class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6 @error('nohp_user') is-invalid @enderror"
                                     name="nohp_user" placeholder="No Hp" value="{{ old('nohp_user') }}" required
                                     autocomplete="nohp_user" />

@@ -127,8 +127,8 @@ Daftar
 
                             <!--begin::Form Group-->
                             <div class="form-group">
-                                <label class="font-size-h6 font-weight-bolder text-dark">No Hp</label>
-                                <input type="number"
+                                <label class="font-size-h6 font-weight-bolder text-dark">No dassadHp</label>
+                                <input type="number" min="0"
                                     class="form-control form-control-solid h-auto py-7 px-6 border-0 rounded-lg font-size-h6"
                                     name="nohp" placeholder="No Hp" value="" />
                             </div>

@@ -47,7 +47,7 @@ Reservasi
                                         <option>pilih kendaraan</option>
 
                                         @forelse ($kendaraan as $item)
-                                        <option value="{{ $item->id_kendaraan }}">{{ $item->nama_kendaraan }}</option>
+                                        <option value="{{ $item->Kendaraan->id_kendaraan }}">{{ $item->Kendaraan->nama_kendaraan }}</option>
                                         @empty 
                                         @endforelse
                                     </select>

@@ -82,105 +82,118 @@ Categories
         <div class="card-body">
             <label class="font-size-h2 font-weight-bolder text-dark">{{ $categories }}</label>
             <!--begin::Section-->
-            <div class="row mb-7">
+            <div class="row mb-7"> 
+                    @php
+                    $jumlah = 0;
+                    @endphp
                 @forelse ($sparepart as $item)
 
-                @php
-                $average = 0;
-                $rating = 0;
-                $count = 1;
-                @endphp
+                    @if ($item->Sparepart)
+                        @php
+                    $average = 0;
+                    $rating = 0;
+                    $jumlah +=1;
+                    $count = 1;
+                    @endphp
+                    @foreach ($item->Rating as $star)
+                        @php
 
-                @foreach ($item->Rating as $star)
-                @php
+                            if($star->rating){
+                            $rating += $star->rating;
+                            $average = $rating/$count;
+                            $count += 1;
+                            }
+                        @endphp
+                    @endforeach
 
-                if($star->rating){
-                $rating += $star->rating;
-                $average = $rating/$count;
-                $count += 1;
+                    <!--begin::Product-->
+                    <div class="col-md-4 col-xxl-3 col-lg-12">
+                        <!--begin::Card-->
+                        <div class="card card-custom card-shadowless">
+                            <div class="card-body p-0">
+                                <!--begin::Image-->
+                                <div class="overlay">
+                                    <div class="overlay-wrapper rounded bg-light text-center">
+                                        @if ($item ->Galleries_one)
+                                        <img src="https://inventory.bengkel-kuy.com/image/{{ $item ->Galleries_one->photo}}"
+                                            alt="" class="mh-100 h-200px mw-100 w-200px" />
+                                        @endif
 
-                }
-                @endphp
-                @endforeach
-                <!--begin::Product-->
-                <div class="col-md-4 col-xxl-3 col-lg-12">
-                    <!--begin::Card-->
-                    <div class="card card-custom card-shadowless">
-                        <div class="card-body p-0">
-                            <!--begin::Image-->
-                            <div class="overlay">
-                                <div class="overlay-wrapper rounded bg-light text-center">
-                                    @if ($item ->Galleries_one)
-                                    <img src="https://inventory.bengkel-kuy.com/image/{{ $item ->Galleries_one->photo}}" alt=""
-                                        class="mh-100 h-200px mw-100 w-200px" />
-                                    @endif
+                                    </div>
+                                    <div class="overlay-layer">
+                                        <a href="{{ route('detail', $item->slug) }}"
+                                            class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
+                                        @auth
+                                        <form action="{{ route('detail-add', $item->id_detail_sparepart) }}" method="post"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <!--begin: Item-->
+                                            <div class="d-flex align-items-center flex-lg my-1">
+                                                <span class="">
+                                                    <button type="submit"
+                                                        class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                                        Ke Keranjang</button> </span>
 
+                                            </div>
+                                            <!--end: Item-->
+                                        </form>
+                                        @else
+                                        <a href="{{ route('login') }}"
+                                            class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
+                                            Ke Keranjang</a>
+                                        @endauth
+                                    </div>
                                 </div>
-                                <div class="overlay-layer">
+                                <!--end::Image-->
+                                <!--begin::Details-->
+                                <div
+                                    class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
                                     <a href="{{ route('detail', $item->slug) }}"
-                                        class="btn font-weight-bolder btn-sm btn-primary mr-2">Lihat</a>
-                                    @auth
-                                    <form action="{{ route('detail-add', $item->id_detail_sparepart) }}" method="post"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <!--begin: Item-->
-                                        <div class="d-flex align-items-center flex-lg my-1">
-                                            <span class="">
-                                                <button type="submit"
-                                                    class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
-                                                    Ke Keranjang</button> </span>
+                                        class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item ->Sparepart-> nama_sparepart }}</a>
+                                    <span class="font-size-sm">{{ $item ->Bengkel['nama_bengkel'] }}</span>
 
+                                    <div class="d-flex align-items-center flex-wrap">
+                                        <!--begin: Item-->
+                                        <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
+                                            <div class="d-flex flex-column text-dark-75">
+                                                <span
+                                                    class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px">
+                                                    <i
+                                                        class="flaticon-star text-primary"></i>{{ round($average, 1) }}</span>
+                                            </div>
                                         </div>
                                         <!--end: Item-->
-                                    </form>
-                                    @else
-                                    <a href="{{ route('login') }}"
-                                        class="btn font-weight-bolder btn-sm btn-light-primary">Tambah
-                                        Ke Keranjang</a>
-                                    @endauth
-                                </div>
-                            </div>
-                            <!--end::Image-->
-                            <!--begin::Details-->
-                            <div
-                                class="text-center mt-2 mb-md-0 mb-lg-5 mb-md-0 mb-lg-5 mb-lg-0 mb-5 d-flex flex-column">
-                                <a href="{{ route('detail', $item->slug) }}"
-                                    class="font-size-h5 font-weight-bolder text-dark-75 text-hover-primary">{{ $item ->Sparepart-> nama_sparepart }}</a>
-                                <span class="font-size-sm">{{ $item ->Bengkel['nama_bengkel'] }}</span>
 
-                                <div class="d-flex align-items-center flex-wrap">
-                                    <!--begin: Item-->
-                                    <div class="d-flex align-items-center flex-lg-fill mr-5 my-1">
-                                        <div class="d-flex flex-column text-dark-75">
-                                            <span
-                                                class="font-weight-bolder label label-l label-light-primary label-inline px-2 py-4 min-w-40px"> <i class="flaticon-star text-primary"></i>{{ round($average, 1) }}</span>
+                                        <!--begin: Item-->
+                                        <div class="d-flex align-items-right  my-1">
+                                            <div class="d-flex flex-column text-dark-75 ">
+                                                <span class="font-weight-bolder font-size-h5"><span
+                                                        class="text-dark-50  font-weight-bold">Rp
+                                                    </span>{{ number_format($item->harga_market, 0, ",", ".") }}</span>
+                                            </div>
                                         </div>
+                                        <!--end: Item-->
                                     </div>
-                                    <!--end: Item-->
-
-                                    <!--begin: Item-->
-                                    <div class="d-flex align-items-right  my-1">
-                                        <div class="d-flex flex-column text-dark-75 ">
-                                            <span class="font-weight-bolder font-size-h5"><span
-                                                    class="text-dark-50  font-weight-bold">Rp </span>{{ number_format($item->harga_market, 0, ",", ".") }}</span>
-                                        </div>
-                                    </div>
-                                    <!--end: Item-->
                                 </div>
+                                <!--end::Details-->
                             </div>
-                            <!--end::Details-->
                         </div>
+                        <!--end::Card-->
                     </div>
-                    <!--end::Card-->
-                </div>
-                <!--end::Product-->
+                    <!--end::Product-->
+                    @else
 
+                    @endif
 
+                    
                 @empty
 
                 @endforelse
             </div>
-            {{ $sparepart->appends(['search' => request()->query('search')])->links() }}
+            @if ($categories == 'All')
+                {{ $sparepart->appends(['search' => request()->query('search')])->links() }}
+            @endif
+            
             <!--end::Section-->
             {{-- <div class="text-center">
                                 <button type="button"

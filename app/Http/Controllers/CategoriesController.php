@@ -57,17 +57,24 @@ class CategoriesController extends Controller
         //      'categories' =>$categories
         // ]);
 
+       
+
 
 
         if($search)
         {
-            $categories = $search;
-            $sparepart = DetailSparepart::with('Galleries', 'Bengkel')->orderBy('id_detail_sparepart', 'DESC')->where('nama_sparepart', 'LIKE', "%{$search}%")->simplePaginate(8); 
+             $categories = $search;
+            $sparepart = DetailSparepart::with(array('Rating','Galleries_one', 'Bengkel','Sparepart' => function($query) use($search )
+            {
+                $query->where('nama_sparepart', 'LIKE',"%{$search}%");
+            }))
+                ->where('harga_market', '>', 0)->where('qty_stok', '>', 0)->get();
         }
         else
         {
             $categories = 'All';
-            $sparepart = DetailSparepart::with('Galleries', 'Bengkel')->orderBy('id_detail_sparepart', 'DESC')->simplePaginate(8); 
+             $sparepart = DetailSparepart::with(array('Rating','Galleries_one', 'Bengkel','Sparepart' ))
+                ->where('harga_market', '>', 0)->where('qty_stok', '>', 0)->simplePaginate(8);
         }
        
         // return $sparepart;
@@ -104,12 +111,24 @@ class CategoriesController extends Controller
     public function terlaris(Request $request)
     {
         $categories = 'Terlaris';
-        $sparepart = DetailTransaksi::with('DetailSparepart.Galleries_one', 'DetailSparepart.Bengkel', 'DetailSparepart.Rating')->select('*',DB::raw("sum(jumlah_produk) as penjualan"))
-                ->where('rating','>', '0')->whereHas('DetailSparepart', function ($q) {
-                        $q->where('harga_market', '>', 0);
-                        })
-                    ->groupBy('id_detail_sparepart')->orderBy('penjualan', 'DESC')
-                    ->paginate(10);
+
+            $sparepart = DetailTransaksi::with('DetailSparepart.Sparepart','DetailSparepart.Galleries_one','DetailSparepart.Rating' , 'DetailSparepart.Bengkel')->whereNotNull('rating')
+            ->whereHas('DetailSparepart', function ($q) {
+                        $q->where('harga_market', '>', 0)->where('qty_stok', '>', 0);
+                        })->select(
+            '*',
+            DB::raw('sum(jumlah_produk) as penjualan')
+        )
+        ->groupBy('id_detail_sparepart')->orderBy('penjualan', 'DESC')->paginate(8);
+
+
+        // $sparepart = DetailTransaksi::with('DetailSparepart.Galleries_one', 'DetailSparepart.Bengkel', 'DetailSparepart.Rating')->select('*',DB::raw("sum(jumlah_produk) as penjualan"))
+        //         ->where('rating','>', '0')->
+        //         whereHas('DetailSparepart', function ($q) {
+        //                 $q->where('harga_market', '>', 0);
+        //                 })
+        //             ->groupBy('id_detail_sparepart')->orderBy('penjualan', 'DESC')
+        //             ->paginate(10);
 
         // return $sparepart;
         return view('user-views.pages.terlaris', [

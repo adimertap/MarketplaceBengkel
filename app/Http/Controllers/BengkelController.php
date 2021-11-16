@@ -11,6 +11,8 @@ use App\DetailTransaksi;
 use App\Sparepart;
 use App\Perbaikan;
 use App\Kendaraan;
+use App\Model\MasterData\Detailkendaraan;
+use App\Model\MasterData\Detailperbaikan;
 use App\Model\MasterData\JenisPerbaikan;
 use App\Model\MasterData\Kendaraan as MasterDataKendaraan;
 use App\Reservasi;
@@ -29,9 +31,9 @@ class BengkelController extends Controller
         $bengkel = Bengkel::where('slug', $id)->firstOrFail();
         $sparepart = DetailSparepart::with(['Galleries_one', 'Detailtransaksi', 'Sparepart'])->where('harga_market', '>', 0)->where('id_bengkel', $bengkel->id_bengkel)->get();
         // $perbaikan = JenisPerbaikan::where('id_bengkel', $bengkel->id_bengkel)->get();
-        $perbaikan = JenisPerbaikan::get();
+        $perbaikan = Detailperbaikan::with('Jenis_Perbaikan')->where('id_bengkel', $bengkel->id_bengkel)->get();
 
-        // return $sparepart;
+        // return $perbaikan;
 
         return view('user-views.pages.bengkel', [
             'sparepart' =>$sparepart,
@@ -46,7 +48,8 @@ class BengkelController extends Controller
         $id_bengkel = Bengkel::where('slug', $id)->firstOrFail();
         $bengkel = Bengkel::where('id_bengkel', $id_bengkel->id_bengkel)->first();
         // $kendaraan = MasterDataKendaraan::where('id_bengkel', $id_bengkel->id_bengkel)->get();
-                $kendaraan = MasterDataKendaraan::get();
+        $kendaraan = Detailkendaraan::with('Kendaraan')->where('id_bengkel', $id_bengkel->id_bengkel)->get();
+        // return $kendaraan;
 
         $code = 'RSV-' .$id_bengkel->id_bengkel. mt_rand(00000, 99999);
 
