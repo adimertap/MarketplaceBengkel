@@ -154,6 +154,11 @@
                     <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Bengkel
                 </a>
+                <a class="nav-link {{ (request()-> is('admin/kategori*')) ?'active' :''}}"
+                    href={{ route('kategori.index') }}>
+                    <div class="nav-link-icon"><i class="fas fa-warehouse"></i></div>
+                    Kategori
+                </a>
                 <a class="nav-link {{ (request()-> is('admin/keuangan*')) ?'active' :''}}"
                     href={{ route('keuangan.index') }}>
                     <div class="nav-link-icon"><i class="fas fa-wallet"></i></div>

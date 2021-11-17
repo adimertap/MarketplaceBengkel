@@ -67,6 +67,8 @@ Route::namespace('AdminMarketplace')
         Route::resource('user', 'UserController');
         Route::resource('bengkel', 'BengkelController');
         Route::resource('keuangan', 'KeuanganController');
+        Route::resource('kategori', 'KategoriController');
+
 
     });
 
