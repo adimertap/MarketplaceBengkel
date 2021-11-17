@@ -5,7 +5,7 @@
 @endpush
 
 @section('name')
-Trnansaction
+Transaksi
 @endsection
 @section('content')
 <!--begin::Content-->
@@ -413,7 +413,7 @@ Trnansaction
                                                                                                                 class="symbol symbol-60 flex-shrink-0 mr-4 bg-light ml-4">
                                                                                                                 @if ($sparepart->Galleries_one)
                                                                                                                     <div class="symbol-label"
-                                                                                                                    style="background-image: url(https://bengkel-kuy.com/image/{{$sparepart->Galleries_one->photo }})">
+                                                                                                                    style="background-image: url(https://inventory.bengkel-kuy.com/image/{{$sparepart->Galleries_one->photo }})">
                                                                                                                 </div>
                                                                                                                 @endif
                                                                                                                 
@@ -422,7 +422,7 @@ Trnansaction
                                                                                                             <div
                                                                                                                 class="align-middle pb-4">
                                                                                                                 <a href="{{ route('detail', $sparepart->slug) }}"
-                                                                                                                    class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $sparepart->nama_sparepart}}</a>
+                                                                                                                    class="font-size-lg font-weight-bolder text-dark-75 mb-1">{{ $sparepart->Sparepart->nama_sparepart}}</a>
                                                                                                                 <div
                                                                                                                     class="font-weight-bold text-muted">
                                                                                                                     Rp {{ number_format($sparepart->harga_market , 0, ",",".")}}

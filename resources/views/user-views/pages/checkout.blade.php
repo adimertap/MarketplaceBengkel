@@ -303,8 +303,8 @@ Checkout
                                                                             <div class="separator separator-solid">
                                                                             </div>Rp 
                                                                             <span name="subtotal"
-                                                                                {{-- id="subtotal">{{number_format($totalbarang, 0, ",", ".")}}</span> --}}
-                                                                                id="subtotal">{{$totalbarang}}</span>
+                                                                                id="subtotal">{{number_format($totalbarang, 0, ",", ".")}}</span>
+                                                                                {{-- id="subtotal">{{$totalbarang}}</span> --}}
                                                                         </td>
 
                                                                     </tr>
@@ -426,6 +426,12 @@ Checkout
 
 <script src="user-assets/assets/js/pages/custom/wizard/wizard-3.js?v=7.0.6"></script>
 <script type="text/javascript">
+    function rubah(angka){
+            var reverse = angka.toString().split('').reverse().join(''),
+            ribuan = reverse.match(/\d{1,3}/g);
+            ribuan = ribuan.join('.').split('').reverse().join('');
+            return ribuan;
+        }
     $(document).ready(function () {
         $('select[name="kurir"]').on('change', function () {
             var thedestination = $('select[name=id_kabupaten] option').filter(':selected').val();
@@ -472,18 +478,18 @@ Checkout
                 .pop()
                 .split('=')[0]);
 
-            var subtotal = parseInt($("#subtotal").text().split("Rp ").pop().replace(/,/g, ""));
+            var subtotal = parseInt($("#subtotal").text().split("Rp ").pop().replace(/\./g, ""));
             var inputalamat = $("#alamat_penerima").val();
             var provinsi = $('select[name=provinsi] option').filter(':selected').text();
             var kabupaten = $('select[name=id_kabupaten] option').filter(':selected').text();
             var kurir = $('select[name=kurir] option').filter(':selected').text();
             var paket = $('select[name=expedisi] option').filter(':selected').text().slice(0, 3);
-            $("#harga_pengiriman").val(ongkir);
+            $("#harga_pengiriman").val((ongkir));
             $("#harga_total").val(subtotal);
             $("#kurir_pengiriman").val(kurir.concat(' ').concat(paket));
 
-            $("#ongkir").text(ongkir);
-            $("#totalkeseluruhan").text(subtotal + ongkir);
+            $("#ongkir").text(rubah(ongkir));
+            $("#totalkeseluruhan").text(rubah(subtotal + ongkir));
 
             $("#rangkumannama").text($("#nama_penerima").val());
             $("#rangkumanalamat").text(inputalamat.concat(', ').concat(kabupaten).concat(', ').concat(

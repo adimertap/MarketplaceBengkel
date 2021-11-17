@@ -89,7 +89,7 @@ Product Detail
                                                         <input type="hidden" class="qty-id"
                                                             value="{{ $item->id_detail_carts }}">
                                                         <input type="hidden" class="qty-harga"
-                                                            value="{{ $item->DetailSparepart->harga_market }}">
+                                                            value="{{ number_format($item->DetailSparepart->harga_market,2,',','.')}}">
                                                         <input type="hidden" class="qty-stok"
                                                             value="{{ $item->DetailSparepart->qty_stok }}">
 
@@ -104,8 +104,8 @@ Product Detail
                                                         Rp 
                                                     </span>
                                                     <span id="totali{{ $item->id_detail_carts }}">
-                                                        {{-- {{ number_format((($item->DetailSparepart->harga_market ) * ($item->jumlah)), 0, ",", ".") }} --}}
-                                                        {{ (($item->DetailSparepart->harga_market ) * ($item->jumlah)) }}
+                                                        {{ number_format((($item->DetailSparepart->harga_market ) * ($item->jumlah)), 0, ",", ".") }}
+                                                        {{-- {{ (($item->DetailSparepart->harga_market ) * ($item->jumlah)) }} --}}
 
                                                     </span>
                                                 </td>
@@ -133,8 +133,8 @@ Product Detail
                                         <tr>
                                             <td colspan="2"></td>
                                             <td class="font-weight-bolder font-size-h4 text-right">Subtotal</td>
-                                            {{-- <td class="font-weight-bolder font-size-h4 text-right">Rp <span id="subtotal">{{ number_format($totalharga, 0, ",", ".") }}</span> --}}
-                                            <td class="font-weight-bolder font-size-h4 text-right">Rp <span id="subtotal">{{ $totalharga }}</span>
+                                            <td class="font-weight-bolder font-size-h4 text-right">Rp <span id="subtotal">{{ number_format($totalharga, 0, ",", ".") }}</span>
+                                            {{-- <td class="font-weight-bolder font-size-h4 text-right">Rp <span id="subtotal">{{ $totalharga }}</span> --}}
                                             </td>
                                         </tr>
                                         <tr>
@@ -179,6 +179,12 @@ Product Detail
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
 <script type="text/javascript">
+    function rubah(angka){
+        var reverse = angka.toString().split('').reverse().join(''),
+        ribuan = reverse.match(/\d{1,3}/g);
+        ribuan = ribuan.join('.').split('').reverse().join('');
+        return ribuan;
+    }
     $(document).ready(function () {
         $('.increment-btn').click(function (e) {
             e.preventDefault();
@@ -187,9 +193,15 @@ Product Detail
             var id_detail_carts = $(this).parents('.quantity').find('.qty-id').val();
             var _token = $('meta[name="csrf-token"]').attr('content');
             var value = parseInt(incre_value, 10);
+
+
             var qty_harga = $(this).parents('.quantity').find('.qty-harga').val();
-            var harga = parseInt(qty_harga, 10);
-            var subtotal = $("#subtotal").text();
+            var harga1 = qty_harga.replace(/\./g, "");
+            var harga = parseInt(harga1, 10);
+
+            var subtotal1 = $("#subtotal").text();
+            var subtotal = subtotal1.replace(/\./g, "")
+
             var totalcart = parseInt(subtotal, 10);
             var value_before = parseInt(incre_value, 10);
 
@@ -198,8 +210,8 @@ Product Detail
             value++;
             var totali = "#totali" + id_detail_carts;
             $(this).parents('.quantity').find('.qty-input').val(value);
-            $(totali).text(harga * value);
-            $('#subtotal').text(totalcart + ((value - value_before) * harga));
+            $(totali).text(rubah(harga * value));
+            $('#subtotal').text(rubah(totalcart + ((value - value_before) * harga)));
 
             $.ajax({
                 type: 'post',
@@ -224,9 +236,14 @@ Product Detail
             var id_detail_carts = $(this).parents('.quantity').find('.qty-id').val();
             var _token = $('meta[name="csrf-token"]').attr('content');
             var value = parseInt(decre_value, 10);
+
             var qty_harga = $(this).parents('.quantity').find('.qty-harga').val();
-            var harga = parseInt(qty_harga, 10);
-            var subtotal = $("#subtotal").text();
+            var harga1 = qty_harga.replace(/\./g, "");
+            var harga = parseInt(harga1, 10);
+
+            var subtotal1 = $("#subtotal").text();
+            var subtotal = subtotal1.replace(/\./g, "")
+
             var totalcart = parseInt(subtotal, 10);
             var value_before = parseInt(decre_value, 10);
 
@@ -235,8 +252,8 @@ Product Detail
                 value--;
                 var totali = "#totali" + id_detail_carts;
                 $(this).parents('.quantity').find('.qty-input').val(value);
-                $(totali).text(harga * value);
-                $('#subtotal').text(totalcart + ((value - value_before) * harga));
+                $(totali).text(rubah(harga * value));
+                $('#subtotal').text(rubah(totalcart + ((value - value_before) * harga)));
                 $.ajax({
                     type: 'post',
                     url: '/updateqty',
