@@ -776,7 +776,7 @@ Dashboard
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
-                        onsole.log(data)
+                        
                         $('select[name="id_merk"]').empty();
                         $('select[name="id_merk"]').append(
                             '<option value="" holder>Pilih Merk</option>')
