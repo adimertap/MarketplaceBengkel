@@ -646,7 +646,7 @@ Dashboard
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('sparepart-status-pengajuan', $itemz->id_sparepart) }}?status=Tidak Aktif"
+                <form action="{{ route('sparepart-status-pengajuan', $itemz->id_sparepart) }}?status_sparepart=Tidak Aktif"
                     method="POST" class="d-inline">
                     @csrf
                     <div class="modal-body">
@@ -675,7 +675,7 @@ Dashboard
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                 </div>
-                <form action="{{ route('sparepart-status-pengajuan', $itemz->id_sparepart) }}?status=Tidak Aktif"
+                <form action="{{ route('sparepart-status-pengajuan', $itemz->id_sparepart) }}?status_sparepart=Tidak Aktif"
                     method="POST" class="d-inline">
                     @csrf
                     <div class="modal-body">
