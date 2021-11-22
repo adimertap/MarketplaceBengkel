@@ -87,7 +87,7 @@ class SparepartController extends Controller
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->id_kemasan = $request->id_kemasan;
         $sparepart->dimensi_berat = $request->dimensi_berat;
-        $sparepart->slug = Str::slug($request->nama_sparepart);
+        // $sparepart->slug = Str::slug($request->nama_sparepart);
         $sparepart->lifetime = $request->lifetime;
         $sparepart->jenis_barang = $request->jenis_barang;
         $sparepart->status_sparepart = 'Aktif';
@@ -151,6 +151,7 @@ class SparepartController extends Controller
         $sparepart->dimensi_berat = $request->dimensi_berat;
         $sparepart->lifetime = $request->lifetime;
         $sparepart->jenis_barang = $request->jenis_barang;
+        $sparepart->status_sparepart = 'Aktif';
         $sparepart->id_jenis_bengkel = $request->id_jenis_bengkel;
         $sparepart->update();
 
