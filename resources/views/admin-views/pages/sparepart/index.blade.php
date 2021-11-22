@@ -772,7 +772,7 @@ Dashboard
             var id_jenis_sparepart = $(this).val();
             if (id_jenis_sparepart) {
                 $.ajax({
-                    url: '/admin/sparepart/getmerk/' + id_jenis_sparepart,
+                    url: '/getmerk/' + id_jenis_sparepart,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {

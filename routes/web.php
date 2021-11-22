@@ -34,7 +34,7 @@ Route::namespace('AdminMarketplace')
         Route::resource('sparepart', 'SparepartController');
         Route::post('sparepart/{id_sparepart}/set-status', 'SparepartController@setStatus')
                     ->name('sparepart-status-pengajuan');
-        Route::get('sparepart/getmerk/{id}', 'SparepartController@getmerk');
+        Route::get('getmerk/{id}', 'SparepartController@getmerk');
          // KONVERSI
          Route::resource('konversi', 'KonversiController');
          // KEMASAN
