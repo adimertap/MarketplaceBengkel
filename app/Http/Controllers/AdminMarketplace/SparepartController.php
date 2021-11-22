@@ -116,8 +116,8 @@ class SparepartController extends Controller
      */
     public function edit($id_sparepart)
     {
-        $item = Sparepart::with('Category', 'Merk', 'Bengkel','Jenisbengkel')->findOrFail($id_sparepart);
-        return $item;
+        $item = Sparepart::with('Category', 'Merk','Jenisbengkel')->find($id_sparepart);
+        // return $item;
 
         $jenis_sparepart = Category::get();
         $merk_sparepart = SparepartMerk::get();

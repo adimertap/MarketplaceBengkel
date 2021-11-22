@@ -96,8 +96,7 @@ Dashboard
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label class="small mb-1 mr-1" for="id_jenis_sparepart">Jenis Sparepart</label><span class="mr-4 mb-3" style="color: red">*</span>
-                                            <select class="form-control" name="id_jenis_sparepart"
-                                                id="id_jenis_sparepart">
+                                            <select class="form-control" name="id_jenis_sparepart" id="id_jenis_sparepart">
                                                 <option value="{{ $item->Category->id_jenis_sparepart }}">
                                                     {{ $item->Category->jenis_sparepart }}</option>
                                                 @foreach ($jenis_sparepart as $jenissparepart)
