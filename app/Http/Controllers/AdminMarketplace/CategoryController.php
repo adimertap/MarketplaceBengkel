@@ -48,7 +48,8 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $data = $request ->all();
-
+        
+        $data['status_jenis'] = 'Aktif';
         $data['slug'] = Str::slug($request->jenis_sparepart);
 
         // dd($data);
