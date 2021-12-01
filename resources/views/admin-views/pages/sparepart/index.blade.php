@@ -321,7 +321,7 @@ Dashboard
                     </div>
                     <div class="tab-pane fade" id="tambah" role="tabpanel" aria-labelledby="tambah-tab">
                         <div class="row justify-content-center mt-5">
-                            <div class="col-xxl-6 col-xl-9">
+                            <div class="col-xxl-8 col-xl-9">
                                 <h3 class="text-primary">Sparepart</h3>
                                 <h5 class="card-title">Input Formulir Sparepart</h5>
                                 <form action="{{ route('sparepart.store') }}" method="POST"
