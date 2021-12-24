@@ -88,11 +88,17 @@ class CategoriesController extends Controller
     {
 
         $categories = Category::where('slug', $slug)->firstOrFail();
-        $sparepart = DetailSparepart::with('Galleries_one', 'Bengkel', 'Rating')->where('harga_market', '>', 0)->where('id_jenis_sparepart', $categories->id_jenis_sparepart)->paginate(8);
+        $sparepart = DetailSparepart::with(array('Rating','Galleries_one', 'Bengkel','Sparepart' => function($query) use($categories )
+            {
+                $query->where('id_jenis_sparepart',"$categories->id_jenis_sparepart");
+            }))
+                ->where('harga_market', '>', 0)->where('qty_stok', '>', 0)->paginate(8);
+        // return $categories;
+        // $sparepart = DetailSparepart::with('Galleries_one', 'Bengkel', 'Rating')->where('harga_market', '>', 0)->where('id_jenis_sparepart', $categories->id_jenis_sparepart)->paginate(8);
         // return $sparepart;
-        return view('user-views.pages.categories', [
+       return view('user-views.pages.categories', [
             'sparepart' => $sparepart,
-            'categories' =>$categories->jenis_sparepart
+             'categories' =>$categories->jenis_sparepart
         ]);
     }
 
