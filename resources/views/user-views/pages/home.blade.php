@@ -281,7 +281,8 @@ Marketplace Homepage
                                                 <div class="d-flex align-items-right  my-1">
                                                     <div class="d-flex flex-column text-dark-75 ">
                                                         <span class="font-weight-bolder font-size-h5"><span
-                                                                class="text-dark-50  font-weight-bold">Rp.</span>{{ $item->DetailSparepart->harga_market }}</span>
+                                                                class="text-dark-50  font-weight-bold">Rp.
+                                                            </span>{{ number_format($item->DetailSparepart->harga_market, 0, ",", ".") }}</span>
                                                     </div>
                                                 </div>
                                                 <!--end: Item-->
