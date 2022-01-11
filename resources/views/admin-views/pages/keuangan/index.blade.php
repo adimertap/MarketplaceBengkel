@@ -102,15 +102,16 @@ Dashboard
                                             <th scope="row" class="small" class="sorting_1">{{ $loop->iteration}}</th>
                                             <td>{{ $item->Bengkel->nama_bengkel }}</td>
                                             <td>{{ $item->jumlah }}</td>
-                                            <td>{{ $item->Bank->nama_bank }}</td>
-                                            <td>{{ $item->no_rekening }}</td>
-                                            <td>{{ $item->nama_rekening }}</td>
+                                            <td>{{ $item->Bank->Bank->nama_bank }}</td>
+                                            <td>{{ $item->Bank->nomor_rekening }}</td>
+                                            <td>{{ $item->Bank->nama_account }}</td>
                                             <td>{{ $item->status }}</td>
                                             <td>{{ $item->keterangan }}</td>
                                             <td>
                                                 @if ($item->status == 'PENDING')
                                                 <a href="" class="btn btn-primary btn-datatable  mr-2" type="button"
-                                                    data-toggle="modal" data-target="#Modaledit-{{ $item->id_keuangan }}">
+                                                    data-toggle="modal"
+                                                    data-target="#Modaledit-{{ $item->id_keuangan }}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 @endif
@@ -134,8 +135,8 @@ Dashboard
 
         {{-- MODAL EDIT -------------------------------------------------------------------------------------------}}
         @forelse ($penarikan as $item)
-        <div class="modal fade" id="Modaledit-{{ $item->id_keuangan}}" data-backdrop="static" tabindex="-1" role="dialog"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="Modaledit-{{ $item->id_keuangan}}" data-backdrop="static" tabindex="-1"
+            role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -143,17 +144,15 @@ Dashboard
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
                     </div>
-                    <form action="{{ route('keuangan.update', $item->id_keuangan) }}" method="POST">
+                    <form action="{{ route('keuangan.update', $item->id_keuangan) }}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
                         <div class="modal-body">
                             <div class="form-group">
                                 <label class="small" for="nama_user">Nama Bengkel</label>
-                                <input class="form-control" type="text"
-                                    value="{{ $item->Bengkel->nama_bengkel }}" readonly/>
+                                <input class="form-control" type="text" value="{{ $item->Bengkel->nama_bengkel }}"
+                                    readonly />
                             </div>
-                            
-
                             <div class="form-group">
                                 <label class="small" for="status">status</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name="status">
@@ -165,7 +164,11 @@ Dashboard
                             <div class="form-group">
                                 <label class="small" for="keterangan">Keterangan</label>
                                 <input class="form-control" name="keterangan" type="text" />
+
                             </div>
+                            <div class="form-group">
+                                <label for="">Gambar Bukti</label>
+                                                <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" />
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
