@@ -20,7 +20,7 @@ class KeuanganController extends Controller
     public function index()
 
     {
-        $penarikan = Keuangan::with(['Bengkel', 'Bank'])->orderBy('id_keuangan', 'DESC')->get();
+        $penarikan = Keuangan::with(['Bengkel', 'Bank.Bank'])->orderBy('id_keuangan', 'DESC')->get();
         // return $penarikan;
         return view('admin-views.pages.keuangan.index',compact('penarikan'));
     }
@@ -64,9 +64,24 @@ class KeuanganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request ->all();
+        ;
         $item = Keuangan::findOrFail($id);
-        $item -> update($data);
+        if($request->profile_avatar == NULL){
+            $item->photo = "";
+        }elseif($request->hasfile('profile_avatar')){
+            $name=$request->file("profile_avatar")->getClientOriginalName();
+            $request->file("profile_avatar")->move(public_path().'/image/', $name);
+            $item->photo= $name;
+        }
+        
+        $item->status = $request->status;
+        $item->keterangan = $request->keterangan;
+        
+        $item->save();
+        //  return $item;
+        
+        // $item -> update($data);
+
         return redirect()->route('keuangan.index')
             ->with('messageberhasil','penarikan saldo berhasil diubah');
     }
