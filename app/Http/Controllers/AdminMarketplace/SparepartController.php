@@ -42,7 +42,6 @@ class SparepartController extends Controller
         $sparepartaktifmotor = Sparepart::where('status_sparepart','=','Aktif')->where('id_jenis_bengkel','=','2')->count();
         $sparepartpengajuan = Sparepart::where('status_sparepart','=','Diajukan')->count();
         
-            
         $jenis_sparepart = Category::get();
         $merk_sparepart = SparepartMerk::get();
         $konversi = Konversi::get();
